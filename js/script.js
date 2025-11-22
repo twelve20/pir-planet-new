@@ -209,17 +209,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Проверяем наличие элементов на странице
     if (!cookieBanner || !cookieAccept || !cookieDecline) {
+        console.log('Cookie banner elements not found on this page');
         return;
     }
 
     // Проверяем, есть ли согласие в localStorage (работает на всех страницах домена)
     const cookieConsent = localStorage.getItem('cookieConsent');
+    console.log('Cookie consent status:', cookieConsent || 'not set');
 
     if (!cookieConsent) {
         // Показываем баннер через 1 секунду только если пользователь еще не дал согласие
+        console.log('Cookie consent not set - showing banner in 1 second');
         setTimeout(() => {
             cookieBanner.classList.add('active');
+            console.log('Cookie banner displayed');
         }, 1000);
+    } else {
+        console.log('Cookie consent already set - banner will not be shown');
     }
 
     // Обработка принятия cookies (сохраняется для всех страниц)

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Cookie Banner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background: #2563eb;
+            color: white;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            background: #f3f4f6;
+        }
+        .value {
+            font-weight: bold;
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест Cookie Consent Banner</h1>
+
+    <div class="section">
+        <h2>Текущий статус</h2>
+        <div class="status" id="status">
+            <p>Cookie Consent: <span class="value" id="consentValue">Проверка...</span></p>
+        </div>
+        <button onclick="checkStatus()">Обновить статус</button>
+    </div>
+
+    <div class="section">
+        <h2>Управление</h2>
+        <button onclick="clearConsent()">Очистить согласие (баннер появится снова)</button>
+        <button onclick="setAccepted()">Установить "Принято"</button>
+        <button onclick="setDeclined()">Установить "Отклонено"</button>
+    </div>
+
+    <div class="section">
+        <h2>Инструкция</h2>
+        <ol>
+            <li>Нажмите "Очистить согласие" чтобы сбросить cookie consent</li>
+            <li>Перейдите на главную страницу сайта</li>
+            <li>Баннер должен появиться через 1 секунду</li>
+            <li>После клика на "Принять" или "Отклонить" баннер не будет показываться на других страницах</li>
+        </ol>
+    </div>
+
+    <script>
+        function checkStatus() {
+            const consent = localStorage.getItem('cookieConsent');
+            const valueEl = document.getElementById('consentValue');
+
+            if (consent === null) {
+                valueEl.textContent = 'НЕ УСТАНОВЛЕНО (баннер будет показан)';
+                valueEl.style.color = '#dc2626';
+            } else if (consent === 'accepted') {
+                valueEl.textContent = 'ПРИНЯТО';
+                valueEl.style.color = '#16a34a';
+            } else if (consent === 'declined') {
+                valueEl.textContent = 'ОТКЛОНЕНО';
+                valueEl.style.color = '#ea580c';
+            } else {
+                valueEl.textContent = consent;
+                valueEl.style.color = '#6b7280';
+            }
+        }
+
+        function clearConsent() {
+            localStorage.removeItem('cookieConsent');
+            checkStatus();
+            alert('Cookie consent очищен! Теперь перейдите на главную страницу - баннер должен появиться.');
+        }
+
+        function setAccepted() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            checkStatus();
+            alert('Cookie consent установлен в "accepted"');
+        }
+
+        function setDeclined() {
+            localStorage.setItem('cookieConsent', 'declined');
+            checkStatus();
+            alert('Cookie consent установлен в "declined"');
+        }
+
+        // Проверка при загрузке
+        checkStatus();
+    </script>
+</body>
+</html>
