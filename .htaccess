@@ -8,6 +8,17 @@
     # Redirect HTTP to HTTPS
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Remove .html extension from URLs
+    # Redirect /page.html to /page
+    RewriteCond %{THE_REQUEST} ^GET\ /[^?\s]+\.html
+    RewriteRule ^(.*)\.html$ /$1 [R=301,L,NE]
+
+    # Serve .html files when extension is omitted
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.+)$ $1.html [L]
 </IfModule>
 
 # ===== SECURITY HEADERS =====
