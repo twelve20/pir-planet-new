@@ -561,7 +561,7 @@
         grid-template-columns: 1fr;
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
+        overflow: hidden;
         max-height: 90vh;
     }
 
@@ -570,11 +570,16 @@
         max-height: 280px;
         padding: 1.5rem;
         flex-shrink: 0;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     }
 
     .modal-product-info {
         padding: 2rem;
         overflow-y: auto;
+        flex: 1;
     }
 }
 
@@ -586,6 +591,7 @@
 
     .modal-body {
         max-height: 95vh;
+        overflow: hidden;
     }
 
     .modal-product-title {
@@ -598,19 +604,26 @@
     }
 
     .modal-product-image {
-        min-height: 200px;
-        max-height: 200px;
+        min-height: 180px;
+        max-height: 180px;
         padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     }
 
     .modal-product-image img {
         border-radius: 6px;
+        max-height: 160px;
+        object-fit: contain;
     }
 
     .modal-product-info {
         padding: 1.25rem;
         flex: 1;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .modal-product-description {
