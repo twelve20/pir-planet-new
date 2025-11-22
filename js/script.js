@@ -172,3 +172,36 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 });
+
+// ===== COOKIE CONSENT BANNER =====
+document.addEventListener('DOMContentLoaded', () => {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieAccept = document.getElementById('cookieAccept');
+    const cookieDecline = document.getElementById('cookieDecline');
+
+    // Проверяем, есть ли согласие в localStorage
+    const cookieConsent = localStorage.getItem('cookieConsent');
+
+    if (!cookieConsent) {
+        // Показываем баннер через 1 секунду
+        setTimeout(() => {
+            cookieBanner.classList.add('active');
+        }, 1000);
+    }
+
+    // Обработка принятия cookies
+    cookieAccept.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.classList.remove('active');
+    });
+
+    // Обработка отказа от cookies
+    cookieDecline.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        cookieBanner.classList.remove('active');
+        // Отключаем Яндекс.Метрику при отказе
+        if (window.ym) {
+            window['yandex_metrika_callbacks2'] = [];
+        }
+    });
+});
