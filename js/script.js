@@ -207,23 +207,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const cookieAccept = document.getElementById('cookieAccept');
     const cookieDecline = document.getElementById('cookieDecline');
 
-    // Проверяем, есть ли согласие в localStorage
+    // Проверяем наличие элементов на странице
+    if (!cookieBanner || !cookieAccept || !cookieDecline) {
+        return;
+    }
+
+    // Проверяем, есть ли согласие в localStorage (работает на всех страницах домена)
     const cookieConsent = localStorage.getItem('cookieConsent');
 
     if (!cookieConsent) {
-        // Показываем баннер через 1 секунду
+        // Показываем баннер через 1 секунду только если пользователь еще не дал согласие
         setTimeout(() => {
             cookieBanner.classList.add('active');
         }, 1000);
     }
 
-    // Обработка принятия cookies
+    // Обработка принятия cookies (сохраняется для всех страниц)
     cookieAccept.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'accepted');
         cookieBanner.classList.remove('active');
     });
 
-    // Обработка отказа от cookies
+    // Обработка отказа от cookies (сохраняется для всех страниц)
     cookieDecline.addEventListener('click', () => {
         localStorage.setItem('cookieConsent', 'declined');
         cookieBanner.classList.remove('active');
