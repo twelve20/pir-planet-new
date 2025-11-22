@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Яндекс
+User-agent: Yandex
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Запретить индексацию служебных файлов
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /server.js
+Disallow: /package.json
+
+# Sitemap
+Sitemap: https://planetapir.ru/sitemap.xml
