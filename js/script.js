@@ -68,67 +68,95 @@ const formSuccess = document.getElementById('formSuccess');
 
 if (orderForm) {
     orderForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        // Use SecureFormHandler if available, fallback to basic validation
+        if (typeof SecureFormHandler !== 'undefined') {
+            SecureFormHandler.handleSubmit(
+                e,
+                // Success callback
+                (form) => {
+                    // Показать сообщение об успехе
+                    orderForm.classList.add('hide');
+                    formSuccess.classList.add('show');
 
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const comment = document.getElementById('comment').value.trim();
+                    // Сбросить форму
+                    orderForm.reset();
+                    phoneInput.value = '+7';
 
-        // Простая валидация на клиенте
-        if (name.length < 2) {
-            alert('Имя должно содержать минимум 2 символа');
-            return;
-        }
-
-        if (phone.length < 10) {
-            alert('Введите корректный номер телефона');
-            return;
-        }
-
-        const submitButton = orderForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.textContent = 'Отправка...';
-        submitButton.disabled = true;
-
-        try {
-            // Отправка на наш сервер
-            const response = await fetch('/api/send-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+                    // Скрыть сообщение об успехе и показать форму снова через 5 секунд
+                    setTimeout(() => {
+                        formSuccess.classList.remove('show');
+                        orderForm.classList.remove('hide');
+                    }, 5000);
                 },
-                body: JSON.stringify({
-                    name: name,
-                    phone: phone,
-                    comment: comment
-                })
-            });
+                // Error callback
+                (error) => {
+                    alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам напрямую или попробуйте позже.');
+                }
+            );
+        } else {
+            // Fallback: basic validation without security module
+            e.preventDefault();
 
-            const data = await response.json();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const comment = document.getElementById('comment') ? document.getElementById('comment').value.trim() : '';
 
-            if (data.success) {
-                // Показать сообщение об успехе
-                orderForm.classList.add('hide');
-                formSuccess.classList.add('show');
-
-                // Сбросить форму
-                orderForm.reset();
-
-                // Скрыть сообщение об успехе и показать форму снова через 5 секунд
-                setTimeout(() => {
-                    formSuccess.classList.remove('show');
-                    orderForm.classList.remove('hide');
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
-                }, 5000);
-            } else {
-                throw new Error(data.errors ? data.errors.join(', ') : 'Ошибка отправки');
+            // Простая валидация на клиенте
+            if (name.length < 2) {
+                alert('Имя должно содержать минимум 2 символа');
+                return;
             }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам напрямую или попробуйте позже.');
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
+
+            if (phone.length < 10) {
+                alert('Введите корректный номер телефона');
+                return;
+            }
+
+            const submitButton = orderForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Отправка...';
+            submitButton.disabled = true;
+
+            try {
+                // Отправка на наш сервер
+                const response = await fetch('/api/send-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        comment: comment
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Показать сообщение об успехе
+                    orderForm.classList.add('hide');
+                    formSuccess.classList.add('show');
+
+                    // Сбросить форму
+                    orderForm.reset();
+
+                    // Скрыть сообщение об успехе и показать форму снова через 5 секунд
+                    setTimeout(() => {
+                        formSuccess.classList.remove('show');
+                        orderForm.classList.remove('hide');
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                    }, 5000);
+                } else {
+                    throw new Error(data.errors ? data.errors.join(', ') : 'Ошибка отправки');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам напрямую или попробуйте позже.');
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            }
         }
     });
 }
