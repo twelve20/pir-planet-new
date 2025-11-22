@@ -210,8 +210,27 @@
     border-top-color: var(--text-dark);
 }
 
-.price-info:hover .price-tooltip {
+.price-info:hover .price-tooltip,
+.price-info.active .price-tooltip {
     opacity: 1;
+}
+
+/* Улучшение для мобильных устройств */
+@media (hover: none) and (pointer: coarse) {
+    .price-tooltip {
+        bottom: auto;
+        top: calc(100% + 10px);
+        white-space: normal;
+        max-width: 200px;
+        text-align: center;
+    }
+
+    .price-tooltip::after {
+        top: auto;
+        bottom: 100%;
+        border-top-color: transparent;
+        border-bottom-color: var(--text-dark);
+    }
 }
 
 .price-label {
@@ -542,31 +561,45 @@
         grid-template-columns: 1fr;
         display: flex;
         flex-direction: column;
+        overflow-y: auto;
+        max-height: 90vh;
     }
 
     .modal-product-image {
         min-height: 280px;
         max-height: 280px;
         padding: 1.5rem;
+        flex-shrink: 0;
     }
 
     .modal-product-info {
         padding: 2rem;
+        overflow-y: auto;
     }
 }
 
 @media (max-width: 640px) {
+    .modal-content {
+        max-height: 95vh;
+        margin: 0.5rem;
+    }
+
+    .modal-body {
+        max-height: 95vh;
+    }
+
     .modal-product-title {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+        margin-top: 0.5rem;
     }
 
     .modal-product-price {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .modal-product-image {
-        min-height: 220px;
-        max-height: 220px;
+        min-height: 200px;
+        max-height: 200px;
         padding: 1rem;
     }
 
@@ -575,16 +608,25 @@
     }
 
     .modal-product-info {
-        padding: 1.5rem;
+        padding: 1.25rem;
+        flex: 1;
+        overflow-y: auto;
     }
 
     .modal-product-description {
         font-size: 0.875rem;
         margin-bottom: 1rem;
+        display: block;
     }
 
     .modal-actions {
         flex-direction: column;
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid var(--bg-light);
     }
 
     .modal-specs-grid {

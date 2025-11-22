@@ -442,4 +442,29 @@ document.addEventListener('DOMContentLoaded', () => {
             closeProductModal();
         }
     });
+
+    // Make price info buttons work on mobile (click to toggle)
+    document.addEventListener('click', (e) => {
+        const priceInfo = e.target.closest('.price-info');
+
+        if (priceInfo) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close all other active price-info tooltips
+            document.querySelectorAll('.price-info.active').forEach(el => {
+                if (el !== priceInfo) {
+                    el.classList.remove('active');
+                }
+            });
+
+            // Toggle current tooltip
+            priceInfo.classList.toggle('active');
+        } else {
+            // Close all tooltips when clicking outside
+            document.querySelectorAll('.price-info.active').forEach(el => {
+                el.classList.remove('active');
+            });
+        }
+    });
 });
