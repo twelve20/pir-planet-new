@@ -136,6 +136,11 @@ pages.forEach(page => {
     });
 });
 
+// Обработка маршрутов для статей блога
+app.get('/blog/pir-explanation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'blog-pir-explanation.html'));
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
