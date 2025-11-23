@@ -108,7 +108,7 @@
 /* Article Image */
 .article-featured-image {
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     margin: -3rem auto 3rem;
     border-radius: 16px;
     overflow: hidden;
@@ -191,7 +191,7 @@
 /* Article Images */
 .article-image {
     margin: 2.5rem auto;
-    max-width: 700px;
+    max-width: 600px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
