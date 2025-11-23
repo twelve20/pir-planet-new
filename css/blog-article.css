@@ -376,7 +376,7 @@
     font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.2s ease;
-    color: white;
+    color: white !important;
 }
 
 .share-btn svg {
