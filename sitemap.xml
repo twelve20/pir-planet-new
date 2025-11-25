@@ -4,7 +4,7 @@
 
     <!-- Главная страница -->
     <url>
-        <loc>https://planetapir.ru/</loc>
+        <loc>https://pir-planet.ru/</loc>
         <lastmod>2024-11-22</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
@@ -12,7 +12,7 @@
 
     <!-- Каталог -->
     <url>
-        <loc>https://planetapir.ru/catalog.html</loc>
+        <loc>https://pir-planet.ru/catalog.html</loc>
         <lastmod>2024-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -20,7 +20,7 @@
 
     <!-- Галерея -->
     <url>
-        <loc>https://planetapir.ru/gallery.html</loc>
+        <loc>https://pir-planet.ru/gallery.html</loc>
         <lastmod>2024-11-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -28,7 +28,7 @@
 
     <!-- Контакты -->
     <url>
-        <loc>https://planetapir.ru/contacts.html</loc>
+        <loc>https://pir-planet.ru/contacts.html</loc>
         <lastmod>2024-11-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>

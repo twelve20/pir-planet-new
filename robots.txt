@@ -16,4 +16,4 @@ Disallow: /server.js
 Disallow: /package.json
 
 # Sitemap
-Sitemap: https://planetapir.ru/sitemap.xml
+Sitemap: https://pir-planet.ru/sitemap.xml
