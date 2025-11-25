@@ -149,88 +149,10 @@
     position: relative;
 }
 
-.price-cash {
+.price {
     font-size: 2rem;
     font-weight: 800;
     color: var(--primary-color);
-}
-
-.price-cashless {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-light);
-    text-decoration: line-through;
-}
-
-.price-info {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: white;
-    cursor: help;
-    position: relative;
-    flex-shrink: 0;
-}
-
-.price-info svg {
-    width: 14px;
-    height: 14px;
-    stroke-width: 3;
-}
-
-.price-tooltip {
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--text-dark);
-    color: white;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    line-height: 1.5;
-}
-
-.price-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: var(--text-dark);
-}
-
-.price-info:hover .price-tooltip,
-.price-info.active .price-tooltip {
-    opacity: 1;
-}
-
-/* Улучшение для мобильных устройств */
-@media (hover: none) and (pointer: coarse) {
-    .price-tooltip {
-        bottom: auto;
-        top: calc(100% + 10px);
-        white-space: normal;
-        max-width: 200px;
-        text-align: center;
-    }
-
-    .price-tooltip::after {
-        top: auto;
-        bottom: 100%;
-        border-top-color: transparent;
-        border-bottom-color: var(--text-dark);
-    }
 }
 
 .price-label {
@@ -455,22 +377,8 @@
     position: relative;
 }
 
-.modal-product-price .price-cash {
+.modal-product-price .price {
     font-size: 1.75rem;
-}
-
-.modal-product-price .price-cashless {
-    font-size: 1.125rem;
-}
-
-.modal-product-price .price-info {
-    width: 20px;
-    height: 20px;
-}
-
-.modal-product-price .price-info svg {
-    width: 12px;
-    height: 12px;
 }
 
 .modal-product-description {
