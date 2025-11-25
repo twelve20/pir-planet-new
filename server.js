@@ -129,7 +129,7 @@ app.get('/', (req, res) => {
 });
 
 // Обработка чистых URL для всех страниц
-const pages = ['catalog', 'gallery', 'blog', 'contacts', 'privacy'];
+const pages = ['catalog', 'gallery', 'blog', 'contacts', 'privacy', 'reviews'];
 pages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         res.sendFile(path.join(__dirname, `${page}.html`));

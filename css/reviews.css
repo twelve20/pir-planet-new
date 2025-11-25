@@ -1,0 +1,264 @@
+/* Reviews Page Styles */
+
+.page-hero {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 6rem 0 4rem;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.page-hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.reviews-section {
+    padding: 4rem 0;
+}
+
+.reviews-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.stats-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.stats-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+}
+
+.stats-stars {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.stats-stars svg {
+    width: 24px;
+    height: 24px;
+    color: #fbbf24;
+}
+
+.stats-label {
+    color: #666;
+    font-size: 1rem;
+}
+
+.reviews-grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.review-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.review-author {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.author-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    color: #1e3c72;
+}
+
+.review-stars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.review-stars svg {
+    width: 18px;
+    height: 18px;
+    color: #fbbf24;
+}
+
+.review-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.review-product {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f3f4f6;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    color: #1e3c72;
+    font-weight: 500;
+}
+
+.review-product svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.review-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.review-badge svg {
+    width: 18px;
+    height: 18px;
+}
+
+.review-content {
+    color: #333;
+    line-height: 1.7;
+}
+
+.review-content p {
+    margin-bottom: 1rem;
+}
+
+.review-content p:last-child {
+    margin-bottom: 0;
+}
+
+.leave-review-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-radius: 12px;
+    color: white;
+}
+
+.leave-review-cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.leave-review-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 4rem 0 3rem;
+    }
+
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+
+    .page-hero p {
+        font-size: 1rem;
+    }
+
+    .reviews-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .stats-number {
+        font-size: 2.5rem;
+    }
+
+    .review-card {
+        padding: 1.5rem;
+    }
+
+    .review-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .review-date {
+        align-self: flex-start;
+    }
+
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .author-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .review-product {
+        font-size: 0.9rem;
+    }
+
+    .leave-review-cta {
+        padding: 2rem 1.5rem;
+    }
+
+    .leave-review-cta h2 {
+        font-size: 1.5rem;
+    }
+
+    .leave-review-cta p {
+        font-size: 1rem;
+    }
+}
