@@ -29,7 +29,9 @@
       "Bash(python convert_to_webp.py:*)",
       "Bash(git reset:*)",
       "Bash(python update_domain.py:*)",
-      "Bash(del update_domain.py)"
+      "Bash(del update_domain.py)",
+      "Bash(python add_chat.py:*)",
+      "Bash(python add_inline_chat.py:*)"
     ],
     "deny": [],
     "ask": []
