@@ -134,9 +134,9 @@
 
         /* --- FEATURED IMAGE --- */
         .article-featured-image {
-            max-width: 1200px;
+            max-width: var(--content-width);
             margin: 0 auto 40px;
-            border-radius: 0;
+            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -831,7 +831,7 @@
                     <!-- Интерактивные действия -->
                     <div class="article-actions">
                         <button class="like-btn" onclick="toggleLike(this)">
-                            ❤️ <span id="likeCount">42</span> Полезная статья
+                            ❤️ <span id="likeCount">0</span> Полезная статья
                         </button>
                     </div>
 
@@ -951,12 +951,9 @@
             const articleId = 'pir-explanation';
             const liked = localStorage.getItem('article_liked_' + articleId);
             const likeBtn = document.querySelector('.like-btn');
-            const countSpan = document.getElementById('likeCount');
 
             if (liked === 'true' && likeBtn) {
                 likeBtn.classList.add('active');
-                let count = parseInt(countSpan.innerText);
-                countSpan.innerText = count + 1;
             }
         });
     </script>
