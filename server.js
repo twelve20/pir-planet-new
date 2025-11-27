@@ -4,6 +4,7 @@ const cors = require('cors');
 const TelegramBot = require('node-telegram-bot-api');
 const path = require('path');
 const fs = require('fs').promises;
+const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,36 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
+
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'images/'); // Папка для загрузки
+    },
+    filename: function (req, file, cb) {
+        // Генерируем уникальное имя файла
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        cb(null, 'upload-' + uniqueSuffix + ext);
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 5 * 1024 * 1024 }, // Максимум 5MB
+    fileFilter: function (req, file, cb) {
+        // Разрешаем только изображения
+        const allowedTypes = /jpeg|jpg|png|gif|webp/;
+        const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = allowedTypes.test(file.mimetype);
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb(new Error('Разрешены только изображения (jpeg, jpg, png, gif, webp)'));
+        }
+    }
+});
 
 // Telegram Bot
 let bot = null;
@@ -282,6 +313,25 @@ app.get('/api/admin/gallery', async (req, res) => {
     } catch (error) {
         console.error('Error reading gallery:', error);
         res.status(500).json({ success: false, message: 'Ошибка чтения галереи' });
+    }
+});
+
+// Upload image file
+app.post('/api/admin/upload', upload.single('image'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, message: 'Файл не загружен' });
+        }
+
+        const imageUrl = 'images/' + req.file.filename;
+        res.json({
+            success: true,
+            url: imageUrl,
+            filename: req.file.filename
+        });
+    } catch (error) {
+        console.error('Error uploading file:', error);
+        res.status(500).json({ success: false, message: 'Ошибка загрузки файла' });
     }
 });
 

@@ -510,14 +510,34 @@ class GalleryManager {
 
     static showAddForm() {
         const formHTML = `
-            <form id="galleryForm">
+            <form id="galleryForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="galleryTitle">Название *</label>
                     <input type="text" id="galleryTitle" required>
                 </div>
                 <div class="form-group">
-                    <label for="galleryURL">URL изображения *</label>
-                    <input type="url" id="galleryURL" required placeholder="images/photo.jpg">
+                    <label for="galleryCategory">Категория</label>
+                    <input type="text" id="galleryCategory" placeholder="От покупателей, Производство и т.д.">
+                </div>
+                <div class="form-group">
+                    <label for="galleryDescription">Описание</label>
+                    <textarea id="galleryDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Выберите изображение</label>
+                    <div class="file-upload-area">
+                        <input type="file" id="galleryFile" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('galleryFile').click()">
+                            📁 Выбрать файл
+                        </button>
+                        <span id="fileName" style="margin-left: 10px; color: #666;">Файл не выбран</span>
+                    </div>
+                    <div id="imagePreview" style="margin-top: 10px;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="galleryURL">Или укажите URL изображения</label>
+                    <input type="text" id="galleryURL" placeholder="images/photo.jpg">
+                    <small style="color: #666;">Оставьте пустым, если загружаете файл</small>
                 </div>
                 <button type="submit" class="btn-primary">Добавить фото</button>
             </form>
@@ -525,13 +545,57 @@ class GalleryManager {
 
         UI.showModal('Добавить фото', formHTML);
 
+        // File preview
+        document.getElementById('galleryFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+
+                // Preview
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('imagePreview').innerHTML =
+                        `<img src="${event.target.result}" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.getElementById('galleryForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             try {
+                const file = document.getElementById('galleryFile').files[0];
+                const urlInput = document.getElementById('galleryURL').value;
+                let imageUrl = urlInput;
+
+                // Если выбран файл - загружаем его
+                if (file) {
+                    UI.showNotification('Загрузка изображения...', 'info');
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    const uploadResponse = await fetch('/api/admin/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!uploadResponse.ok) {
+                        throw new Error('Ошибка загрузки файла');
+                    }
+
+                    const uploadData = await uploadResponse.json();
+                    imageUrl = uploadData.url;
+                } else if (!urlInput) {
+                    throw new Error('Выберите файл или укажите URL изображения');
+                }
+
                 const image = {
                     title: document.getElementById('galleryTitle').value,
-                    url: document.getElementById('galleryURL').value
+                    category: document.getElementById('galleryCategory').value || 'Без категории',
+                    description: document.getElementById('galleryDescription').value || '',
+                    url: imageUrl
                 };
+
                 await API.addGalleryImage(image);
                 UI.hideModal();
                 await this.render();
