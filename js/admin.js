@@ -214,6 +214,7 @@ class ProductsManager {
                 <div class="product-card" data-id="${product.id}">
                     <div class="product-card-image">
                         <img src="${product.image || 'images/placeholder.jpg'}" alt="${product.name}">
+                        ${product.hoverImage ? `<img src="${product.hoverImage}" alt="${product.name}" class="hover-image">` : ''}
                     </div>
                     <div class="product-card-content">
                         <h3>${product.name}</h3>
@@ -252,7 +253,7 @@ class ProductsManager {
                     <textarea id="productDescription" rows="4"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Изображение товара</label>
+                    <label>Изображение товара (основное)</label>
                     <div class="file-upload-area">
                         <input type="file" id="productFile" accept="image/*" style="display: none;">
                         <button type="button" class="btn-secondary" onclick="document.getElementById('productFile').click()">
@@ -263,8 +264,23 @@ class ProductsManager {
                     <div id="productImagePreview" style="margin-top: 10px;"></div>
                 </div>
                 <div class="form-group">
-                    <label for="productImageURL">Или укажите URL изображения</label>
+                    <label for="productImageURL">Или укажите URL основного изображения</label>
                     <input type="text" id="productImageURL" placeholder="images/product.jpg">
+                </div>
+                <div class="form-group">
+                    <label>Изображение при наведении (hover)</label>
+                    <div class="file-upload-area">
+                        <input type="file" id="productHoverFile" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('productHoverFile').click()">
+                            📁 Выбрать файл
+                        </button>
+                        <span id="productHoverFileName" style="margin-left: 10px; color: #666;">Файл не выбран</span>
+                    </div>
+                    <div id="productHoverImagePreview" style="margin-top: 10px;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="productHoverImageURL">Или укажите URL hover-изображения</label>
+                    <input type="text" id="productHoverImageURL" placeholder="images/product-hover.jpg">
                 </div>
                 <button type="submit" class="btn-primary">Добавить товар</button>
             </form>
@@ -272,7 +288,7 @@ class ProductsManager {
 
         UI.showModal('Добавить товар', formHTML);
 
-        // File preview
+        // File preview - основное изображение
         document.getElementById('productFile').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -286,6 +302,20 @@ class ProductsManager {
             }
         });
 
+        // File preview - hover изображение
+        document.getElementById('productHoverFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('productHoverFileName').textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('productHoverImagePreview').innerHTML =
+                        `<img src="${event.target.result}" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.getElementById('productForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             try {
@@ -293,7 +323,7 @@ class ProductsManager {
                 const urlInput = document.getElementById('productImageURL').value;
                 let imageUrl = urlInput;
 
-                // Если выбран файл - загружаем его
+                // Загружаем основное изображение
                 if (file) {
                     const formData = new FormData();
                     formData.append('image', file);
@@ -311,11 +341,34 @@ class ProductsManager {
                     imageUrl = uploadData.url;
                 }
 
+                // Загружаем hover изображение
+                const hoverFile = document.getElementById('productHoverFile').files[0];
+                const hoverUrlInput = document.getElementById('productHoverImageURL').value;
+                let hoverImageUrl = hoverUrlInput;
+
+                if (hoverFile) {
+                    const formData = new FormData();
+                    formData.append('image', hoverFile);
+
+                    const uploadResponse = await fetch('/api/admin/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!uploadResponse.ok) {
+                        throw new Error('Ошибка загрузки hover-изображения');
+                    }
+
+                    const uploadData = await uploadResponse.json();
+                    hoverImageUrl = uploadData.url;
+                }
+
                 const product = {
                     name: document.getElementById('productName').value,
                     price: document.getElementById('productPrice').value,
                     description: document.getElementById('productDescription').value,
-                    image: imageUrl || 'images/placeholder.jpg'
+                    image: imageUrl || 'images/placeholder.jpg',
+                    hoverImage: hoverImageUrl || ''
                 };
 
                 await API.addProduct(product);
@@ -354,11 +407,11 @@ class ProductsManager {
                         <textarea id="productDescription" rows="4">${product.description || ''}</textarea>
                     </div>
                     <div class="form-group">
-                        <label>Текущее изображение</label>
+                        <label>Текущее основное изображение</label>
                         ${product.image ? `<img src="${product.image}" style="max-width: 150px; border-radius: 8px; margin-bottom: 10px;">` : ''}
                     </div>
                     <div class="form-group">
-                        <label>Изменить изображение</label>
+                        <label>Изменить основное изображение</label>
                         <div class="file-upload-area">
                             <input type="file" id="productFile" accept="image/*" style="display: none;">
                             <button type="button" class="btn-secondary" onclick="document.getElementById('productFile').click()">
@@ -369,8 +422,27 @@ class ProductsManager {
                         <div id="productImagePreview" style="margin-top: 10px;"></div>
                     </div>
                     <div class="form-group">
-                        <label for="productImageURL">Или укажите URL изображения</label>
+                        <label for="productImageURL">Или укажите URL основного изображения</label>
                         <input type="text" id="productImageURL" placeholder="${product.image || 'images/product.jpg'}">
+                    </div>
+                    <div class="form-group">
+                        <label>Текущее hover-изображение</label>
+                        ${product.hoverImage ? `<img src="${product.hoverImage}" style="max-width: 150px; border-radius: 8px; margin-bottom: 10px;">` : '<p style="color: #999;">Не задано</p>'}
+                    </div>
+                    <div class="form-group">
+                        <label>Изменить hover-изображение</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="productHoverFile" accept="image/*" style="display: none;">
+                            <button type="button" class="btn-secondary" onclick="document.getElementById('productHoverFile').click()">
+                                📁 Выбрать файл
+                            </button>
+                            <span id="productHoverFileName" style="margin-left: 10px; color: #666;">Файл не выбран</span>
+                        </div>
+                        <div id="productHoverImagePreview" style="margin-top: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productHoverImageURL">Или укажите URL hover-изображения</label>
+                        <input type="text" id="productHoverImageURL" placeholder="${product.hoverImage || 'images/product-hover.jpg'}">
                     </div>
                     <button type="submit" class="btn-primary">Сохранить изменения</button>
                 </form>
@@ -378,7 +450,7 @@ class ProductsManager {
 
             UI.showModal('Редактировать товар', formHTML);
 
-            // File preview
+            // File preview - основное изображение
             document.getElementById('productFile').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
@@ -392,6 +464,20 @@ class ProductsManager {
                 }
             });
 
+            // File preview - hover изображение
+            document.getElementById('productHoverFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    document.getElementById('productHoverFileName').textContent = file.name;
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.getElementById('productHoverImagePreview').innerHTML =
+                            `<img src="${event.target.result}" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
             document.getElementById('productForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 try {
@@ -399,7 +485,7 @@ class ProductsManager {
                     const urlInput = document.getElementById('productImageURL').value;
                     let imageUrl = product.image; // Оставляем старое изображение по умолчанию
 
-                    // Если выбран файл - загружаем его
+                    // Загружаем основное изображение
                     if (file) {
                         const formData = new FormData();
                         formData.append('image', file);
@@ -419,11 +505,36 @@ class ProductsManager {
                         imageUrl = urlInput;
                     }
 
+                    // Загружаем hover изображение
+                    const hoverFile = document.getElementById('productHoverFile').files[0];
+                    const hoverUrlInput = document.getElementById('productHoverImageURL').value;
+                    let hoverImageUrl = product.hoverImage || ''; // Оставляем старое или пустое
+
+                    if (hoverFile) {
+                        const formData = new FormData();
+                        formData.append('image', hoverFile);
+
+                        const uploadResponse = await fetch('/api/admin/upload', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (!uploadResponse.ok) {
+                            throw new Error('Ошибка загрузки hover-изображения');
+                        }
+
+                        const uploadData = await uploadResponse.json();
+                        hoverImageUrl = uploadData.url;
+                    } else if (hoverUrlInput) {
+                        hoverImageUrl = hoverUrlInput;
+                    }
+
                     const updatedProduct = {
                         name: document.getElementById('productName').value,
                         price: document.getElementById('productPrice').value,
                         description: document.getElementById('productDescription').value,
-                        image: imageUrl
+                        image: imageUrl,
+                        hoverImage: hoverImageUrl
                     };
 
                     await API.updateProduct(id, updatedProduct);
