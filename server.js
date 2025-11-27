@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const TelegramBot = require('node-telegram-bot-api');
 const path = require('path');
+const fs = require('fs').promises;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -121,6 +122,198 @@ app.get('/api/status', (req, res) => {
         telegram: !!bot,
         timestamp: new Date().toISOString()
     });
+});
+
+// ===== ADMIN API =====
+// Helper function to read JSON file
+async function readJSONFile(filename) {
+    try {
+        const filePath = path.join(__dirname, 'data', filename);
+        const data = await fs.readFile(filePath, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            return [];
+        }
+        throw error;
+    }
+}
+
+// Helper function to write JSON file
+async function writeJSONFile(filename, data) {
+    const filePath = path.join(__dirname, 'data', filename);
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+}
+
+// === PRODUCTS API ===
+// Get all products
+app.get('/api/admin/products', async (req, res) => {
+    try {
+        const products = await readJSONFile('products.json');
+        res.json({ success: true, data: products });
+    } catch (error) {
+        console.error('Error reading products:', error);
+        res.status(500).json({ success: false, message: 'Ошибка чтения товаров' });
+    }
+});
+
+// Add product
+app.post('/api/admin/products', async (req, res) => {
+    try {
+        const products = await readJSONFile('products.json');
+        const newProduct = {
+            id: Date.now().toString(),
+            ...req.body,
+            createdAt: new Date().toISOString()
+        };
+        products.push(newProduct);
+        await writeJSONFile('products.json', products);
+        res.json({ success: true, data: newProduct });
+    } catch (error) {
+        console.error('Error adding product:', error);
+        res.status(500).json({ success: false, message: 'Ошибка добавления товара' });
+    }
+});
+
+// Update product
+app.put('/api/admin/products/:id', async (req, res) => {
+    try {
+        const products = await readJSONFile('products.json');
+        const index = products.findIndex(p => p.id === req.params.id);
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Товар не найден' });
+        }
+        products[index] = {
+            ...products[index],
+            ...req.body,
+            updatedAt: new Date().toISOString()
+        };
+        await writeJSONFile('products.json', products);
+        res.json({ success: true, data: products[index] });
+    } catch (error) {
+        console.error('Error updating product:', error);
+        res.status(500).json({ success: false, message: 'Ошибка обновления товара' });
+    }
+});
+
+// Delete product
+app.delete('/api/admin/products/:id', async (req, res) => {
+    try {
+        const products = await readJSONFile('products.json');
+        const filtered = products.filter(p => p.id !== req.params.id);
+        await writeJSONFile('products.json', filtered);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting product:', error);
+        res.status(500).json({ success: false, message: 'Ошибка удаления товара' });
+    }
+});
+
+// === BLOG API ===
+// Get all blog posts
+app.get('/api/admin/blog', async (req, res) => {
+    try {
+        const posts = await readJSONFile('blog.json');
+        res.json({ success: true, data: posts });
+    } catch (error) {
+        console.error('Error reading blog posts:', error);
+        res.status(500).json({ success: false, message: 'Ошибка чтения статей' });
+    }
+});
+
+// Add blog post
+app.post('/api/admin/blog', async (req, res) => {
+    try {
+        const posts = await readJSONFile('blog.json');
+        const newPost = {
+            id: Date.now().toString(),
+            ...req.body,
+            createdAt: new Date().toISOString()
+        };
+        posts.push(newPost);
+        await writeJSONFile('blog.json', posts);
+        res.json({ success: true, data: newPost });
+    } catch (error) {
+        console.error('Error adding blog post:', error);
+        res.status(500).json({ success: false, message: 'Ошибка добавления статьи' });
+    }
+});
+
+// Update blog post
+app.put('/api/admin/blog/:id', async (req, res) => {
+    try {
+        const posts = await readJSONFile('blog.json');
+        const index = posts.findIndex(p => p.id === req.params.id);
+        if (index === -1) {
+            return res.status(404).json({ success: false, message: 'Статья не найдена' });
+        }
+        posts[index] = {
+            ...posts[index],
+            ...req.body,
+            updatedAt: new Date().toISOString()
+        };
+        await writeJSONFile('blog.json', posts);
+        res.json({ success: true, data: posts[index] });
+    } catch (error) {
+        console.error('Error updating blog post:', error);
+        res.status(500).json({ success: false, message: 'Ошибка обновления статьи' });
+    }
+});
+
+// Delete blog post
+app.delete('/api/admin/blog/:id', async (req, res) => {
+    try {
+        const posts = await readJSONFile('blog.json');
+        const filtered = posts.filter(p => p.id !== req.params.id);
+        await writeJSONFile('blog.json', filtered);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting blog post:', error);
+        res.status(500).json({ success: false, message: 'Ошибка удаления статьи' });
+    }
+});
+
+// === GALLERY API ===
+// Get all gallery images
+app.get('/api/admin/gallery', async (req, res) => {
+    try {
+        const images = await readJSONFile('gallery.json');
+        res.json({ success: true, data: images });
+    } catch (error) {
+        console.error('Error reading gallery:', error);
+        res.status(500).json({ success: false, message: 'Ошибка чтения галереи' });
+    }
+});
+
+// Add gallery image
+app.post('/api/admin/gallery', async (req, res) => {
+    try {
+        const images = await readJSONFile('gallery.json');
+        const newImage = {
+            id: Date.now().toString(),
+            ...req.body,
+            createdAt: new Date().toISOString()
+        };
+        images.push(newImage);
+        await writeJSONFile('gallery.json', images);
+        res.json({ success: true, data: newImage });
+    } catch (error) {
+        console.error('Error adding gallery image:', error);
+        res.status(500).json({ success: false, message: 'Ошибка добавления фото' });
+    }
+});
+
+// Delete gallery image
+app.delete('/api/admin/gallery/:id', async (req, res) => {
+    try {
+        const images = await readJSONFile('gallery.json');
+        const filtered = images.filter(i => i.id !== req.params.id);
+        await writeJSONFile('gallery.json', filtered);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting gallery image:', error);
+        res.status(500).json({ success: false, message: 'Ошибка удаления фото' });
+    }
 });
 
 // Обработка корневого маршрута

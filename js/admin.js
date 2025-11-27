@@ -1,72 +1,122 @@
-// ===== ADMIN PANEL JAVASCRIPT =====
+// ===== ADMIN PANEL JAVASCRIPT WITH API =====
 
 // Default credentials (в продакшене использовать серверную авторизацию!)
 const DEFAULT_USERNAME = 'admin';
 const DEFAULT_PASSWORD = 'admin123';
 
-// Data storage keys
-const STORAGE_KEYS = {
-    AUTH: 'admin_auth',
-    PRODUCTS: 'admin_products',
-    BLOG: 'admin_blog',
-    GALLERY: 'admin_gallery'
-};
+// API Base URL
+const API_BASE = '/api/admin';
 
 // ===== AUTHENTICATION =====
 class Auth {
     static isAuthenticated() {
-        return localStorage.getItem(STORAGE_KEYS.AUTH) === 'true';
+        return localStorage.getItem('admin_auth') === 'true';
     }
 
     static login(username, password) {
         if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
-            localStorage.setItem(STORAGE_KEYS.AUTH, 'true');
+            localStorage.setItem('admin_auth', 'true');
             return true;
         }
         return false;
     }
 
     static logout() {
-        localStorage.removeItem(STORAGE_KEYS.AUTH);
+        localStorage.removeItem('admin_auth');
     }
 }
 
-// ===== DATA MANAGER =====
-class DataManager {
-    static get(key) {
-        const data = localStorage.getItem(key);
-        return data ? JSON.parse(data) : [];
-    }
+// ===== API MANAGER =====
+class API {
+    static async request(url, options = {}) {
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                },
+                ...options
+            });
 
-    static set(key, data) {
-        localStorage.setItem(key, JSON.stringify(data));
-    }
+            const data = await response.json();
 
-    static add(key, item) {
-        const data = this.get(key);
-        item.id = Date.now().toString();
-        item.createdAt = new Date().toISOString();
-        data.push(item);
-        this.set(key, data);
-        return item;
-    }
+            if (!response.ok) {
+                throw new Error(data.message || 'Ошибка запроса');
+            }
 
-    static update(key, id, updatedItem) {
-        const data = this.get(key);
-        const index = data.findIndex(item => item.id === id);
-        if (index !== -1) {
-            data[index] = { ...data[index], ...updatedItem, updatedAt: new Date().toISOString() };
-            this.set(key, data);
-            return data[index];
+            return data;
+        } catch (error) {
+            console.error('API Error:', error);
+            throw error;
         }
-        return null;
     }
 
-    static delete(key, id) {
-        const data = this.get(key);
-        const filtered = data.filter(item => item.id !== id);
-        this.set(key, filtered);
-        return filtered.length < data.length;
+    // Products
+    static async getProducts() {
+        return await this.request(`${API_BASE}/products`);
+    }
+
+    static async addProduct(product) {
+        return await this.request(`${API_BASE}/products`, {
+            method: 'POST',
+            body: JSON.stringify(product)
+        });
+    }
+
+    static async updateProduct(id, product) {
+        return await this.request(`${API_BASE}/products/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(product)
+        });
+    }
+
+    static async deleteProduct(id) {
+        return await this.request(`${API_BASE}/products/${id}`, {
+            method: 'DELETE'
+        });
+    }
+
+    // Blog
+    static async getBlogPosts() {
+        return await this.request(`${API_BASE}/blog`);
+    }
+
+    static async addBlogPost(post) {
+        return await this.request(`${API_BASE}/blog`, {
+            method: 'POST',
+            body: JSON.stringify(post)
+        });
+    }
+
+    static async updateBlogPost(id, post) {
+        return await this.request(`${API_BASE}/blog/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(post)
+        });
+    }
+
+    static async deleteBlogPost(id) {
+        return await this.request(`${API_BASE}/blog/${id}`, {
+            method: 'DELETE'
+        });
+    }
+
+    // Gallery
+    static async getGalleryImages() {
+        return await this.request(`${API_BASE}/gallery`);
+    }
+
+    static async addGalleryImage(image) {
+        return await this.request(`${API_BASE}/gallery`, {
+            method: 'POST',
+            body: JSON.stringify(image)
+        });
+    }
+
+    static async deleteGalleryImage(id) {
+        return await this.request(`${API_BASE}/gallery/${id}`, {
+            method: 'DELETE'
+        });
     }
 }
 
@@ -99,14 +149,20 @@ class UI {
         document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
     }
 
-    static updateStats() {
-        const productsCount = DataManager.get(STORAGE_KEYS.PRODUCTS).length;
-        const blogCount = DataManager.get(STORAGE_KEYS.BLOG).length;
-        const galleryCount = DataManager.get(STORAGE_KEYS.GALLERY).length;
+    static async updateStats() {
+        try {
+            const [products, blog, gallery] = await Promise.all([
+                API.getProducts(),
+                API.getBlogPosts(),
+                API.getGalleryImages()
+            ]);
 
-        document.getElementById('productsCount').textContent = productsCount;
-        document.getElementById('blogCount').textContent = blogCount;
-        document.getElementById('galleryCount').textContent = galleryCount;
+            document.getElementById('productsCount').textContent = products.data.length;
+            document.getElementById('blogCount').textContent = blog.data.length;
+            document.getElementById('galleryCount').textContent = gallery.data.length;
+        } catch (error) {
+            console.error('Error updating stats:', error);
+        }
     }
 
     static showModal(title, formHTML) {
@@ -124,29 +180,42 @@ class UI {
         errorEl.textContent = message;
         errorEl.classList.add('show');
     }
+
+    static showNotification(message, type = 'success') {
+        // Simple notification (можно улучшить)
+        alert(message);
+    }
 }
 
 // ===== PRODUCTS MANAGER =====
 class ProductsManager {
-    static render() {
-        const products = DataManager.get(STORAGE_KEYS.PRODUCTS);
+    static async render() {
         const container = document.getElementById('productsList');
 
-        if (products.length === 0) {
-            container.innerHTML = '<p class="empty-state">Товары пока не добавлены</p>';
-            return;
-        }
+        try {
+            const response = await API.getProducts();
+            const products = response.data;
 
-        container.innerHTML = products.map(product => `
-            <div class="content-item" data-id="${product.id}">
-                <h3>${product.name}</h3>
-                <p>${product.price} ₽/м²</p>
-                <div class="item-actions">
-                    <button onclick="ProductsManager.edit('${product.id}')">Редактировать</button>
-                    <button onclick="ProductsManager.delete('${product.id}')">Удалить</button>
+            if (products.length === 0) {
+                container.innerHTML = '<p class="empty-state">Товары пока не добавлены</p>';
+                return;
+            }
+
+            container.innerHTML = products.map(product => `
+                <div class="content-item" data-id="${product.id}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price} ₽</p>
+                    ${product.description ? `<p class="item-desc">${product.description}</p>` : ''}
+                    <div class="item-actions">
+                        <button onclick="ProductsManager.edit('${product.id}')">Редактировать</button>
+                        <button onclick="ProductsManager.delete('${product.id}')">Удалить</button>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        } catch (error) {
+            container.innerHTML = '<p class="empty-state error">Ошибка загрузки товаров</p>';
+            console.error('Error rendering products:', error);
+        }
     }
 
     static showAddForm() {
@@ -157,12 +226,12 @@ class ProductsManager {
                     <input type="text" id="productName" required>
                 </div>
                 <div class="form-group">
-                    <label for="productPrice">Цена за м² *</label>
-                    <input type="number" id="productPrice" required>
+                    <label for="productPrice">Цена *</label>
+                    <input type="text" id="productPrice" required placeholder="622 ₽">
                 </div>
                 <div class="form-group">
                     <label for="productDescription">Описание</label>
-                    <textarea id="productDescription"></textarea>
+                    <textarea id="productDescription" rows="4"></textarea>
                 </div>
                 <button type="submit" class="btn-primary">Добавить товар</button>
             </form>
@@ -170,87 +239,119 @@ class ProductsManager {
 
         UI.showModal('Добавить товар', formHTML);
 
-        document.getElementById('productForm').addEventListener('submit', (e) => {
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const product = {
-                name: document.getElementById('productName').value,
-                price: document.getElementById('productPrice').value,
-                description: document.getElementById('productDescription').value
-            };
-            DataManager.add(STORAGE_KEYS.PRODUCTS, product);
-            UI.hideModal();
-            this.render();
-            UI.updateStats();
+            try {
+                const product = {
+                    name: document.getElementById('productName').value,
+                    price: document.getElementById('productPrice').value,
+                    description: document.getElementById('productDescription').value
+                };
+                await API.addProduct(product);
+                UI.hideModal();
+                await this.render();
+                await UI.updateStats();
+                UI.showNotification('Товар добавлен успешно!');
+            } catch (error) {
+                UI.showNotification('Ошибка добавления товара: ' + error.message, 'error');
+            }
         });
     }
 
-    static edit(id) {
-        const products = DataManager.get(STORAGE_KEYS.PRODUCTS);
-        const product = products.find(p => p.id === id);
+    static async edit(id) {
+        try {
+            const response = await API.getProducts();
+            const product = response.data.find(p => p.id === id);
 
-        const formHTML = `
-            <form id="productForm">
-                <div class="form-group">
-                    <label for="productName">Название товара *</label>
-                    <input type="text" id="productName" value="${product.name}" required>
-                </div>
-                <div class="form-group">
-                    <label for="productPrice">Цена за м² *</label>
-                    <input type="number" id="productPrice" value="${product.price}" required>
-                </div>
-                <div class="form-group">
-                    <label for="productDescription">Описание</label>
-                    <textarea id="productDescription">${product.description || ''}</textarea>
-                </div>
-                <button type="submit" class="btn-primary">Сохранить изменения</button>
-            </form>
-        `;
+            if (!product) {
+                UI.showNotification('Товар не найден', 'error');
+                return;
+            }
 
-        UI.showModal('Редактировать товар', formHTML);
+            const formHTML = `
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productName">Название товара *</label>
+                        <input type="text" id="productName" value="${product.name}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Цена *</label>
+                        <input type="text" id="productPrice" value="${product.price}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Описание</label>
+                        <textarea id="productDescription" rows="4">${product.description || ''}</textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Сохранить изменения</button>
+                </form>
+            `;
 
-        document.getElementById('productForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const updatedProduct = {
-                name: document.getElementById('productName').value,
-                price: document.getElementById('productPrice').value,
-                description: document.getElementById('productDescription').value
-            };
-            DataManager.update(STORAGE_KEYS.PRODUCTS, id, updatedProduct);
-            UI.hideModal();
-            this.render();
-        });
+            UI.showModal('Редактировать товар', formHTML);
+
+            document.getElementById('productForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                try {
+                    const updatedProduct = {
+                        name: document.getElementById('productName').value,
+                        price: document.getElementById('productPrice').value,
+                        description: document.getElementById('productDescription').value
+                    };
+                    await API.updateProduct(id, updatedProduct);
+                    UI.hideModal();
+                    await this.render();
+                    UI.showNotification('Товар обновлен успешно!');
+                } catch (error) {
+                    UI.showNotification('Ошибка обновления товара: ' + error.message, 'error');
+                }
+            });
+        } catch (error) {
+            UI.showNotification('Ошибка загрузки товара: ' + error.message, 'error');
+        }
     }
 
-    static delete(id) {
-        if (confirm('Удалить этот товар?')) {
-            DataManager.delete(STORAGE_KEYS.PRODUCTS, id);
-            this.render();
-            UI.updateStats();
+    static async delete(id) {
+        if (!confirm('Удалить этот товар?')) return;
+
+        try {
+            await API.deleteProduct(id);
+            await this.render();
+            await UI.updateStats();
+            UI.showNotification('Товар удален успешно!');
+        } catch (error) {
+            UI.showNotification('Ошибка удаления товара: ' + error.message, 'error');
         }
     }
 }
 
 // ===== BLOG MANAGER =====
 class BlogManager {
-    static render() {
-        const posts = DataManager.get(STORAGE_KEYS.BLOG);
+    static async render() {
         const container = document.getElementById('blogList');
 
-        if (posts.length === 0) {
-            container.innerHTML = '<p class="empty-state">Статьи пока не добавлены</p>';
-            return;
-        }
+        try {
+            const response = await API.getBlogPosts();
+            const posts = response.data;
 
-        container.innerHTML = posts.map(post => `
-            <div class="content-item" data-id="${post.id}">
-                <h3>${post.title}</h3>
-                <p>${post.excerpt}</p>
-                <div class="item-actions">
-                    <button onclick="BlogManager.edit('${post.id}')">Редактировать</button>
-                    <button onclick="BlogManager.delete('${post.id}')">Удалить</button>
+            if (posts.length === 0) {
+                container.innerHTML = '<p class="empty-state">Статьи пока не добавлены</p>';
+                return;
+            }
+
+            container.innerHTML = posts.map(post => `
+                <div class="content-item" data-id="${post.id}">
+                    <h3>${post.title}</h3>
+                    ${post.category ? `<span class="item-category">${post.category}</span>` : ''}
+                    <p class="item-desc">${post.excerpt || ''}</p>
+                    <div class="item-actions">
+                        <button onclick="BlogManager.edit('${post.id}')">Редактировать</button>
+                        <button onclick="BlogManager.delete('${post.id}')">Удалить</button>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        } catch (error) {
+            container.innerHTML = '<p class="empty-state error">Ошибка загрузки статей</p>';
+            console.error('Error rendering blog posts:', error);
+        }
     }
 
     static showAddForm() {
@@ -270,7 +371,7 @@ class BlogManager {
                 </div>
                 <div class="form-group">
                     <label for="blogContent">Содержание статьи *</label>
-                    <textarea id="blogContent" required></textarea>
+                    <textarea id="blogContent" rows="10" required></textarea>
                 </div>
                 <button type="submit" class="btn-primary">Добавить статью</button>
             </form>
@@ -278,93 +379,124 @@ class BlogManager {
 
         UI.showModal('Добавить статью', formHTML);
 
-        document.getElementById('blogForm').addEventListener('submit', (e) => {
+        document.getElementById('blogForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const post = {
-                title: document.getElementById('blogTitle').value,
-                category: document.getElementById('blogCategory').value,
-                excerpt: document.getElementById('blogExcerpt').value,
-                content: document.getElementById('blogContent').value,
-                author: 'Админ'
-            };
-            DataManager.add(STORAGE_KEYS.BLOG, post);
-            UI.hideModal();
-            this.render();
-            UI.updateStats();
+            try {
+                const post = {
+                    title: document.getElementById('blogTitle').value,
+                    category: document.getElementById('blogCategory').value,
+                    excerpt: document.getElementById('blogExcerpt').value,
+                    content: document.getElementById('blogContent').value,
+                    author: 'Админ'
+                };
+                await API.addBlogPost(post);
+                UI.hideModal();
+                await this.render();
+                await UI.updateStats();
+                UI.showNotification('Статья добавлена успешно!');
+            } catch (error) {
+                UI.showNotification('Ошибка добавления статьи: ' + error.message, 'error');
+            }
         });
     }
 
-    static edit(id) {
-        const posts = DataManager.get(STORAGE_KEYS.BLOG);
-        const post = posts.find(p => p.id === id);
+    static async edit(id) {
+        try {
+            const response = await API.getBlogPosts();
+            const post = response.data.find(p => p.id === id);
 
-        const formHTML = `
-            <form id="blogForm">
-                <div class="form-group">
-                    <label for="blogTitle">Заголовок *</label>
-                    <input type="text" id="blogTitle" value="${post.title}" required>
-                </div>
-                <div class="form-group">
-                    <label for="blogCategory">Категория *</label>
-                    <input type="text" id="blogCategory" value="${post.category}" required>
-                </div>
-                <div class="form-group">
-                    <label for="blogExcerpt">Краткое описание *</label>
-                    <textarea id="blogExcerpt" rows="3" required>${post.excerpt}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="blogContent">Содержание статьи *</label>
-                    <textarea id="blogContent" required>${post.content}</textarea>
-                </div>
-                <button type="submit" class="btn-primary">Сохранить изменения</button>
-            </form>
-        `;
+            if (!post) {
+                UI.showNotification('Статья не найдена', 'error');
+                return;
+            }
 
-        UI.showModal('Редактировать статью', formHTML);
+            const formHTML = `
+                <form id="blogForm">
+                    <div class="form-group">
+                        <label for="blogTitle">Заголовок *</label>
+                        <input type="text" id="blogTitle" value="${post.title}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogCategory">Категория *</label>
+                        <input type="text" id="blogCategory" value="${post.category}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogExcerpt">Краткое описание *</label>
+                        <textarea id="blogExcerpt" rows="3" required>${post.excerpt}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogContent">Содержание статьи *</label>
+                        <textarea id="blogContent" rows="10" required>${post.content}</textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Сохранить изменения</button>
+                </form>
+            `;
 
-        document.getElementById('blogForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const updatedPost = {
-                title: document.getElementById('blogTitle').value,
-                category: document.getElementById('blogCategory').value,
-                excerpt: document.getElementById('blogExcerpt').value,
-                content: document.getElementById('blogContent').value
-            };
-            DataManager.update(STORAGE_KEYS.BLOG, id, updatedPost);
-            UI.hideModal();
-            this.render();
-        });
+            UI.showModal('Редактировать статью', formHTML);
+
+            document.getElementById('blogForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                try {
+                    const updatedPost = {
+                        title: document.getElementById('blogTitle').value,
+                        category: document.getElementById('blogCategory').value,
+                        excerpt: document.getElementById('blogExcerpt').value,
+                        content: document.getElementById('blogContent').value
+                    };
+                    await API.updateBlogPost(id, updatedPost);
+                    UI.hideModal();
+                    await this.render();
+                    UI.showNotification('Статья обновлена успешно!');
+                } catch (error) {
+                    UI.showNotification('Ошибка обновления статьи: ' + error.message, 'error');
+                }
+            });
+        } catch (error) {
+            UI.showNotification('Ошибка загрузки статьи: ' + error.message, 'error');
+        }
     }
 
-    static delete(id) {
-        if (confirm('Удалить эту статью?')) {
-            DataManager.delete(STORAGE_KEYS.BLOG, id);
-            this.render();
-            UI.updateStats();
+    static async delete(id) {
+        if (!confirm('Удалить эту статью?')) return;
+
+        try {
+            await API.deleteBlogPost(id);
+            await this.render();
+            await UI.updateStats();
+            UI.showNotification('Статья удалена успешно!');
+        } catch (error) {
+            UI.showNotification('Ошибка удаления статьи: ' + error.message, 'error');
         }
     }
 }
 
 // ===== GALLERY MANAGER =====
 class GalleryManager {
-    static render() {
-        const images = DataManager.get(STORAGE_KEYS.GALLERY);
+    static async render() {
         const container = document.getElementById('galleryGrid');
 
-        if (images.length === 0) {
-            container.innerHTML = '<p class="empty-state">Фотографии пока не добавлены</p>';
-            return;
-        }
+        try {
+            const response = await API.getGalleryImages();
+            const images = response.data;
 
-        container.innerHTML = images.map(image => `
-            <div class="gallery-item" data-id="${image.id}">
-                <img src="${image.url}" alt="${image.title}">
-                <div class="gallery-item-overlay">
-                    <h4>${image.title}</h4>
-                    <button onclick="GalleryManager.delete('${image.id}')">Удалить</button>
+            if (images.length === 0) {
+                container.innerHTML = '<p class="empty-state">Фотографии пока не добавлены</p>';
+                return;
+            }
+
+            container.innerHTML = images.map(image => `
+                <div class="gallery-item" data-id="${image.id}">
+                    <img src="${image.url}" alt="${image.title}">
+                    <div class="gallery-item-overlay">
+                        <h4>${image.title}</h4>
+                        <button onclick="GalleryManager.delete('${image.id}')">Удалить</button>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        } catch (error) {
+            container.innerHTML = '<p class="empty-state error">Ошибка загрузки галереи</p>';
+            console.error('Error rendering gallery:', error);
+        }
     }
 
     static showAddForm() {
@@ -376,7 +508,7 @@ class GalleryManager {
                 </div>
                 <div class="form-group">
                     <label for="galleryURL">URL изображения *</label>
-                    <input type="url" id="galleryURL" required placeholder="https://...">
+                    <input type="url" id="galleryURL" required placeholder="images/photo.jpg">
                 </div>
                 <button type="submit" class="btn-primary">Добавить фото</button>
             </form>
@@ -384,24 +516,34 @@ class GalleryManager {
 
         UI.showModal('Добавить фото', formHTML);
 
-        document.getElementById('galleryForm').addEventListener('submit', (e) => {
+        document.getElementById('galleryForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const image = {
-                title: document.getElementById('galleryTitle').value,
-                url: document.getElementById('galleryURL').value
-            };
-            DataManager.add(STORAGE_KEYS.GALLERY, image);
-            UI.hideModal();
-            this.render();
-            UI.updateStats();
+            try {
+                const image = {
+                    title: document.getElementById('galleryTitle').value,
+                    url: document.getElementById('galleryURL').value
+                };
+                await API.addGalleryImage(image);
+                UI.hideModal();
+                await this.render();
+                await UI.updateStats();
+                UI.showNotification('Фото добавлено успешно!');
+            } catch (error) {
+                UI.showNotification('Ошибка добавления фото: ' + error.message, 'error');
+            }
         });
     }
 
-    static delete(id) {
-        if (confirm('Удалить это фото?')) {
-            DataManager.delete(STORAGE_KEYS.GALLERY, id);
-            this.render();
-            UI.updateStats();
+    static async delete(id) {
+        if (!confirm('Удалить это фото?')) return;
+
+        try {
+            await API.deleteGalleryImage(id);
+            await this.render();
+            await UI.updateStats();
+            UI.showNotification('Фото удалено успешно!');
+        } catch (error) {
+            UI.showNotification('Ошибка удаления фото: ' + error.message, 'error');
         }
     }
 }

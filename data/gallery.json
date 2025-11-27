@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "title": "Доставка клиенту",
+    "url": "images/gallery1.webp",
+    "category": "От покупателей",
+    "description": "Фото привезенного товара от покупателя",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "Заказ клиента",
+    "url": "images/gallery2.webp",
+    "category": "От покупателей",
+    "description": "PIR плиты готовы к монтажу",
+    "createdAt": "2025-01-02T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "Успешная доставка",
+    "url": "images/gallery3.webp",
+    "category": "От покупателей",
+    "description": "Товар на объекте заказчика",
+    "createdAt": "2025-01-03T00:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Доставленный заказ",
+    "url": "images/gallery4.webp",
+    "category": "От покупателей",
+    "description": "Фото от довольного клиента",
+    "createdAt": "2025-01-04T00:00:00.000Z"
+  },
+  {
+    "id": "5",
+    "title": "Отгрузка товара",
+    "url": "images/gallery5.webp",
+    "category": "От покупателей",
+    "description": "Свежая партия PIR плит готова к отправке",
+    "createdAt": "2025-01-05T00:00:00.000Z"
+  }
+]
