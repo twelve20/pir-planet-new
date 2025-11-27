@@ -316,6 +316,21 @@ app.delete('/api/admin/gallery/:id', async (req, res) => {
     }
 });
 
+// === AUTHENTICATION API ===
+// Login endpoint
+app.post('/api/admin/login', (req, res) => {
+    const { username, password } = req.body;
+
+    const adminUsername = process.env.ADMIN_USERNAME || 'admin';
+    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+
+    if (username === adminUsername && password === adminPassword) {
+        res.json({ success: true, message: 'Успешный вход' });
+    } else {
+        res.status(401).json({ success: false, message: 'Неверный логин или пароль' });
+    }
+});
+
 // Обработка корневого маршрута
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));

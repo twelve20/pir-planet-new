@@ -1,9 +1,5 @@
 // ===== ADMIN PANEL JAVASCRIPT WITH API =====
 
-// Default credentials (в продакшене использовать серверную авторизацию!)
-const DEFAULT_USERNAME = 'admin';
-const DEFAULT_PASSWORD = 'admin123';
-
 // API Base URL
 const API_BASE = '/api/admin';
 
@@ -13,12 +9,25 @@ class Auth {
         return localStorage.getItem('admin_auth') === 'true';
     }
 
-    static login(username, password) {
-        if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
-            localStorage.setItem('admin_auth', 'true');
-            return true;
+    static async login(username, password) {
+        try {
+            const response = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                localStorage.setItem('admin_auth', 'true');
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error('Login error:', error);
+            return false;
         }
-        return false;
     }
 
     static logout() {
@@ -559,12 +568,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Login form
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        if (Auth.login(username, password)) {
+        const success = await Auth.login(username, password);
+        if (success) {
             UI.showAdmin();
             ProductsManager.render();
         } else {
