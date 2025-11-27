@@ -27,28 +27,19 @@
     <link rel="stylesheet" href="/css/styles.css">
 
     <style>
-        /* --- ПЕРЕМЕННЫЕ (Светлая тема) --- */
+        /* --- ПЕРЕМЕННЫЕ (Стиль сайта) --- */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #24292e;
-            --text-secondary: #6a737d;
-            --accent-color: #448ef7;
-            --code-bg: #f6f8fa;
-            --border-color: #e1e4e8;
-            --quote-border: #24292e;
-            --content-width: 700px;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        }
-
-        /* --- АВТОМАТИЧЕСКАЯ ТЁМНАЯ ТЕМА --- */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #1a1a1a;
-                --text-color: #e0e0e0;
-                --text-secondary: #a0a0a0;
-                --code-bg: #2d333b;
-                --border-color: #30363d;
-            }
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         /* --- ПРОГРЕСС БАР ЧТЕНИЯ --- */
@@ -70,9 +61,10 @@
 
         /* --- БАЗОВЫЕ СТИЛИ --- */
         .article-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 20px 40px;
+            background: var(--bg-white);
+            padding: 40px 20px 30px;
             margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .article-hero-content {
@@ -84,40 +76,47 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
         }
 
-        .article-breadcrumb a { color: white; text-decoration: none; }
+        .article-breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .article-breadcrumb a:hover {
+            color: var(--accent-color);
+        }
         .article-breadcrumb svg { width: 14px; height: 14px; }
-        .article-breadcrumb span { color: rgba(255,255,255,0.9); }
+        .article-breadcrumb span { color: var(--text-color); }
 
         .article-category {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 6px 14px;
+            background: #eff6ff;
+            color: var(--accent-color);
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            font-weight: 500;
         }
 
         .article-title {
-            font-size: 2.8rem;
-            line-height: 1.15;
-            color: white;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            color: var(--text-color);
             margin-bottom: 20px;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
             font-weight: 700;
         }
 
         .article-meta {
             display: flex;
             gap: 24px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.85);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
             flex-wrap: wrap;
         }
 
@@ -128,18 +127,17 @@
         }
 
         .article-meta-item svg {
-            width: 18px;
-            height: 18px;
-            opacity: 0.8;
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
         }
 
         /* --- FEATURED IMAGE --- */
         .article-featured-image {
-            max-width: var(--content-width);
-            margin: -30px auto 50px;
-            border-radius: 12px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         .article-featured-image img {
@@ -150,8 +148,8 @@
 
         /* --- КОНТЕНТ --- */
         .article-content-section {
-            padding: 0 20px 80px;
-            background-color: var(--bg-color);
+            padding: 40px 20px 80px;
+            background-color: var(--bg-white);
         }
 
         .article-content-wrapper {
@@ -227,7 +225,7 @@
         /* --- БЛОКИ ВЫДЕЛЕНИЯ --- */
         .highlight-box,
         .info-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            background: var(--quote-bg);
             border-left: 4px solid var(--accent-color);
             padding: 24px;
             margin: 2em 0;
@@ -237,6 +235,7 @@
         .highlight-box p,
         .info-box p {
             margin-bottom: 0;
+            color: var(--text-color);
         }
 
         .info-box-title {
@@ -246,6 +245,7 @@
             font-size: 1.1rem;
             margin-bottom: 16px;
             color: var(--accent-color);
+            font-weight: 600;
         }
 
         .info-box-title svg {
@@ -259,12 +259,13 @@
 
         /* --- CTA БЛОК --- */
         .article-cta {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
             color: white;
             padding: 40px;
             border-radius: 12px;
             text-align: center;
             margin: 3em 0 2em;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
         }
 
         .article-cta h3 {
@@ -280,21 +281,21 @@
 
         .article-cta .btn-primary {
             background: white;
-            color: #667eea;
+            color: var(--accent-color);
             border: none;
             padding: 14px 32px;
             font-size: 1rem;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.2s;
             display: inline-block;
             text-decoration: none;
         }
 
         .article-cta .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
         }
 
         /* --- ИНТЕРАКТИВНЫЕ ДЕЙСТВИЯ --- */
@@ -388,7 +389,7 @@
         /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
             .article-title {
-                font-size: 2rem;
+                font-size: 1.875rem;
             }
 
             .article-content {
@@ -404,8 +405,7 @@
             }
 
             .article-featured-image {
-                margin: 0 -20px 30px;
-                border-radius: 0;
+                margin: 0 0 30px;
             }
 
             .article-cta {
@@ -418,6 +418,10 @@
 
             .share-btn {
                 justify-content: center;
+            }
+
+            .article-hero {
+                padding: 30px 20px 20px;
             }
         }
     </style>
