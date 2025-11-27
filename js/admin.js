@@ -211,13 +211,22 @@ class ProductsManager {
             }
 
             container.innerHTML = products.map(product => `
-                <div class="content-item" data-id="${product.id}">
-                    <h3>${product.name}</h3>
-                    <p>${product.price} ₽</p>
-                    ${product.description ? `<p class="item-desc">${product.description}</p>` : ''}
-                    <div class="item-actions">
-                        <button onclick="ProductsManager.edit('${product.id}')">Редактировать</button>
-                        <button onclick="ProductsManager.delete('${product.id}')">Удалить</button>
+                <div class="product-card" data-id="${product.id}">
+                    <div class="product-card-image">
+                        <img src="${product.image || 'images/placeholder.jpg'}" alt="${product.name}">
+                    </div>
+                    <div class="product-card-content">
+                        <h3>${product.name}</h3>
+                        <div class="product-price">${product.price}</div>
+                        ${product.description ? `<p class="product-description">${product.description}</p>` : ''}
+                        <div class="product-actions">
+                            <button class="btn-edit" onclick="ProductsManager.edit('${product.id}')">
+                                ✏️ Изменить
+                            </button>
+                            <button class="btn-delete" onclick="ProductsManager.delete('${product.id}')">
+                                🗑️ Удалить
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -229,7 +238,7 @@ class ProductsManager {
 
     static showAddForm() {
         const formHTML = `
-            <form id="productForm">
+            <form id="productForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="productName">Название товара *</label>
                     <input type="text" id="productName" required>
@@ -242,20 +251,73 @@ class ProductsManager {
                     <label for="productDescription">Описание</label>
                     <textarea id="productDescription" rows="4"></textarea>
                 </div>
+                <div class="form-group">
+                    <label>Изображение товара</label>
+                    <div class="file-upload-area">
+                        <input type="file" id="productFile" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-secondary" onclick="document.getElementById('productFile').click()">
+                            📁 Выбрать файл
+                        </button>
+                        <span id="productFileName" style="margin-left: 10px; color: #666;">Файл не выбран</span>
+                    </div>
+                    <div id="productImagePreview" style="margin-top: 10px;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="productImageURL">Или укажите URL изображения</label>
+                    <input type="text" id="productImageURL" placeholder="images/product.jpg">
+                </div>
                 <button type="submit" class="btn-primary">Добавить товар</button>
             </form>
         `;
 
         UI.showModal('Добавить товар', formHTML);
 
+        // File preview
+        document.getElementById('productFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('productFileName').textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('productImagePreview').innerHTML =
+                        `<img src="${event.target.result}" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.getElementById('productForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             try {
+                const file = document.getElementById('productFile').files[0];
+                const urlInput = document.getElementById('productImageURL').value;
+                let imageUrl = urlInput;
+
+                // Если выбран файл - загружаем его
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    const uploadResponse = await fetch('/api/admin/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!uploadResponse.ok) {
+                        throw new Error('Ошибка загрузки файла');
+                    }
+
+                    const uploadData = await uploadResponse.json();
+                    imageUrl = uploadData.url;
+                }
+
                 const product = {
                     name: document.getElementById('productName').value,
                     price: document.getElementById('productPrice').value,
-                    description: document.getElementById('productDescription').value
+                    description: document.getElementById('productDescription').value,
+                    image: imageUrl || 'images/placeholder.jpg'
                 };
+
                 await API.addProduct(product);
                 UI.hideModal();
                 await this.render();
@@ -278,7 +340,7 @@ class ProductsManager {
             }
 
             const formHTML = `
-                <form id="productForm">
+                <form id="productForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="productName">Название товара *</label>
                         <input type="text" id="productName" value="${product.name}" required>
@@ -291,20 +353,79 @@ class ProductsManager {
                         <label for="productDescription">Описание</label>
                         <textarea id="productDescription" rows="4">${product.description || ''}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label>Текущее изображение</label>
+                        ${product.image ? `<img src="${product.image}" style="max-width: 150px; border-radius: 8px; margin-bottom: 10px;">` : ''}
+                    </div>
+                    <div class="form-group">
+                        <label>Изменить изображение</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="productFile" accept="image/*" style="display: none;">
+                            <button type="button" class="btn-secondary" onclick="document.getElementById('productFile').click()">
+                                📁 Выбрать файл
+                            </button>
+                            <span id="productFileName" style="margin-left: 10px; color: #666;">Файл не выбран</span>
+                        </div>
+                        <div id="productImagePreview" style="margin-top: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImageURL">Или укажите URL изображения</label>
+                        <input type="text" id="productImageURL" placeholder="${product.image || 'images/product.jpg'}">
+                    </div>
                     <button type="submit" class="btn-primary">Сохранить изменения</button>
                 </form>
             `;
 
             UI.showModal('Редактировать товар', formHTML);
 
+            // File preview
+            document.getElementById('productFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    document.getElementById('productFileName').textContent = file.name;
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.getElementById('productImagePreview').innerHTML =
+                            `<img src="${event.target.result}" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
             document.getElementById('productForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 try {
+                    const file = document.getElementById('productFile').files[0];
+                    const urlInput = document.getElementById('productImageURL').value;
+                    let imageUrl = product.image; // Оставляем старое изображение по умолчанию
+
+                    // Если выбран файл - загружаем его
+                    if (file) {
+                        const formData = new FormData();
+                        formData.append('image', file);
+
+                        const uploadResponse = await fetch('/api/admin/upload', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (!uploadResponse.ok) {
+                            throw new Error('Ошибка загрузки файла');
+                        }
+
+                        const uploadData = await uploadResponse.json();
+                        imageUrl = uploadData.url;
+                    } else if (urlInput) {
+                        imageUrl = urlInput;
+                    }
+
                     const updatedProduct = {
                         name: document.getElementById('productName').value,
                         price: document.getElementById('productPrice').value,
-                        description: document.getElementById('productDescription').value
+                        description: document.getElementById('productDescription').value,
+                        image: imageUrl
                     };
+
                     await API.updateProduct(id, updatedProduct);
                     UI.hideModal();
                     await this.render();
