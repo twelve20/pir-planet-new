@@ -516,14 +516,6 @@ class GalleryManager {
                     <input type="text" id="galleryTitle" required>
                 </div>
                 <div class="form-group">
-                    <label for="galleryCategory">Категория</label>
-                    <input type="text" id="galleryCategory" placeholder="От покупателей, Производство и т.д.">
-                </div>
-                <div class="form-group">
-                    <label for="galleryDescription">Описание</label>
-                    <textarea id="galleryDescription" rows="3"></textarea>
-                </div>
-                <div class="form-group">
                     <label>Выберите изображение</label>
                     <div class="file-upload-area">
                         <input type="file" id="galleryFile" accept="image/*" style="display: none;">
@@ -537,7 +529,6 @@ class GalleryManager {
                 <div class="form-group">
                     <label for="galleryURL">Или укажите URL изображения</label>
                     <input type="text" id="galleryURL" placeholder="images/photo.jpg">
-                    <small style="color: #666;">Оставьте пустым, если загружаете файл</small>
                 </div>
                 <button type="submit" class="btn-primary">Добавить фото</button>
             </form>
@@ -570,7 +561,6 @@ class GalleryManager {
 
                 // Если выбран файл - загружаем его
                 if (file) {
-                    UI.showNotification('Загрузка изображения...', 'info');
                     const formData = new FormData();
                     formData.append('image', file);
 
@@ -591,8 +581,6 @@ class GalleryManager {
 
                 const image = {
                     title: document.getElementById('galleryTitle').value,
-                    category: document.getElementById('galleryCategory').value || 'Без категории',
-                    description: document.getElementById('galleryDescription').value || '',
                     url: imageUrl
                 };
 
