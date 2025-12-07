@@ -199,4 +199,63 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transition = `all 0.6s ease ${index * 0.1}s`;
         observer.observe(card);
     });
+
+    // Initialize calculator
+    if (typeof calculateMaterials === 'function') {
+        calculateMaterials();
+    }
 });
+
+// ===== CALCULATOR =====
+function calculateMaterials() {
+    // Получаем значения из полей
+    const length = parseFloat(document.getElementById('calc-length')?.value) || 0;
+    const width = parseFloat(document.getElementById('calc-width')?.value) || 0;
+    const height = parseFloat(document.getElementById('calc-height')?.value) || 0;
+    const includeCeiling = document.getElementById('calc-ceiling')?.checked || false;
+    const thicknessSelect = document.getElementById('calc-thickness')?.value || '50-782';
+
+    const [thickness, pricePerPlate] = thicknessSelect.split('-');
+    const platePriceNum = parseFloat(pricePerPlate);
+
+    // Площадь одной плиты 600×1200 мм = 0.72 м²
+    const plateArea = 0.72;
+
+    // Расчет площади стен: (длина + ширина) × 2 × высота
+    const wallArea = (length + width) * 2 * height;
+
+    // Расчет площади потолка: длина × ширина
+    const ceilingArea = includeCeiling ? (length * width) : 0;
+
+    // Общая площадь утепления
+    const totalArea = wallArea + ceilingArea;
+
+    // Количество плит с запасом 10%
+    const platesCount = Math.ceil((totalArea / plateArea) * 1.1);
+
+    // Клей-пена: 1 баллон на 8-10 м² (берем 9 м² для среднего значения)
+    const glueCount = Math.ceil(totalArea / 9);
+    const gluePricePerBottle = 1050;
+
+    // Расчет стоимости
+    const platesCost = platesCount * platePriceNum;
+    const glueCost = glueCount * gluePricePerBottle;
+    const totalCost = platesCost + glueCost;
+
+    // Обновление результатов
+    document.getElementById('calc-area').textContent = totalArea.toFixed(1) + ' м²';
+    document.getElementById('calc-plates').textContent = platesCount + ' шт';
+    document.getElementById('calc-glue').textContent = glueCount + ' шт';
+    document.getElementById('calc-total').textContent = totalCost.toLocaleString('ru-RU') + ' ₽';
+
+    document.getElementById('calc-plates-cost').textContent = platesCost.toLocaleString('ru-RU') + ' ₽';
+    document.getElementById('calc-glue-cost').textContent = glueCost.toLocaleString('ru-RU') + ' ₽';
+
+    // Обновление детализации
+    const thicknessText = thickness + 'мм';
+    const breakdownHtml = `
+        <div>• PIR-плиты ФОЛЬГА ${thicknessText}: ${platesCost.toLocaleString('ru-RU')} ₽</div>
+        <div>• Клей-пена PIRROклей: ${glueCost.toLocaleString('ru-RU')} ₽</div>
+    `;
+    document.getElementById('calc-breakdown').innerHTML = breakdownHtml;
+}
