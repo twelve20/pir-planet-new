@@ -234,73 +234,68 @@
             <p class="section-subtitle">Рассчитайте количество PIR-плит и стоимость утепления вашей бани</p>
 
             <div class="calculator-wrapper" style="background: white; border-radius: 16px; padding: 40px; max-width: 900px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-                <div class="calculator-inputs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 32px;">
+                <div class="calculator-inputs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px;">
                     <div class="calc-input-group">
-                        <label for="calc-length" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b;">Длина помещения (м)</label>
+                        <label for="calc-length" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b; font-size: 14px;">Длина (м)</label>
                         <input type="number" id="calc-length" min="1" max="50" value="3" step="0.1"
-                            style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                            style="width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
                             oninput="calculateMaterials()">
                     </div>
                     <div class="calc-input-group">
-                        <label for="calc-width" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b;">Ширина помещения (м)</label>
+                        <label for="calc-width" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b; font-size: 14px;">Ширина (м)</label>
                         <input type="number" id="calc-width" min="1" max="50" value="2" step="0.1"
-                            style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                            style="width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
                             oninput="calculateMaterials()">
                     </div>
                     <div class="calc-input-group">
-                        <label for="calc-height" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b;">Высота помещения (м)</label>
+                        <label for="calc-height" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b; font-size: 14px;">Высота (м)</label>
                         <input type="number" id="calc-height" min="1.5" max="10" value="2.2" step="0.1"
-                            style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                            style="width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
                             oninput="calculateMaterials()">
                     </div>
                     <div class="calc-input-group">
-                        <label for="calc-thickness" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b;">Толщина PIR-плит</label>
+                        <label for="calc-thickness" style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b; font-size: 14px;">Толщина плит</label>
                         <select id="calc-thickness"
-                            style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s;"
+                            style="width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; background: white; cursor: pointer; transition: border-color 0.2s;"
                             onchange="calculateMaterials()">
-                            <option value="30-566">30 мм (566 ₽/шт)</option>
-                            <option value="40-692">40 мм (692 ₽/шт)</option>
-                            <option value="50-782" selected>50 мм (782 ₽/шт)</option>
+                            <option value="30-566">30 мм (566 ₽)</option>
+                            <option value="40-692">40 мм (692 ₽)</option>
+                            <option value="50-782" selected>50 мм (782 ₽)</option>
                         </select>
-                    </div>
-                    <div class="calc-input-group">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #1e293b;">Утеплять потолок?</label>
-                        <div style="display: flex; gap: 16px; padding-top: 12px;">
-                            <label style="display: flex; align-items: center; cursor: pointer;">
-                                <input type="checkbox" id="calc-ceiling" checked onchange="calculateMaterials()"
-                                    style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;">
-                                <span style="color: #64748b;">Да, утеплить</span>
-                            </label>
-                        </div>
                     </div>
                 </div>
 
-                <div class="calculator-results" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 32px; color: white;">
-                    <h3 style="font-size: 24px; margin-bottom: 24px; font-weight: 700;">Результаты расчета:</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                <div class="calculator-results" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 28px; color: white;">
+                    <h3 style="font-size: 22px; margin-bottom: 20px; font-weight: 700;">Результаты расчета:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;">
                         <div class="calc-result-item">
-                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Площадь утепления</div>
-                            <div style="font-size: 32px; font-weight: 700;" id="calc-area">28 м²</div>
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 6px;">Площадь</div>
+                            <div style="font-size: 28px; font-weight: 700;" id="calc-area">28 м²</div>
                         </div>
                         <div class="calc-result-item">
-                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Количество PIR-плит</div>
-                            <div style="font-size: 32px; font-weight: 700;" id="calc-plates">43 шт</div>
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 6px;">PIR-плиты</div>
+                            <div style="font-size: 28px; font-weight: 700;" id="calc-plates">43 шт</div>
                         </div>
                         <div class="calc-result-item">
-                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Клей-пена (баллоны)</div>
-                            <div style="font-size: 32px; font-weight: 700;" id="calc-glue">4 шт</div>
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 6px;">Клей-пена</div>
+                            <div style="font-size: 28px; font-weight: 700;" id="calc-glue">4 шт</div>
                         </div>
                         <div class="calc-result-item">
-                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Общая стоимость</div>
-                            <div style="font-size: 32px; font-weight: 700;" id="calc-total">37 826 ₽</div>
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 6px;">Скотч (рул.)</div>
+                            <div style="font-size: 28px; font-weight: 700;" id="calc-tape">2 шт</div>
+                        </div>
+                        <div class="calc-result-item" style="grid-column: 1 / -1;">
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 6px;">Общая стоимость</div>
+                            <div style="font-size: 36px; font-weight: 700;" id="calc-total">37 826 ₽</div>
                         </div>
                     </div>
 
-                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.2);">
-                        <h4 style="font-size: 18px; margin-bottom: 16px; font-weight: 600;">В стоимость входит:</h4>
-                        <div style="display: grid; gap: 12px; font-size: 15px; opacity: 0.95;" id="calc-breakdown">
+                    <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="font-size: 16px; margin-bottom: 12px; font-weight: 600;">В стоимость входит:</h4>
+                        <div style="display: grid; gap: 8px; font-size: 14px; opacity: 0.95;" id="calc-breakdown">
                             <div>• PIR-плиты ФОЛЬГА 50мм: <span id="calc-plates-cost">33 626 ₽</span></div>
                             <div>• Клей-пена PIRROклей: <span id="calc-glue-cost">4 200 ₽</span></div>
+                            <div>• Алюминиевый скотч: <span id="calc-tape-cost">1 000 ₽</span></div>
                         </div>
                     </div>
 

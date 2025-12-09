@@ -212,7 +212,6 @@ function calculateMaterials() {
     const length = parseFloat(document.getElementById('calc-length')?.value) || 0;
     const width = parseFloat(document.getElementById('calc-width')?.value) || 0;
     const height = parseFloat(document.getElementById('calc-height')?.value) || 0;
-    const includeCeiling = document.getElementById('calc-ceiling')?.checked || false;
     const thicknessSelect = document.getElementById('calc-thickness')?.value || '50-782';
 
     const [thickness, pricePerPlate] = thicknessSelect.split('-');
@@ -224,8 +223,8 @@ function calculateMaterials() {
     // Расчет площади стен: (длина + ширина) × 2 × высота
     const wallArea = (length + width) * 2 * height;
 
-    // Расчет площади потолка: длина × ширина
-    const ceilingArea = includeCeiling ? (length * width) : 0;
+    // Расчет площади потолка: длина × ширина (всегда включаем)
+    const ceilingArea = length * width;
 
     // Общая площадь утепления
     const totalArea = wallArea + ceilingArea;
@@ -237,25 +236,36 @@ function calculateMaterials() {
     const glueCount = Math.ceil(totalArea / 9);
     const gluePricePerBottle = 1050;
 
+    // Алюминиевый скотч: 1 рулон (50м) на ~15-20 м швов
+    // Приблизительно: периметр плит = количество плит × 3.4м (периметр плиты 600×1200)
+    // Делим на 2, т.к. швы общие между плитами
+    const jointLength = (platesCount * 3.4) / 2;
+    const tapeCount = Math.ceil(jointLength / 50); // 50м в рулоне
+    const tapePricePerRoll = 500;
+
     // Расчет стоимости
     const platesCost = platesCount * platePriceNum;
     const glueCost = glueCount * gluePricePerBottle;
-    const totalCost = platesCost + glueCost;
+    const tapeCost = tapeCount * tapePricePerRoll;
+    const totalCost = platesCost + glueCost + tapeCost;
 
     // Обновление результатов
     document.getElementById('calc-area').textContent = totalArea.toFixed(1) + ' м²';
     document.getElementById('calc-plates').textContent = platesCount + ' шт';
     document.getElementById('calc-glue').textContent = glueCount + ' шт';
+    document.getElementById('calc-tape').textContent = tapeCount + ' шт';
     document.getElementById('calc-total').textContent = totalCost.toLocaleString('ru-RU') + ' ₽';
 
     document.getElementById('calc-plates-cost').textContent = platesCost.toLocaleString('ru-RU') + ' ₽';
     document.getElementById('calc-glue-cost').textContent = glueCost.toLocaleString('ru-RU') + ' ₽';
+    document.getElementById('calc-tape-cost').textContent = tapeCost.toLocaleString('ru-RU') + ' ₽';
 
     // Обновление детализации
     const thicknessText = thickness + 'мм';
     const breakdownHtml = `
         <div>• PIR-плиты ФОЛЬГА ${thicknessText}: ${platesCost.toLocaleString('ru-RU')} ₽</div>
         <div>• Клей-пена PIRROклей: ${glueCost.toLocaleString('ru-RU')} ₽</div>
+        <div>• Алюминиевый скотч: ${tapeCost.toLocaleString('ru-RU')} ₽</div>
     `;
     document.getElementById('calc-breakdown').innerHTML = breakdownHtml;
 }
