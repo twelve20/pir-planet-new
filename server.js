@@ -141,6 +141,10 @@ app.get('/blog/pir-explanation', (req, res) => {
     res.sendFile(path.join(__dirname, 'blog-pir-explanation.html'));
 });
 
+app.get('/blog/banya-insulation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'blog-banya-insulation.html'));
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
