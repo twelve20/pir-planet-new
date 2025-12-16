@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Пошаговая инструкция по утеплению пола над холодным подвалом с помощью PIR-плит. Расчет материалов, монтаж и полезные советы.">
+    <meta name="keywords" content="утепление пола PIR, PIR плиты для пола, утепление подвала, как утеплить пол, PIR плиты монтаж">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pir-planet.ru/blog/floor-insulation">
+    <meta property="og:title" content="Как утеплить пол над холодным подвалом с помощью PIR-плит">
+    <meta property="og:description" content="Подробная инструкция по утеплению пола PIR-плитами: выбор толщины, расчет материалов и пошаговый монтаж">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog-floor-hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pir-planet.ru/blog/floor-insulation">
+    <meta property="twitter:title" content="Как утеплить пол над холодным подвалом с помощью PIR-плит">
+    <meta property="twitter:description" content="Подробная инструкция по утеплению пола PIR-плитами: выбор толщины, расчет материалов и пошаговый монтаж">
+    <meta property="twitter:image" content="https://pir-planet.ru/images/blog-floor-hero.webp">
+
+    <title>Как утеплить пол над холодным подвалом с помощью PIR-плит | Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/blog/floor-insulation">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <style>
+        /* --- ПЕРЕМЕННЫЕ (Стиль сайта) --- */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- ПРОГРЕСС БАР ЧТЕНИЯ --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* --- БАЗОВЫЕ СТИЛИ --- */
+        .article-hero {
+            background: var(--bg-white);
+            padding: 40px 20px 30px;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .article-hero-content {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .article-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .article-breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .article-breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+        .article-breadcrumb svg { width: 14px; height: 14px; }
+        .article-breadcrumb span { color: var(--text-color); }
+
+        .article-category {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-meta-item svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        /* --- FEATURED IMAGE --- */
+        .article-featured-image {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .article-featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- КОНТЕНТ --- */
+        .article-content-section {
+            padding: 40px 20px 80px;
+            background-color: var(--bg-white);
+        }
+
+        .article-content-wrapper {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .article-content {
+            font-size: 19px;
+            line-height: 1.58;
+            color: var(--text-color);
+            font-family: var(--font-main);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5em;
+        }
+
+        .article-content h2 {
+            font-size: 1.9rem;
+            margin-top: 2em;
+            margin-bottom: 0.7em;
+            line-height: 1.25;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: -0.02em;
+        }
+
+        .article-content h3 {
+            font-size: 1.45rem;
+            margin-top: 1.8em;
+            margin-bottom: 0.6em;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.8em;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6em;
+            line-height: 1.6;
+        }
+
+        .article-content strong {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* --- ИЗОБРАЖЕНИЯ --- */
+        .article-image {
+            margin: 2.5em auto;
+            max-width: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .article-image-caption {
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.75em;
+            font-style: italic;
+        }
+
+        /* --- БЛОКИ ВЫДЕЛЕНИЯ --- */
+        .highlight-box,
+        .info-box {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 24px;
+            margin: 2em 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p,
+        .info-box p {
+            margin-bottom: 0;
+            color: var(--text-color);
+        }
+
+        .info-box-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .info-box-title svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .info-box ul {
+            margin-bottom: 0;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 24px;
+            margin: 2em 0;
+            border-radius: 8px;
+        }
+
+        .warning-box-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        /* --- CTA БЛОК --- */
+        .article-cta {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3em 0 2em;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .article-cta h3 {
+            color: white;
+            margin: 0 0 12px 0;
+            font-size: 1.6rem;
+        }
+
+        .article-cta p {
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+
+        .article-cta .btn-primary {
+            background: white;
+            color: var(--accent-color);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .article-cta .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        /* --- ИНТЕРАКТИВНЫЕ ДЕЙСТВИЯ --- */
+        .article-actions {
+            border-top: 1px solid var(--border-color);
+            padding-top: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .like-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-family: var(--font-main);
+        }
+
+        .like-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .like-btn.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .like-btn:active {
+            transform: translateY(0);
+        }
+
+        /* --- КНОПКИ ШАРИНГА --- */
+        .article-share {
+            margin-top: 30px;
+        }
+
+        .article-share-title {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .article-share-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .share-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .share-btn-vk { color: #0077FF; border-color: #0077FF; }
+        .share-btn-telegram { color: #0088cc; border-color: #0088cc; }
+        .share-btn-whatsapp { color: #25D366; border-color: #25D366; }
+
+        /* --- АДАПТИВ --- */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.875rem;
+            }
+
+            .article-content {
+                font-size: 17px;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.25rem;
+            }
+
+            .article-featured-image {
+                margin: 0 0 30px;
+            }
+
+            .article-cta {
+                padding: 30px 20px;
+            }
+
+            .article-share-buttons {
+                flex-direction: column;
+            }
+
+            .share-btn {
+                justify-content: center;
+            }
+
+            .article-hero {
+                padding: 30px 20px 20px;
+            }
+        }
+    </style>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+
+    <!-- Schema.org разметка для статьи -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Как утеплить пол над холодным подвалом с помощью PIR-плит: инструкция и советы",
+      "description": "Пошаговая инструкция по утеплению пола над холодным подвалом с помощью PIR-плит. Расчет материалов, монтаж и полезные советы.",
+      "image": "https://pir-planet.ru/images/blog-floor-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Планета PIR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Планета PIR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pir-planet.ru/images/favicon.svg"
+        }
+      },
+      "datePublished": "2025-12-16",
+      "dateModified": "2025-12-16"
+    }
+    </script>
+</head>
+<body>
+    <!-- Прогресс бар чтения -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                    <span class="logo-text">Планета PIR</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog" class="active">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="container">
+            <div class="article-hero-content">
+                <div class="article-breadcrumb">
+                    <a href="/">Главная</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                    <a href="/blog">Блог</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                    <span>Утепление пола над подвалом</span>
+                </div>
+                <div class="article-category">Инструкции</div>
+                <h1 class="article-title">Как утеплить пол над холодным подвалом с помощью PIR-плит: инструкция и советы</h1>
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>16 декабря 2025</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Время чтения: 10 минут</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <div class="article-content">
+
+                    <p>Холодный пол первого этажа — одна из самых распространенных проблем в частных домах с неотапливаемым подвалом или цокольным этажом. Даже при хорошо отапливаемых помещениях холод от пола может делать проживание некомфортным и значительно увеличивать расходы на отопление. В этой статье мы подробно разберем, как правильно утеплить пол над холодным подвалом с помощью PIR-плит — современного и эффективного решения.</p>
+
+                    <h2>Почему холодный пол — это проблема?</h2>
+
+                    <p>Неутепленный пол над холодным подвалом создает целый ряд проблем:</p>
+
+                    <ul>
+                        <li><strong>Дискомфорт:</strong> Холодная поверхность пола неприятна для ног, особенно при хождении босиком</li>
+                        <li><strong>Потери тепла:</strong> До 15-20% тепла уходит через неутепленный пол, что значительно увеличивает расходы на отопление</li>
+                        <li><strong>Конденсат и плесень:</strong> Разница температур между теплым воздухом в помещении и холодным полом может вызывать образование конденсата и развитие плесени</li>
+                        <li><strong>Холодные углы:</strong> Холод от пола распространяется вверх по стенам, создавая холодные зоны в нижней части помещения</li>
+                    </ul>
+
+                    <h2>Почему PIR-плиты — лучший выбор для утепления пола?</h2>
+
+                    <p>PIR-плиты имеют ряд преимуществ перед другими утеплителями при использовании в конструкции пола:</p>
+
+                    <div class="info-box">
+                        <h3 class="info-box-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Ключевые преимущества PIR для пола
+                        </h3>
+                        <ul>
+                            <li><strong>Высокая прочность на сжатие</strong> (120-150 кПа) — выдерживает нагрузки от мебели и людей</li>
+                            <li><strong>Абсолютная влагостойкость</strong> — не боится влаги от подвала</li>
+                            <li><strong>Минимальная толщина</strong> — не «съедает» высоту помещения</li>
+                            <li><strong>Не привлекает грызунов</strong> — критично для подвальных перекрытий</li>
+                            <li><strong>Долговечность 50+ лет</strong> — устанавливается раз и навсегда</li>
+                        </ul>
+                    </div>
+
+                    <h2>Определение необходимой толщины PIR-плит</h2>
+
+                    <p>Толщина утеплителя зависит от нескольких факторов:</p>
+
+                    <h3>Климатическая зона</h3>
+                    <ul>
+                        <li><strong>Южные регионы:</strong> 50-80 мм</li>
+                        <li><strong>Средняя полоса России:</strong> 80-100 мм</li>
+                        <li><strong>Северные регионы:</strong> 100-150 мм</li>
+                    </ul>
+
+                    <h3>Тип подвала</h3>
+                    <ul>
+                        <li><strong>Отапливаемый технический этаж:</strong> 50 мм (минимальная изоляция)</li>
+                        <li><strong>Сухой неотапливаемый подвал:</strong> 80-100 мм</li>
+                        <li><strong>Влажный холодный подвал:</strong> 100-120 мм</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p><strong>Рекомендация:</strong> Для большинства домов в средней полосе России оптимальной будет толщина 100 мм. Если высота помещения ограничена, можно использовать 80 мм — эффект будет хороший, но немного меньше.</p>
+                    </div>
+
+                    <h2>Способы утепления пола над подвалом</h2>
+
+                    <p>Существует два основных способа утепления:</p>
+
+                    <h3>1. Утепление со стороны подвала (рекомендуется)</h3>
+
+                    <p><strong>Преимущества:</strong></p>
+                    <ul>
+                        <li>Не уменьшает высоту жилого помещения</li>
+                        <li>Не требует демонтажа существующего напольного покрытия</li>
+                        <li>Защищает перекрытие от промерзания</li>
+                        <li>Можно выполнить в любой момент без ремонта в доме</li>
+                    </ul>
+
+                    <p><strong>Недостатки:</strong></p>
+                    <ul>
+                        <li>Требуется доступ в подвал</li>
+                        <li>Сложнее монтаж (работа над головой)</li>
+                    </ul>
+
+                    <h3>2. Утепление сверху (со стороны помещения)</h3>
+
+                    <p><strong>Преимущества:</strong></p>
+                    <ul>
+                        <li>Проще монтаж</li>
+                        <li>Не требует доступа в подвал</li>
+                        <li>Можно совместить с заменой напольного покрытия</li>
+                    </ul>
+
+                    <p><strong>Недостатки:</strong></p>
+                    <ul>
+                        <li>Уменьшается высота помещения</li>
+                        <li>Требуется демонтаж существующего пола</li>
+                        <li>Перекрытие остается в холодной зоне</li>
+                    </ul>
+
+                    <h2>Пошаговая инструкция: утепление со стороны подвала</h2>
+
+                    <h3>Что понадобится:</h3>
+
+                    <div class="info-box">
+                        <h3 class="info-box-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                            </svg>
+                            Материалы
+                        </h3>
+                        <ul>
+                            <li>PIR-плиты с фольгированным покрытием (толщина 80-100 мм)</li>
+                            <li>Монтажная полиуретановая пена или клей для PIR</li>
+                            <li>Тарельчатые дюбели для утеплителя (5-7 шт. на м²)</li>
+                            <li>Алюминиевый скотч для проклейки стыков</li>
+                            <li>Деревянные рейки или профиль (если планируется подшивка)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Шаг 1: Подготовка поверхности</h3>
+
+                    <ol>
+                        <li>Очистите потолок подвала от пыли, паутины и отслаивающихся материалов</li>
+                        <li>Проверьте состояние перекрытия — при необходимости устраните дефекты</li>
+                        <li>Обработайте деревянные балки (если есть) антисептиком</li>
+                        <li>Убедитесь, что поверхность сухая</li>
+                    </ol>
+
+                    <h3>Шаг 2: Разметка и раскрой</h3>
+
+                    <ol>
+                        <li>Измерьте площадь потолка подвала</li>
+                        <li>Раскроите PIR-плиты с учетом размеров (резать можно обычным строительным ножом)</li>
+                        <li>При работе с балками — вырежьте плиты так, чтобы они плотно входили между балками</li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <h3 class="warning-box-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            Важно!
+                        </h3>
+                        <p>При раскрое оставляйте зазор 1-2 см от стен — это компенсирует неровности и упростит монтаж. Щели потом заполняются монтажной пеной.</p>
+                    </div>
+
+                    <h3>Шаг 3: Монтаж PIR-плит</h3>
+
+                    <ol>
+                        <li><strong>Нанесите клей</strong> или монтажную пену на обратную сторону плиты (полосами или точечно)</li>
+                        <li><strong>Прижмите плиту</strong> к потолку и удерживайте 10-15 секунд</li>
+                        <li><strong>Закрепите дюбелями</strong> — обычно достаточно 5-7 дюбелей на плиту (по углам и в центре)</li>
+                        <li><strong>Монтируйте плиты встык</strong>, максимально плотно друг к другу</li>
+                        <li>Продолжайте, пока вся площадь не будет закрыта</li>
+                    </ol>
+
+                    <h3>Шаг 4: Герметизация стыков</h3>
+
+                    <ol>
+                        <li>Проклейте все стыки между плитами алюминиевым скотчем</li>
+                        <li>Заполните зазоры у стен монтажной пеной</li>
+                        <li>После застывания пены срежьте излишки ножом</li>
+                        <li>Проклейте примыкания к стенам скотчем</li>
+                    </ol>
+
+                    <div class="highlight-box">
+                        <p><strong>Совет профессионала:</strong> Качественная герметизация стыков критична для эффективности утепления. Даже небольшие щели могут стать «мостиками холода» и снизить эффект утепления на 20-30%.</p>
+                    </div>
+
+                    <h3>Шаг 5: Защитная отделка (опционально)</h3>
+
+                    <p>PIR-плиты можно оставить открытыми в техническом подвале, но для лучшей защиты и эстетики рекомендуется:</p>
+
+                    <ul>
+                        <li><strong>Подшивка вагонкой, OSB или фанерой</strong> — защищает от механических повреждений</li>
+                        <li><strong>Окрашивание</strong> — можно покрасить фольгированную поверхность специальной краской</li>
+                        <li><strong>Натяжной потолок</strong> — самый эстетичный вариант для эксплуатируемых цокольных этажей</li>
+                    </ul>
+
+                    <h2>Пошаговая инструкция: утепление сверху (со стороны помещения)</h2>
+
+                    <h3>Шаг 1: Демонтаж покрытия</h3>
+
+                    <ol>
+                        <li>Снимите существующее напольное покрытие (ламинат, доски и т.д.)</li>
+                        <li>Демонтируйте подложку (если есть)</li>
+                        <li>Очистите основание от мусора</li>
+                    </ol>
+
+                    <h3>Шаг 2: Подготовка основания</h3>
+
+                    <ol>
+                        <li>Проверьте перекрытие на наличие повреждений</li>
+                        <li>При необходимости выровняйте поверхность</li>
+                        <li>Убедитесь, что основание сухое и чистое</li>
+                    </ol>
+
+                    <h3>Шаг 3: Укладка PIR-плит</h3>
+
+                    <ol>
+                        <li><strong>Уложите первый ряд</strong> плит вдоль стены, оставив зазор 5-10 мм от стены</li>
+                        <li><strong>Укладывайте плиты встык</strong>, максимально плотно</li>
+                        <li><strong>Второй ряд</strong> укладывайте со смещением швов (как кирпичная кладка)</li>
+                        <li>Плиты можно <strong>не приклеивать</strong> — они будут прижаты финишным покрытием</li>
+                    </ol>
+
+                    <h3>Шаг 4: Герметизация</h3>
+
+                    <ol>
+                        <li>Проклейте все стыки алюминиевым скотчем</li>
+                        <li>Заполните зазоры у стен пеной или закройте демпферной лентой</li>
+                    </ol>
+
+                    <h3>Шаг 5: Укладка финишного покрытия</h3>
+
+                    <p>В зависимости от типа покрытия:</p>
+
+                    <h4>Для ламината или паркетной доски:</h4>
+                    <ul>
+                        <li>Уложите подложку поверх PIR-плит</li>
+                        <li>Смонтируйте ламинат согласно инструкции</li>
+                    </ul>
+
+                    <h4>Для плитки:</h4>
+                    <ul>
+                        <li>Уложите на PIR листы ЦСП или ГВЛ толщиной 10-12 мм</li>
+                        <li>Закрепите листы саморезами (не насквозь, только в листы)</li>
+                        <li>Уложите плитку на плиточный клей</li>
+                    </ul>
+
+                    <h4>Для линолеума:</h4>
+                    <ul>
+                        <li>Уложите фанеру 10-12 мм поверх PIR</li>
+                        <li>Закрепите фанеру</li>
+                        <li>Уложите линолеум</li>
+                    </ul>
+
+                    <h2>Особенности утепления деревянных перекрытий по балкам</h2>
+
+                    <p>Если у вас деревянное перекрытие с балками, PIR можно укладывать между балками:</p>
+
+                    <ol>
+                        <li>Измерьте расстояние между балками</li>
+                        <li>Нарежьте PIR-плиты на куски нужной ширины (на 5-10 мм уже расстояния между балками)</li>
+                        <li>Вставьте плиты между балками</li>
+                        <li>Запеньте щели по периметру каждой плиты</li>
+                        <li>Проклейте стыки алюминиевым скотчем</li>
+                        <li>Если балки выше толщины PIR — уложите второй слой поперек балок</li>
+                    </ol>
+
+                    <div class="highlight-box">
+                        <p><strong>Важно:</strong> При двухслойной укладке обязательно смещайте швы верхнего слоя относительно нижнего. Это исключит «мостики холода».</p>
+                    </div>
+
+                    <h2>Распространенные ошибки и как их избежать</h2>
+
+                    <h3>❌ Ошибка 1: Негерметичные стыки</h3>
+                    <p><strong>Решение:</strong> Обязательно проклеивайте все стыки алюминиевым скотчем, не оставляйте щелей.</p>
+
+                    <h3>❌ Ошибка 2: Недостаточная толщина утеплителя</h3>
+                    <p><strong>Решение:</strong> Не экономьте на толщине — разница в цене между 50 мм и 100 мм небольшая, а эффект значительный.</p>
+
+                    <h3>❌ Ошибка 3: Неровное основание</h3>
+                    <p><strong>Решение:</strong> Перед монтажом выровняйте поверхность, иначе плиты будут прилегать неплотно.</p>
+
+                    <h3>❌ Ошибка 4: Игнорирование влажности в подвале</h3>
+                    <p><strong>Решение:</strong> Если подвал влажный, сначала решите проблему с гидроизоляцией и вентиляцией.</p>
+
+                    <h3>❌ Ошибка 5: Отсутствие крепления при монтаже снизу</h3>
+                    <p><strong>Решение:</strong> Обязательно используйте дюбели — один клей со временем может не удержать плиты.</p>
+
+                    <h2>Расчет материалов и бюджет</h2>
+
+                    <h3>Пример расчета для помещения 4×5 м (20 м²):</h3>
+
+                    <div class="info-box">
+                        <p><strong>Материалы:</strong></p>
+                        <ul>
+                            <li>PIR-плиты 100 мм, фольга (размер 1200×600 мм, площадь плиты 0,72 м²):<br>
+                            20 м² ÷ 0,72 = 28 плит (с запасом 30 плит)</li>
+                            <li>Тарельчатые дюбели: 30 плит × 6 шт. = 180 шт.</li>
+                            <li>Монтажная пена: 3-4 баллона</li>
+                            <li>Алюминиевый скотч: 1-2 рулона (50 м)</li>
+                        </ul>
+                        <p><strong>Примерная стоимость:</strong> зависит от региона и поставщика, уточняйте актуальные цены.</p>
+                    </div>
+
+                    <h2>Часто задаваемые вопросы</h2>
+
+                    <h3>Q: Можно ли утеплять влажный подвал?</h3>
+                    <p><strong>A:</strong> Да, PIR не боится влаги. Но лучше сначала наладить вентиляцию подвала, чтобы не было застоя влажного воздуха.</p>
+
+                    <h3>Q: Нужна ли пароизоляция при утеплении PIR?</h3>
+                    <p><strong>A:</strong> Нет, PIR с фольгированным покрытием сам является пароизоляцией при условии герметичных стыков.</p>
+
+                    <h3>Q: Можно ли ходить по PIR-плитам?</h3>
+                    <p><strong>A:</strong> Да, PIR выдерживает значительные нагрузки. Но для финишного покрытия лучше использовать жесткую основу (фанера, ЦСП).</p>
+
+                    <h3>Q: Сколько служит утепление из PIR?</h3>
+                    <p><strong>A:</strong> При правильном монтаже — более 50 лет без потери свойств.</p>
+
+                    <h3>Q: Можно ли укладывать PIR на старый деревянный пол?</h3>
+                    <p><strong>A:</strong> Да, если пол ровный и прочный. Если доски прогибаются — лучше их укрепить или заменить.</p>
+
+                    <h2>Заключение</h2>
+
+                    <p>Утепление пола над холодным подвалом с помощью PIR-плит — это эффективное, долговечное и относительно простое решение. Основные преимущества:</p>
+
+                    <ul>
+                        <li>Значительное сокращение теплопотерь (до 20%)</li>
+                        <li>Комфортная температура пола круглый год</li>
+                        <li>Экономия на отоплении</li>
+                        <li>Защита от конденсата и плесени</li>
+                        <li>Долговечность без необходимости обслуживания</li>
+                    </ul>
+
+                    <p>Главное — правильно выбрать толщину утеплителя, качественно загерметизировать все стыки и выбрать оптимальный способ монтажа для ваших условий. При соблюдении этих правил результат превзойдет ваши ожидания!</p>
+
+                    <!-- CTA -->
+                    <div class="article-cta">
+                        <h3>Нужна помощь в выборе PIR-плит для пола?</h3>
+                        <p>Наши специалисты помогут рассчитать количество материала и подобрать оптимальное решение</p>
+                        <a href="/#order" class="btn-primary">Получить консультацию</a>
+                    </div>
+
+                    <!-- Интерактивные действия -->
+                    <div class="article-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            ❤️ <span id="likeCount">0</span> Полезная статья
+                        </button>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="article-share">
+                        <h3 class="article-share-title">Поделиться статьей:</h3>
+                        <div class="article-share-buttons">
+                            <a href="#" class="share-btn share-btn-vk">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.18 14.19h-1.46c-.65 0-.85-.52-2.01-1.68-1.02-1-1.47-1.13-1.72-1.13-.36 0-.46.1-.46.59v1.53c0 .41-.13.66-1.22.66-1.8 0-3.8-1.09-5.2-3.12-2.11-3.02-2.69-5.3-2.69-5.76 0-.25.1-.48.59-.48h1.46c.44 0 .61.2.78.67.87 2.55 2.34 4.77 2.94 4.77.23 0 .33-.1.33-.67v-2.62c-.07-1.12-.66-1.21-.66-1.61 0-.2.17-.4.43-.4h2.29c.37 0 .51.2.51.64v3.54c0 .37.17.51.27.51.23 0 .42-.14.85-.56 1.34-1.5 2.3-3.82 2.3-3.82.13-.27.32-.48.76-.48h1.46c.53 0 .65.28.53.64-.22.99-2.51 4.65-2.51 4.65-.19.31-.26.45 0 .81.19.25.81.79 1.23 1.27.76.85 1.35 1.56 1.5 2.05.17.49-.08.74-.57.74z"/>
+                                </svg>
+                                ВКонтакте
+                            </a>
+                            <a href="#" class="share-btn share-btn-telegram">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                                </svg>
+                                Telegram
+                            </a>
+                            <a href="#" class="share-btn share-btn-whatsapp">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                </svg>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </div>
+                    <p>Продажа PIR плит по всей России. Профессиональная консультация специалистов</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79969653625">+7 (996) 965-36-25</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Режим работы</h4>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 18:00</li>
+                        <li>Сб-Вс: 10:00 - 16:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Планета PIR. Все права защищены.</p>
+                <p><a href="/privacy" style="color: inherit; text-decoration: underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+    <script src="//code.jivo.ru/widget/lixmOJjvED" async></script>
+
+    <script>
+        // Прогресс-бар чтения статьи
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // Интерактивный лайк с сохранением в localStorage
+        function toggleLike(btn) {
+            const countSpan = document.getElementById('likeCount');
+            let count = parseInt(countSpan.innerText);
+            const articleId = 'floor-insulation'; // ID статьи
+            const liked = localStorage.getItem('article_liked_' + articleId);
+
+            if (btn.classList.contains('active') || liked === 'true') {
+                // Убираем лайк
+                btn.classList.remove('active');
+                countSpan.innerText = count - 1;
+                localStorage.setItem('article_liked_' + articleId, 'false');
+            } else {
+                // Ставим лайк
+                btn.classList.add('active');
+                countSpan.innerText = count + 1;
+                localStorage.setItem('article_liked_' + articleId, 'true');
+
+                // Небольшая анимация
+                btn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 200);
+            }
+        }
+
+        // Восстановление состояния лайка при загрузке
+        window.addEventListener('DOMContentLoaded', function() {
+            const articleId = 'floor-insulation';
+            const liked = localStorage.getItem('article_liked_' + articleId);
+            const likeBtn = document.querySelector('.like-btn');
+
+            if (liked === 'true' && likeBtn) {
+                likeBtn.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
