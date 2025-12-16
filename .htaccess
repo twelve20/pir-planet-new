@@ -14,18 +14,17 @@
     RewriteCond %{THE_REQUEST} ^GET\ /[^?\s]+\.html
     RewriteRule ^(.*)\.html$ /$1 [R=301,L,NE]
 
+    # Blog article rewrites (должно быть перед общим правилом)
+    # /blog/article-name -> blog-article-name.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^blog/(.+)$ /blog-$1.html [L]
+
     # Serve .html files when extension is omitted
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.html -f
     RewriteRule ^(.+)$ $1.html [L]
-
-    # Blog article rewrites
-    # /blog/article-name -> blog-article-name.html
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}/blog-$1.html -f
-    RewriteRule ^blog/(.+)$ blog-$1.html [L]
 </IfModule>
 
 # ===== SECURITY HEADERS =====
