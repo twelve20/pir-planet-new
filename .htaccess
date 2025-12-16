@@ -19,6 +19,13 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.html -f
     RewriteRule ^(.+)$ $1.html [L]
+
+    # Blog article rewrites
+    # /blog/article-name -> blog-article-name.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/blog-$1.html -f
+    RewriteRule ^blog/(.+)$ blog-$1.html [L]
 </IfModule>
 
 # ===== SECURITY HEADERS =====
