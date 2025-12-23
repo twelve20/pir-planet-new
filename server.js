@@ -149,6 +149,10 @@ app.get('/blog/floor-insulation', (req, res) => {
     res.sendFile(path.join(__dirname, 'blog-floor-insulation.html'));
 });
 
+app.get('/blog/facade-insulation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'blog-facade-insulation.html'));
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);

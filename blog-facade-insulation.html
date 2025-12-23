@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Пошаговая инструкция по утеплению фасада дома под штукатурку с помощью PIR-плит. Технология монтажа, расчет материалов и советы экспертов.">
+    <meta name="keywords" content="утепление фасада PIR, PIR под штукатурку, утепление дома, фасадная теплоизоляция, монтаж PIR плит">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pir-planet.ru/blog/facade-insulation">
+    <meta property="og:title" content="Как утеплить фасад дома под штукатурку с помощью PIR-плит">
+    <meta property="og:description" content="Подробная инструкция по утеплению фасада PIR-плитами под штукатурку: выбор толщины, технология монтажа и финишная отделка">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog-facade-hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pir-planet.ru/blog/facade-insulation">
+    <meta property="twitter:title" content="Как утеплить фасад дома под штукатурку с помощью PIR-плит">
+    <meta property="twitter:description" content="Подробная инструкция по утеплению фасада PIR-плитами под штукатурку: выбор толщины, технология монтажа и финишная отделка">
+    <meta property="twitter:image" content="https://pir-planet.ru/images/blog-facade-hero.webp">
+
+    <title>Как утеплить фасад дома под штукатурку с помощью PIR-плит | Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/blog/facade-insulation">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <style>
+        /* --- ПЕРЕМЕННЫЕ (Стиль сайта) --- */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- ПРОГРЕСС БАР ЧТЕНИЯ --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 9999;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* --- БАЗОВЫЕ СТИЛИ --- */
+        .article-hero {
+            background: var(--bg-white);
+            padding: 40px 20px 30px;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .article-hero-content {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .article-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .article-breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .article-breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+        .article-breadcrumb svg { width: 14px; height: 14px; }
+        .article-breadcrumb span { color: var(--text-color); }
+
+        .article-category {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-meta-item svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        /* --- КОНТЕНТ --- */
+        .article-content-section {
+            padding: 40px 20px 80px;
+            background-color: var(--bg-white);
+        }
+
+        .article-content-wrapper {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .article-content {
+            font-size: 19px;
+            line-height: 1.58;
+            color: var(--text-color);
+            font-family: var(--font-main);
+        }
+
+        .article-content p {
+            margin-bottom: 1.5em;
+        }
+
+        .article-content h2 {
+            font-size: 1.9rem;
+            margin-top: 2em;
+            margin-bottom: 0.7em;
+            line-height: 1.25;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: -0.02em;
+        }
+
+        .article-content h3 {
+            font-size: 1.45rem;
+            margin-top: 1.8em;
+            margin-bottom: 0.6em;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.8em;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6em;
+            line-height: 1.6;
+        }
+
+        .article-content strong {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* --- БЛОКИ ВЫДЕЛЕНИЯ --- */
+        .highlight-box,
+        .info-box {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 24px;
+            margin: 2em 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p,
+        .info-box p {
+            margin-bottom: 0;
+            color: var(--text-color);
+        }
+
+        .info-box-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .info-box-title svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .info-box ul {
+            margin-bottom: 0;
+        }
+
+        /* --- CTA БЛОК --- */
+        .article-cta {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3em 0 2em;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .article-cta h3 {
+            color: white;
+            margin: 0 0 12px 0;
+            font-size: 1.6rem;
+        }
+
+        .article-cta p {
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+
+        .article-cta .btn-primary {
+            background: white;
+            color: var(--accent-color);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .article-cta .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        /* --- ИНТЕРАКТИВНЫЕ ДЕЙСТВИЯ --- */
+        .article-actions {
+            border-top: 1px solid var(--border-color);
+            padding-top: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .like-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-family: var(--font-main);
+        }
+
+        .like-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .like-btn.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .like-btn:active {
+            transform: translateY(0);
+        }
+
+        /* --- КНОПКИ ШАРИНГА --- */
+        .article-share {
+            margin-top: 30px;
+        }
+
+        .article-share-title {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .article-share-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .share-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .share-btn-vk { color: #0077FF; border-color: #0077FF; }
+        .share-btn-telegram { color: #0088cc; border-color: #0088cc; }
+        .share-btn-whatsapp { color: #25D366; border-color: #25D366; }
+
+        /* --- АДАПТИВ --- */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.875rem;
+            }
+
+            .article-content {
+                font-size: 17px;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.25rem;
+            }
+
+            .article-cta {
+                padding: 30px 20px;
+            }
+
+            .article-share-buttons {
+                flex-direction: column;
+            }
+
+            .share-btn {
+                justify-content: center;
+            }
+
+            .article-hero {
+                padding: 30px 20px 20px;
+            }
+        }
+    </style>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+
+    <!-- Schema.org разметка для статьи -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Как утеплить фасад дома под штукатурку с помощью PIR-плит: инструкция и советы",
+      "description": "Пошаговая инструкция по утеплению фасада дома под штукатурку с помощью PIR-плит. Технология монтажа, расчет материалов и советы экспертов.",
+      "image": "https://pir-planet.ru/images/blog-facade-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Планета PIR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Планета PIR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pir-planet.ru/images/favicon.svg"
+        }
+      },
+      "datePublished": "2025-12-23",
+      "dateModified": "2025-12-23"
+    }
+    </script>
+</head>
+<body>
+    <!-- Прогресс бар чтения -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                    <span class="logo-text">Планета PIR</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog" class="active">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+        <div class="container">
+            <div class="article-hero-content">
+                <div class="article-breadcrumb">
+                    <a href="/">Главная</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                    <a href="/blog">Блог</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                    <span>Утепление фасада под штукатурку</span>
+                </div>
+                <div class="article-category">Инструкции</div>
+                <h1 class="article-title">Как утеплить фасад дома под штукатурку с помощью PIR-плит: инструкция и советы</h1>
+                <div class="article-meta">
+                    <div class="article-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <span>23 декабря 2025</span>
+                    </div>
+                    <div class="article-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Время чтения: 12 минут</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <div class="article-content">
+
+                    <p>Утепление фасада — один из самых эффективных способов снизить теплопотери дома и сократить расходы на отопление. PIR-плиты под штукатурку становятся всё более популярным решением благодаря высокой эффективности, долговечности и относительной простоте монтажа. В этой статье мы подробно разберем технологию утепления фасада PIR-плитами с последующим оштукатуриванием.</p>
+
+                    <h2>Почему PIR-плиты подходят для утепления фасада под штукатурку?</h2>
+
+                    <p>PIR-плиты обладают рядом преимуществ, которые делают их отличным выбором для фасадного утепления:</p>
+
+                    <div class="info-box">
+                        <h3 class="info-box-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            Ключевые преимущества PIR для фасада
+                        </h3>
+                        <ul>
+                            <li><strong>Минимальная толщина при максимальной эффективности</strong> — коэффициент теплопроводности 0,021-0,023 Вт/(м·К)</li>
+                            <li><strong>Влагостойкость</strong> — не впитывают воду, не теряют свойств при намокании</li>
+                            <li><strong>Стабильность геометрии</strong> — не дают усадки со временем</li>
+                            <li><strong>Малый вес</strong> — не создают значительной нагрузки на фундамент</li>
+                            <li><strong>Пожаробезопасность</strong> — класс горючести Г1-Г2 (слабогорючие)</li>
+                            <li><strong>Долговечность 50+ лет</strong> — не разлагаются, не гниют</li>
+                        </ul>
+                    </div>
+
+                    <h2>Выбор PIR-плит для фасада под штукатурку</h2>
+
+                    <h3>Тип облицовки</h3>
+
+                    <p>Для фасадных работ под штукатурку используются PIR-плиты с облицовкой <strong>стеклохолстом</strong>. Такие плиты обладают шероховатой поверхностью, которая обеспечивает хорошую адгезию со штукатурными составами.</p>
+
+                    <p><strong>Не используйте</strong> плиты с фольгированным покрытием для фасада под штукатурку — штукатурка на фольге держаться не будет!</p>
+
+                    <h3>Толщина утеплителя</h3>
+
+                    <p>Необходимая толщина зависит от климатической зоны и материала стен:</p>
+
+                    <ul>
+                        <li><strong>Южные регионы (Краснодар, Ростов):</strong> 80-100 мм</li>
+                        <li><strong>Средняя полоса России (Москва, Санкт-Петербург):</strong> 100-120 мм</li>
+                        <li><strong>Северные регионы (Урал, Сибирь):</strong> 120-150 мм</li>
+                        <li><strong>Крайний Север:</strong> 150-200 мм</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p><strong>Рекомендация:</strong> Для большинства домов в средней полосе России оптимальная толщина составляет 100-120 мм. Этого достаточно для соблюдения современных норм энергоэффективности.</p>
+                    </div>
+
+                    <h2>Необходимые материалы и инструменты</h2>
+
+                    <h3>Материалы:</h3>
+
+                    <ul>
+                        <li>PIR-плиты с облицовкой стеклохолстом (толщина 100-120 мм)</li>
+                        <li>Клей для приклеивания утеплителя (полиуретановый клей-пена или цементный клей)</li>
+                        <li>Тарельчатые дюбели для утеплителя (5-7 шт. на м²)</li>
+                        <li>Армирующая стеклосетка фасадная (плотность 145-160 г/м²)</li>
+                        <li>Клей для армирования (цементный состав для приклеивания сетки)</li>
+                        <li>Грунтовка фасадная</li>
+                        <li>Штукатурка декоративная (минеральная, акриловая или силиконовая)</li>
+                        <li>Стартовый профиль (цокольная планка)</li>
+                        <li>Угловые профили с сеткой</li>
+                    </ul>
+
+                    <h3>Инструменты:</h3>
+
+                    <ul>
+                        <li>Перфоратор</li>
+                        <li>Строительный нож</li>
+                        <li>Зубчатый шпатель (10 мм)</li>
+                        <li>Гладкие шпатели разных размеров</li>
+                        <li>Терка для пенопласта (для выравнивания стыков)</li>
+                        <li>Уровень, отвес, правило</li>
+                        <li>Валик и кисть для грунтовки</li>
+                    </ul>
+
+                    <h2>Технология монтажа: пошаговая инструкция</h2>
+
+                    <h3>Этап 1: Подготовка основания</h3>
+
+                    <ol>
+                        <li><strong>Очистка стен:</strong> Удалите старую отслаивающуюся штукатурку, краску, загрязнения</li>
+                        <li><strong>Ремонт дефектов:</strong> Заделайте трещины и выбоины цементным раствором</li>
+                        <li><strong>Выравнивание:</strong> Если стены имеют значительные неровности (более 2 см на 2 м), выровняйте их штукатуркой</li>
+                        <li><strong>Грунтование:</strong> Обработайте стены грунтовкой глубокого проникновения для укрепления основания и улучшения адгезии</li>
+                        <li><strong>Демонтаж элементов:</strong> Снимите водосточные трубы, отливы, наружные светильники — они будут мешать монтажу</li>
+                    </ol>
+
+                    <h3>Этап 2: Установка стартового профиля</h3>
+
+                    <ol>
+                        <li><strong>Разметка:</strong> Отметьте по периметру дома горизонтальную линию на уровне нижнего края утеплителя (обычно 30-40 см от земли)</li>
+                        <li><strong>Монтаж профиля:</strong> Закрепите стартовый (цокольный) профиль по разметке дюбелями с шагом 30-40 см</li>
+                        <li><strong>Соединение секций:</strong> При стыковке профилей оставляйте зазор 2-3 мм для температурного расширения</li>
+                    </ol>
+
+                    <p>Стартовый профиль служит опорой для первого ряда утеплителя и защищает нижний торец от грызунов и влаги.</p>
+
+                    <h3>Этап 3: Приклеивание PIR-плит</h3>
+
+                    <ol>
+                        <li><strong>Нанесение клея:</strong> Нанесите клей на обратную сторону плиты. Возможны два способа:
+                            <ul>
+                                <li><strong>Полиуретановая пена:</strong> Нанесите пену по периметру плиты отступив 2-3 см от края + 2-3 полосы по центру</li>
+                                <li><strong>Цементный клей:</strong> Нанесите клей зубчатым шпателем сплошным слоем или методом "гребёнка + ляпухи" (полосы по периметру + точки в центре)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Установка плиты:</strong> Приложите плиту к стене, начиная с нижнего ряда, опирая на стартовый профиль</li>
+                        <li><strong>Выравнивание:</strong> Прижмите плиту и выровняйте по уровню и относительно соседних плит</li>
+                        <li><strong>Укладка со смещением:</strong> Следующие ряды укладывайте со смещением швов (как кирпичная кладка) минимум на 20 см</li>
+                        <li><strong>Проверка плоскости:</strong> Регулярно проверяйте плоскость стены правилом — все плиты должны быть в одной плоскости</li>
+                    </ol>
+
+                    <div class="highlight-box">
+                        <p><strong>Важно:</strong> Укладывайте плиты максимально плотно друг к другу. Зазоры более 2 мм заполняйте полиуретановой пеной или обрезками утеплителя.</p>
+                    </div>
+
+                    <h3>Этап 4: Механическое крепление дюбелями</h3>
+
+                    <p>Дюбелирование производится через <strong>24-48 часов</strong> после приклеивания (когда клей полностью высохнет).</p>
+
+                    <ol>
+                        <li><strong>Выбор дюбелей:</strong> Используйте тарельчатые дюбели с металлическим или пластиковым сердечником. Длина = толщина утеплителя + 50 мм (в бетон/кирпич) или + 90 мм (в газобетон)</li>
+                        <li><strong>Количество:</strong> 5-7 дюбелей на плиту (4 по углам + 1-3 в центре) или 6-8 шт/м²</li>
+                        <li><strong>Сверление:</strong> Просверлите отверстия перфоратором на глубину на 10-15 мм больше длины дюбеля</li>
+                        <li><strong>Установка:</strong> Забейте дюбель так, чтобы шляпка была вровень с утеплителем или утоплена на 1-2 мм</li>
+                        <li><strong>Дюбелирование стыков:</strong> На стыках трёх-четырёх плит установите дюбели через все плиты одновременно</li>
+                    </ol>
+
+                    <h3>Этап 5: Подготовка поверхности к армированию</h3>
+
+                    <ol>
+                        <li><strong>Выравнивание стыков:</strong> Если плиты установлены неровно, выровняйте стыки тёркой для пенопласта</li>
+                        <li><strong>Заделка дюбелей:</strong> Замажьте шляпки дюбелей клеем для армирования</li>
+                        <li><strong>Усиление углов:</strong> Установите угловые профили с сеткой на внешние углы здания, откосы окон и дверей</li>
+                    </ol>
+
+                    <h3>Этап 6: Армирование стеклосеткой</h3>
+
+                    <p>Армирование создаёт прочную основу для декоративной штукатурки и предотвращает появление трещин.</p>
+
+                    <ol>
+                        <li><strong>Нанесение клея:</strong> Нанесите клеевой состав для армирования на утеплитель зубчатым шпателем слоем 3-5 мм</li>
+                        <li><strong>Укладка сетки:</strong> Приложите армирующую стеклосетку к свеженанесённому клею</li>
+                        <li><strong>Втапливание:</strong> Гладким шпателем втопите сетку в клей движениями от центра к краям</li>
+                        <li><strong>Выравнивание:</strong> Нанесите второй слой клея, полностью скрывая сетку. Общая толщина армирующего слоя — 5-6 мм</li>
+                        <li><strong>Нахлёст:</strong> Соседние полотна сетки укладывайте с нахлестом 10 см</li>
+                        <li><strong>Усиление проёмов:</strong> В углах оконных и дверных проёмов установите дополнительные куски сетки 30×40 см под углом 45°</li>
+                    </ol>
+
+                    <h3>Этап 7: Выравнивающий слой и грунтование</h3>
+
+                    <ol>
+                        <li><strong>Выравнивание:</strong> После высыхания армирующего слоя (24-48 часов) нанесите тонкий выравнивающий слой того же клея</li>
+                        <li><strong>Шлифовка:</strong> После высыхания отшлифуйте поверхность тёркой с абразивной сеткой для удаления неровностей</li>
+                        <li><strong>Грунтование:</strong> Нанесите фасадную грунтовку под декоративную штукатурку. Грунтовка улучшает адгезию и снижает расход штукатурки</li>
+                    </ol>
+
+                    <h3>Этап 8: Нанесение декоративной штукатурки</h3>
+
+                    <ol>
+                        <li><strong>Выбор штукатурки:</strong> Подойдут минеральные, акриловые, силикатные или силиконовые штукатурки</li>
+                        <li><strong>Подготовка смеси:</strong> Приготовьте штукатурку согласно инструкции производителя</li>
+                        <li><strong>Нанесение:</strong> Нанесите штукатурку металлическим шпателем слоем, равным размеру зерна</li>
+                        <li><strong>Формирование фактуры:</strong> Через 10-20 минут сформируйте желаемую фактуру пластиковой тёркой (короед, шуба, барашек и т.д.)</li>
+                        <li><strong>Работа "мокрым по мокрому":</strong> Штукатурьте целую стену или плоскость за один приём, чтобы избежать видимых стыков</li>
+                    </ol>
+
+                    <h3>Этап 9: Финишная отделка</h3>
+
+                    <ol>
+                        <li><strong>Окрашивание:</strong> Если используется минеральная штукатурка, окрасьте фасад фасадной краской после высыхания (не менее 28 дней)</li>
+                        <li><strong>Установка элементов:</strong> Установите водосточную систему, отливы, наличники</li>
+                        <li><strong>Герметизация:</strong> Загерметизируйте места примыканий к окнам, дверям, цоколю морозостойким герметиком</li>
+                    </ol>
+
+                    <h2>Особенности утепления разных типов стен</h2>
+
+                    <h3>Кирпичные стены</h3>
+                    <ul>
+                        <li>Подготовка: Очистите швы от высолов, загрунтуйте</li>
+                        <li>Крепление: Можно использовать как клей, так и пену</li>
+                        <li>Дюбели: Стандартные тарельчатые дюбели</li>
+                    </ul>
+
+                    <h3>Газобетонные блоки</h3>
+                    <ul>
+                        <li>Подготовка: Обязательно грунтуйте глубоко проникающей грунтовкой</li>
+                        <li>Крепление: Рекомендуется полиуретановая пена</li>
+                        <li>Дюбели: Используйте специальные дюбели для газобетона увеличенной длины (на 90 мм больше толщины утеплителя)</li>
+                    </ul>
+
+                    <h3>Деревянные стены</h3>
+                    <ul>
+                        <li>Подготовка: Обработайте антисептиком, дайте высохнуть</li>
+                        <li>Крепление: Только механическое крепление (дюбели, саморезы), клей не используется</li>
+                        <li>Вентиляция: Учитывайте паропроницаемость — может потребоваться вентзазор</li>
+                    </ul>
+
+                    <h2>Распространённые ошибки и как их избежать</h2>
+
+                    <h3>❌ Ошибка 1: Использование плит с фольгой</h3>
+                    <p><strong>Решение:</strong> Для фасада под штукатурку используйте только плиты с облицовкой стеклохолстом. Фольга не держит штукатурку.</p>
+
+                    <h3>❌ Ошибка 2: Неровная поверхность утеплителя</h3>
+                    <p><strong>Решение:</strong> Тщательно выравнивайте каждую плиту по уровню при монтаже. Проверяйте плоскость правилом. Перепады более 3 мм затирайте тёркой.</p>
+
+                    <h3>❌ Ошибка 3: Недостаточное количество дюбелей</h3>
+                    <p><strong>Решение:</strong> Соблюдайте норму: минимум 5 дюбелей на плиту или 6-8 шт/м². На ветреных фасадах увеличьте количество.</p>
+
+                    <h3>❌ Ошибка 4: Слабая сетка для армирования</h3>
+                    <p><strong>Решение:</strong> Используйте фасадную стеклосетку плотностью не менее 145 г/м², устойчивую к щелочам. Обычная малярная сетка не подходит!</p>
+
+                    <h3>❌ Ошибка 5: Игнорирование температурных условий</h3>
+                    <p><strong>Решение:</strong> Проводите все работы при температуре от +5°C до +25°C. На жаре штукатурка быстро сохнет и трескается, на холоде клей плохо схватывается.</p>
+
+                    <h3>❌ Ошибка 6: Большие зазоры между плитами</h3>
+                    <p><strong>Решение:</strong> Укладывайте плиты плотно встык. Зазоры более 2 мм заполняйте пеной или кусками утеплителя, затем затирайте.</p>
+
+                    <h3>❌ Ошибка 7: Нанесение штукатурки на невысохший клей</h3>
+                    <p><strong>Решение:</strong> Соблюдайте технологические паузы: армирующий слой должен сохнуть минимум 3 дня перед грунтованием и штукатуркой.</p>
+
+                    <h2>Расчёт материалов</h2>
+
+                    <h3>Пример расчёта для дома 10×10 м, высота стен 3 м:</h3>
+
+                    <div class="info-box">
+                        <p><strong>1. Площадь стен:</strong><br>
+                        Периметр: (10 + 10 + 10 + 10) = 40 м<br>
+                        Площадь: 40 м × 3 м = 120 м²<br>
+                        Вычитаем окна и двери (примерно 15 м²): 120 - 15 = 105 м²</p>
+
+                        <p><strong>2. PIR-плиты (100 мм, размер 1200×600 мм):</strong><br>
+                        Площадь одной плиты: 1,2 × 0,6 = 0,72 м²<br>
+                        Количество: 105 ÷ 0,72 = 146 плит<br>
+                        С запасом 5%: 146 × 1,05 = 154 плиты</p>
+
+                        <p><strong>3. Клей-пена (баллон 750 мл на ~10 м²):</strong><br>
+                        105 ÷ 10 = 11 баллонов</p>
+
+                        <p><strong>4. Дюбели (6 шт/м²):</strong><br>
+                        105 × 6 = 630 шт.</p>
+
+                        <p><strong>5. Стеклосетка (с нахлёстом +10%):</strong><br>
+                        105 × 1,1 = 116 м²</p>
+
+                        <p><strong>6. Клей для армирования (расход ~4 кг/м² в 2 слоя):</strong><br>
+                        105 × 4 = 420 кг</p>
+
+                        <p><strong>7. Грунтовка (расход ~0,2 л/м²):</strong><br>
+                        105 × 0,2 = 21 л</p>
+
+                        <p><strong>8. Декоративная штукатурка:</strong><br>
+                        Зависит от типа и фактуры, обычно 2-4 кг/м²</p>
+                    </div>
+
+                    <h2>Сколько стоит утепление фасада PIR-плитами?</h2>
+
+                    <p>Стоимость складывается из материалов и работы (если нанимаете специалистов):</p>
+
+                    <ul>
+                        <li><strong>Материалы:</strong> Зависит от региона и производителя. Уточняйте актуальные цены у поставщиков</li>
+                        <li><strong>Работа (при найме бригады):</strong> Обычно 40-60% от стоимости материалов</li>
+                        <li><strong>Своими руками:</strong> Экономия на работе, но требуется время и навыки</li>
+                    </ul>
+
+                    <h2>Часто задаваемые вопросы</h2>
+
+                    <h3>Q: Можно ли утеплять фасад PIR-плитами зимой?</h3>
+                    <p><strong>A:</strong> Нет, работы следует проводить при температуре от +5°C до +25°C. При отрицательных температурах клей не схватится, а штукатурка замёрзнет.</p>
+
+                    <h3>Q: Нужна ли пароизоляция между стеной и утеплителем?</h3>
+                    <p><strong>A:</strong> Нет, при наружном утеплении пароизоляция не требуется. PIR сам обладает низкой паропроницаемостью, что является преимуществом при фасадном утеплении.</p>
+
+                    <h3>Q: Чем PIR лучше пенополистирола (пенопласта) для фасада?</h3>
+                    <p><strong>A:</strong> PIR имеет в 1,5-2 раза лучшую теплоизоляцию, не горюч (Г1 vs Г3-Г4), не крошится, более долговечен. Но стоит дороже.</p>
+
+                    <h3>Q: Через сколько лет потребуется обновление штукатурки?</h3>
+                    <p><strong>A:</strong> При качественном монтаже и материалах: минеральная штукатурка — 10-15 лет, акриловая — 15-20 лет, силиконовая — 20-25 лет.</p>
+
+                    <h3>Q: Можно ли утеплить только часть фасада?</h3>
+                    <p><strong>A:</strong> Технически можно, но это создаёт "мостики холода" на границах утепления. Рекомендуется утеплять весь периметр здания целиком.</p>
+
+                    <h3>Q: Нужно ли утеплять цоколь?</h3>
+                    <p><strong>A:</strong> Да, цоколь следует утеплять, но для него лучше использовать экструдированный пенополистирол (ЭППС), так как он лучше переносит контакт с грунтом и влагой.</p>
+
+                    <h2>Заключение</h2>
+
+                    <p>Утепление фасада PIR-плитами под штукатурку — это современное, эффективное и долговечное решение для энергосбережения. Основные преимущества:</p>
+
+                    <ul>
+                        <li>Снижение теплопотерь до 40-50%</li>
+                        <li>Экономия на отоплении круглый год</li>
+                        <li>Защита стен от промерзания и влаги</li>
+                        <li>Улучшение комфорта проживания</li>
+                        <li>Срок службы системы 50+ лет</li>
+                        <li>Современный эстетичный вид фасада</li>
+                    </ul>
+
+                    <p>При соблюдении технологии монтажа и использовании качественных материалов вы получите надёжную теплоизоляцию, которая окупится за счёт снижения расходов на отопление уже через несколько лет.</p>
+
+                    <!-- CTA -->
+                    <div class="article-cta">
+                        <h3>Нужна помощь в выборе PIR-плит для фасада?</h3>
+                        <p>Наши специалисты помогут рассчитать материалы и подберут оптимальное решение для вашего дома</p>
+                        <a href="/#order" class="btn-primary">Получить консультацию</a>
+                    </div>
+
+                    <!-- Интерактивные действия -->
+                    <div class="article-actions">
+                        <button class="like-btn" onclick="toggleLike(this)">
+                            ❤️ <span id="likeCount">0</span> Полезная статья
+                        </button>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="article-share">
+                        <h3 class="article-share-title">Поделиться статьей:</h3>
+                        <div class="article-share-buttons">
+                            <a href="#" class="share-btn share-btn-vk">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.18 14.19h-1.46c-.65 0-.85-.52-2.01-1.68-1.02-1-1.47-1.13-1.72-1.13-.36 0-.46.1-.46.59v1.53c0 .41-.13.66-1.22.66-1.8 0-3.8-1.09-5.2-3.12-2.11-3.02-2.69-5.3-2.69-5.76 0-.25.1-.48.59-.48h1.46c.44 0 .61.2.78.67.87 2.55 2.34 4.77 2.94 4.77.23 0 .33-.1.33-.67v-2.62c-.07-1.12-.66-1.21-.66-1.61 0-.2.17-.4.43-.4h2.29c.37 0 .51.2.51.64v3.54c0 .37.17.51.27.51.23 0 .42-.14.85-.56 1.34-1.5 2.3-3.82 2.3-3.82.13-.27.32-.48.76-.48h1.46c.53 0 .65.28.53.64-.22.99-2.51 4.65-2.51 4.65-.19.31-.26.45 0 .81.19.25.81.79 1.23 1.27.76.85 1.35 1.56 1.5 2.05.17.49-.08.74-.57.74z"/>
+                                </svg>
+                                ВКонтакте
+                            </a>
+                            <a href="#" class="share-btn share-btn-telegram">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                                </svg>
+                                Telegram
+                            </a>
+                            <a href="#" class="share-btn share-btn-whatsapp">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                </svg>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </div>
+                    <p>Продажа PIR плит по всей России. Профессиональная консультация специалистов</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79969653625">+7 (996) 965-36-25</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Режим работы</h4>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 18:00</li>
+                        <li>Сб-Вс: 10:00 - 16:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Планета PIR. Все права защищены.</p>
+                <p><a href="/privacy" style="color: inherit; text-decoration: underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+    <script src="//code.jivo.ru/widget/lixmOJjvED" async></script>
+
+    <script>
+        // Прогресс-бар чтения статьи
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // Интерактивный лайк с сохранением в localStorage
+        function toggleLike(btn) {
+            const countSpan = document.getElementById('likeCount');
+            let count = parseInt(countSpan.innerText);
+            const articleId = 'facade-insulation'; // ID статьи
+            const liked = localStorage.getItem('article_liked_' + articleId);
+
+            if (btn.classList.contains('active') || liked === 'true') {
+                // Убираем лайк
+                btn.classList.remove('active');
+                countSpan.innerText = count - 1;
+                localStorage.setItem('article_liked_' + articleId, 'false');
+            } else {
+                // Ставим лайк
+                btn.classList.add('active');
+                countSpan.innerText = count + 1;
+                localStorage.setItem('article_liked_' + articleId, 'true');
+
+                // Небольшая анимация
+                btn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 200);
+            }
+        }
+
+        // Восстановление состояния лайка при загрузке
+        window.addEventListener('DOMContentLoaded', function() {
+            const articleId = 'facade-insulation';
+            const liked = localStorage.getItem('article_liked_' + articleId);
+            const likeBtn = document.querySelector('.like-btn');
+
+            if (liked === 'true' && likeBtn) {
+                likeBtn.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
