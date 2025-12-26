@@ -1,0 +1,387 @@
+/* ===== INDUSTRIAL PAGE STYLES ===== */
+
+/* Hero Section with Background */
+.industrial-hero {
+    background: linear-gradient(135deg, rgba(3, 105, 161, 0.9), rgba(7, 89, 133, 0.9)), url('../images/factory-warehouse-01.webp') center/cover;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.industrial-hero .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.b2b-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #78350f;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.industrial-hero .hero-title {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.industrial-hero .hero-subtitle {
+    color: rgba(255,255,255,0.95);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.industrial-hero .hero-buttons {
+    justify-content: center;
+}
+
+/* USP Cards */
+.usp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.usp-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.usp-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.usp-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usp-icon.gold {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.usp-icon.blue {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0284c7 100%);
+}
+
+.usp-icon.green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.usp-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+    stroke: white;
+}
+
+.usp-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.usp-card p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.usp-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.usp-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.usp-list li svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    stroke: var(--primary-color);
+}
+
+/* Target Audience */
+.audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.audience-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.audience-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audience-icon.gold {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.audience-icon.blue {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0284c7 100%);
+}
+
+.audience-icon.green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.audience-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: white;
+}
+
+.audience-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.audience-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Factory Trust Section */
+.factory-section {
+    padding: 4rem 0;
+    background: var(--bg-light);
+}
+
+.factory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.factory-image-card {
+    position: relative;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.factory-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.factory-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.factory-image-overlay h4 {
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.factory-image-overlay p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+}
+
+.factory-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.factory-stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.factory-stat-label {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* Product Showcase */
+.product-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.product-showcase-card {
+    position: relative;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease;
+}
+
+.product-showcase-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-showcase-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #78350f;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.product-showcase-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.product-showcase-overlay h4 {
+    color: white;
+    font-weight: 700;
+}
+
+/* B2B Order Section */
+.b2b-order-section {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+    padding: 4rem 0;
+}
+
+.b2b-order-section .order-info {
+    color: white;
+}
+
+.b2b-order-section .order-info h2 {
+    color: white;
+}
+
+.b2b-order-section .order-info p {
+    color: rgba(255,255,255,0.95);
+}
+
+.b2b-order-section .btn-primary {
+    background: white;
+    color: var(--primary-color);
+}
+
+.b2b-order-section .btn-primary:hover {
+    background: #f0f9ff;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .industrial-hero .hero-title {
+        font-size: 2rem;
+    }
+
+    .usp-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .factory-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .industrial-hero {
+        padding: 4rem 0;
+    }
+
+    .industrial-hero .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .industrial-hero .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .usp-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .factory-stat-number {
+        font-size: 2rem;
+    }
+
+    .factory-stats {
+        grid-template-columns: 1fr;
+    }
+}
