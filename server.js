@@ -29,7 +29,33 @@ async function sendToTelegram(data) {
         return false;
     }
 
-    const message = `
+    let message;
+
+    if (data.isB2B) {
+        // Сообщение для B2B заявки
+        const productLabels = {
+            'uncoated': 'ПИР плиты без облицовки',
+            'foil': 'ПИР плиты с фольгой',
+            'glass': 'ПИР плиты со стеклохолстом',
+            'shells': 'ПИР скорлупы для труб',
+            'all': 'Вся номенклатура'
+        };
+
+        message = `
+🏭 <b>Новая B2B заявка с сайта Планета ПИР</b>
+
+🏢 <b>Компания:</b> ${data.company}
+👤 <b>Контактное лицо:</b> ${data.name}
+📞 <b>Телефон:</b> ${data.phone}
+${data.email ? `📧 <b>Email:</b> ${data.email}` : ''}
+📦 <b>Интересующая продукция:</b> ${productLabels[data.product] || data.product}
+${data.comment ? `💬 <b>Дополнительная информация:</b> ${data.comment}` : ''}
+
+📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
+        `.trim();
+    } else {
+        // Стандартное сообщение для B2C заявки
+        message = `
 🔔 <b>Новая заявка с сайта Планета ПИР</b>
 
 👤 <b>Имя:</b> ${data.name}
@@ -37,7 +63,8 @@ async function sendToTelegram(data) {
 ${data.comment ? `💬 <b>Комментарий:</b> ${data.comment}` : ''}
 
 📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
-    `.trim();
+        `.trim();
+    }
 
     try {
         await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' });
@@ -69,16 +96,32 @@ function validateFormData(data) {
         errors.push('Комментарий не должен превышать 500 символов');
     }
 
+    // Дополнительная валидация для B2B заявок
+    if (data.isB2B) {
+        if (!data.company || data.company.trim().length < 2) {
+            errors.push('Название компании должно содержать минимум 2 символа');
+        }
+        if (!data.product) {
+            errors.push('Выберите интересующую продукцию');
+        }
+        if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+            errors.push('Неверный формат email');
+        }
+    }
+
     return errors;
 }
 
 // API endpoint для отправки формы
 app.post('/api/send-order', async (req, res) => {
     try {
-        const { name, phone, comment } = req.body;
+        const { name, phone, comment, isB2B, company, email, product } = req.body;
+
+        // Подготовка данных для валидации
+        const validationData = { name, phone, comment, isB2B, company, email, product };
 
         // Валидация
-        const errors = validateFormData({ name, phone, comment });
+        const errors = validateFormData(validationData);
         if (errors.length > 0) {
             return res.status(400).json({
                 success: false,
@@ -90,14 +133,22 @@ app.post('/api/send-order', async (req, res) => {
         const cleanData = {
             name: name.trim(),
             phone: phone.trim(),
-            comment: comment ? comment.trim() : ''
+            comment: comment ? comment.trim() : '',
+            isB2B: !!isB2B
         };
+
+        // Добавление B2B полей если это B2B заявка
+        if (isB2B) {
+            cleanData.company = company.trim();
+            cleanData.email = email ? email.trim() : '';
+            cleanData.product = product;
+        }
 
         // Отправка в Telegram
         const telegramSent = await sendToTelegram(cleanData);
 
         // Логирование заявки
-        console.log('📝 Новая заявка:', cleanData);
+        console.log(isB2B ? '🏭 Новая B2B заявка:' : '📝 Новая заявка:', cleanData);
 
         res.json({
             success: true,
@@ -129,7 +180,7 @@ app.get('/', (req, res) => {
 });
 
 // Обработка чистых URL для всех страниц
-const pages = ['catalog', 'gallery', 'blog', 'contacts', 'privacy', 'reviews'];
+const pages = ['catalog', 'gallery', 'blog', 'contacts', 'privacy', 'reviews', 'industrial'];
 pages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         res.sendFile(path.join(__dirname, `${page}.html`));
