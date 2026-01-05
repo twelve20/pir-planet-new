@@ -208,6 +208,10 @@ app.get('/blog/roof-insulation', (req, res) => {
     res.sendFile(path.join(__dirname, 'blog-roof-insulation.html'));
 });
 
+app.get('/blog/mansard-insulation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'blog-mansard-insulation.html'));
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
