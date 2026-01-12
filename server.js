@@ -3,9 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const TelegramBot = require('node-telegram-bot-api');
 const path = require('path');
+const db = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Инициализация базы данных
+db.initDatabase();
 
 // Middleware
 app.use(cors());
@@ -214,6 +218,211 @@ app.get('/blog/mansard-insulation', (req, res) => {
 
 app.get('/blog/balcony-insulation', (req, res) => {
     res.sendFile(path.join(__dirname, 'blog-balcony-insulation.html'));
+});
+
+// ===== API ДЛЯ ЗАКАЗОВ =====
+
+// Создание нового заказа
+app.post('/api/create-order', async (req, res) => {
+    try {
+        const { customer, delivery, items } = req.body;
+
+        // Валидация
+        if (!customer || !customer.name || !customer.phone) {
+            return res.status(400).json({ success: false, message: 'Не указаны обязательные поля клиента' });
+        }
+
+        if (!items || items.length === 0) {
+            return res.status(400).json({ success: false, message: 'Корзина пуста' });
+        }
+
+        if (!delivery || !delivery.type) {
+            return res.status(400).json({ success: false, message: 'Не указан способ доставки' });
+        }
+
+        // Расчет суммы заказа
+        const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        // Подготовка данных для БД
+        const orderData = {
+            customer_name: customer.name.trim(),
+            customer_phone: customer.phone.trim(),
+            customer_email: customer.email ? customer.email.trim() : null,
+            customer_type: customer.type || 'individual',
+            delivery_type: delivery.type,
+            delivery_address: delivery.address ? delivery.address.trim() : null,
+            delivery_city: delivery.city ? delivery.city.trim() : null,
+            pickup_location: delivery.pickupLocation || null,
+            subtotal: subtotal,
+            items: items
+        };
+
+        // Создаем заказ
+        const { orderId, orderNumber } = db.createOrder(orderData);
+
+        // Отправляем уведомление в Telegram
+        const telegramMessage = `
+🛒 <b>Новый заказ #${orderNumber}</b>
+
+👤 <b>Клиент:</b> ${customer.name}
+📞 <b>Телефон:</b> ${customer.phone}
+${customer.email ? `📧 <b>Email:</b> ${customer.email}` : ''}
+🏢 <b>Тип:</b> ${customer.type === 'legal' ? 'Юридическое лицо' : 'Физическое лицо'}
+
+📦 <b>Товары:</b>
+${items.map(item => `• ${item.name} x ${item.quantity} шт. = ${(item.price * item.quantity).toLocaleString('ru-RU')} ₽`).join('\n')}
+
+💰 <b>Сумма без доставки:</b> ${subtotal.toLocaleString('ru-RU')} ₽
+
+🚚 <b>Доставка:</b> ${delivery.type === 'delivery' ? 'Доставка' : 'Самовывоз'}
+${delivery.type === 'delivery' ? `📍 <b>Адрес:</b> ${delivery.city}, ${delivery.address}` : ''}
+${delivery.type === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.pickupLocation}` : ''}
+
+📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
+
+🔗 <b>Ссылка на заказ:</b> https://pir-planet.ru/order/${orderId}
+        `.trim();
+
+        if (bot) {
+            await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, telegramMessage, { parse_mode: 'HTML' });
+        }
+
+        res.json({
+            success: true,
+            orderId: orderId,
+            orderNumber: orderNumber,
+            message: 'Заказ успешно создан'
+        });
+
+    } catch (error) {
+        console.error('❌ Ошибка создания заказа:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Произошла ошибка при создании заказа'
+        });
+    }
+});
+
+// Получить заказ по ID
+app.get('/api/order/:orderId', (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const order = db.getOrderById(orderId);
+
+        if (!order) {
+            return res.status(404).json({ success: false, message: 'Заказ не найден' });
+        }
+
+        res.json({ success: true, order });
+    } catch (error) {
+        console.error('❌ Ошибка получения заказа:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Получить все заказы (для админки)
+app.get('/api/orders', (req, res) => {
+    try {
+        const { limit = 100, offset = 0 } = req.query;
+        const orders = db.getAllOrders(parseInt(limit), parseInt(offset));
+        const stats = db.getOrderStats();
+
+        res.json({ success: true, orders, stats });
+    } catch (error) {
+        console.error('❌ Ошибка получения заказов:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Обновить статус заказа (для админки)
+app.post('/api/order/:orderId/status', async (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { status, comment } = req.body;
+
+        const validStatuses = ['new', 'processing', 'confirmed', 'paid', 'shipping', 'completed', 'cancelled'];
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ success: false, message: 'Неверный статус' });
+        }
+
+        db.updateOrderStatus(orderId, status, comment);
+
+        // Уведомляем в Telegram об изменении статуса
+        const order = db.getOrderById(orderId);
+        if (bot && order) {
+            const statusNames = {
+                'new': '🆕 Новый',
+                'processing': '⏳ На согласовании',
+                'confirmed': '✅ Подтвержден',
+                'paid': '💳 Оплачен',
+                'shipping': '🚚 В доставке',
+                'completed': '✔️ Выполнен',
+                'cancelled': '❌ Отменен'
+            };
+
+            const message = `
+📦 <b>Обновление заказа #${order.order_number}</b>
+
+Статус изменен на: ${statusNames[status]}
+${comment ? `\n💬 Комментарий: ${comment}` : ''}
+
+🔗 <b>Ссылка:</b> https://pir-planet.ru/order/${orderId}
+            `.trim();
+
+            await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' });
+        }
+
+        res.json({ success: true, message: 'Статус обновлен' });
+    } catch (error) {
+        console.error('❌ Ошибка обновления статуса:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Обновить стоимость доставки (для админки)
+app.post('/api/order/:orderId/delivery', (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { deliveryCost, comment } = req.body;
+
+        if (typeof deliveryCost !== 'number' || deliveryCost < 0) {
+            return res.status(400).json({ success: false, message: 'Неверная стоимость доставки' });
+        }
+
+        db.updateDeliveryCost(orderId, deliveryCost, comment);
+        res.json({ success: true, message: 'Стоимость доставки обновлена' });
+    } catch (error) {
+        console.error('❌ Ошибка обновления доставки:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Добавить комментарий менеджера (для админки)
+app.post('/api/order/:orderId/comment', (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { comment } = req.body;
+
+        if (!comment) {
+            return res.status(400).json({ success: false, message: 'Комментарий не может быть пустым' });
+        }
+
+        db.addManagerComment(orderId, comment);
+        res.json({ success: true, message: 'Комментарий добавлен' });
+    } catch (error) {
+        console.error('❌ Ошибка добавления комментария:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Страница заказа для клиента
+app.get('/order/:orderId', (req, res) => {
+    res.sendFile(path.join(__dirname, 'order.html'));
+});
+
+// Админ-панель
+app.get('/admin/orders', (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin-orders.html'));
 });
 
 // Запуск сервера
