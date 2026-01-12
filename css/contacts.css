@@ -187,6 +187,94 @@
     }
 }
 
+/* ===== COMPANY INFORMATION ===== */
+.company-info-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.company-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-block {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.info-block h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-table tr:last-child {
+    border-bottom: none;
+}
+
+.info-table td {
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.info-table td:first-child {
+    color: var(--text-light);
+    width: 45%;
+    vertical-align: top;
+}
+
+.info-table td:last-child {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.info-block p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+.info-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.info-block ul li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+.info-block ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 @media (max-width: 640px) {
     .contacts-hero h1 {
         font-size: 1.75rem;
@@ -210,5 +298,17 @@
 
     .contact-card {
         padding: 1.5rem;
+    }
+
+    .company-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-block {
+        padding: 1.5rem;
+    }
+
+    .info-table td:first-child {
+        width: 40%;
     }
 }
