@@ -4,6 +4,9 @@ const path = require('path');
 // Инициализация базы данных
 const db = new Database(path.join(__dirname, 'orders.db'));
 
+// Устанавливаем UTF-8 кодировку
+db.pragma('encoding = "UTF-8"');
+
 // Создание таблиц
 function initDatabase() {
     // Таблица заказов
