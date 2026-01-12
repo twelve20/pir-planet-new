@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Корзина - Планета PIR. Оформление заказа PIR плит с доставкой по всей России.">
+    <meta name="keywords" content="корзина, заказ PIR плиты, купить PIR плиты, оформление заказа">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Корзина - Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/cart">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/new-year.css">
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="/">
+                        <img src="images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                    <li>
+                        <a href="/cart" class="cart-link active" id="cartLink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Hero -->
+    <section class="cart-hero">
+        <div class="container">
+            <h1>Корзина</h1>
+            <p>Проверьте товары перед оформлением заказа</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-section">
+        <div class="container">
+            <!-- Empty Cart State -->
+            <div id="emptyCart" class="empty-cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                </svg>
+                <h2>Ваша корзина пуста</h2>
+                <p>Добавьте товары из каталога, чтобы оформить заказ</p>
+                <a href="/catalog" class="btn-primary">Перейти в каталог</a>
+            </div>
+
+            <!-- Cart Items -->
+            <div id="cartContent" class="cart-content" style="display: none;">
+                <div class="cart-grid">
+                    <!-- Cart Items List -->
+                    <div class="cart-items">
+                        <h2>Товары в корзине</h2>
+                        <div id="cartItemsList" class="cart-items-list">
+                            <!-- Динамически заполняется через JS -->
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h3>Итого</h3>
+                        <div class="cart-summary-item">
+                            <span>Товары (<span id="summaryTotalItems">0</span>):</span>
+                            <span id="summarySubtotal">0 ₽</span>
+                        </div>
+                        <div class="cart-summary-item">
+                            <span>Доставка:</span>
+                            <span>Рассчитывается при оформлении</span>
+                        </div>
+                        <div class="cart-summary-divider"></div>
+                        <div class="cart-summary-total">
+                            <span>Итого:</span>
+                            <span id="summaryTotal">0 ₽</span>
+                        </div>
+                        <a href="/checkout" class="btn-primary btn-full">Оформить заказ</a>
+                        <a href="/catalog" class="btn-secondary btn-full">Продолжить покупки</a>
+
+                        <div class="cart-info">
+                            <p><strong>Бесплатная доставка</strong> при заказе от 50 000 ₽</p>
+                            <p>Доставка по Москве и МО в течение 1-2 дней</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>О компании</h4>
+                    <p>Прямые поставки PIR плит от завода-производителя. Профессиональная консультация и доставка по всей России.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Планета PIR. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/cart-page.js"></script>
+    <script src="js/script.js"></script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+    <script src="js/new-year.js"></script>
+</body>
+</html>
