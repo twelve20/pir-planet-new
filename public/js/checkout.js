@@ -280,6 +280,9 @@ class CheckoutPage {
                     child.style.setProperty('max-width', '540px', 'important');
                     child.style.setProperty('max-height', '78vh', 'important');
                     child.style.setProperty('border-radius', '12px', 'important');
+                    child.style.setProperty('padding', '0', 'important');
+                    child.style.setProperty('margin', '0', 'important');
+                    child.style.setProperty('border', 'none', 'important');
 
                     if (window.innerHeight <= 768) {
                         child.style.setProperty('max-height', '72vh', 'important');
@@ -288,7 +291,7 @@ class CheckoutPage {
                     }
                 });
 
-                console.log('✅ Модальное окно отцентрировано (540px x 78vh)');
+                console.log('✅ Модальное окно отцентрировано (540px x 78vh) без серых полос');
             }
         }
 

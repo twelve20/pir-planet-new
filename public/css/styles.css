@@ -834,6 +834,17 @@ iframe[src*="pay.alfabank"] {
     border-radius: 12px !important;
     box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
     z-index: 999999 !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Скрываем серые полоски внутри виджета */
+#alfa-payment-button iframe body,
+#alfa-payment-button iframe html {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
 }
 
 /* Адаптивность для маленьких экранов */
@@ -881,4 +892,17 @@ iframe[src*="pay.alfabank"] {
     iframe[src*="alfabank"] {
         max-height: 75vh !important;
     }
+}
+
+/* Убираем все отступы и бордеры у контейнера виджета */
+div[style*="position: fixed"][style*="z-index"] > div {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Убираем серые полосы и отступы у всех элементов внутри */
+div[style*="position: fixed"][style*="z-index"] * {
+    box-sizing: border-box !important;
 }
