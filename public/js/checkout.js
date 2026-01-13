@@ -164,8 +164,16 @@ class CheckoutPage {
                         submitButton.textContent = 'Загрузка виджета...';
 
                         // Загружаем конфигурацию виджета из API (токен не хранится в HTML!)
+                        console.log('🔄 Загружаем конфигурацию виджета...');
                         const configResponse = await fetch('/api/payment/config');
+                        console.log('📡 Ответ API:', configResponse.status, configResponse.statusText);
+
+                        if (!configResponse.ok) {
+                            throw new Error(`API вернул ошибку: ${configResponse.status}`);
+                        }
+
                         const config = await configResponse.json();
+                        console.log('✅ Конфигурация загружена:', config);
 
                         // Устанавливаем токен и gateway в виджет
                         const widgetContainer = document.getElementById('alfa-payment-button');
