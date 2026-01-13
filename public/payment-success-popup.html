@@ -116,16 +116,13 @@
             ym(104857358, 'reachGoal', 'payment_success');
         }
 
-        // Получаем orderId из URL или localStorage
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderIdFromUrl = urlParams.get('orderId');
+        // Получаем orderId ТОЛЬКО из localStorage
+        // orderId в URL от Альфа-Банка - это ID платежа, а не ID заказа в нашей БД!
         const orderIdFromStorage = localStorage.getItem('lastOrderId');
-        const orderId = orderIdFromUrl || orderIdFromStorage;
+        const orderId = orderIdFromStorage;
 
         console.log('🔍 Payment Success - Debug Info:');
         console.log('URL:', window.location.href);
-        console.log('URL params:', window.location.search);
-        console.log('orderId from URL:', orderIdFromUrl);
         console.log('orderId from localStorage:', orderIdFromStorage);
         console.log('Final orderId:', orderId);
 
