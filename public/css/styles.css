@@ -790,19 +790,52 @@ a {
     transform: translateY(0) !important;
 }
 
-/* Стили для модального окна виджета - уменьшенный размер */
-#alfa-payment-button iframe {
-    max-width: 420px !important;
-    max-height: 80vh !important;
+/* Стили для оверлея виджета (затемненный фон) */
+.alfabank-widget-overlay,
+div[style*="position: fixed"][style*="z-index"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+}
+
+/* Стили для контейнера модального окна виджета */
+.alfabank-widget-modal,
+div[style*="position: fixed"] > div,
+div[style*="position: absolute"][style*="background"] {
+    max-width: 400px !important;
+    max-height: 85vh !important;
     width: 100% !important;
     height: auto !important;
+    margin: auto !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    overflow-y: auto !important;
+    border-radius: 12px !important;
+}
+
+/* Стили для iframe внутри виджета */
+#alfa-payment-button iframe,
+iframe[src*="alfabank"],
+iframe[src*="pay.alfabank"] {
+    max-width: 400px !important;
+    max-height: 85vh !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
 }
 
 /* Адаптивность для маленьких экранов */
 @media (max-width: 640px) {
-    #alfa-payment-button iframe {
-        max-width: 92vw !important;
-        max-height: 75vh !important;
+    .alfabank-widget-modal,
+    div[style*="position: fixed"] > div,
+    div[style*="position: absolute"][style*="background"],
+    #alfa-payment-button iframe,
+    iframe[src*="alfabank"] {
+        max-width: 95vw !important;
+        max-height: 80vh !important;
     }
 
     #alfa-payment-button button {
@@ -813,21 +846,30 @@ a {
 
 /* Для экранов планшетов */
 @media (max-width: 1024px) and (min-width: 641px) {
-    #alfa-payment-button iframe {
-        max-width: 450px !important;
-        max-height: 78vh !important;
+    .alfabank-widget-modal,
+    div[style*="position: fixed"] > div,
+    #alfa-payment-button iframe,
+    iframe[src*="alfabank"] {
+        max-width: 420px !important;
+        max-height: 82vh !important;
     }
 }
 
-/* Для маленьких ноутбуков (13 дюймов) */
+/* Для маленьких ноутбуков (13 дюймов по высоте) */
 @media (max-height: 768px) {
-    #alfa-payment-button iframe {
-        max-height: 70vh !important;
+    .alfabank-widget-modal,
+    div[style*="position: fixed"] > div,
+    #alfa-payment-button iframe,
+    iframe[src*="alfabank"] {
+        max-height: 65vh !important;
     }
 }
 
 @media (max-height: 900px) {
-    #alfa-payment-button iframe {
+    .alfabank-widget-modal,
+    div[style*="position: fixed"] > div,
+    #alfa-payment-button iframe,
+    iframe[src*="alfabank"] {
         max-height: 75vh !important;
     }
 }

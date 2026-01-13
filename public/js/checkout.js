@@ -199,6 +199,11 @@ class CheckoutPage {
                                 clearInterval(checkWidget);
                                 console.log('✅ Виджет загружен, открываем форму оплаты');
                                 widgetButton.click();
+
+                                // Ждём появления модального окна и центрируем его
+                                setTimeout(() => {
+                                    this.centerWidgetModal();
+                                }, 300);
                             } else if (attempts > 10) {
                                 clearInterval(checkWidget);
                                 console.error('❌ Виджет не загрузился после 5 секунд');
@@ -236,6 +241,51 @@ class CheckoutPage {
 
     formatPrice(price) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+
+    centerWidgetModal() {
+        // Ищем все элементы с position: fixed (модальные окна виджета)
+        const allElements = document.querySelectorAll('*');
+
+        for (let element of allElements) {
+            const style = window.getComputedStyle(element);
+
+            // Если это модальное окно (fixed position с высоким z-index)
+            if (style.position === 'fixed' && parseInt(style.zIndex) > 1000) {
+                console.log('🎯 Найдено модальное окно виджета, центрируем...');
+
+                // Принудительно центрируем
+                element.style.setProperty('left', '50%', 'important');
+                element.style.setProperty('top', '50%', 'important');
+                element.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+                element.style.setProperty('max-width', '400px', 'important');
+                element.style.setProperty('max-height', '85vh', 'important');
+                element.style.setProperty('margin', '0', 'important');
+
+                // Для маленьких экранов
+                if (window.innerHeight <= 768) {
+                    element.style.setProperty('max-height', '65vh', 'important');
+                }
+
+                // Стилизуем дочерние элементы (iframe и контейнеры)
+                const children = element.querySelectorAll('div, iframe');
+                children.forEach(child => {
+                    child.style.setProperty('max-width', '400px', 'important');
+                    child.style.setProperty('max-height', '85vh', 'important');
+                    child.style.setProperty('border-radius', '12px', 'important');
+
+                    if (window.innerHeight <= 768) {
+                        child.style.setProperty('max-height', '65vh', 'important');
+                    }
+                });
+
+                console.log('✅ Модальное окно отцентрировано');
+            }
+        }
+
+        // Повторяем через небольшую задержку на случай, если виджет ещё рендерится
+        setTimeout(() => this.centerWidgetModal(), 500);
+        setTimeout(() => this.centerWidgetModal(), 1000);
     }
 }
 
