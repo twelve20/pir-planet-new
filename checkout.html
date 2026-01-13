@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Оформление заказа - Планета PIR. Доставка PIR плит по всей России.">
+    <meta name="keywords" content="оформление заказа, купить PIR плиты, доставка PIR">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Оформление заказа - Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/checkout">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/new-year.css">
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="/">
+                        <img src="images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                    <li>
+                        <a href="/cart" class="cart-link" id="cartLink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Checkout Hero -->
+    <section class="checkout-hero">
+        <div class="container">
+            <h1>Оформление заказа</h1>
+            <div class="checkout-steps">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Корзина</div>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Оформление</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Подтверждение</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-grid">
+                <!-- Checkout Form -->
+                <div class="checkout-form-container">
+                    <form id="checkoutForm" class="checkout-form">
+                        <!-- Контактные данные -->
+                        <div class="form-section">
+                            <h2>Контактные данные</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="customerName">Имя *</label>
+                                    <input type="text" id="customerName" name="name" required
+                                           placeholder="Ваше имя">
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerPhone">Телефон *</label>
+                                    <input type="tel" id="customerPhone" name="phone" required
+                                           placeholder="+7 (___) ___-__-__">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerEmail">Email</label>
+                                <input type="email" id="customerEmail" name="email"
+                                       placeholder="your@email.com">
+                            </div>
+                        </div>
+
+                        <!-- Адрес доставки -->
+                        <div class="form-section">
+                            <h2>Адрес доставки</h2>
+                            <div class="form-group">
+                                <label for="deliveryCity">Город *</label>
+                                <input type="text" id="deliveryCity" name="city" required
+                                       placeholder="Например: Москва">
+                            </div>
+                            <div class="form-group">
+                                <label for="deliveryAddress">Адрес доставки *</label>
+                                <textarea id="deliveryAddress" name="address" required rows="3"
+                                          placeholder="Улица, дом, квартира"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="deliveryPostcode">Индекс</label>
+                                <input type="text" id="deliveryPostcode" name="postcode"
+                                       placeholder="000000">
+                            </div>
+                        </div>
+
+                        <!-- Способ доставки -->
+                        <div class="form-section">
+                            <h2>Способ доставки</h2>
+                            <div class="delivery-methods">
+                                <label class="delivery-method">
+                                    <input type="radio" name="deliveryMethod" value="courier" checked>
+                                    <div class="method-content">
+                                        <div class="method-title">Курьерская доставка</div>
+                                        <div class="method-description">Доставка до двери</div>
+                                        <div class="method-price">Рассчитывается индивидуально</div>
+                                    </div>
+                                </label>
+                                <label class="delivery-method">
+                                    <input type="radio" name="deliveryMethod" value="pickup">
+                                    <div class="method-content">
+                                        <div class="method-title">Самовывоз</div>
+                                        <div class="method-description">Люберцы или Солнечногорск</div>
+                                        <div class="method-price">Бесплатно</div>
+                                    </div>
+                                </label>
+                                <label class="delivery-method">
+                                    <input type="radio" name="deliveryMethod" value="transport">
+                                    <div class="method-content">
+                                        <div class="method-title">Транспортная компания</div>
+                                        <div class="method-description">До терминала ТК</div>
+                                        <div class="method-price">Рассчитывается индивидуально</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Способ оплаты -->
+                        <div class="form-section">
+                            <h2>Способ оплаты</h2>
+                            <div class="payment-methods">
+                                <label class="payment-method">
+                                    <input type="radio" name="paymentMethod" value="card" checked>
+                                    <div class="method-content">
+                                        <div class="method-title">Банковская карта</div>
+                                        <div class="method-description">Visa, Mastercard, МИР</div>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="paymentMethod" value="sbp">
+                                    <div class="method-content">
+                                        <div class="method-title">СБП (Система Быстрых Платежей)</div>
+                                        <div class="method-description">Оплата через банковское приложение</div>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="paymentMethod" value="cash">
+                                    <div class="method-content">
+                                        <div class="method-title">Наличными при получении</div>
+                                        <div class="method-description">Оплата курьеру или на складе</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Комментарий -->
+                        <div class="form-section">
+                            <h2>Комментарий к заказу</h2>
+                            <div class="form-group">
+                                <textarea id="orderComment" name="comment" rows="4"
+                                          placeholder="Дополнительная информация для курьера или менеджера"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Согласие -->
+                        <div class="form-section">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span>Я согласен с <a href="/privacy" target="_blank">политикой конфиденциальности</a> и условиями обработки персональных данных *</span>
+                            </label>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <button type="submit" class="btn-primary btn-full btn-large" id="submitOrder">
+                            Оформить заказ
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary-container">
+                    <div class="order-summary">
+                        <h3>Ваш заказ</h3>
+
+                        <div id="orderItems" class="order-items">
+                            <!-- Динамически заполняется через JS -->
+                        </div>
+
+                        <div class="order-summary-divider"></div>
+
+                        <div class="order-totals">
+                            <div class="total-row">
+                                <span>Товары (<span id="orderTotalItems">0</span>):</span>
+                                <span id="orderSubtotal">0 ₽</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Доставка:</span>
+                                <span id="orderDelivery">Рассчитывается</span>
+                            </div>
+                            <div class="order-summary-divider"></div>
+                            <div class="total-row total-final">
+                                <span>Итого:</span>
+                                <span id="orderTotal">0 ₽</span>
+                            </div>
+                        </div>
+
+                        <div class="order-info">
+                            <p>После оформления заказа с вами свяжется менеджер для уточнения деталей и расчета точной стоимости доставки.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>О компании</h4>
+                    <p>Прямые поставки PIR плит от завода-производителя. Профессиональная консультация и доставка по всей России.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем круглосуточно</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Планета PIR. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+    <script src="js/new-year.js"></script>
+</body>
+</html>
