@@ -276,7 +276,7 @@ app.post('/api/create-order', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Корзина пуста' });
         }
 
-        if (!delivery || !delivery.type) {
+        if (!delivery || !delivery.method) {
             return res.status(400).json({ success: false, message: 'Не указан способ доставки' });
         }
 
@@ -289,7 +289,7 @@ app.post('/api/create-order', async (req, res) => {
             customer_phone: customer.phone.trim(),
             customer_email: customer.email ? customer.email.trim() : null,
             customer_type: customer.type || 'individual',
-            delivery_type: delivery.type,
+            delivery_type: delivery.method,
             delivery_address: delivery.address ? delivery.address.trim() : null,
             delivery_city: delivery.city ? delivery.city.trim() : null,
             pickup_location: delivery.pickupLocation || null,
