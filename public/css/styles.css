@@ -789,3 +789,32 @@ a {
 #alfa-payment-button button:active {
     transform: translateY(0) !important;
 }
+
+/* Стили для модального окна виджета */
+#alfa-payment-button iframe {
+    max-width: 480px !important;
+    max-height: 90vh !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 640px) {
+    #alfa-payment-button iframe {
+        max-width: 95vw !important;
+        max-height: 85vh !important;
+    }
+
+    #alfa-payment-button button {
+        font-size: 0.9rem !important;
+        padding: 0.875rem 1.5rem !important;
+    }
+}
+
+/* Для экранов планшетов */
+@media (max-width: 1024px) and (min-width: 641px) {
+    #alfa-payment-button iframe {
+        max-width: 520px !important;
+        max-height: 88vh !important;
+    }
+}
