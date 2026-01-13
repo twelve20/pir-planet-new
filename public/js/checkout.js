@@ -179,7 +179,7 @@ class CheckoutPage {
 
                         console.log('📝 Данные для виджета:', {
                             name: formData.get('name'),
-                            orderNumber: order.order_number,
+                            orderNumber: orderNumber,
                             amount: Math.round(orderData.totalPrice * 100)
                         });
 
