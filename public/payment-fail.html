@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибка оплаты - PIR Planet</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/order.css">
+    <style>
+        .payment-result {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+        }
+
+        .result-content {
+            max-width: 600px;
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ef4444;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .result-content h1 {
+            color: #ef4444;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .result-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .error-reasons {
+            text-align: left;
+            background: #fef2f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ef4444;
+        }
+
+        .error-reasons h3 {
+            color: #991b1b;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .error-reasons ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .error-reasons li {
+            color: #7f1d1d;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .error-reasons li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .support-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .support-info p {
+            margin: 0;
+            color: #666;
+        }
+
+        .support-info a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .support-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/logo.webp" alt="PIR Planet">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/#about">О нас</a></li>
+                    <li><a href="/#contacts">Контакты</a></li>
+                    <li>
+                        <a href="/cart" class="cart-link" id="cartLink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Payment Result -->
+    <section class="payment-result">
+        <div class="result-content">
+            <div class="error-icon">✗</div>
+            <h1>Оплата не прошла</h1>
+            <p>
+                К сожалению, не удалось обработать вашу оплату.<br>
+                Пожалуйста, проверьте данные карты и попробуйте еще раз.
+            </p>
+
+            <div class="error-reasons">
+                <h3>Возможные причины:</h3>
+                <ul>
+                    <li>Недостаточно средств на карте</li>
+                    <li>Карта заблокирована или просрочена</li>
+                    <li>Неверно введены данные карты</li>
+                    <li>Банк отклонил транзакцию</li>
+                    <li>Превышен лимит по карте</li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/checkout" class="btn btn-primary">Попробовать снова</a>
+                <a href="/" class="btn btn-secondary">Вернуться на главную</a>
+            </div>
+
+            <div class="support-info">
+                <p>
+                    Если проблема повторяется, свяжитесь с нами:<br>
+                    <a href="tel:+74951281570">+7 (495) 128-15-70</a> или
+                    <a href="mailto:info@pir-planet.ru">info@pir-planet.ru</a>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.875rem;">
+                    Вы также можете оформить заказ с оплатой наличными при получении
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PIR Planet</h3>
+                    <p>Производство и продажа PIR сэндвич-панелей</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>Телефон: <a href="tel:+74951281570">+7 (495) 128-15-70</a></p>
+                    <p>Email: <a href="mailto:info@pir-planet.ru">info@pir-planet.ru</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PIR Planet. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/cart.js"></script>
+    <script src="/js/script.js"></script>
+
+    <!-- Яндекс.Метрика -->
+    <script>
+        // Отправляем цель в Яндекс.Метрику
+        if (typeof ym !== 'undefined') {
+            ym(104857358, 'reachGoal', 'payment_declined');
+        }
+    </script>
+</body>
+</html>

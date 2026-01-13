@@ -62,7 +62,10 @@
       "Bash(do sed -i 's/lixmOJjvED/HnMRLqUo0O/g' \"$file\")",
       "Bash(done)",
       "Bash(for file in blog-banya-insulation.html blog-roof-insulation.html blog-mansard-insulation.html industrial.html)",
-      "Bash(do sed -i 's|</body>|    <script src=\"\"//code.jivo.ru/widget/HnMRLqUo0O\"\" async></script>\\\\n</body>|' \"$file\")"
+      "Bash(do sed -i 's|</body>|    <script src=\"\"//code.jivo.ru/widget/HnMRLqUo0O\"\" async></script>\\\\n</body>|' \"$file\")",
+      "Bash(npm search:*)",
+      "Bash(timeout /t 3 /nobreak)",
+      "Bash(timeout /t 2 /nobreak)"
     ],
     "deny": [],
     "ask": []

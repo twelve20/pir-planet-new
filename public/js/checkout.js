@@ -148,17 +148,65 @@ class CheckoutPage {
             if (response.ok && result.success) {
                 // Успешное создание заказа
                 const orderId = result.orderId;
+                const order = result.order;
 
                 // Очищаем корзину
                 cart.clear();
 
-                // Если выбрана онлайн-оплата, перенаправляем на платежную форму
+                // Если выбрана онлайн-оплата, открываем виджет Альфа-Банк
                 if (paymentMethod === 'card' || paymentMethod === 'sbp') {
-                    // TODO: Интеграция с Альфа-Банк
-                    // Пока просто перенаправляем на страницу заказа
-                    window.location.href = `/order/${orderId}`;
+                    // Яндекс Метрика - переход к оплате
+                    if (typeof ym !== 'undefined') {
+                        ym(104857358, 'reachGoal', 'checkout_payment');
+                    }
+
+                    try {
+                        submitButton.textContent = 'Загрузка виджета...';
+
+                        // Загружаем конфигурацию виджета из API (токен не хранится в HTML!)
+                        const configResponse = await fetch('/api/payment/config');
+                        const config = await configResponse.json();
+
+                        // Устанавливаем токен и gateway в виджет
+                        const widgetContainer = document.getElementById('alfa-payment-button');
+                        widgetContainer.setAttribute('data-token', config.token);
+                        widgetContainer.setAttribute('data-gateway', config.gateway);
+
+                        // Заполняем скрытые поля для виджета
+                        document.getElementById('hiddenClientName').value = formData.get('name');
+                        document.getElementById('hiddenClientEmail').value = formData.get('email') || '';
+                        document.getElementById('hiddenOrderNumber').value = order.order_number;
+                        // Сумма в копейках для виджета
+                        document.getElementById('hiddenTotalAmount').value = Math.round(orderData.totalPrice * 100);
+
+                        // Скрываем обычную кнопку и показываем кнопку виджета
+                        submitButton.style.display = 'none';
+                        widgetContainer.style.display = 'block';
+
+                        // Программно кликаем на кнопку виджета после его инициализации
+                        setTimeout(() => {
+                            const widgetButton = document.querySelector('#alfa-payment-button button');
+                            if (widgetButton) {
+                                widgetButton.click();
+                            } else {
+                                // Если виджет не загрузился, показываем сообщение
+                                alert('Платёжный виджет не загрузился. Попробуйте обновить страницу или выберите другой способ оплаты.');
+                                window.location.href = `/order/${orderId}`;
+                            }
+                        }, 1000);
+                    } catch (configError) {
+                        console.error('Ошибка загрузки конфигурации виджета:', configError);
+                        alert('Не удалось загрузить платёжный виджет. Попробуйте позже или выберите другой способ оплаты.');
+                        window.location.href = `/order/${orderId}`;
+                    }
                 } else {
                     // Для оплаты наличными сразу перенаправляем на страницу заказа
+
+                    // Яндекс Метрика - оформление заказа наличными
+                    if (typeof ym !== 'undefined') {
+                        ym(104857358, 'reachGoal', 'checkout_cash');
+                    }
+
                     window.location.href = `/order/${orderId}`;
                 }
             } else {

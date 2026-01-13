@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата успешна - PIR Planet</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/order.css">
+    <style>
+        .payment-result {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+        }
+
+        .result-content {
+            max-width: 600px;
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #10b981;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .result-content h1 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .result-content p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/logo.webp" alt="PIR Planet">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/#about">О нас</a></li>
+                    <li><a href="/#contacts">Контакты</a></li>
+                    <li>
+                        <a href="/cart" class="cart-link" id="cartLink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Payment Result -->
+    <section class="payment-result">
+        <div class="result-content">
+            <div class="success-icon">✓</div>
+            <h1>Оплата прошла успешно!</h1>
+            <p>
+                Спасибо за ваш заказ! Оплата успешно обработана.<br>
+                Мы отправили подтверждение на вашу электронную почту.<br>
+                Наш менеджер свяжется с вами в ближайшее время для уточнения деталей доставки.
+            </p>
+            <div class="action-buttons">
+                <a href="/" class="btn btn-primary">Вернуться на главную</a>
+                <a href="/catalog" class="btn btn-secondary">Продолжить покупки</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PIR Planet</h3>
+                    <p>Производство и продажа PIR сэндвич-панелей</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>Телефон: <a href="tel:+74951281570">+7 (495) 128-15-70</a></p>
+                    <p>Email: <a href="mailto:info@pir-planet.ru">info@pir-planet.ru</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PIR Planet. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/cart.js"></script>
+    <script src="/js/script.js"></script>
+
+    <!-- Яндекс.Метрика -->
+    <script>
+        // Отправляем цель в Яндекс.Метрику
+        if (typeof ym !== 'undefined') {
+            ym(104857358, 'reachGoal', 'payment_success');
+        }
+    </script>
+</body>
+</html>

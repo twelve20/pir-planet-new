@@ -455,9 +455,26 @@ app.post('/api/order/:orderId/comment', requireAuth, (req, res) => {
     }
 });
 
+// API для получения конфигурации платёжного виджета
+app.get('/api/payment/config', (req, res) => {
+    res.json({
+        token: process.env.ALFABANK_TOKEN || 'replace_this_to_merchant_token',
+        gateway: process.env.ALFABANK_GATEWAY || 'test'
+    });
+});
+
 // Страница заказа для клиента
 app.get('/order/:orderId', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'order.html'));
+});
+
+// Страницы результата оплаты
+app.get('/payment/success', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'payment-success.html'));
+});
+
+app.get('/payment/fail', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'payment-fail.html'));
 });
 
 // Админ-панель
