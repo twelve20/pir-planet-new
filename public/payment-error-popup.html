@@ -110,24 +110,36 @@
             ym(104857358, 'reachGoal', 'payment_declined');
         }
 
+        console.log('🔍 Payment Error - Debug Info:');
+        console.log('In iframe?', window.self !== window.top);
+        console.log('Has opener?', window.opener && !window.opener.closed);
+
         // Показываем сообщение 1 секунду, затем перенаправляем на checkout
         setTimeout(() => {
-            if (window.opener && !window.opener.closed) {
-                console.log('📍 Parent window found, redirecting to checkout');
-                // Перенаправляем родительское окно обратно на checkout
+            // Проверяем, находимся ли мы в iframe
+            if (window.self !== window.top) {
+                console.log('📍 In iframe, redirecting top window to checkout');
+                try {
+                    window.top.location.href = '/checkout';
+                } catch (e) {
+                    console.error('Error redirecting top:', e);
+                    window.location.href = '/checkout';
+                }
+            }
+            // Проверяем, есть ли родительское окно (для обычного popup)
+            else if (window.opener && !window.opener.closed) {
+                console.log('📍 Has opener, redirecting opener to checkout');
                 try {
                     window.opener.location.href = '/checkout';
+                    setTimeout(() => window.close(), 500);
                 } catch (e) {
-                    console.error('Error redirecting parent:', e);
+                    console.error('Error redirecting opener:', e);
+                    window.location.href = '/checkout';
                 }
-                // Закрываем popup
-                setTimeout(() => {
-                    console.log('Closing popup');
-                    window.close();
-                }, 500);
-            } else {
-                console.log('No parent window, redirecting current window');
-                // Если нет родительского окна, перенаправляем текущее
+            }
+            // Обычное окно
+            else {
+                console.log('📍 Regular window, redirecting self to checkout');
                 window.location.href = '/checkout';
             }
         }, 1000);
