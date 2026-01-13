@@ -173,13 +173,17 @@ class CheckoutPage {
                         // Заполняем скрытые поля для виджета
                         document.getElementById('hiddenClientName').value = formData.get('name');
                         document.getElementById('hiddenClientEmail').value = formData.get('email') || '';
-                        document.getElementById('hiddenOrderNumber').value = orderNumber;
+
+                        // Создаём уникальный номер заказа с временной меткой для виджета
+                        const uniqueOrderNumber = `${orderNumber}-${Date.now()}`;
+                        document.getElementById('hiddenOrderNumber').value = uniqueOrderNumber;
+
                         // Сумма в копейках для виджета
                         document.getElementById('hiddenTotalAmount').value = Math.round(orderData.totalPrice * 100);
 
                         console.log('📝 Данные для виджета:', {
                             name: formData.get('name'),
-                            orderNumber: orderNumber,
+                            orderNumber: uniqueOrderNumber,
                             amount: Math.round(orderData.totalPrice * 100)
                         });
 
