@@ -19,6 +19,44 @@ app.use(express.urlencoded({ extended: true }));
 // Раздаем только папку public (НЕ весь проект!)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware для HTTP Basic Authentication админ-панели
+function requireAuth(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith('Basic ')) {
+        res.setHeader('WWW-Authenticate', 'Basic realm="Admin Panel"');
+        return res.status(401).json({
+            success: false,
+            message: 'Требуется авторизация'
+        });
+    }
+
+    try {
+        const base64Credentials = authHeader.split(' ')[1];
+        const credentials = Buffer.from(base64Credentials, 'base64').toString('utf8');
+        const [username, password] = credentials.split(':');
+
+        const validUsername = process.env.ADMIN_USERNAME || 'admin';
+        const validPassword = process.env.ADMIN_PASSWORD || 'changeme';
+
+        if (username === validUsername && password === validPassword) {
+            next();
+        } else {
+            res.setHeader('WWW-Authenticate', 'Basic realm="Admin Panel"');
+            return res.status(401).json({
+                success: false,
+                message: 'Неверный логин или пароль'
+            });
+        }
+    } catch (error) {
+        res.setHeader('WWW-Authenticate', 'Basic realm="Admin Panel"');
+        return res.status(401).json({
+            success: false,
+            message: 'Ошибка авторизации'
+        });
+    }
+}
+
 // Telegram Bot
 let bot = null;
 if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
@@ -323,7 +361,7 @@ app.get('/api/order/:orderId', (req, res) => {
 });
 
 // Получить все заказы (для админки)
-app.get('/api/orders', (req, res) => {
+app.get('/api/orders', requireAuth, (req, res) => {
     try {
         const { limit = 100, offset = 0 } = req.query;
         const orders = db.getAllOrders(parseInt(limit), parseInt(offset));
@@ -337,7 +375,7 @@ app.get('/api/orders', (req, res) => {
 });
 
 // Обновить статус заказа (для админки)
-app.post('/api/order/:orderId/status', async (req, res) => {
+app.post('/api/order/:orderId/status', requireAuth, async (req, res) => {
     try {
         const { orderId } = req.params;
         const { status, comment } = req.body;
@@ -382,7 +420,7 @@ ${comment ? `\n💬 Комментарий: ${comment}` : ''}
 });
 
 // Обновить стоимость доставки (для админки)
-app.post('/api/order/:orderId/delivery', (req, res) => {
+app.post('/api/order/:orderId/delivery', requireAuth, (req, res) => {
     try {
         const { orderId } = req.params;
         const { deliveryCost, comment } = req.body;
@@ -400,7 +438,7 @@ app.post('/api/order/:orderId/delivery', (req, res) => {
 });
 
 // Добавить комментарий менеджера (для админки)
-app.post('/api/order/:orderId/comment', (req, res) => {
+app.post('/api/order/:orderId/comment', requireAuth, (req, res) => {
     try {
         const { orderId } = req.params;
         const { comment } = req.body;
@@ -423,7 +461,7 @@ app.get('/order/:orderId', (req, res) => {
 });
 
 // Админ-панель
-app.get('/admin/orders', (req, res) => {
+app.get('/admin/orders', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin-orders.html'));
 });
 
