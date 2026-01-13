@@ -126,28 +126,44 @@
         console.log('orderId from localStorage:', orderIdFromStorage);
         console.log('Final orderId:', orderId);
 
-        // Сразу перенаправляем родительское окно и закрываем popup
-        if (orderId) {
-            console.log('✅ Redirecting to order page:', `/order/${orderId}`);
-            // Перенаправляем родительское окно на страницу заказа
-            if (window.opener && !window.opener.closed) {
-                window.opener.location.href = `/order/${orderId}`;
-                // Закрываем popup через небольшую задержку для надежности
-                setTimeout(() => window.close(), 100);
+        // Показываем сообщение 1 секунду, затем перенаправляем и закрываем popup
+        setTimeout(() => {
+            if (orderId) {
+                console.log('✅ Redirecting to order page:', `/order/${orderId}`);
+                // Проверяем, есть ли родительское окно
+                if (window.opener && !window.opener.closed) {
+                    console.log('📍 Parent window found, redirecting parent');
+                    // Перенаправляем родительское окно
+                    try {
+                        window.opener.location.href = `/order/${orderId}`;
+                    } catch (e) {
+                        console.error('Error redirecting parent:', e);
+                    }
+                    // Закрываем popup через небольшую задержку
+                    setTimeout(() => {
+                        console.log('Closing popup');
+                        window.close();
+                    }, 500);
+                } else {
+                    console.log('No parent window, redirecting current window');
+                    // Если нет родительского окна, перенаправляем текущее
+                    window.location.href = `/order/${orderId}`;
+                }
             } else {
-                // Если нет родительского окна, перенаправляем текущее
-                window.location.href = `/order/${orderId}`;
+                console.log('⚠️ No orderId found, redirecting to homepage');
+                // Перенаправляем на главную
+                if (window.opener && !window.opener.closed) {
+                    try {
+                        window.opener.location.href = '/';
+                    } catch (e) {
+                        console.error('Error redirecting parent:', e);
+                    }
+                    setTimeout(() => window.close(), 500);
+                } else {
+                    window.location.href = '/';
+                }
             }
-        } else {
-            console.log('⚠️ No orderId found, redirecting to homepage');
-            // Перенаправляем на главную
-            if (window.opener && !window.opener.closed) {
-                window.opener.location.href = '/';
-                setTimeout(() => window.close(), 100);
-            } else {
-                window.location.href = '/';
-            }
-        }
+        }, 1000);
     </script>
 </body>
 </html>
