@@ -183,17 +183,23 @@ class CheckoutPage {
                         submitButton.style.display = 'none';
                         widgetContainer.style.display = 'block';
 
-                        // Программно кликаем на кнопку виджета после его инициализации
-                        setTimeout(() => {
+                        // Ждём инициализации виджета и программно кликаем на кнопку
+                        let attempts = 0;
+                        const checkWidget = setInterval(() => {
+                            attempts++;
                             const widgetButton = document.querySelector('#alfa-payment-button button');
+
                             if (widgetButton) {
+                                clearInterval(checkWidget);
+                                console.log('✅ Виджет загружен, открываем форму оплаты');
                                 widgetButton.click();
-                            } else {
-                                // Если виджет не загрузился, показываем сообщение
+                            } else if (attempts > 10) {
+                                clearInterval(checkWidget);
+                                console.error('❌ Виджет не загрузился после 5 секунд');
                                 alert('Платёжный виджет не загрузился. Попробуйте обновить страницу или выберите другой способ оплаты.');
                                 window.location.href = `/order/${orderId}`;
                             }
-                        }, 1000);
+                        }, 500);
                     } catch (configError) {
                         console.error('Ошибка загрузки конфигурации виджета:', configError);
                         alert('Не удалось загрузить платёжный виджет. Попробуйте позже или выберите другой способ оплаты.');
