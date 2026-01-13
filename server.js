@@ -15,7 +15,9 @@ db.initDatabase();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname)));
+
+// Раздаем только папку public (НЕ весь проект!)
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Telegram Bot
 let bot = null;
@@ -180,44 +182,44 @@ app.get('/api/status', (req, res) => {
 
 // Обработка корневого маршрута
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Обработка чистых URL для всех страниц
 const pages = ['catalog', 'gallery', 'blog', 'contacts', 'privacy', 'reviews', 'industrial', 'cart', 'checkout'];
 pages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
-        res.sendFile(path.join(__dirname, `${page}.html`));
+        res.sendFile(path.join(__dirname, 'public', `${page}.html`));
     });
 });
 
 // Обработка маршрутов для статей блога
 app.get('/blog/pir-explanation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-pir-explanation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-pir-explanation.html'));
 });
 
 app.get('/blog/banya-insulation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-banya-insulation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-banya-insulation.html'));
 });
 
 app.get('/blog/floor-insulation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-floor-insulation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-floor-insulation.html'));
 });
 
 app.get('/blog/facade-insulation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-facade-insulation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-facade-insulation.html'));
 });
 
 app.get('/blog/roof-insulation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-roof-insulation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-roof-insulation.html'));
 });
 
 app.get('/blog/mansard-insulation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-mansard-insulation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-mansard-insulation.html'));
 });
 
 app.get('/blog/balcony-insulation', (req, res) => {
-    res.sendFile(path.join(__dirname, 'blog-balcony-insulation.html'));
+    res.sendFile(path.join(__dirname, 'public', 'blog-balcony-insulation.html'));
 });
 
 // ===== API ДЛЯ ЗАКАЗОВ =====
@@ -417,12 +419,12 @@ app.post('/api/order/:orderId/comment', (req, res) => {
 
 // Страница заказа для клиента
 app.get('/order/:orderId', (req, res) => {
-    res.sendFile(path.join(__dirname, 'order.html'));
+    res.sendFile(path.join(__dirname, 'public', 'order.html'));
 });
 
 // Админ-панель
 app.get('/admin/orders', (req, res) => {
-    res.sendFile(path.join(__dirname, 'admin-orders.html'));
+    res.sendFile(path.join(__dirname, 'public', 'admin-orders.html'));
 });
 
 // Запуск сервера
