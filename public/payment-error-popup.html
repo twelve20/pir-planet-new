@@ -62,45 +62,7 @@
             color: #64748b;
             font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        button, a {
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #2563eb;
-            border: 2px solid #2563eb;
-        }
-
-        .btn-secondary:hover {
-            background: #f1f5f9;
+            margin: 0;
         }
 
         @media (max-width: 640px) {
@@ -140,11 +102,6 @@
         <div class="error-icon">✗</div>
         <h1>Оплата не прошла</h1>
         <p>К сожалению, платёж не был завершён. Проверьте данные карты и попробуйте ещё раз.</p>
-
-        <div class="button-group">
-            <button class="btn-primary" onclick="retryPayment()">Попробовать снова</button>
-            <a href="/checkout" class="btn-secondary">Вернуться к оформлению</a>
-        </div>
     </div>
 
     <script>
@@ -152,27 +109,6 @@
         if (typeof ym !== 'undefined') {
             ym(104857358, 'reachGoal', 'payment_declined');
         }
-
-        function retryPayment() {
-            // Если страница открыта в popup виджета
-            if (window.opener && !window.opener.closed) {
-                // Закрываем текущее окно popup
-                window.close();
-
-                // Говорим родительскому окну повторить оплату
-                window.opener.postMessage({ action: 'retryPayment' }, '*');
-            } else {
-                // Если открыто в основном окне, перенаправляем на checkout
-                window.location.href = '/checkout';
-            }
-        }
-
-        // Автоматически закрываем popup через 30 секунд если пользователь не нажал кнопку
-        setTimeout(() => {
-            if (window.opener && !window.opener.closed) {
-                window.close();
-            }
-        }, 30000);
     </script>
 </body>
 </html>
