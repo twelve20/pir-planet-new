@@ -118,11 +118,21 @@
 
         // Получаем orderId из URL или localStorage
         const urlParams = new URLSearchParams(window.location.search);
-        const orderId = urlParams.get('orderId') || localStorage.getItem('lastOrderId');
+        const orderIdFromUrl = urlParams.get('orderId');
+        const orderIdFromStorage = localStorage.getItem('lastOrderId');
+        const orderId = orderIdFromUrl || orderIdFromStorage;
+
+        console.log('🔍 Payment Success - Debug Info:');
+        console.log('URL:', window.location.href);
+        console.log('URL params:', window.location.search);
+        console.log('orderId from URL:', orderIdFromUrl);
+        console.log('orderId from localStorage:', orderIdFromStorage);
+        console.log('Final orderId:', orderId);
 
         // Через 2 секунды перенаправляем
         setTimeout(() => {
             if (orderId) {
+                console.log('✅ Redirecting to order page:', `/order/${orderId}`);
                 // Если есть orderId, идём на страницу заказа
                 if (window.opener && !window.opener.closed) {
                     window.opener.location.href = `/order/${orderId}`;
@@ -131,6 +141,7 @@
                     window.location.href = `/order/${orderId}`;
                 }
             } else {
+                console.log('⚠️ No orderId found, redirecting to homepage');
                 // Если нет orderId, идём на главную
                 if (window.opener && !window.opener.closed) {
                     window.opener.location.href = '/';

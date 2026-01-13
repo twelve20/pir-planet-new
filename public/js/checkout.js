@@ -150,8 +150,11 @@ class CheckoutPage {
                 const orderId = result.orderId;
                 const orderNumber = result.orderNumber;
 
+                console.log('✅ Заказ создан:', { orderId, orderNumber });
+
                 // Сохраняем orderId в localStorage для страницы успеха
                 localStorage.setItem('lastOrderId', orderId);
+                console.log('💾 orderId сохранен в localStorage:', orderId);
 
                 // Очищаем корзину
                 cart.clear();
