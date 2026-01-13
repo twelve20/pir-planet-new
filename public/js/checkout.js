@@ -262,33 +262,33 @@ class CheckoutPage {
                 element.style.setProperty('left', '50%', 'important');
                 element.style.setProperty('top', '50%', 'important');
                 element.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
-                element.style.setProperty('max-width', '480px', 'important');
-                element.style.setProperty('max-height', '88vh', 'important');
+                element.style.setProperty('max-width', '540px', 'important');
+                element.style.setProperty('max-height', '78vh', 'important');
                 element.style.setProperty('margin', '0', 'important');
                 element.style.setProperty('z-index', '999999', 'important');
 
                 // Для маленьких экранов по высоте
                 if (window.innerHeight <= 768) {
-                    element.style.setProperty('max-height', '70vh', 'important');
+                    element.style.setProperty('max-height', '72vh', 'important');
                 } else if (window.innerHeight <= 900) {
-                    element.style.setProperty('max-height', '80vh', 'important');
+                    element.style.setProperty('max-height', '75vh', 'important');
                 }
 
                 // Стилизуем дочерние элементы (iframe и контейнеры)
                 const children = element.querySelectorAll('div, iframe');
                 children.forEach(child => {
-                    child.style.setProperty('max-width', '480px', 'important');
-                    child.style.setProperty('max-height', '88vh', 'important');
+                    child.style.setProperty('max-width', '540px', 'important');
+                    child.style.setProperty('max-height', '78vh', 'important');
                     child.style.setProperty('border-radius', '12px', 'important');
 
                     if (window.innerHeight <= 768) {
-                        child.style.setProperty('max-height', '70vh', 'important');
+                        child.style.setProperty('max-height', '72vh', 'important');
                     } else if (window.innerHeight <= 900) {
-                        child.style.setProperty('max-height', '80vh', 'important');
+                        child.style.setProperty('max-height', '75vh', 'important');
                     }
                 });
 
-                console.log('✅ Модальное окно отцентрировано (480px x 88vh)');
+                console.log('✅ Модальное окно отцентрировано (540px x 78vh)');
             }
         }
 

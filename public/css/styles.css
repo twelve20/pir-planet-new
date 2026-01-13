@@ -810,8 +810,8 @@ div[style*="position: fixed"][style*="z-index"] {
 .alfabank-widget-modal,
 div[style*="position: fixed"] > div,
 div[style*="position: absolute"][style*="background"] {
-    max-width: 480px !important;
-    max-height: 88vh !important;
+    max-width: 540px !important;
+    max-height: 78vh !important;
     width: 100% !important;
     height: auto !important;
     margin: auto !important;
@@ -827,8 +827,8 @@ div[style*="position: absolute"][style*="background"] {
 #alfa-payment-button iframe,
 iframe[src*="alfabank"],
 iframe[src*="pay.alfabank"] {
-    max-width: 480px !important;
-    max-height: 88vh !important;
+    max-width: 540px !important;
+    max-height: 78vh !important;
     width: 100% !important;
     height: auto !important;
     border-radius: 12px !important;
@@ -870,7 +870,7 @@ iframe[src*="pay.alfabank"] {
     div[style*="position: fixed"] > div,
     #alfa-payment-button iframe,
     iframe[src*="alfabank"] {
-        max-height: 70vh !important;
+        max-height: 72vh !important;
     }
 }
 
@@ -879,6 +879,6 @@ iframe[src*="pay.alfabank"] {
     div[style*="position: fixed"] > div,
     #alfa-payment-button iframe,
     iframe[src*="alfabank"] {
-        max-height: 80vh !important;
+        max-height: 75vh !important;
     }
 }
