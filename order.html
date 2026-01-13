@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Заказ - Планета PIR. Информация о вашем заказе.">
+    <meta name="keywords" content="заказ PIR плиты, статус заказа">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Заказ - Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/order">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="css/new-year.css">
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="/">
+                        <img src="images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                    <li>
+                        <a href="/cart" class="cart-link" id="cartLink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Загрузка информации о заказе...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="error-state" style="display: none;">
+        <div class="error-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="80" height="80">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+        </div>
+        <h2>Заказ не найден</h2>
+        <p>К сожалению, информация о заказе недоступна</p>
+        <a href="/catalog" class="btn-primary">Вернуться в каталог</a>
+    </div>
+
+    <!-- Order Success -->
+    <div id="orderContent" style="display: none;">
+        <!-- Order Hero -->
+        <section class="order-hero">
+            <div class="container">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="60" height="60">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h1>Спасибо за заказ!</h1>
+                <p class="order-number">Заказ № <span id="orderNumber"></span></p>
+                <p class="order-message">Мы свяжемся с вами в ближайшее время для подтверждения деталей</p>
+            </div>
+        </section>
+
+        <!-- Order Details -->
+        <section class="order-section">
+            <div class="container">
+                <div class="order-grid">
+                    <!-- Order Info -->
+                    <div class="order-info-container">
+                        <!-- Status -->
+                        <div class="info-block">
+                            <h2>Статус заказа</h2>
+                            <div class="order-status">
+                                <div class="status-badge" id="orderStatus">
+                                    <span class="status-dot"></span>
+                                    <span class="status-text">Новый</span>
+                                </div>
+                                <p class="status-description" id="statusDescription">
+                                    Ваш заказ принят и ожидает обработки
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Customer Info -->
+                        <div class="info-block">
+                            <h2>Контактная информация</h2>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Имя:</div>
+                                    <div class="info-value" id="customerName"></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Телефон:</div>
+                                    <div class="info-value" id="customerPhone"></div>
+                                </div>
+                                <div class="info-item" id="customerEmailBlock" style="display: none;">
+                                    <div class="info-label">Email:</div>
+                                    <div class="info-value" id="customerEmail"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Info -->
+                        <div class="info-block">
+                            <h2>Информация о доставке</h2>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Способ доставки:</div>
+                                    <div class="info-value" id="deliveryMethod"></div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Адрес:</div>
+                                    <div class="info-value" id="deliveryAddress"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Info -->
+                        <div class="info-block">
+                            <h2>Способ оплаты</h2>
+                            <div class="info-value" id="paymentMethod"></div>
+                        </div>
+
+                        <!-- Comment -->
+                        <div class="info-block" id="commentBlock" style="display: none;">
+                            <h2>Комментарий к заказу</h2>
+                            <div class="info-value" id="orderComment"></div>
+                        </div>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="order-items-container">
+                        <div class="info-block">
+                            <h2>Состав заказа</h2>
+                            <div id="orderItemsList" class="order-items-list">
+                                <!-- Динамически заполняется через JS -->
+                            </div>
+
+                            <div class="order-totals">
+                                <div class="total-row">
+                                    <span>Товары:</span>
+                                    <span id="orderSubtotal">0 ₽</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>Доставка:</span>
+                                    <span id="orderDeliveryCost">Рассчитывается</span>
+                                </div>
+                                <div class="order-divider"></div>
+                                <div class="total-row total-final">
+                                    <span>Итого:</span>
+                                    <span id="orderTotalPrice">0 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="order-actions">
+                            <a href="/catalog" class="btn-primary btn-full">Вернуться в каталог</a>
+                            <button onclick="window.print()" class="btn-secondary btn-full">Распечатать заказ</button>
+                        </div>
+
+                        <!-- Help -->
+                        <div class="order-help">
+                            <h3>Нужна помощь?</h3>
+                            <p>Если у вас есть вопросы по заказу, свяжитесь с нами:</p>
+                            <div class="help-contacts">
+                                <a href="tel:+79639273124" class="help-contact">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                                    </svg>
+                                    +7 (963) 927-31-24
+                                </a>
+                                <a href="mailto:olnast.ru@yandex.ru" class="help-contact">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    olnast.ru@yandex.ru
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>О компании</h4>
+                    <p>Прямые поставки PIR плит от завода-производителя. Профессиональная консультация и доставка по всей России.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/privacy">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем круглосуточно</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Планета PIR. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/order.js"></script>
+    <script src="js/script.js"></script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+    <script src="js/new-year.js"></script>
+</body>
+</html>
