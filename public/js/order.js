@@ -130,14 +130,17 @@ class OrderPage {
         const div = document.createElement('div');
         div.className = 'order-item';
 
+        const price = item.unit_price || item.price || 0;
+        const name = item.product_name || item.name || 'Товар';
+
         div.innerHTML = `
             <div class="order-item-image">
-                <img src="${item.image || 'images/placeholder.webp'}" alt="${item.name}">
+                <img src="${item.image || '/images/placeholder.webp'}" alt="${name}">
             </div>
             <div class="order-item-details">
-                <div class="order-item-name">${item.name}</div>
-                <div class="order-item-quantity">${item.quantity} шт. × ${this.formatPrice(item.price)} ₽</div>
-                <div class="order-item-price">${this.formatPrice(item.price * item.quantity)} ₽</div>
+                <div class="order-item-name">${name}</div>
+                <div class="order-item-quantity">${item.quantity} шт. × ${this.formatPrice(price)} ₽</div>
+                <div class="order-item-price">${this.formatPrice(price * item.quantity)} ₽</div>
             </div>
         `;
 
@@ -168,6 +171,7 @@ class OrderPage {
     }
 
     formatPrice(price) {
+        if (price === null || price === undefined) return '0';
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
 }
