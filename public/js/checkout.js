@@ -163,22 +163,7 @@ class CheckoutPage {
                     try {
                         submitButton.textContent = 'Загрузка виджета...';
 
-                        // Загружаем конфигурацию виджета из API (токен не хранится в HTML!)
-                        console.log('🔄 Загружаем конфигурацию виджета...');
-                        const configResponse = await fetch('/api/payment/config');
-                        console.log('📡 Ответ API:', configResponse.status, configResponse.statusText);
-
-                        if (!configResponse.ok) {
-                            throw new Error(`API вернул ошибку: ${configResponse.status}`);
-                        }
-
-                        const config = await configResponse.json();
-                        console.log('✅ Конфигурация загружена:', config);
-
-                        // Устанавливаем токен и gateway в виджет
                         const widgetContainer = document.getElementById('alfa-payment-button');
-                        widgetContainer.setAttribute('data-token', config.token);
-                        widgetContainer.setAttribute('data-gateway', config.gateway);
 
                         // Заполняем скрытые поля для виджета
                         document.getElementById('hiddenClientName').value = formData.get('name');
@@ -208,8 +193,8 @@ class CheckoutPage {
                                 window.location.href = `/order/${orderId}`;
                             }
                         }, 500);
-                    } catch (configError) {
-                        console.error('Ошибка загрузки конфигурации виджета:', configError);
+                    } catch (widgetError) {
+                        console.error('Ошибка инициализации виджета:', widgetError);
                         alert('Не удалось загрузить платёжный виджет. Попробуйте позже или выберите другой способ оплаты.');
                         window.location.href = `/order/${orderId}`;
                     }
