@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Ошибка оплаты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .error-container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        h1 {
+            color: #1e293b;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        button, a {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+        }
+
+        @media (max-width: 640px) {
+            .error-container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript">
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">✗</div>
+        <h1>Оплата не прошла</h1>
+        <p>К сожалению, платёж не был завершён. Проверьте данные карты и попробуйте ещё раз.</p>
+
+        <div class="button-group">
+            <button class="btn-primary" onclick="retryPayment()">Попробовать снова</button>
+            <a href="/checkout" class="btn-secondary">Вернуться к оформлению</a>
+        </div>
+    </div>
+
+    <script>
+        // Отправляем цель в Яндекс.Метрику
+        if (typeof ym !== 'undefined') {
+            ym(104857358, 'reachGoal', 'payment_declined');
+        }
+
+        function retryPayment() {
+            // Если страница открыта в popup виджета
+            if (window.opener && !window.opener.closed) {
+                // Закрываем текущее окно popup
+                window.close();
+
+                // Говорим родительскому окну повторить оплату
+                window.opener.postMessage({ action: 'retryPayment' }, '*');
+            } else {
+                // Если открыто в основном окне, перенаправляем на checkout
+                window.location.href = '/checkout';
+            }
+        }
+
+        // Автоматически закрываем popup через 30 секунд если пользователь не нажал кнопку
+        setTimeout(() => {
+            if (window.opener && !window.opener.closed) {
+                window.close();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

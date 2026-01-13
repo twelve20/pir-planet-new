@@ -21,6 +21,31 @@ class CheckoutPage {
         this.renderOrderSummary();
         this.setupFormHandlers();
         this.setupPhoneMask();
+        this.setupPaymentRetryHandler();
+    }
+
+    setupPaymentRetryHandler() {
+        // Слушаем сообщения от popup окна для повторной оплаты
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.action === 'retryPayment') {
+                console.log('🔄 Повторная попытка оплаты...');
+
+                // Находим кнопку виджета и кликаем на неё снова
+                const widgetButton = document.querySelector('#alfa-payment-button button');
+                if (widgetButton) {
+                    // Генерируем новый уникальный номер заказа
+                    const currentOrderNumber = document.getElementById('hiddenOrderNumber').value;
+                    const baseOrderNumber = currentOrderNumber.split('-')[0];
+                    const newUniqueOrderNumber = `${baseOrderNumber}-${Date.now()}`;
+                    document.getElementById('hiddenOrderNumber').value = newUniqueOrderNumber;
+
+                    console.log('📝 Новый номер заказа для повтора:', newUniqueOrderNumber);
+
+                    // Кликаем на кнопку виджета для повторной оплаты
+                    widgetButton.click();
+                }
+            }
+        });
     }
 
     renderOrderSummary() {
@@ -149,6 +174,9 @@ class CheckoutPage {
                 // Успешное создание заказа
                 const orderId = result.orderId;
                 const orderNumber = result.orderNumber;
+
+                // Сохраняем orderId в localStorage для страницы успеха
+                localStorage.setItem('lastOrderId', orderId);
 
                 // Очищаем корзину
                 cart.clear();
