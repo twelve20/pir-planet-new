@@ -126,28 +126,28 @@
         console.log('orderId from localStorage:', orderIdFromStorage);
         console.log('Final orderId:', orderId);
 
-        // Через 2 секунды перенаправляем
-        setTimeout(() => {
-            if (orderId) {
-                console.log('✅ Redirecting to order page:', `/order/${orderId}`);
-                // Если есть orderId, идём на страницу заказа
-                if (window.opener && !window.opener.closed) {
-                    window.opener.location.href = `/order/${orderId}`;
-                    window.close();
-                } else {
-                    window.location.href = `/order/${orderId}`;
-                }
+        // Сразу перенаправляем родительское окно и закрываем popup
+        if (orderId) {
+            console.log('✅ Redirecting to order page:', `/order/${orderId}`);
+            // Перенаправляем родительское окно на страницу заказа
+            if (window.opener && !window.opener.closed) {
+                window.opener.location.href = `/order/${orderId}`;
+                // Закрываем popup через небольшую задержку для надежности
+                setTimeout(() => window.close(), 100);
             } else {
-                console.log('⚠️ No orderId found, redirecting to homepage');
-                // Если нет orderId, идём на главную
-                if (window.opener && !window.opener.closed) {
-                    window.opener.location.href = '/';
-                    window.close();
-                } else {
-                    window.location.href = '/';
-                }
+                // Если нет родительского окна, перенаправляем текущее
+                window.location.href = `/order/${orderId}`;
             }
-        }, 2000);
+        } else {
+            console.log('⚠️ No orderId found, redirecting to homepage');
+            // Перенаправляем на главную
+            if (window.opener && !window.opener.closed) {
+                window.opener.location.href = '/';
+                setTimeout(() => window.close(), 100);
+            } else {
+                window.location.href = '/';
+            }
+        }
     </script>
 </body>
 </html>

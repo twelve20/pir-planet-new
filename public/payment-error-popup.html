@@ -109,6 +109,19 @@
         if (typeof ym !== 'undefined') {
             ym(104857358, 'reachGoal', 'payment_declined');
         }
+
+        // Показываем сообщение 2 секунды, затем перенаправляем на checkout
+        setTimeout(() => {
+            if (window.opener && !window.opener.closed) {
+                // Перенаправляем родительское окно обратно на checkout
+                window.opener.location.href = '/checkout';
+                // Закрываем popup
+                window.close();
+            } else {
+                // Если нет родительского окна, перенаправляем текущее
+                window.location.href = '/checkout';
+            }
+        }, 2000);
     </script>
 </body>
 </html>
