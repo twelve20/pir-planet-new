@@ -148,7 +148,7 @@ class CheckoutPage {
             if (response.ok && result.success) {
                 // Успешное создание заказа
                 const orderId = result.orderId;
-                const order = result.order;
+                const orderNumber = result.orderNumber;
 
                 // Очищаем корзину
                 cart.clear();
@@ -164,22 +164,35 @@ class CheckoutPage {
                         submitButton.textContent = 'Загрузка виджета...';
 
                         const widgetContainer = document.getElementById('alfa-payment-button');
+                        console.log('🔍 Контейнер виджета:', widgetContainer);
+                        console.log('📋 Атрибуты виджета:', {
+                            token: widgetContainer.getAttribute('data-token'),
+                            gateway: widgetContainer.getAttribute('data-gateway')
+                        });
 
                         // Заполняем скрытые поля для виджета
                         document.getElementById('hiddenClientName').value = formData.get('name');
                         document.getElementById('hiddenClientEmail').value = formData.get('email') || '';
-                        document.getElementById('hiddenOrderNumber').value = order.order_number;
+                        document.getElementById('hiddenOrderNumber').value = orderNumber;
                         // Сумма в копейках для виджета
                         document.getElementById('hiddenTotalAmount').value = Math.round(orderData.totalPrice * 100);
+
+                        console.log('📝 Данные для виджета:', {
+                            name: formData.get('name'),
+                            orderNumber: order.order_number,
+                            amount: Math.round(orderData.totalPrice * 100)
+                        });
 
                         // Скрываем обычную кнопку и показываем кнопку виджета
                         submitButton.style.display = 'none';
                         widgetContainer.style.display = 'block';
+                        console.log('👀 Виджет показан');
 
                         // Ждём инициализации виджета и программно кликаем на кнопку
                         let attempts = 0;
                         const checkWidget = setInterval(() => {
                             attempts++;
+                            console.log(`🔄 Попытка ${attempts}/10: ищем кнопку виджета...`);
                             const widgetButton = document.querySelector('#alfa-payment-button button');
 
                             if (widgetButton) {
@@ -189,6 +202,7 @@ class CheckoutPage {
                             } else if (attempts > 10) {
                                 clearInterval(checkWidget);
                                 console.error('❌ Виджет не загрузился после 5 секунд');
+                                console.error('HTML виджета:', widgetContainer.innerHTML);
                                 alert('Платёжный виджет не загрузился. Попробуйте обновить страницу или выберите другой способ оплаты.');
                                 window.location.href = `/order/${orderId}`;
                             }
