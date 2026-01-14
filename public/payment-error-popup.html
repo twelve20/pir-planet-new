@@ -120,27 +120,27 @@
             if (window.self !== window.top) {
                 console.log('📍 In iframe, redirecting top window to checkout');
                 try {
-                    window.top.location.href = '/checkout';
+                    window.top.location.href = 'https://pir-planet.ru/checkout';
                 } catch (e) {
                     console.error('Error redirecting top:', e);
-                    window.location.href = '/checkout';
+                    window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
             // Проверяем, есть ли родительское окно (для обычного popup)
             else if (window.opener && !window.opener.closed) {
                 console.log('📍 Has opener, redirecting opener to checkout');
                 try {
-                    window.opener.location.href = '/checkout';
+                    window.opener.location.href = 'https://pir-planet.ru/checkout';
                     setTimeout(() => window.close(), 500);
                 } catch (e) {
                     console.error('Error redirecting opener:', e);
-                    window.location.href = '/checkout';
+                    window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
             // Обычное окно
             else {
                 console.log('📍 Regular window, redirecting self to checkout');
-                window.location.href = '/checkout';
+                window.location.href = 'https://pir-planet.ru/checkout';
             }
         }, 1000);
     </script>
