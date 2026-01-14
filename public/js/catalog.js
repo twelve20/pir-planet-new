@@ -821,48 +821,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Add data attributes to catalog items and handle cart buttons
-    const catalogItems = document.querySelectorAll('.catalog-item');
-    catalogItems.forEach((item, index) => {
-        const productId = index + 1;
-        const product = products[productId];
-
-        if (product) {
-            // Add data attributes
-            item.setAttribute('data-product-id', `product-${productId}`);
-            item.setAttribute('data-product-name', product.name);
-            item.setAttribute('data-product-price', product.price.replace(/[^\d]/g, ''));
-            item.setAttribute('data-product-image', product.image);
-
-            // Handle add to cart button
-            const addToCartBtn = item.querySelector('.btn-add-to-cart');
-            if (addToCartBtn) {
-                addToCartBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    const productData = {
-                        sku: `product-${productId}`,
-                        name: product.name,
-                        price: parseInt(product.price.replace(/[^\d]/g, '')),
-                        image: product.image,
-                        quantity: 1
-                    };
-
-                    // Add to cart using global cart instance
-                    if (typeof cart !== 'undefined') {
-                        cart.addItem(productData);
-
-                        // Visual feedback
-                        addToCartBtn.classList.add('added');
-                        addToCartBtn.textContent = 'Добавлено';
-
-                        setTimeout(() => {
-                            addToCartBtn.classList.remove('added');
-                            addToCartBtn.textContent = 'В корзину';
-                        }, 2000);
-                    }
-                });
-            }
-        }
-    });
+    // Note: Cart button handlers are in cart.js via onclick attributes
+    // We don't add event listeners here to avoid duplicate calls
 });

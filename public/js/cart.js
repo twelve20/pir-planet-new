@@ -138,8 +138,7 @@ function increaseQuantity(button) {
 
     if (existingItem) {
         existingItem.quantity++;
-        cart.save();
-        cart.updateCounter();
+        cart.saveCart();
         updateCardDisplay(productCard);
     }
 }
@@ -155,8 +154,7 @@ function decreaseQuantity(button) {
     if (existingItem) {
         if (existingItem.quantity > 1) {
             existingItem.quantity--;
-            cart.save();
-            cart.updateCounter();
+            cart.saveCart();
             updateCardDisplay(productCard);
         } else {
             // Удаляем товар из корзины
