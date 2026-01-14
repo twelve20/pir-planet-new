@@ -114,28 +114,34 @@
         console.log('In iframe?', window.self !== window.top);
         console.log('Has opener?', window.opener && !window.opener.closed);
 
-        // Показываем сообщение 2 секунды, затем перезагружаем checkout для повторной попытки
+        // Получаем orderId из localStorage
+        const orderId = localStorage.getItem('lastOrderId');
+        console.log('📋 Order ID from localStorage:', orderId);
+
+        // Показываем сообщение 2 секунды, затем возвращаем на checkout для повторной попытки
         setTimeout(() => {
+            // НЕ очищаем корзину - пользователь может попробовать оплатить снова
+
             // Проверяем, находимся ли мы в iframe
             if (window.self !== window.top) {
-                console.log('📍 In iframe, reloading top window');
+                console.log('📍 In iframe, redirecting top window to checkout');
                 try {
-                    // Перезагружаем родительское окно (checkout) для новой попытки
-                    window.top.location.reload();
+                    // Перенаправляем на checkout для повторной попытки оплаты
+                    window.top.location.href = 'https://pir-planet.ru/checkout';
                 } catch (e) {
-                    console.error('Error reloading top:', e);
+                    console.error('Error redirecting top:', e);
                     window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
             // Проверяем, есть ли родительское окно (для обычного popup)
             else if (window.opener && !window.opener.closed) {
-                console.log('📍 Has opener, reloading opener window');
+                console.log('📍 Has opener, redirecting opener to checkout');
                 try {
-                    // Перезагружаем родительское окно (checkout) для новой попытки
-                    window.opener.location.reload();
+                    // Перенаправляем родительское окно на checkout для повторной попытки
+                    window.opener.location.href = 'https://pir-planet.ru/checkout';
                     setTimeout(() => window.close(), 500);
                 } catch (e) {
-                    console.error('Error reloading opener:', e);
+                    console.error('Error redirecting opener:', e);
                     window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
