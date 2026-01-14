@@ -114,26 +114,28 @@
         console.log('In iframe?', window.self !== window.top);
         console.log('Has opener?', window.opener && !window.opener.closed);
 
-        // Показываем сообщение 1 секунду, затем закрываем popup (корзина не очищалась, пользователь может попробовать снова)
+        // Показываем сообщение 2 секунды, затем перезагружаем checkout для повторной попытки
         setTimeout(() => {
             // Проверяем, находимся ли мы в iframe
             if (window.self !== window.top) {
-                console.log('📍 In iframe, closing iframe');
+                console.log('📍 In iframe, reloading top window');
                 try {
-                    // Просто закрываем iframe - пользователь останется на checkout
-                    window.top.postMessage('closePaymentWidget', '*');
+                    // Перезагружаем родительское окно (checkout) для новой попытки
+                    window.top.location.reload();
                 } catch (e) {
-                    console.error('Error closing iframe:', e);
+                    console.error('Error reloading top:', e);
+                    window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
             // Проверяем, есть ли родительское окно (для обычного popup)
             else if (window.opener && !window.opener.closed) {
-                console.log('📍 Has opener, closing popup');
+                console.log('📍 Has opener, reloading opener window');
                 try {
-                    // Просто закрываем popup - пользователь останется на checkout
-                    window.close();
+                    // Перезагружаем родительское окно (checkout) для новой попытки
+                    window.opener.location.reload();
+                    setTimeout(() => window.close(), 500);
                 } catch (e) {
-                    console.error('Error closing popup:', e);
+                    console.error('Error reloading opener:', e);
                     window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
