@@ -206,8 +206,14 @@ class CartPage {
         // Обработчик добавления в корзину
         const addBtn = card.querySelector('.recommendation-add-btn');
         addBtn.addEventListener('click', () => {
-            cart.addItem(product.sku, product.name, product.price, product.image);
-            cart.showNotification('Товар добавлен в корзину', 'success');
+            cart.addItem({
+                sku: product.sku,
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                packSize: null,
+                image: product.image
+            });
             this.renderCart(); // Перерисовываем корзину (обновит рекомендации)
         });
 
