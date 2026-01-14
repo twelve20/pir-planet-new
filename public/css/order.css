@@ -77,8 +77,16 @@
 }
 
 .order-message {
-    font-size: 1.125rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    opacity: 1;
+    font-weight: 600;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe5a1 100%);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    color: #856404;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Order Section */

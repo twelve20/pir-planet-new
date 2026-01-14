@@ -345,16 +345,19 @@
 
 .order-info {
     margin-top: 1.5rem;
-    padding: 1rem;
-    background: var(--bg-light);
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe5a1 100%);
     border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .order-info p {
-    font-size: 0.75rem;
-    color: var(--text-light);
+    font-size: 0.9rem;
+    color: #856404;
     line-height: 1.6;
     margin: 0;
+    font-weight: 600;
 }
 
 /* Responsive */
