@@ -47,6 +47,9 @@ class CartPage {
             const cartItem = this.createCartItem(item);
             this.cartItemsList.appendChild(cartItem);
         });
+
+        // Добавляем рекомендации после списка товаров
+        this.renderRecommendations();
     }
 
     createCartItem(item) {
@@ -110,6 +113,105 @@ class CartPage {
         removeBtn.addEventListener('click', () => this.removeItem(item.sku));
 
         return div;
+    }
+
+    renderRecommendations() {
+        // Проверяем, есть ли уже блок рекомендаций
+        let recommendationsBlock = document.getElementById('cartRecommendations');
+
+        // Если блока нет, создаём его
+        if (!recommendationsBlock) {
+            recommendationsBlock = document.createElement('div');
+            recommendationsBlock.id = 'cartRecommendations';
+            recommendationsBlock.className = 'cart-recommendations';
+
+            // Вставляем после списка товаров, но перед итогами
+            this.cartItemsList.parentNode.insertBefore(recommendationsBlock, this.cartItemsList.nextSibling);
+        }
+
+        // Очищаем содержимое
+        recommendationsBlock.innerHTML = '';
+
+        // Данные рекомендуемых товаров
+        const recommendedProducts = [
+            {
+                id: 17,
+                sku: 'alu-tape',
+                name: 'Алюминиевая клейкая лента 48мм×50м',
+                price: 990,
+                image: 'images/lenta.webp'
+            },
+            {
+                id: 20,
+                sku: 'techno-glue',
+                name: 'Клей-пена монтажная Технониколь LOGICPIR, 1000 мл',
+                price: 1060,
+                image: 'images/pena_techno.webp'
+            }
+        ];
+
+        // Фильтруем товары, которых ещё нет в корзине
+        const itemsNotInCart = recommendedProducts.filter(product => {
+            return !cart.items.find(item => item.sku === product.sku);
+        });
+
+        // Если все рекомендуемые товары уже в корзине, не показываем блок
+        if (itemsNotInCart.length === 0) {
+            recommendationsBlock.style.display = 'none';
+            return;
+        }
+
+        recommendationsBlock.style.display = 'block';
+
+        // Создаём заголовок
+        const title = document.createElement('h3');
+        title.className = 'recommendations-title';
+        title.textContent = 'Рекомендуем к заказу';
+        recommendationsBlock.appendChild(title);
+
+        // Создаём контейнер для карточек
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = 'recommendations-grid';
+        recommendationsBlock.appendChild(cardsContainer);
+
+        // Создаём карточки для товаров
+        itemsNotInCart.forEach(product => {
+            const card = this.createRecommendationCard(product);
+            cardsContainer.appendChild(card);
+        });
+    }
+
+    createRecommendationCard(product) {
+        const card = document.createElement('div');
+        card.className = 'recommendation-card';
+
+        card.innerHTML = `
+            <div class="recommendation-image">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="recommendation-details">
+                <h4 class="recommendation-name">${product.name}</h4>
+                <div class="recommendation-price">${this.formatPrice(product.price)} ₽</div>
+            </div>
+            <button class="recommendation-add-btn" data-sku="${product.sku}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M9 2a1 1 0 0 0-.894.553L7.382 4H4a1 1 0 0 0 0 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a1 1 0 1 0 0-2h-3.382l-.724-1.447A1 1 0 0 0 15 2H9z"></path>
+                    <line x1="12" y1="9" x2="12" y2="17"></line>
+                    <line x1="8" y1="13" x2="16" y2="13"></line>
+                </svg>
+                Добавить
+            </button>
+        `;
+
+        // Обработчик добавления в корзину
+        const addBtn = card.querySelector('.recommendation-add-btn');
+        addBtn.addEventListener('click', () => {
+            cart.addItem(product.sku, product.name, product.price, product.image);
+            cart.showNotification('Товар добавлен в корзину', 'success');
+            this.renderCart(); // Перерисовываем корзину (обновит рекомендации)
+        });
+
+        return card;
     }
 
     decreaseQuantity(sku) {

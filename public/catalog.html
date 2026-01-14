@@ -817,27 +817,62 @@
         <div class="container">
             <h2 class="section-title" id="mounting" style="margin-top: 4rem;">Товары для монтажа</h2>
             <div class="catalog-grid">
-                <!-- Клей-пена -->
+                <!-- Алюминиевая лента -->
                 <div class="catalog-item"
-                     data-sku="pirro-glue"
-                     data-name="Клей-пена PIRROклей для PIR плит"
-                     data-price="1050"
-                     data-image="images/glue.webp">
+                     data-sku="alu-tape"
+                     data-name="Алюминиевая клейкая лента 48мм×50м"
+                     data-price="990"
+                     data-image="images/lenta.webp">
                     <div class="catalog-item-image">
-                        <img src="images/glue.webp" alt="Клей-пена PIRROклей">
+                        <img src="images/lenta.webp" alt="Алюминиевая клейкая лента">
                     </div>
                     <div class="catalog-item-content">
-                        <h3>Клей-пена PIRROклей для PIR плит</h3>
+                        <h3>Алюминиевая клейкая лента 48мм×50м</h3>
                         <div class="catalog-price">
-                            <span class="price">1050 ₽</span>
+                            <span class="price">990 ₽</span>
                         </div>
                         <div class="catalog-specs">
-                            <div class="spec-item"><strong>Производитель:</strong> <span>PirroGroup</span></div>
-                            <div class="spec-item"><strong>Огнестойкость:</strong> <span>Огнестойкий</span></div>
-                            <div class="spec-item"><strong>Применение:</strong> <span>Внутренние и внешние работы</span></div>
-                            <div class="spec-item"><strong>Температура:</strong> <span>от -60°С до +80°С</span></div>
+                            <div class="spec-item"><strong>Размер:</strong> <span>48 мм × 50 м</span></div>
+                            <div class="spec-item"><strong>Страна:</strong> <span>Россия</span></div>
+                            <div class="spec-item"><strong>Применение:</strong> <span>Проклейка стыков PIR плит</span></div>
+                            <div class="spec-item"><strong>Температура:</strong> <span>от -40°С до +80°С</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="17">Подробнее</button>
+                        <div class="cart-controls">
+                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
+                            <div class="cart-added-controls" style="display: none;">
+                                <div class="quantity-controls">
+                                    <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
+                                </div>
+                                <a href="/cart" class="btn-go-to-cart btn-secondary btn-full">Перейти в корзину</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Клей-пена Технониколь -->
+                <div class="catalog-item"
+                     data-sku="techno-glue"
+                     data-name="Клей-пена монтажная Технониколь LOGICPIR, 1000 мл"
+                     data-price="1060"
+                     data-image="images/pena_techno.webp">
+                    <div class="catalog-item-image">
+                        <img src="images/pena_techno.webp" alt="Клей-пена Технониколь LOGICPIR">
+                    </div>
+                    <div class="catalog-item-content">
+                        <h3>Клей-пена монтажная Технониколь LOGICPIR, 1000 мл</h3>
+                        <div class="catalog-price">
+                            <span class="price">1 060 ₽</span>
+                        </div>
+                        <div class="catalog-specs">
+                            <div class="spec-item"><strong>Производитель:</strong> <span>Технониколь</span></div>
+                            <div class="spec-item"><strong>Объем:</strong> <span>1000 мл</span></div>
+                            <div class="spec-item"><strong>Применение:</strong> <span>Приклейка PIR плит</span></div>
+                            <div class="spec-item"><strong>Температура:</strong> <span>от -60°С до +90°С</span></div>
+                        </div>
+                        <button class="btn-secondary btn-full product-details-btn" data-product="20">Подробнее</button>
                         <div class="cart-controls">
                             <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
