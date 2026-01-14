@@ -176,12 +176,20 @@ class CheckoutPage {
                         });
 
                         // Заполняем скрытые поля для виджета
+                        // ВАЖНО: Добавляем timestamp к orderNumber для виджета, чтобы избежать кэширования
+                        // При этом сохраняем настоящий orderNumber в localStorage для страницы успеха
+                        const widgetOrderNumber = `${orderNumber}-${Date.now()}`;
+
                         document.getElementById('hiddenClientName').value = formData.get('name');
                         document.getElementById('hiddenClientEmail').value = formData.get('email') || '';
-                        document.getElementById('hiddenOrderNumber').value = orderNumber;
+                        document.getElementById('hiddenOrderNumber').value = widgetOrderNumber;
 
                         // Сумма в копейках для виджета
                         document.getElementById('hiddenTotalAmount').value = Math.round(orderData.totalPrice * 100);
+
+                        console.log('🔄 Обновляем значения виджета перед показом');
+                        console.log('Real orderNumber:', orderNumber);
+                        console.log('Widget orderNumber (с timestamp):', widgetOrderNumber);
 
                         console.log('📝 Данные для виджета:', {
                             name: formData.get('name'),

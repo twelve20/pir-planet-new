@@ -114,35 +114,35 @@
         console.log('In iframe?', window.self !== window.top);
         console.log('Has opener?', window.opener && !window.opener.closed);
 
-        // Показываем сообщение 1 секунду, затем перенаправляем на checkout
+        // Показываем сообщение 1 секунду, затем закрываем popup (корзина не очищалась, пользователь может попробовать снова)
         setTimeout(() => {
             // Проверяем, находимся ли мы в iframe
             if (window.self !== window.top) {
-                console.log('📍 In iframe, redirecting top window to checkout');
+                console.log('📍 In iframe, closing iframe');
                 try {
-                    window.top.location.href = 'https://pir-planet.ru/checkout';
+                    // Просто закрываем iframe - пользователь останется на checkout
+                    window.top.postMessage('closePaymentWidget', '*');
                 } catch (e) {
-                    console.error('Error redirecting top:', e);
-                    window.location.href = 'https://pir-planet.ru/checkout';
+                    console.error('Error closing iframe:', e);
                 }
             }
             // Проверяем, есть ли родительское окно (для обычного popup)
             else if (window.opener && !window.opener.closed) {
-                console.log('📍 Has opener, redirecting opener to checkout');
+                console.log('📍 Has opener, closing popup');
                 try {
-                    window.opener.location.href = 'https://pir-planet.ru/checkout';
-                    setTimeout(() => window.close(), 500);
+                    // Просто закрываем popup - пользователь останется на checkout
+                    window.close();
                 } catch (e) {
-                    console.error('Error redirecting opener:', e);
+                    console.error('Error closing popup:', e);
                     window.location.href = 'https://pir-planet.ru/checkout';
                 }
             }
             // Обычное окно
             else {
-                console.log('📍 Regular window, redirecting self to checkout');
+                console.log('📍 Regular window, redirecting to checkout');
                 window.location.href = 'https://pir-planet.ru/checkout';
             }
-        }, 1000);
+        }, 2000);
     </script>
 </body>
 </html>
