@@ -408,6 +408,7 @@
     .order-item {
         gap: 0.75rem;
         padding: 0.75rem;
+        flex-direction: column;
     }
 
     .order-item-image {
@@ -415,8 +416,14 @@
         height: 200px;
     }
 
+    .order-item-details {
+        width: 100%;
+    }
+
     .order-item-name {
         font-size: 0.9375rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .order-item-price {
