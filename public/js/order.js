@@ -27,12 +27,23 @@ class OrderPage {
 
     async loadOrder() {
         try {
-            const response = await fetch(`/api/order/${this.orderId}`);
+            // Получаем токен доступа из localStorage
+            const accessToken = localStorage.getItem('orderAccessToken');
+
+            if (!accessToken) {
+                console.error('Токен доступа не найден');
+                this.showError();
+                return;
+            }
+
+            // Добавляем токен в query параметры
+            const response = await fetch(`/api/order/${this.orderId}?token=${accessToken}`);
             const data = await response.json();
 
             if (response.ok && data.success) {
                 this.renderOrder(data.order);
             } else {
+                console.error('Ошибка:', data.message);
                 this.showError();
             }
         } catch (error) {
@@ -46,8 +57,8 @@ class OrderPage {
         this.loadingState.style.display = 'none';
         this.orderContent.style.display = 'block';
 
-        // Номер заказа
-        document.getElementById('orderNumber').textContent = order.id;
+        // Номер заказа (показываем order_number, а не UUID)
+        document.getElementById('orderNumber').textContent = order.order_number || order.id;
 
         // Статус
         this.renderStatus(order.status);
@@ -61,25 +72,37 @@ class OrderPage {
             document.getElementById('customerEmail').textContent = order.customer_email;
         }
 
-        // Доставка
-        document.getElementById('deliveryMethod').textContent = this.getDeliveryMethodName(order.delivery_method);
-        document.getElementById('deliveryAddress').textContent = `${order.delivery_city}, ${order.delivery_address}`;
+        // Доставка (delivery_type из БД)
+        document.getElementById('deliveryMethod').textContent = this.getDeliveryMethodName(order.delivery_type);
+        document.getElementById('deliveryAddress').textContent = `${order.delivery_city || ''}, ${order.delivery_address || ''}`.trim();
 
-        // Оплата
-        document.getElementById('paymentMethod').textContent = this.getPaymentMethodName(order.payment_method);
+        // Оплата (используем поле из старой структуры, если есть, иначе показываем способ оплаты из данных заказа)
+        const paymentMethod = order.payment_method || 'Не указан';
+        document.getElementById('paymentMethod').textContent = this.getPaymentMethodName(paymentMethod);
 
         // Комментарий
-        if (order.comment) {
+        if (order.comment || order.manager_comment) {
             document.getElementById('commentBlock').style.display = 'block';
-            document.getElementById('orderComment').textContent = order.comment;
+            document.getElementById('orderComment').textContent = order.comment || order.manager_comment;
         }
 
         // Товары
         this.renderItems(order.items);
 
-        // Итоги
-        document.getElementById('orderSubtotal').textContent = this.formatPrice(order.total_price) + ' ₽';
-        document.getElementById('orderTotalPrice').textContent = this.formatPrice(order.total_price) + ' ₽';
+        // Итоги (используем subtotal и total из БД)
+        const subtotal = order.subtotal || 0;
+        const deliveryCost = order.delivery_cost || 0;
+        const total = order.total || subtotal;
+
+        document.getElementById('orderSubtotal').textContent = this.formatPrice(subtotal) + ' ₽';
+
+        if (deliveryCost > 0) {
+            document.getElementById('orderDeliveryCost').textContent = this.formatPrice(deliveryCost) + ' ₽';
+        } else {
+            document.getElementById('orderDeliveryCost').textContent = 'Рассчитывается';
+        }
+
+        document.getElementById('orderTotalPrice').textContent = this.formatPrice(total) + ' ₽';
     }
 
     renderStatus(status) {
@@ -132,10 +155,16 @@ class OrderPage {
 
         const price = item.unit_price || item.price || 0;
         const name = item.product_name || item.name || 'Товар';
+        let image = item.product_image || item.image || '/images/placeholder.webp';
+
+        // Добавляем слеш в начало пути если его нет
+        if (image && !image.startsWith('/') && !image.startsWith('http')) {
+            image = '/' + image;
+        }
 
         div.innerHTML = `
             <div class="order-item-image">
-                <img src="${item.image || '/images/placeholder.webp'}" alt="${name}">
+                <img src="${image}" alt="${name}" onerror="this.src='/images/placeholder.webp'">
             </div>
             <div class="order-item-details">
                 <div class="order-item-name">${name}</div>

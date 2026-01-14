@@ -265,7 +265,7 @@ app.get('/blog/balcony-insulation', (req, res) => {
 // Создание нового заказа
 app.post('/api/create-order', async (req, res) => {
     try {
-        const { customer, delivery, items } = req.body;
+        const { customer, delivery, payment, items } = req.body;
 
         // Валидация
         if (!customer || !customer.name || !customer.phone) {
@@ -293,12 +293,13 @@ app.post('/api/create-order', async (req, res) => {
             delivery_address: delivery.address ? delivery.address.trim() : null,
             delivery_city: delivery.city ? delivery.city.trim() : null,
             pickup_location: delivery.pickupLocation || null,
+            payment_method: payment ? payment.method : null,
             subtotal: subtotal,
             items: items
         };
 
         // Создаем заказ
-        const { orderId, orderNumber } = db.createOrder(orderData);
+        const { orderId, orderNumber, accessToken } = db.createOrder(orderData);
 
         // Отправляем уведомление в Telegram
         const telegramMessage = `
@@ -331,6 +332,7 @@ ${delivery.type === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.
             success: true,
             orderId: orderId,
             orderNumber: orderNumber,
+            accessToken: accessToken,
             message: 'Заказ успешно создан'
         });
 
@@ -343,15 +345,31 @@ ${delivery.type === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.
     }
 });
 
-// Получить заказ по ID
+// Получить заказ по ID (требуется токен доступа)
 app.get('/api/order/:orderId', (req, res) => {
     try {
         const { orderId } = req.params;
+        const { token } = req.query;
+
+        // Проверяем наличие токена
+        if (!token) {
+            return res.status(401).json({ success: false, message: 'Требуется токен доступа' });
+        }
+
         const order = db.getOrderById(orderId);
 
         if (!order) {
             return res.status(404).json({ success: false, message: 'Заказ не найден' });
         }
+
+        // Проверяем токен доступа
+        if (order.access_token !== token) {
+            console.warn(`⚠️ Попытка доступа к заказу ${orderId} с неверным токеном`);
+            return res.status(403).json({ success: false, message: 'Неверный токен доступа' });
+        }
+
+        // Удаляем токен из ответа (не показываем клиенту)
+        delete order.access_token;
 
         res.json({ success: true, order });
     } catch (error) {

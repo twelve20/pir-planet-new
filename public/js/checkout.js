@@ -149,15 +149,14 @@ class CheckoutPage {
                 // Успешное создание заказа
                 const orderId = result.orderId;
                 const orderNumber = result.orderNumber;
+                const accessToken = result.accessToken;
 
                 console.log('✅ Заказ создан:', { orderId, orderNumber });
 
-                // Сохраняем orderId в localStorage для страницы успеха
+                // Сохраняем orderId и токен доступа в localStorage
                 localStorage.setItem('lastOrderId', orderId);
-                console.log('💾 orderId сохранен в localStorage:', orderId);
-
-                // Очищаем корзину
-                cart.clear();
+                localStorage.setItem('orderAccessToken', accessToken);
+                console.log('💾 orderId и токен сохранены в localStorage');
 
                 // Если выбрана онлайн-оплата, открываем виджет Альфа-Банк
                 if (paymentMethod === 'card' || paymentMethod === 'sbp') {

@@ -233,18 +233,20 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
+    justify-content: center;
 }
 
 .order-item-name {
     font-weight: 600;
-    color: var(--text-dark);
+    color: #1e293b;
     font-size: 1rem;
+    line-height: 1.4;
 }
 
 .order-item-quantity {
     font-size: 0.875rem;
-    color: var(--text-light);
+    color: #1e293b;
 }
 
 .order-item-price {
@@ -267,6 +269,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.875rem;
+    color: #1e293b;
 }
 
 .order-divider {
@@ -278,7 +281,7 @@
 .total-final {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #1e293b;
     padding-top: 0.5rem;
 }
 
@@ -364,16 +367,37 @@
 }
 
 @media (max-width: 640px) {
+    .order-hero {
+        padding: 2rem 0;
+    }
+
     .order-hero h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .order-number {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+    }
+
+    .order-message {
+        font-size: 1rem;
+    }
+
+    .order-section {
+        padding: 2rem 0;
+    }
+
+    .order-grid {
+        gap: 1.5rem;
     }
 
     .info-block {
-        padding: 1.5rem;
+        padding: 1.25rem;
+    }
+
+    .info-block h2 {
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
     }
 
     .info-item {
@@ -382,12 +406,37 @@
     }
 
     .order-item {
-        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem;
     }
 
     .order-item-image {
         width: 100%;
-        height: 150px;
+        height: 200px;
+    }
+
+    .order-item-name {
+        font-size: 0.9375rem;
+    }
+
+    .order-item-price {
+        font-size: 1rem;
+    }
+
+    .order-totals {
+        padding: 1rem;
+    }
+
+    .total-final {
+        font-size: 1.25rem;
+    }
+
+    .order-actions {
+        margin-bottom: 1rem;
+    }
+
+    .order-help {
+        padding: 1.25rem;
     }
 }
 

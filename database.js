@@ -22,6 +22,8 @@ function initDatabase() {
             delivery_address TEXT,
             delivery_city TEXT,
             pickup_location TEXT,
+            payment_method TEXT,
+            access_token TEXT,
             status TEXT NOT NULL DEFAULT 'new',
             subtotal REAL NOT NULL,
             delivery_cost REAL DEFAULT 0,
@@ -32,6 +34,22 @@ function initDatabase() {
         )
     `);
 
+    // Миграция: добавляем поле payment_method если его нет
+    try {
+        db.exec(`ALTER TABLE orders ADD COLUMN payment_method TEXT`);
+        console.log('✅ Добавлено поле payment_method в таблицу orders');
+    } catch (e) {
+        // Поле уже существует, игнорируем ошибку
+    }
+
+    // Миграция: добавляем поле access_token если его нет
+    try {
+        db.exec(`ALTER TABLE orders ADD COLUMN access_token TEXT`);
+        console.log('✅ Добавлено поле access_token в таблицу orders');
+    } catch (e) {
+        // Поле уже существует, игнорируем ошибку
+    }
+
     // Таблица товаров в заказе
     db.exec(`
         CREATE TABLE IF NOT EXISTS order_items (
@@ -39,12 +57,21 @@ function initDatabase() {
             order_id TEXT NOT NULL,
             product_name TEXT NOT NULL,
             product_sku TEXT,
+            product_image TEXT,
             quantity INTEGER NOT NULL,
             unit_price REAL NOT NULL,
             total_price REAL NOT NULL,
             FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
         )
     `);
+
+    // Миграция: добавляем поле product_image если его нет
+    try {
+        db.exec(`ALTER TABLE order_items ADD COLUMN product_image TEXT`);
+        console.log('✅ Добавлено поле product_image в таблицу order_items');
+    } catch (e) {
+        // Поле уже существует, игнорируем ошибку
+    }
 
     // Таблица истории статусов
     db.exec(`
@@ -86,15 +113,19 @@ function getNextOrderNumber() {
 // Создать новый заказ
 function createOrder(orderData) {
     const { v4: uuidv4 } = require('uuid');
+    const crypto = require('crypto');
+
     const orderId = uuidv4();
     const orderNumber = getNextOrderNumber();
+    // Генерируем безопасный токен доступа (32 байта в hex = 64 символа)
+    const accessToken = crypto.randomBytes(32).toString('hex');
 
     const stmt = db.prepare(`
         INSERT INTO orders (
             id, order_number, customer_name, customer_phone, customer_email,
             customer_type, delivery_type, delivery_address, delivery_city,
-            pickup_location, status, subtotal, total
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            pickup_location, payment_method, access_token, status, subtotal, total
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
     stmt.run(
@@ -108,6 +139,8 @@ function createOrder(orderData) {
         orderData.delivery_address || null,
         orderData.delivery_city || null,
         orderData.pickup_location || null,
+        orderData.payment_method || null,
+        accessToken,
         'new',
         orderData.subtotal,
         orderData.subtotal
@@ -115,8 +148,8 @@ function createOrder(orderData) {
 
     // Добавляем товары
     const itemStmt = db.prepare(`
-        INSERT INTO order_items (order_id, product_name, product_sku, quantity, unit_price, total_price)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO order_items (order_id, product_name, product_sku, product_image, quantity, unit_price, total_price)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
 
     for (const item of orderData.items) {
@@ -124,6 +157,7 @@ function createOrder(orderData) {
             orderId,
             item.name,
             item.sku || null,
+            item.image || null,
             item.quantity,
             item.price,
             item.price * item.quantity
@@ -133,7 +167,7 @@ function createOrder(orderData) {
     // Добавляем первую запись в историю статусов
     addStatusHistory(orderId, 'new', 'Заказ создан');
 
-    return { orderId, orderNumber };
+    return { orderId, orderNumber, accessToken };
 }
 
 // Получить заказ по ID

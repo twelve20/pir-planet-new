@@ -61,12 +61,6 @@
         }
 
         /* --- БАЗОВЫЕ СТИЛИ --- */
-        body {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
 
         .article-hero {
             background: var(--bg-white);
@@ -358,6 +352,13 @@
 
         /* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
         @media (max-width: 768px) {
+            body {
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+
             .article-title {
                 font-size: 1.875rem;
             }

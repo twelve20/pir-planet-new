@@ -128,6 +128,14 @@
         console.log('In iframe?', window.self !== window.top);
         console.log('Has opener?', window.opener && !window.opener.closed);
 
+        // Очищаем корзину после успешной оплаты
+        try {
+            localStorage.removeItem('pirplanet_cart');
+            console.log('🧹 Корзина очищена');
+        } catch (e) {
+            console.error('Error clearing cart:', e);
+        }
+
         // Показываем сообщение 1 секунду, затем перенаправляем
         setTimeout(() => {
             if (orderId) {
