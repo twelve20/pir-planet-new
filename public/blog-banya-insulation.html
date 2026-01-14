@@ -573,20 +573,6 @@
             });
         }
 
-        // Обнаружение DevTools
-        let devtoolsOpen = false;
-        const threshold = 160;
-
-        setInterval(function() {
-            if (window.outerWidth - window.innerWidth > threshold ||
-                window.outerHeight - window.innerHeight > threshold) {
-                if (!devtoolsOpen) {
-                    devtoolsOpen = true;
-                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-size:24px;text-align:center;">Инструменты разработчика запрещены на этой странице.</div>';
-                }
-            }
-        }, 500);
-
         window.addEventListener('load', function() {
             createWatermarks();
             protectImages();
