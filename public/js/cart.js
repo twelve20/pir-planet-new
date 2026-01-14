@@ -172,18 +172,18 @@ function updateCardDisplay(productCard) {
     const existingItem = cart.items.find(item => item.sku === sku);
 
     const addButton = productCard.querySelector('.btn-add-to-cart');
-    const quantityControls = productCard.querySelector('.quantity-controls');
+    const cartAddedControls = productCard.querySelector('.cart-added-controls');
     const qtyValue = productCard.querySelector('.qty-value');
 
     if (existingItem && existingItem.quantity > 0) {
-        // Товар в корзине - показываем счетчик
+        // Товар в корзине - показываем счетчик + кнопку перехода
         addButton.style.display = 'none';
-        quantityControls.style.display = 'flex';
+        cartAddedControls.style.display = 'flex';
         qtyValue.textContent = existingItem.quantity;
     } else {
-        // Товара нет в корзине - показываем кнопку
+        // Товара нет в корзине - показываем кнопку "В корзину"
         addButton.style.display = 'block';
-        quantityControls.style.display = 'none';
+        cartAddedControls.style.display = 'none';
     }
 }
 
