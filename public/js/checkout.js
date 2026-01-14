@@ -21,6 +21,7 @@ class CheckoutPage {
         this.renderOrderSummary();
         this.setupFormHandlers();
         this.setupPhoneMask();
+        this.restoreFormData();
     }
 
     renderOrderSummary() {
@@ -101,6 +102,69 @@ class CheckoutPage {
         });
     }
 
+    saveFormData(formData) {
+        // Сохраняем данные формы в localStorage для восстановления при неудачной оплате
+        const formDataToSave = {
+            name: formData.get('name'),
+            phone: formData.get('phone'),
+            email: formData.get('email') || '',
+            deliveryMethod: formData.get('deliveryMethod'),
+            city: formData.get('city'),
+            address: formData.get('address'),
+            postcode: formData.get('postcode') || '',
+            paymentMethod: formData.get('paymentMethod'),
+            comment: formData.get('comment') || ''
+        };
+
+        localStorage.setItem('checkoutFormData', JSON.stringify(formDataToSave));
+        console.log('💾 Данные формы сохранены в localStorage');
+    }
+
+    restoreFormData() {
+        // Восстанавливаем данные формы из localStorage
+        const savedData = localStorage.getItem('checkoutFormData');
+
+        if (!savedData) {
+            console.log('📋 Нет сохраненных данных формы');
+            return;
+        }
+
+        try {
+            const formData = JSON.parse(savedData);
+            console.log('✅ Восстанавливаем данные формы:', formData);
+
+            // Заполняем поля формы
+            if (formData.name) document.getElementById('customerName').value = formData.name;
+            if (formData.phone) document.getElementById('customerPhone').value = formData.phone;
+            if (formData.email) document.getElementById('customerEmail').value = formData.email;
+            if (formData.city) document.getElementById('customerCity').value = formData.city;
+            if (formData.address) document.getElementById('customerAddress').value = formData.address;
+            if (formData.postcode) document.getElementById('customerPostcode').value = formData.postcode;
+            if (formData.comment) document.getElementById('orderComment').value = formData.comment;
+
+            // Восстанавливаем radio buttons
+            if (formData.deliveryMethod) {
+                const deliveryRadio = document.querySelector(`input[name="deliveryMethod"][value="${formData.deliveryMethod}"]`);
+                if (deliveryRadio) deliveryRadio.checked = true;
+            }
+
+            if (formData.paymentMethod) {
+                const paymentRadio = document.querySelector(`input[name="paymentMethod"][value="${formData.paymentMethod}"]`);
+                if (paymentRadio) paymentRadio.checked = true;
+            }
+
+            console.log('✅ Данные формы восстановлены');
+        } catch (e) {
+            console.error('❌ Ошибка восстановления данных формы:', e);
+        }
+    }
+
+    clearFormData() {
+        // Очищаем сохраненные данные формы после успешной оплаты
+        localStorage.removeItem('checkoutFormData');
+        console.log('🧹 Сохраненные данные формы очищены');
+    }
+
     async handleSubmit(e) {
         e.preventDefault();
 
@@ -113,6 +177,9 @@ class CheckoutPage {
             const formData = new FormData(this.form);
             const deliveryMethod = formData.get('deliveryMethod');
             const paymentMethod = formData.get('paymentMethod');
+
+            // Сохраняем данные формы на случай неудачной оплаты
+            this.saveFormData(formData);
 
             const orderData = {
                 customer: {
