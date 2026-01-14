@@ -712,7 +712,8 @@ function openProductModal(productId) {
             </div>
 
             <div class="modal-actions">
-                <a href="#order" class="btn-primary btn-full" onclick="closeProductModal()">Заказать</a>
+                <button class="btn-primary btn-full" onclick="addToCartFromModal(${product.id})">В корзину</button>
+                <a href="#order" class="btn-secondary btn-full" onclick="closeProductModal()">Заказать</a>
             </div>
         </div>
     `;
@@ -726,6 +727,48 @@ function openProductModal(productId) {
 function closeProductModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+}
+
+// Add to cart from modal
+function addToCartFromModal(productId) {
+    const product = products[productId];
+
+    if (!product) {
+        console.error('Товар не найден');
+        return;
+    }
+
+    // Извлекаем числовую цену из строки (например, "622 ₽" -> 622)
+    const priceMatch = product.price.match(/[\d\s]+/);
+    const price = priceMatch ? parseFloat(priceMatch[0].replace(/\s/g, '')) : 0;
+
+    const cartProduct = {
+        sku: product.sku || `product-${productId}`,
+        name: product.name,
+        price: price,
+        quantity: 1,
+        image: product.image
+    };
+
+    // Используем глобальную функцию cart из cart.js
+    if (window.cart) {
+        window.cart.addItem(cartProduct);
+
+        // Находим кнопку в модальном окне и показываем визуальный эффект
+        const addButton = document.querySelector('.modal-actions .btn-primary');
+        if (addButton) {
+            addButton.classList.add('added');
+            const originalText = addButton.textContent;
+            addButton.textContent = '✓ Добавлено';
+
+            setTimeout(() => {
+                addButton.classList.remove('added');
+                addButton.textContent = originalText;
+            }, 2000);
+        }
+    } else {
+        console.error('Корзина не инициализирована');
+    }
 }
 
 // Event listeners

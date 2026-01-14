@@ -810,3 +810,65 @@
         padding: 0.75rem;
     }
 }
+
+/* ===== CART CONTROLS ON PRODUCT CARDS ===== */
+.cart-controls {
+    margin-top: 1rem;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    min-width: 40px;
+    text-align: center;
+}
+
+.btn-add-to-cart.added {
+    background: var(--success-color);
+    pointer-events: none;
+}
+
+.btn-go-to-cart {
+    background: #10b981;
+    color: white;
+}
+
+.btn-go-to-cart:hover {
+    background: #059669;
+}

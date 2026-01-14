@@ -124,17 +124,89 @@ function addToCart(button) {
 
     cart.addItem(product);
 
-    // Добавляем визуальный эффект на кнопку
-    button.classList.add('added');
-    const originalText = button.textContent;
-    button.textContent = '✓ Добавлено';
+    // Переключаем отображение на счетчик
+    updateCardDisplay(productCard);
+}
 
-    setTimeout(() => {
-        button.classList.remove('added');
-        button.textContent = originalText;
-    }, 2000);
+// Увеличение количества товара
+function increaseQuantity(button) {
+    const productCard = button.closest('.catalog-item');
+    if (!productCard) return;
+
+    const sku = productCard.dataset.sku;
+    const existingItem = cart.items.find(item => item.sku === sku);
+
+    if (existingItem) {
+        existingItem.quantity++;
+        cart.save();
+        cart.updateCounter();
+        updateCardDisplay(productCard);
+    }
+}
+
+// Уменьшение количества товара
+function decreaseQuantity(button) {
+    const productCard = button.closest('.catalog-item');
+    if (!productCard) return;
+
+    const sku = productCard.dataset.sku;
+    const existingItem = cart.items.find(item => item.sku === sku);
+
+    if (existingItem) {
+        if (existingItem.quantity > 1) {
+            existingItem.quantity--;
+            cart.save();
+            cart.updateCounter();
+            updateCardDisplay(productCard);
+        } else {
+            // Удаляем товар из корзины
+            cart.removeItem(sku);
+            updateCardDisplay(productCard);
+        }
+    }
+}
+
+// Обновление отображения карточки товара
+function updateCardDisplay(productCard) {
+    const sku = productCard.dataset.sku;
+    const existingItem = cart.items.find(item => item.sku === sku);
+
+    const addButton = productCard.querySelector('.btn-add-to-cart');
+    const quantityControls = productCard.querySelector('.quantity-controls');
+    const qtyValue = productCard.querySelector('.qty-value');
+
+    if (existingItem && existingItem.quantity > 0) {
+        // Товар в корзине - показываем счетчик
+        addButton.style.display = 'none';
+        quantityControls.style.display = 'flex';
+        qtyValue.textContent = existingItem.quantity;
+    } else {
+        // Товара нет в корзине - показываем кнопку
+        addButton.style.display = 'block';
+        quantityControls.style.display = 'none';
+    }
+}
+
+// Обновление всех карточек при загрузке страницы
+function updateAllCards() {
+    const productCards = document.querySelectorAll('.catalog-item');
+    productCards.forEach(card => {
+        if (card.dataset.sku) {
+            updateCardDisplay(card);
+        }
+    });
 }
 
 // Экспортируем для использования в других скриптах
 window.cart = cart;
 window.addToCart = addToCart;
+window.increaseQuantity = increaseQuantity;
+window.decreaseQuantity = decreaseQuantity;
+window.updateAllCards = updateAllCards;
+
+// Обновляем отображение карточек при загрузке страницы
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateAllCards);
+} else {
+    updateAllCards();
+}

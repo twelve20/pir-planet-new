@@ -168,11 +168,7 @@
                 </div>
 
                 <!-- Product 2 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-banya-40"
-                     data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм"
-                     data-price="692"
-                     data-image="images/techno1.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 40мм">
                         <img src="images/techno2.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 40мм" class="hover-image">
@@ -189,23 +185,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="2">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-banya-50"
-                     data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм"
-                     data-price="868"
-                     data-image="images/techno1.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 50мм">
                         <img src="images/techno2.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 50мм" class="hover-image">
@@ -222,23 +207,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="3">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 4 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-30"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 30 мм"
-                     data-price="833"
-                     data-image="images/techno5.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 30мм">
                         <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 30мм" class="hover-image">
@@ -255,23 +229,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="4">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 5 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-50"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 50 мм"
-                     data-price="1043"
-                     data-image="images/techno5.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 50мм">
                         <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 50мм" class="hover-image">
@@ -288,23 +251,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="5">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 6 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-80"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 80 мм"
-                     data-price="1429"
-                     data-image="images/techno5.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 80мм">
                         <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 80мм" class="hover-image">
@@ -321,23 +273,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="6">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 7 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-100"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 100 мм"
-                     data-price="1535"
-                     data-image="images/techno5.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 100мм">
                         <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 100мм" class="hover-image">
@@ -354,14 +295,7 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="7">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
             </div>
@@ -369,11 +303,7 @@
             <h2 class="section-title" id="pirro" style="margin-top: 4rem;">PIR плиты PIRRO</h2>
             <div class="catalog-grid">
                 <!-- Product 8 -->
-                <div class="catalog-item"
-                     data-sku="pirro-banya-30"
-                     data-name="PIR плита для бани ФОЛЬГА 30 мм"
-                     data-price="566"
-                     data-image="images/pirro1.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro1.webp" alt="PIR плита ФОЛЬГА 30мм">
                         <img src="images/pirro2.webp" alt="PIR плита ФОЛЬГА 30мм" class="hover-image">
@@ -390,23 +320,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="8">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 9 -->
-                <div class="catalog-item"
-                     data-sku="pirro-banya-40"
-                     data-name="PIR плита для бани ФОЛЬГА 40 мм"
-                     data-price="692"
-                     data-image="images/pirro1.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro1.webp" alt="PIR плита ФОЛЬГА 40мм">
                         <img src="images/pirro2.webp" alt="PIR плита ФОЛЬГА 40мм" class="hover-image">
@@ -423,23 +342,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="9">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 10 -->
-                <div class="catalog-item"
-                     data-sku="pirro-banya-50"
-                     data-name="PIR плита для бани ФОЛЬГА 50 мм"
-                     data-price="782"
-                     data-image="images/pirro1.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro1.webp" alt="PIR плита ФОЛЬГА 50мм">
                         <img src="images/pirro2.webp" alt="PIR плита ФОЛЬГА 50мм" class="hover-image">
@@ -456,23 +364,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="10">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 11 -->
-                <div class="catalog-item"
-                     data-sku="pirro-folga-100"
-                     data-name="PIR Плита ФОЛЬГА 100 мм"
-                     data-price="5564"
-                     data-image="images/pirro1.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro1.webp" alt="PIR плита ФОЛЬГА 100мм">
                         <img src="images/pirro2.webp" alt="PIR плита ФОЛЬГА 100мм" class="hover-image">
@@ -489,23 +386,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="11">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 12 -->
-                <div class="catalog-item"
-                     data-sku="pirro-kraft-30"
-                     data-name="PIR Плита КРАФТ БУМАГА 30 мм"
-                     data-price="408"
-                     data-image="images/pirro3.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro3.webp" alt="PIR Плита КРАФТ БУМАГА 30мм">
                         <img src="images/pirro4.webp" alt="PIR Плита КРАФТ БУМАГА 30мм" class="hover-image">
@@ -522,23 +408,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>Ровная</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="12">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 13 -->
-                <div class="catalog-item"
-                     data-sku="pirro-kraft-40"
-                     data-name="PIR Плита КРАФТ БУМАГА 40 мм"
-                     data-price="590"
-                     data-image="images/pirro3.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro3.webp" alt="PIR Плита КРАФТ БУМАГА 40мм">
                         <img src="images/pirro4.webp" alt="PIR Плита КРАФТ БУМАГА 40мм" class="hover-image">
@@ -555,23 +430,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>Ровная</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="13">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- Product 14 -->
-                <div class="catalog-item"
-                     data-sku="pirro-kraft-50"
-                     data-name="PIR Плита КРАФТ БУМАГА 50 мм"
-                     data-price="595"
-                     data-image="images/pirro3.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro3.webp" alt="PIR Плита КРАФТ БУМАГА 50мм">
                         <img src="images/pirro4.webp" alt="PIR Плита КРАФТ БУМАГА 50мм" class="hover-image">
@@ -588,23 +452,12 @@
                             <div class="spec-item"><strong>Кромка:</strong> <span>Ровная</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="14">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- PIRRO Stucco Стеклохолст 50мм -->
-                <div class="catalog-item"
-                     data-sku="pirro-stucco-50"
-                     data-name="PIRRO Stucco СТЕКЛОХОЛСТ Г2 50 мм"
-                     data-price="890"
-                     data-image="images/pirro5.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro5.webp" alt="PIRRO Stucco СТЕКЛОХОЛСТ Г2 50 мм">
                     </div>
@@ -620,23 +473,12 @@
                             <div class="spec-item"><strong>Покрытие:</strong> <span>Стеклохолст</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="15">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
 
                 <!-- PIRRO Membrane Фольга 100мм -->
-                <div class="catalog-item"
-                     data-sku="pirro-membrane-100"
-                     data-name="PIRRO Membrane ФОЛЬГА Г1 100 мм"
-                     data-price="2090"
-                     data-image="images/pirro6.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/pirro6.webp" alt="PIRRO Membrane ФОЛЬГА Г1 100 мм">
                     </div>
@@ -652,14 +494,7 @@
                             <div class="spec-item"><strong>Упаковка:</strong> <span>3 шт (8,64 м²)</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="16">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
             </div>
@@ -672,11 +507,7 @@
             <h2 class="section-title" id="mounting" style="margin-top: 4rem;">Товары для монтажа</h2>
             <div class="catalog-grid">
                 <!-- Клей-пена -->
-                <div class="catalog-item"
-                     data-sku="pirro-glue"
-                     data-name="Клей-пена PIRROклей для PIR плит"
-                     data-price="1050"
-                     data-image="images/glue.webp">
+                <div class="catalog-item">
                     <div class="catalog-item-image">
                         <img src="images/glue.webp" alt="Клей-пена PIRROклей">
                     </div>
@@ -692,14 +523,7 @@
                             <div class="spec-item"><strong>Температура:</strong> <span>от -60°С до +80°С</span></div>
                         </div>
                         <button class="btn-secondary btn-full product-details-btn" data-product="17">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="quantity-controls" style="display: none;">
-                                <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                            </div>
-                        </div>
+                        <button class="btn-add-to-cart">В корзину</button>
                     </div>
                 </div>
             </div>
