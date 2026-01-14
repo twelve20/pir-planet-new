@@ -23,14 +23,21 @@ class Cart {
         // Проверяем, есть ли уже такой товар
         const existingItem = this.items.find(item => item.sku === product.sku);
 
+        const packSize = product.packSize || null;
+        const quantityToAdd = product.quantity || (packSize || 1);
+
         if (existingItem) {
-            existingItem.quantity += product.quantity || 1;
+            existingItem.quantity += quantityToAdd;
+            if (packSize) {
+                existingItem.packSize = packSize;
+            }
         } else {
             this.items.push({
                 sku: product.sku,
                 name: product.name,
                 price: product.price,
-                quantity: product.quantity || 1,
+                quantity: quantityToAdd,
+                packSize: packSize,
                 image: product.image || null
             });
         }
@@ -49,7 +56,8 @@ class Cart {
     updateQuantity(sku, quantity) {
         const item = this.items.find(item => item.sku === sku);
         if (item) {
-            item.quantity = Math.max(1, quantity);
+            const minQty = item.packSize || 1;
+            item.quantity = Math.max(minQty, quantity);
             this.saveCart();
         }
     }
@@ -114,11 +122,14 @@ function addToCart(button) {
         return;
     }
 
+    const packSize = productCard.dataset.packsize ? parseInt(productCard.dataset.packsize) : null;
+
     const product = {
         sku: productCard.dataset.sku || `product-${Date.now()}`,
         name: productCard.dataset.name || productCard.querySelector('h3')?.textContent || 'Товар',
         price: parseFloat(productCard.dataset.price) || 0,
-        quantity: 1,
+        quantity: packSize || 1,
+        packSize: packSize,
         image: productCard.dataset.image || productCard.querySelector('img')?.src || null
     };
 
@@ -137,7 +148,8 @@ function increaseQuantity(button) {
     const existingItem = cart.items.find(item => item.sku === sku);
 
     if (existingItem) {
-        existingItem.quantity++;
+        const packSize = existingItem.packSize || 1;
+        existingItem.quantity += packSize;
         cart.saveCart();
         updateCardDisplay(productCard);
     }
@@ -152,8 +164,11 @@ function decreaseQuantity(button) {
     const existingItem = cart.items.find(item => item.sku === sku);
 
     if (existingItem) {
-        if (existingItem.quantity > 1) {
-            existingItem.quantity--;
+        const packSize = existingItem.packSize || 1;
+        const minQty = packSize;
+
+        if (existingItem.quantity > minQty) {
+            existingItem.quantity -= packSize;
             cart.saveCart();
             updateCardDisplay(productCard);
         } else {

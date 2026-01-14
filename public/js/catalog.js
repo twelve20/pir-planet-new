@@ -4,6 +4,7 @@ const products = {
         id: 1,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм',
         price: '622 ₽',
+        packSize: 8,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
         description: 'PIR плита с алюминиевой фольгой толщиной 30 мм — идеальное решение для утепления бань и саун. Фольгированное покрытие отражает тепло обратно в помещение, создавая эффект термоса и существенно повышая энергоэффективность.',
@@ -28,6 +29,7 @@ const products = {
         id: 2,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм',
         price: '692 ₽',
+        packSize: 6,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
         description: 'Усиленная PIR плита толщиной 40 мм с фольгированным покрытием для максимальной теплоизоляции бань и саун. Обеспечивает быстрый прогрев помещения и долгое сохранение тепла.',
@@ -52,6 +54,7 @@ const products = {
         id: 3,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм',
         price: '868 ₽',
+        packSize: 5,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
         description: 'Максимальная теплоизоляция для бань и саун. PIR плита 50 мм с фольгированным покрытием обеспечивает превосходное сохранение тепла даже в самые холодные зимы.',
@@ -76,6 +79,7 @@ const products = {
         id: 4,
         name: 'LOGICPIR СТЕКЛОХОЛСТ 30 мм',
         price: '833 ₽',
+        packSize: 8,
         image: 'images/techno5.webp',
         hoverImage: 'images/techno6.webp',
         description: 'Универсальная PIR плита со стеклохолстом толщиной 30 мм для утепления стен, полов и кровли. Отличается высокой прочностью и устойчивостью к механическим повреждениям.',
@@ -100,6 +104,7 @@ const products = {
         id: 5,
         name: 'LOGICPIR СТЕКЛОХОЛСТ 50 мм',
         price: '1043 ₽',
+        packSize: 5,
         image: 'images/techno5.webp',
         hoverImage: 'images/techno6.webp',
         description: 'PIR плита со стеклохолстом 50 мм - оптимальный выбор для комплексного утепления дома. Обеспечивает отличную теплоизоляцию при любых погодных условиях.',
@@ -172,6 +177,7 @@ const products = {
         id: 8,
         name: 'PIR плита для бани ФОЛЬГА 30 мм',
         price: '566 ₽',
+        packSize: 8,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
         description: 'PIR плита с алюминиевой фольгой толщиной 30 мм — оптимальное решение для утепления бань, саун, бассейнов и помещений с высокой влажностью. Фольгированное покрытие отражает до 97% теплового излучения, сокращая время прогрева и затраты на отопление.',
@@ -196,6 +202,7 @@ const products = {
         id: 9,
         name: 'PIR плита для бани ФОЛЬГА 40 мм',
         price: '692 ₽',
+        packSize: 6,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
         description: 'PIR плита с алюминиевой фольгой толщиной 40 мм обеспечивает повышенную теплоизоляцию для бань и саун. Увеличенная толщина гарантирует лучшее сохранение тепла и снижение теплопотерь через стены и потолок.',
@@ -220,6 +227,7 @@ const products = {
         id: 10,
         name: 'PIR плита для бани ФОЛЬГА 50 мм',
         price: '782 ₽',
+        packSize: 5,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
         description: 'PIR плита с алюминиевой фольгой толщиной 50 мм — максимальная теплоизоляция для бань и саун. Идеальна для регионов с холодным климатом, обеспечивает минимальные теплопотери и быстрый прогрев парной.',
@@ -268,6 +276,7 @@ const products = {
         id: 12,
         name: 'PIR Плита КРАФТ БУМАГА 30 мм',
         price: '408 ₽',
+        packSize: 8,
         image: 'images/pirro3.webp',
         hoverImage: 'images/pirro4.webp',
         description: 'PIR плита с покрытием из крафт-бумаги толщиной 30 мм — универсальное решение для утепления перекрытий, полов, стен. Подходит для внутренней теплоизоляции под сухую отделку, в системах "Теплый пол", чердачных перекрытий.',
@@ -292,6 +301,7 @@ const products = {
         id: 13,
         name: 'PIR Плита КРАФТ БУМАГА 40 мм',
         price: '590 ₽',
+        packSize: 6,
         image: 'images/pirro3.webp',
         hoverImage: 'images/pirro4.webp',
         description: 'PIR плита с покрытием из крафт-бумаги толщиной 40 мм обеспечивает повышенную теплоизоляцию для внутренних работ. Идеальна для утепления полов, перекрытий, стен под гипсокартон или вагонку.',
@@ -316,6 +326,7 @@ const products = {
         id: 14,
         name: 'PIR Плита КРАФТ БУМАГА 50 мм',
         price: '595 ₽',
+        packSize: 5,
         image: 'images/pirro3.webp',
         hoverImage: 'images/pirro4.webp',
         description: 'PIR плита с покрытием из крафт-бумаги толщиной 50 мм — максимальная теплоизоляция для внутренних работ. Применяется для утепления чердачных перекрытий, полов, стен в холодных регионах.',
@@ -340,6 +351,7 @@ const products = {
         id: 15,
         name: 'PIRRO Stucco СТЕКЛОХОЛСТ Г2 50 мм',
         price: '890 ₽',
+        packSize: 5,
         image: 'images/pirro5.webp',
         hoverImage: 'images/pirro5.webp',
         description: 'PIR плита с двусторонней облицовкой стеклохолстом для штукатурных фасадов, балконов, лоджий и плоских кровель.',
@@ -687,6 +699,16 @@ function openProductModal(productId) {
         </span>
     ` : `${product.price}`;
 
+    // Generate pack info HTML
+    const packInfoHTML = product.packSize ? `
+        <div class="modal-pack-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+            </svg>
+            <span>В упаковке: ${product.packSize} шт</span>
+        </div>
+    ` : '';
+
     // Generate modal content
     modalBody.innerHTML = `
         <div class="modal-product-image">
@@ -695,6 +717,7 @@ function openProductModal(productId) {
         <div class="modal-product-info">
             <h2 class="modal-product-title">${product.name}</h2>
             <div class="modal-product-price">${priceHTML}</div>
+            ${packInfoHTML}
             <p class="modal-product-description">${product.description}</p>
 
             <div class="modal-specs">
@@ -746,7 +769,8 @@ function addToCartFromModal(productId) {
         sku: product.sku || `product-${productId}`,
         name: product.name,
         price: price,
-        quantity: 1,
+        quantity: product.packSize || 1,
+        packSize: product.packSize || null,
         image: product.image
     };
 

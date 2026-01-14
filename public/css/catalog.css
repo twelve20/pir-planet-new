@@ -145,8 +145,23 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     position: relative;
+}
+
+.catalog-pack-info {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.catalog-pack-info svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
 }
 
 .price {
@@ -620,6 +635,23 @@
 .modal-product-price .price {
     font-size: 2.5rem;
     font-weight: 800;
+    color: var(--primary-color);
+}
+
+.modal-pack-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.modal-pack-info svg {
+    flex-shrink: 0;
     color: var(--primary-color);
 }
 
