@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Очистка корзины</title>
+</head>
+<body>
+    <h1>Очистка корзины</h1>
+    <button onclick="clearCart()">Очистить корзину</button>
+    <div id="result"></div>
+
+    <script>
+        function clearCart() {
+            localStorage.removeItem('pirplanet_cart');
+            document.getElementById('result').innerHTML = '<p style="color: green;">Корзина очищена! Обновите страницу.</p>';
+            setTimeout(() => {
+                window.location.href = '/cart';
+            }, 1000);
+        }
+
+        // Показываем содержимое корзины
+        const cartData = localStorage.getItem('pirplanet_cart');
+        if (cartData) {
+            const cart = JSON.parse(cartData);
+            console.log('Содержимое корзины:', cart);
+            document.getElementById('result').innerHTML = '<pre>' + JSON.stringify(cart, null, 2) + '</pre>';
+        } else {
+            document.getElementById('result').innerHTML = '<p>Корзина пуста</p>';
+        }
+    </script>
+</body>
+</html>

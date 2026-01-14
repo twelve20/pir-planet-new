@@ -20,6 +20,15 @@ class Cart {
 
     // Добавить товар в корзину
     addItem(product) {
+        // Валидация данных товара
+        if (!product || !product.sku || !product.name) {
+            console.error('Invalid product data:', product);
+            return;
+        }
+
+        // Убеждаемся, что price - это число
+        const price = typeof product.price === 'number' ? product.price : parseFloat(product.price) || 0;
+
         // Проверяем, есть ли уже такой товар
         const existingItem = this.items.find(item => item.sku === product.sku);
 
@@ -35,7 +44,7 @@ class Cart {
             this.items.push({
                 sku: product.sku,
                 name: product.name,
-                price: product.price,
+                price: price,
                 quantity: quantityToAdd,
                 packSize: packSize,
                 image: product.image || null
@@ -75,7 +84,11 @@ class Cart {
 
     // Получить общую сумму
     getTotalPrice() {
-        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return this.items.reduce((total, item) => {
+            const price = typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0;
+            const quantity = item.quantity || 0;
+            return total + (price * quantity);
+        }, 0);
     }
 
     // Обновить иконку корзины в шапке
