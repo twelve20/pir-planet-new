@@ -56,19 +56,31 @@ class CartPage {
 
         const subtotal = item.price * item.quantity;
 
+        // Формируем информацию об упаковке
+        const packInfo = item.packSize ? `
+            <div class="cart-item-pack-info">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+                </svg>
+                <span>${Math.floor(item.quantity / item.packSize)} упак. × ${item.packSize} шт</span>
+            </div>
+        ` : '';
+
         div.innerHTML = `
             <div class="cart-item-image">
                 <img src="${item.image || 'images/placeholder.webp'}" alt="${item.name}">
             </div>
             <div class="cart-item-details">
                 <h3 class="cart-item-name">${item.name}</h3>
-                <div class="cart-item-price">${this.formatPrice(item.price)} ₽</div>
+                <div class="cart-item-price">${this.formatPrice(item.price)} ₽ <span class="price-per-unit">за шт</span></div>
+                ${packInfo}
                 <div class="cart-item-quantity">
                     <button class="quantity-decrease" data-sku="${item.sku}">−</button>
                     <input type="number"
                            value="${item.quantity}"
-                           min="1"
+                           min="${item.packSize || 1}"
                            max="999"
+                           step="${item.packSize || 1}"
                            class="quantity-input"
                            data-sku="${item.sku}">
                     <button class="quantity-increase" data-sku="${item.sku}">+</button>
@@ -102,24 +114,44 @@ class CartPage {
 
     decreaseQuantity(sku) {
         const item = cart.items.find(i => i.sku === sku);
-        if (item && item.quantity > 1) {
-            cart.updateQuantity(sku, item.quantity - 1);
-            this.renderCart();
+        if (item) {
+            const packSize = item.packSize || 1;
+            const minQty = packSize;
+
+            if (item.quantity > minQty) {
+                cart.updateQuantity(sku, item.quantity - packSize);
+                this.renderCart();
+            } else {
+                // Если это последняя упаковка - удаляем товар
+                this.removeItem(sku);
+            }
         }
     }
 
     increaseQuantity(sku) {
         const item = cart.items.find(i => i.sku === sku);
         if (item && item.quantity < 999) {
-            cart.updateQuantity(sku, item.quantity + 1);
+            const packSize = item.packSize || 1;
+            cart.updateQuantity(sku, item.quantity + packSize);
             this.renderCart();
         }
     }
 
     updateQuantityInput(sku, value) {
+        const item = cart.items.find(i => i.sku === sku);
+        if (!item) return;
+
         const quantity = parseInt(value);
-        if (quantity >= 1 && quantity <= 999) {
-            cart.updateQuantity(sku, quantity);
+        const packSize = item.packSize || 1;
+
+        if (quantity >= packSize && quantity <= 999) {
+            // Округляем до кратности упаковки
+            const adjustedQuantity = Math.round(quantity / packSize) * packSize;
+            cart.updateQuantity(sku, adjustedQuantity);
+            this.renderCart();
+        } else if (quantity < packSize) {
+            // Если меньше минимума - ставим минимум
+            cart.updateQuantity(sku, packSize);
             this.renderCart();
         }
     }

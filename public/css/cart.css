@@ -127,6 +127,26 @@
     color: var(--primary-color);
 }
 
+.cart-item-price .price-per-unit {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-left: 0.25rem;
+}
+
+.cart-item-pack-info {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+.cart-item-pack-info svg {
+    flex-shrink: 0;
+}
+
 .cart-item-quantity {
     display: flex;
     align-items: center;
