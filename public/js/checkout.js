@@ -14,7 +14,7 @@ class CheckoutPage {
     init() {
         // Проверяем, есть ли товары в корзине
         if (cart.items.length === 0) {
-            window.location.href = '/cart';
+            window.location.href = 'https://pir-planet.ru/cart';
             return;
         }
 
@@ -214,13 +214,13 @@ class CheckoutPage {
                                 console.error('❌ Виджет не загрузился после 5 секунд');
                                 console.error('HTML виджета:', widgetContainer.innerHTML);
                                 alert('Платёжный виджет не загрузился. Попробуйте обновить страницу или выберите другой способ оплаты.');
-                                window.location.href = `/order/${orderId}`;
+                                window.location.href = `https://pir-planet.ru/order/${orderId}`;
                             }
                         }, 500);
                     } catch (widgetError) {
                         console.error('Ошибка инициализации виджета:', widgetError);
                         alert('Не удалось загрузить платёжный виджет. Попробуйте позже или выберите другой способ оплаты.');
-                        window.location.href = `/order/${orderId}`;
+                        window.location.href = `https://pir-planet.ru/order/${orderId}`;
                     }
                 } else {
                     // Для оплаты наличными сразу перенаправляем на страницу заказа
@@ -230,7 +230,7 @@ class CheckoutPage {
                         ym(104857358, 'reachGoal', 'checkout_cash');
                     }
 
-                    window.location.href = `/order/${orderId}`;
+                    window.location.href = `https://pir-planet.ru/order/${orderId}`;
                 }
             } else {
                 throw new Error(result.message || 'Ошибка при создании заказа');
