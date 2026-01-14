@@ -137,9 +137,12 @@ class CheckoutPage {
             if (formData.name) document.getElementById('customerName').value = formData.name;
             if (formData.phone) document.getElementById('customerPhone').value = formData.phone;
             if (formData.email) document.getElementById('customerEmail').value = formData.email;
-            if (formData.city) document.getElementById('customerCity').value = formData.city;
-            if (formData.address) document.getElementById('customerAddress').value = formData.address;
-            if (formData.postcode) document.getElementById('customerPostcode').value = formData.postcode;
+            if (formData.city) document.getElementById('deliveryCity').value = formData.city;
+            if (formData.address) document.getElementById('deliveryAddress').value = formData.address;
+            if (formData.postcode) {
+                const postcodeField = document.getElementById('deliveryPostcode');
+                if (postcodeField) postcodeField.value = formData.postcode;
+            }
             if (formData.comment) document.getElementById('orderComment').value = formData.comment;
 
             // Восстанавливаем radio buttons
