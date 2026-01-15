@@ -138,14 +138,14 @@ class CartPage {
                 id: 17,
                 sku: 'alu-tape',
                 name: 'Алюминиевая клейкая лента 48мм×50м',
-                price: 990,
+                price: 1200,
                 image: 'images/lenta.webp'
             },
             {
                 id: 20,
                 sku: 'techno-glue',
                 name: 'Клей-пена монтажная Технониколь LOGICPIR, 1000 мл',
-                price: 1060,
+                price: 1200,
                 image: 'images/pena_techno.webp'
             }
         ];
