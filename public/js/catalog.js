@@ -3,7 +3,7 @@ const products = {
     1: {
         id: 1,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм',
-        price: '622 ₽',
+        price: '622 ₽/шт',
         packSize: 8,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
@@ -25,7 +25,7 @@ const products = {
     2: {
         id: 2,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм',
-        price: '692 ₽',
+        price: '692 ₽/шт',
         packSize: 6,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
@@ -47,7 +47,7 @@ const products = {
     3: {
         id: 3,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм',
-        price: '868 ₽',
+        price: '868 ₽/шт',
         packSize: 5,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
@@ -69,7 +69,7 @@ const products = {
     4: {
         id: 4,
         name: 'LOGICPIR СТЕКЛОХОЛСТ 30 мм',
-        price: '833 ₽',
+        price: '833 ₽/шт',
         packSize: 8,
         image: 'images/techno5.webp',
         hoverImage: 'images/techno6.webp',
@@ -91,7 +91,7 @@ const products = {
     5: {
         id: 5,
         name: 'LOGICPIR СТЕКЛОХОЛСТ 50 мм',
-        price: '1043 ₽',
+        price: '1043 ₽/шт',
         packSize: 5,
         image: 'images/techno5.webp',
         hoverImage: 'images/techno6.webp',
@@ -113,7 +113,7 @@ const products = {
     6: {
         id: 6,
         name: 'LOGICPIR СТЕКЛОХОЛСТ 80 мм',
-        price: '1429 ₽',
+        price: '1429 ₽/шт',
         packSize: 7,
         image: 'images/techno5.webp',
         hoverImage: 'images/techno6.webp',
@@ -135,7 +135,7 @@ const products = {
     7: {
         id: 7,
         name: 'LOGICPIR СТЕКЛОХОЛСТ 100 мм',
-        price: '1535 ₽',
+        price: '1535 ₽/шт',
         packSize: 6,
         image: 'images/techno5.webp',
         hoverImage: 'images/techno6.webp',
@@ -157,7 +157,7 @@ const products = {
     8: {
         id: 8,
         name: 'PIR плита для бани ФОЛЬГА 30 мм',
-        price: '566 ₽',
+        price: '566 ₽/шт',
         packSize: 8,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
@@ -179,7 +179,7 @@ const products = {
     9: {
         id: 9,
         name: 'PIR плита для бани ФОЛЬГА 40 мм',
-        price: '692 ₽',
+        price: '692 ₽/шт',
         packSize: 6,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
@@ -201,7 +201,7 @@ const products = {
     10: {
         id: 10,
         name: 'PIR плита для бани ФОЛЬГА 50 мм',
-        price: '782 ₽',
+        price: '782 ₽/шт',
         packSize: 5,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
@@ -223,7 +223,7 @@ const products = {
     11: {
         id: 11,
         name: 'PIR Плита ФОЛЬГА 100 мм',
-        price: '5564 ₽',
+        price: '5564 ₽/шт',
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
         description: 'PIR плита с алюминиевой фольгой толщиной 100 мм — профессиональное решение для утепления объектов с экстремальными требованиями к теплоизоляции. Применяется в холодильных складах, промышленных объектах и помещениях с особыми условиями.',
@@ -244,7 +244,7 @@ const products = {
     12: {
         id: 12,
         name: 'PIR Плита КРАФТ БУМАГА 30 мм',
-        price: '408 ₽',
+        price: '408 ₽/шт',
         packSize: 8,
         image: 'images/pirro3.webp',
         hoverImage: 'images/pirro4.webp',
@@ -266,7 +266,7 @@ const products = {
     13: {
         id: 13,
         name: 'PIR Плита КРАФТ БУМАГА 40 мм',
-        price: '590 ₽',
+        price: '590 ₽/шт',
         packSize: 6,
         image: 'images/pirro3.webp',
         hoverImage: 'images/pirro4.webp',
@@ -288,7 +288,7 @@ const products = {
     14: {
         id: 14,
         name: 'PIR Плита КРАФТ БУМАГА 50 мм',
-        price: '595 ₽',
+        price: '595 ₽/шт',
         packSize: 5,
         image: 'images/pirro3.webp',
         hoverImage: 'images/pirro4.webp',
@@ -310,7 +310,7 @@ const products = {
     15: {
         id: 15,
         name: 'PIRRO Stucco СТЕКЛОХОЛСТ Г2 50 мм',
-        price: '890 ₽',
+        price: '890 ₽/шт',
         packSize: 5,
         image: 'images/pirro5.webp',
         hoverImage: 'images/pirro5.webp',
@@ -357,7 +357,7 @@ const products = {
     17: {
         id: 17,
         name: 'Алюминиевая клейкая лента 48мм×50м',
-        price: '1200 ₽',
+        price: '1200 ₽/шт',
         image: 'images/lenta.webp',
         hoverImage: 'images/lenta.webp',
         description: 'Алюминиевая клейкая лента для проклейки стыков плит PIR. Обеспечивает герметичность соединений и препятствует образованию мостиков холода.',
@@ -378,7 +378,7 @@ const products = {
     20: {
         id: 20,
         name: 'Клей-пена монтажная ТЕХНОНИКОЛЬ LOGICPIR, 1000 мл',
-        price: '1200 ₽',
+        price: '1200 ₽/шт',
         image: 'images/pena_techno.webp',
         hoverImage: 'images/pena_techno.webp',
         description: 'Клей полиуретановый для приклейки плит LOGICPIR к различным поверхностям. Универсальный всесезонный клей с высокой адгезией к бетону, штукатуркам и минеральным основаниям. Компенсирует перепады высот 15-20 мм.',
