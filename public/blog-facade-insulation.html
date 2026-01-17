@@ -353,6 +353,34 @@
         .share-btn-telegram { color: #0088cc; border-color: #0088cc; }
         .share-btn-whatsapp { color: #25D366; border-color: #25D366; }
 
+        /* --- ЗАЩИТА ОТ КОПИРОВАНИЯ --- */
+        .watermark {
+            position: fixed;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            user-select: none;
+        }
+
+        /* Защита изображений - накладываем прозрачный слой */
+        .article-image, .article-featured-image {
+            position: relative;
+        }
+
+        .article-image::after, .article-featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+        }
+
         /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
             .article-title {
