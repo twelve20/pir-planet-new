@@ -525,8 +525,8 @@ const products = {
         category: 'industrial',
         b2b: true
     },
-    20: {
-        id: 20,
+    26: {
+        id: 26,
         name: 'PIR Плита БЕЗ ОБЛИЦОВКИ 100 мм (Беларусь)',
         price: 'По запросу',
         priceNote: 'Цена по запросу для оптовых партий',
