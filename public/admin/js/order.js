@@ -376,7 +376,7 @@ class AdminOrderPage {
 
             if (response.ok && data.success) {
                 alert('Заказ удалён');
-                window.location.href = '/admin/orders.html';
+                window.location.href = '/admin/orders';
             } else {
                 throw new Error(data.message || 'Ошибка удаления заказа');
             }

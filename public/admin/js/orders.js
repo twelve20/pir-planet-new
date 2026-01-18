@@ -114,7 +114,7 @@ class AdminOrdersPage {
                     <td>${this.renderStatusBadge(order.status)}</td>
                     <td>
                         <div class="action-buttons">
-                            <a href="/admin/order.html?id=${order.id}" class="btn-view">
+                            <a href="/admin/order?id=${order.id}" class="btn-view">
                                 Просмотр
                             </a>
                         </div>

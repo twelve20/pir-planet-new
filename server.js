@@ -19,6 +19,29 @@ app.use(express.urlencoded({ extended: true }));
 // Раздаем только папку public (НЕ весь проект!)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware для красивых URL без .html
+app.use((req, res, next) => {
+    // Если запрос уже обработан или это API/статические файлы, пропускаем
+    if (req.path.includes('.') || req.path.startsWith('/api/')) {
+        return next();
+    }
+
+    // Пытаемся найти соответствующий HTML файл
+    const possiblePaths = [
+        path.join(__dirname, 'public', req.path + '.html'),
+        path.join(__dirname, 'public', req.path, 'index.html')
+    ];
+
+    const fs = require('fs');
+    for (const filePath of possiblePaths) {
+        if (fs.existsSync(filePath)) {
+            return res.sendFile(filePath);
+        }
+    }
+
+    next();
+});
+
 // Middleware для HTTP Basic Authentication админ-панели
 function requireAuth(req, res, next) {
     const authHeader = req.headers.authorization;
