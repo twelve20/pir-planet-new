@@ -85,11 +85,11 @@
                 </div>
                 <div class="step active">
                     <div class="step-number">2</div>
-                    <div class="step-label">Оформление</div>
+                    <div class="step-label">Заявка</div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <div class="step-label">Подтверждение</div>
+                    <div class="step-label">Оплата</div>
                 </div>
             </div>
         </div>
@@ -170,34 +170,6 @@
                             </div>
                         </div>
 
-                        <!-- Способ оплаты -->
-                        <div class="form-section">
-                            <h2>Способ оплаты</h2>
-                            <div class="payment-methods">
-                                <label class="payment-method">
-                                    <input type="radio" name="paymentMethod" value="card" checked>
-                                    <div class="method-content">
-                                        <div class="method-title">Банковская карта</div>
-                                        <div class="method-description">Visa, Mastercard, МИР</div>
-                                    </div>
-                                </label>
-                                <label class="payment-method">
-                                    <input type="radio" name="paymentMethod" value="sbp">
-                                    <div class="method-content">
-                                        <div class="method-title">СБП (Система Быстрых Платежей)</div>
-                                        <div class="method-description">Оплата через банковское приложение</div>
-                                    </div>
-                                </label>
-                                <label class="payment-method">
-                                    <input type="radio" name="paymentMethod" value="cash">
-                                    <div class="method-content">
-                                        <div class="method-title">Наличными при получении</div>
-                                        <div class="method-description">Оплата курьеру или на складе</div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
                         <!-- Комментарий -->
                         <div class="form-section">
                             <h2>Комментарий к заказу</h2>
@@ -217,32 +189,8 @@
 
                         <!-- Кнопка отправки -->
                         <button type="submit" class="btn-primary btn-full btn-large" id="submitOrder">
-                            Оформить заказ
+                            Отправить заявку
                         </button>
-
-                        <!-- Контейнер для платёжного виджета Альфа-Банк (скрыт по умолчанию) -->
-                        <div id="alfa-payment-button" style="display: none;"
-                             data-token="h4paptbbe3v3c5e5epcvqrp5nb"
-                             data-gateway="payment"
-                             data-version="1.0"
-                             data-stages="1"
-                             data-language="ru"
-                             data-amount-format="kopeyki"
-                             data-button-text="Оплатить картой"
-                             data-return-url="https://pir-planet.ru/payment-success-popup.html"
-                             data-fail-url="https://pir-planet.ru/payment-error-popup.html"
-                             data-client-info-selector=".clientName"
-                             data-email-selector=".clientEmail"
-                             data-amount-selector=".totalAmount"
-                             data-order-number-selector=".orderNumber"
-                             data-description="Оплата заказа в интернет-магазине PIR Planet">
-                        </div>
-
-                        <!-- Скрытые поля для виджета -->
-                        <input type="hidden" class="clientName" id="hiddenClientName" value="">
-                        <input type="hidden" class="clientEmail" id="hiddenClientEmail" value="">
-                        <input type="hidden" class="totalAmount" id="hiddenTotalAmount" value="">
-                        <input type="hidden" class="orderNumber" id="hiddenOrderNumber" value="">
                     </form>
                 </div>
 
@@ -250,7 +198,7 @@
                 <div class="order-summary-container">
                     <div class="order-summary">
                         <div class="order-info">
-                            <p>После оформления заказа с вами свяжется менеджер для уточнения деталей и расчета точной стоимости доставки.</p>
+                            <p>После отправки заявки с вами свяжется менеджер для уточнения деталей, расчета стоимости доставки и подтверждения заказа. Оплата производится после подтверждения.</p>
                         </div>
 
                         <h3>Ваш заказ</h3>
@@ -315,15 +263,6 @@
     </footer>
 
     <script src="js/cart.js"></script>
-
-    <!-- Альфа-Банк платёжный виджет -->
-    <script
-        charset="utf-8"
-        id="alfa-payment-script"
-        type="text/javascript"
-        src="https://pay2.alfabank.ru/assets/alfa-payment.js">
-    </script>
-
     <script src="js/checkout.js"></script>
     <script src="js/script.js"></script>
     <script src="js/new-year.js"></script>

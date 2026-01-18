@@ -238,6 +238,124 @@ function getOrderStats() {
     };
 }
 
+// ===== ФУНКЦИИ РЕДАКТИРОВАНИЯ ТОВАРОВ =====
+
+// Обновить все товары в заказе
+function updateOrderItems(orderId, items) {
+    // Удаляем все текущие товары
+    db.prepare('DELETE FROM order_items WHERE order_id = ?').run(orderId);
+
+    // Добавляем новые товары
+    const itemStmt = db.prepare(`
+        INSERT INTO order_items (order_id, product_name, product_sku, product_image, quantity, unit_price, total_price)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    for (const item of items) {
+        itemStmt.run(
+            orderId,
+            item.product_name || item.name,
+            item.product_sku || item.sku || null,
+            item.product_image || item.image || null,
+            item.quantity,
+            item.unit_price || item.price,
+            (item.unit_price || item.price) * item.quantity
+        );
+    }
+
+    // Пересчитываем итоги
+    recalculateOrderTotal(orderId);
+}
+
+// Добавить товар в заказ
+function addOrderItem(orderId, item) {
+    const stmt = db.prepare(`
+        INSERT INTO order_items (order_id, product_name, product_sku, product_image, quantity, unit_price, total_price)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const result = stmt.run(
+        orderId,
+        item.product_name || item.name,
+        item.product_sku || item.sku || null,
+        item.product_image || item.image || null,
+        item.quantity,
+        item.unit_price || item.price,
+        (item.unit_price || item.price) * item.quantity
+    );
+
+    // Пересчитываем итоги
+    recalculateOrderTotal(orderId);
+
+    return result.lastInsertRowid;
+}
+
+// Обновить один товар в заказе
+function updateOrderItem(orderId, itemId, item) {
+    const stmt = db.prepare(`
+        UPDATE order_items
+        SET product_name = ?, quantity = ?, unit_price = ?, total_price = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ? AND order_id = ?
+    `);
+
+    stmt.run(
+        item.product_name || item.name,
+        item.quantity,
+        item.unit_price || item.price,
+        (item.unit_price || item.price) * item.quantity,
+        itemId,
+        orderId
+    );
+
+    // Пересчитываем итоги
+    recalculateOrderTotal(orderId);
+}
+
+// Удалить товар из заказа
+function deleteOrderItem(orderId, itemId) {
+    const stmt = db.prepare('DELETE FROM order_items WHERE id = ? AND order_id = ?');
+    stmt.run(itemId, orderId);
+
+    // Пересчитываем итоги
+    recalculateOrderTotal(orderId);
+}
+
+// Пересчитать subtotal и total заказа
+function recalculateOrderTotal(orderId) {
+    // Считаем сумму всех товаров
+    const subtotalResult = db.prepare(`
+        SELECT COALESCE(SUM(total_price), 0) as subtotal FROM order_items WHERE order_id = ?
+    `).get(orderId);
+
+    const subtotal = subtotalResult.subtotal;
+
+    // Получаем текущую стоимость доставки
+    const order = db.prepare('SELECT delivery_cost FROM orders WHERE id = ?').get(orderId);
+    const deliveryCost = order ? (order.delivery_cost || 0) : 0;
+
+    // Обновляем subtotal и total
+    const newTotal = subtotal + deliveryCost;
+    db.prepare(`
+        UPDATE orders SET subtotal = ?, total = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?
+    `).run(subtotal, newTotal, orderId);
+
+    return { subtotal, deliveryCost, total: newTotal };
+}
+
+// Получить товары заказа
+function getOrderItems(orderId) {
+    return db.prepare('SELECT * FROM order_items WHERE order_id = ?').all(orderId);
+}
+
+// Удалить заказ полностью
+function deleteOrder(orderId) {
+    // Сначала удаляем товары заказа
+    db.prepare('DELETE FROM order_items WHERE order_id = ?').run(orderId);
+    // Затем удаляем сам заказ
+    const result = db.prepare('DELETE FROM orders WHERE id = ?').run(orderId);
+    return result.changes > 0;
+}
+
 module.exports = {
     initDatabase,
     createOrder,
@@ -246,5 +364,13 @@ module.exports = {
     updateOrderStatus,
     updateDeliveryCost,
     addManagerComment,
-    getOrderStats
+    getOrderStats,
+    // Функции редактирования товаров
+    updateOrderItems,
+    addOrderItem,
+    updateOrderItem,
+    deleteOrderItem,
+    recalculateOrderTotal,
+    getOrderItems,
+    deleteOrder
 };

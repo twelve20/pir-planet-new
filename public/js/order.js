@@ -3,9 +3,17 @@
 class OrderPage {
     constructor() {
         this.orderId = this.getOrderIdFromUrl();
+        this.order = null;
         this.loadingState = document.getElementById('loadingState');
         this.errorState = document.getElementById('errorState');
         this.orderContent = document.getElementById('orderContent');
+
+        // Payment elements
+        this.paymentSection = document.getElementById('paymentSection');
+        this.paymentWaiting = document.getElementById('paymentWaiting');
+        this.paymentOptions = document.getElementById('paymentOptions');
+        this.paymentPaid = document.getElementById('paymentPaid');
+        this.paymentDeliveryPaid = document.getElementById('paymentDeliveryPaid');
 
         this.init();
     }
@@ -23,6 +31,7 @@ class OrderPage {
         }
 
         await this.loadOrder();
+        this.setupPaymentHandlers();
     }
 
     async loadOrder() {
@@ -41,6 +50,7 @@ class OrderPage {
             const data = await response.json();
 
             if (response.ok && data.success) {
+                this.order = data.order;
                 this.renderOrder(data.order);
             } else {
                 console.error('Ошибка:', data.message);
@@ -76,10 +86,6 @@ class OrderPage {
         document.getElementById('deliveryMethod').textContent = this.getDeliveryMethodName(order.delivery_type);
         document.getElementById('deliveryAddress').textContent = `${order.delivery_city || ''}, ${order.delivery_address || ''}`.trim();
 
-        // Оплата (используем поле из старой структуры, если есть, иначе показываем способ оплаты из данных заказа)
-        const paymentMethod = order.payment_method || 'Не указан';
-        document.getElementById('paymentMethod').textContent = this.getPaymentMethodName(paymentMethod);
-
         // Комментарий
         if (order.comment || order.manager_comment) {
             document.getElementById('commentBlock').style.display = 'block';
@@ -103,6 +109,9 @@ class OrderPage {
         }
 
         document.getElementById('orderTotalPrice').textContent = this.formatPrice(total) + ' ₽';
+
+        // Показываем секцию оплаты
+        this.renderPaymentSection(order);
     }
 
     renderStatus(status) {
@@ -110,6 +119,11 @@ class OrderPage {
         const statusDescription = document.getElementById('statusDescription');
 
         const statusMap = {
+            'new': {
+                text: 'Новый',
+                description: 'Ваш заказ принят и ожидает обработки',
+                class: 'status-new'
+            },
             'pending': {
                 text: 'Новый',
                 description: 'Ваш заказ принят и ожидает обработки',
@@ -119,6 +133,26 @@ class OrderPage {
                 text: 'В обработке',
                 description: 'Ваш заказ обрабатывается менеджером',
                 class: 'status-processing'
+            },
+            'confirmed': {
+                text: 'Подтверждён',
+                description: 'Заказ подтверждён, ожидает оплаты',
+                class: 'status-confirmed'
+            },
+            'paid': {
+                text: 'Оплачен',
+                description: 'Заказ оплачен, готовится к отправке',
+                class: 'status-paid'
+            },
+            'delivery_paid': {
+                text: 'Доставка оплачена',
+                description: 'Доставка оплачена, товар оплачивается при получении',
+                class: 'status-delivery-paid'
+            },
+            'shipping': {
+                text: 'В доставке',
+                description: 'Заказ передан в службу доставки',
+                class: 'status-shipping'
             },
             'completed': {
                 text: 'Выполнен',
@@ -132,11 +166,52 @@ class OrderPage {
             }
         };
 
-        const statusInfo = statusMap[status] || statusMap['pending'];
+        const statusInfo = statusMap[status] || statusMap['new'];
 
         statusBadge.className = `status-badge ${statusInfo.class}`;
         statusBadge.querySelector('.status-text').textContent = statusInfo.text;
         statusDescription.textContent = statusInfo.description;
+    }
+
+    renderPaymentSection(order) {
+        // Всегда показываем секцию оплаты
+        this.paymentSection.style.display = 'block';
+
+        const status = order.status;
+        const subtotal = order.subtotal || 0;
+        const deliveryCost = order.delivery_cost || 0;
+        const total = order.total || subtotal;
+
+        // Скрываем все внутренние блоки
+        this.paymentWaiting.style.display = 'none';
+        this.paymentOptions.style.display = 'none';
+        this.paymentPaid.style.display = 'none';
+        this.paymentDeliveryPaid.style.display = 'none';
+
+        if (status === 'paid' || status === 'shipping' || status === 'completed') {
+            // Заказ полностью оплачен
+            this.paymentPaid.style.display = 'flex';
+        } else if (status === 'delivery_paid') {
+            // Доставка оплачена, товар наличными
+            this.paymentDeliveryPaid.style.display = 'flex';
+            document.getElementById('deliveryPaidProductsAmount').textContent = this.formatPrice(subtotal) + ' ₽';
+        } else if (status === 'confirmed') {
+            // Заказ подтверждён, показываем варианты оплаты
+            this.paymentOptions.style.display = 'block';
+
+            // Заполняем суммы
+            document.getElementById('payFullAmount').textContent = this.formatPrice(total) + ' ₽';
+            document.getElementById('cashProductsAmount').textContent = this.formatPrice(subtotal) + ' ₽';
+            document.getElementById('cashDeliveryAmount').textContent = this.formatPrice(deliveryCost) + ' ₽';
+
+            // Если доставка = 0, скрываем опцию наличных
+            if (deliveryCost <= 0) {
+                document.getElementById('payCashOption').style.display = 'none';
+            }
+        } else {
+            // Новый или в обработке - ожидание
+            this.paymentWaiting.style.display = 'flex';
+        }
     }
 
     renderItems(items) {
@@ -176,22 +251,127 @@ class OrderPage {
         return div;
     }
 
+    setupPaymentHandlers() {
+        // Оплата полной суммы (карта + СБП в одном виджете)
+        const payFullBtn = document.getElementById('payFullBtn');
+        if (payFullBtn) {
+            payFullBtn.addEventListener('click', () => this.initiatePayment('full'));
+        }
+
+        // Оплата доставки (карта + СБП в одном виджете)
+        const payDeliveryBtn = document.getElementById('payDeliveryBtn');
+        if (payDeliveryBtn) {
+            payDeliveryBtn.addEventListener('click', () => this.initiatePayment('delivery'));
+        }
+
+        // Отслеживание закрытия виджета оплаты
+        this.setupPaymentCloseHandler();
+    }
+
+    setupPaymentCloseHandler() {
+        const widgetContainer = document.getElementById('alfa-payment-container');
+
+        // Проверяем несколькими способами
+        const checkAndUnlock = () => {
+            const modal = document.querySelector('.alfa-widget-modal');
+            const overlay = document.querySelector('.alfa-widget-overlay');
+
+            // Проверяем, есть ли видимый модал или оверлей
+            const isModalVisible = modal && getComputedStyle(modal).display !== 'none' && getComputedStyle(modal).visibility !== 'hidden';
+            const isOverlayVisible = overlay && getComputedStyle(overlay).display !== 'none';
+
+            if (!isModalVisible && !isOverlayVisible) {
+                // Виджет точно закрыт - разблокируем всё
+                document.body.classList.remove('payment-modal-open');
+                if (widgetContainer) {
+                    widgetContainer.style.display = 'none';
+                }
+            }
+        };
+
+        // Периодически проверяем
+        setInterval(checkAndUnlock, 200);
+
+        // Слушаем клики по overlay (закрытие виджета)
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('alfa-widget-overlay')) {
+                setTimeout(checkAndUnlock, 100);
+            }
+        });
+
+        // Слушаем escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                setTimeout(checkAndUnlock, 100);
+            }
+        });
+
+        // Слушаем изменения в DOM (когда виджет удаляет модал)
+        const observer = new MutationObserver(() => {
+            checkAndUnlock();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    initiatePayment(type) {
+        if (!this.order) return;
+
+        const subtotal = this.order.subtotal || 0;
+        const deliveryCost = this.order.delivery_cost || 0;
+        const total = this.order.total || subtotal;
+
+        // Определяем сумму к оплате
+        let amount;
+        let description;
+
+        if (type === 'full') {
+            amount = total;
+            description = `Оплата заказа №${this.order.order_number}`;
+        } else if (type === 'delivery') {
+            amount = deliveryCost;
+            description = `Оплата доставки заказа №${this.order.order_number}`;
+        }
+
+        // Заполняем скрытые поля для виджета
+        const widgetOrderNumber = `${this.order.order_number}-${type}-${Date.now()}`;
+
+        document.getElementById('hiddenClientName').value = this.order.customer_name;
+        document.getElementById('hiddenClientEmail').value = this.order.customer_email || '';
+        document.getElementById('hiddenOrderNumber').value = widgetOrderNumber;
+        document.getElementById('hiddenTotalAmount').value = Math.round(amount * 100); // в копейках
+
+        // Показываем контейнер виджета
+        const widgetContainer = document.getElementById('alfa-payment-container');
+        widgetContainer.style.display = 'block';
+
+        // Ждём инициализации виджета
+        let attempts = 0;
+        const checkWidget = setInterval(() => {
+            attempts++;
+            const widgetButton = document.querySelector('#alfa-payment-button button');
+
+            if (widgetButton) {
+                clearInterval(checkWidget);
+                document.body.classList.add('payment-modal-open');
+                widgetButton.click();
+            } else if (attempts > 10) {
+                clearInterval(checkWidget);
+                alert('Не удалось загрузить форму оплаты. Попробуйте обновить страницу.');
+            }
+        }, 500);
+    }
+
     getDeliveryMethodName(method) {
         const methods = {
             'courier': 'Курьерская доставка',
             'pickup': 'Самовывоз',
             'transport': 'Транспортная компания'
         };
-        return methods[method] || method;
-    }
-
-    getPaymentMethodName(method) {
-        const methods = {
-            'card': 'Банковская карта',
-            'sbp': 'СБП (Система Быстрых Платежей)',
-            'cash': 'Наличными при получении'
-        };
-        return methods[method] || method;
+        return methods[method] || method || 'Не указан';
     }
 
     showError() {

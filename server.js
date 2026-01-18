@@ -351,7 +351,6 @@ app.get('/api/order/:orderId', (req, res) => {
         const { orderId } = req.params;
         const { token } = req.query;
 
-        // Проверяем наличие токена
         if (!token) {
             return res.status(401).json({ success: false, message: 'Требуется токен доступа' });
         }
@@ -362,7 +361,6 @@ app.get('/api/order/:orderId', (req, res) => {
             return res.status(404).json({ success: false, message: 'Заказ не найден' });
         }
 
-        // Проверяем токен доступа
         if (order.access_token !== token) {
             console.warn(`⚠️ Попытка доступа к заказу ${orderId} с неверным токеном`);
             return res.status(403).json({ success: false, message: 'Неверный токен доступа' });
@@ -370,6 +368,23 @@ app.get('/api/order/:orderId', (req, res) => {
 
         // Удаляем токен из ответа (не показываем клиенту)
         delete order.access_token;
+
+        res.json({ success: true, order });
+    } catch (error) {
+        console.error('❌ Ошибка получения заказа:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Получить заказ для админа (требуется авторизация)
+app.get('/api/admin/order/:orderId', requireAuth, (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const order = db.getOrderById(orderId);
+
+        if (!order) {
+            return res.status(404).json({ success: false, message: 'Заказ не найден' });
+        }
 
         res.json({ success: true, order });
     } catch (error) {
@@ -398,9 +413,13 @@ app.post('/api/order/:orderId/status', requireAuth, async (req, res) => {
         const { orderId } = req.params;
         const { status, comment } = req.body;
 
-        const validStatuses = ['new', 'processing', 'confirmed', 'paid', 'shipping', 'completed', 'cancelled'];
+        const validStatuses = ['new', 'processing', 'confirmed', 'paid', 'delivery_paid', 'shipping', 'completed', 'cancelled'];
         if (!validStatuses.includes(status)) {
             return res.status(400).json({ success: false, message: 'Неверный статус' });
+        }
+
+        if (comment && comment.length > 1000) {
+            return res.status(400).json({ success: false, message: 'Комментарий не должен превышать 1000 символов' });
         }
 
         db.updateOrderStatus(orderId, status, comment);
@@ -413,6 +432,7 @@ app.post('/api/order/:orderId/status', requireAuth, async (req, res) => {
                 'processing': '⏳ На согласовании',
                 'confirmed': '✅ Подтвержден',
                 'paid': '💳 Оплачен',
+                'delivery_paid': '🚚💳 Доставка оплачена',
                 'shipping': '🚚 В доставке',
                 'completed': '✔️ Выполнен',
                 'cancelled': '❌ Отменен'
@@ -443,8 +463,12 @@ app.post('/api/order/:orderId/delivery', requireAuth, (req, res) => {
         const { orderId } = req.params;
         const { deliveryCost, comment } = req.body;
 
-        if (typeof deliveryCost !== 'number' || deliveryCost < 0) {
-            return res.status(400).json({ success: false, message: 'Неверная стоимость доставки' });
+        if (typeof deliveryCost !== 'number' || deliveryCost < 0 || deliveryCost > 1000000) {
+            return res.status(400).json({ success: false, message: 'Стоимость доставки должна быть от 0 до 1000000' });
+        }
+
+        if (comment && comment.length > 1000) {
+            return res.status(400).json({ success: false, message: 'Комментарий не должен превышать 1000 символов' });
         }
 
         db.updateDeliveryCost(orderId, deliveryCost, comment);
@@ -469,6 +493,167 @@ app.post('/api/order/:orderId/comment', requireAuth, (req, res) => {
         res.json({ success: true, message: 'Комментарий добавлен' });
     } catch (error) {
         console.error('❌ Ошибка добавления комментария:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// ===== API ДЛЯ РЕДАКТИРОВАНИЯ ТОВАРОВ =====
+
+// Обновить все товары в заказе (для админки)
+app.put('/api/order/:orderId/items', requireAuth, (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { items } = req.body;
+
+        if (!items || !Array.isArray(items)) {
+            return res.status(400).json({ success: false, message: 'Неверный формат товаров' });
+        }
+
+        if (items.length === 0) {
+            return res.status(400).json({ success: false, message: 'Заказ должен содержать хотя бы один товар' });
+        }
+
+        if (items.length > 100) {
+            return res.status(400).json({ success: false, message: 'Заказ не может содержать более 100 товаров' });
+        }
+
+        // Проверяем что все товары имеют нужные поля
+        for (const item of items) {
+            if (!item.product_name && !item.name) {
+                return res.status(400).json({ success: false, message: 'Каждый товар должен иметь название' });
+            }
+
+            const quantity = parseInt(item.quantity);
+            if (!quantity || quantity <= 0 || quantity > 100000) {
+                return res.status(400).json({ success: false, message: 'Количество товара должно быть от 1 до 100000' });
+            }
+
+            const price = parseFloat(item.unit_price || item.price);
+            if (isNaN(price) || price < 0 || price > 10000000) {
+                return res.status(400).json({ success: false, message: 'Цена товара должна быть от 0 до 10000000' });
+            }
+
+            const name = (item.product_name || item.name).trim();
+            if (name.length < 1 || name.length > 500) {
+                return res.status(400).json({ success: false, message: 'Название товара должно быть от 1 до 500 символов' });
+            }
+        }
+
+        db.updateOrderItems(orderId, items);
+        const updatedOrder = db.getOrderById(orderId);
+
+        res.json({
+            success: true,
+            message: 'Товары обновлены',
+            order: {
+                subtotal: updatedOrder.subtotal,
+                delivery_cost: updatedOrder.delivery_cost,
+                total: updatedOrder.total,
+                items: updatedOrder.items
+            }
+        });
+    } catch (error) {
+        console.error('❌ Ошибка обновления товаров:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Добавить товар в заказ (для админки)
+app.post('/api/order/:orderId/item', requireAuth, (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const item = req.body;
+
+        if (!item.product_name && !item.name) {
+            return res.status(400).json({ success: false, message: 'Укажите название товара' });
+        }
+        if (!item.quantity || item.quantity <= 0) {
+            return res.status(400).json({ success: false, message: 'Количество должно быть больше 0' });
+        }
+        if ((!item.unit_price && !item.price) || (item.unit_price || item.price) < 0) {
+            return res.status(400).json({ success: false, message: 'Укажите цену товара' });
+        }
+
+        const itemId = db.addOrderItem(orderId, item);
+        const updatedOrder = db.getOrderById(orderId);
+
+        res.json({
+            success: true,
+            message: 'Товар добавлен',
+            itemId,
+            order: {
+                subtotal: updatedOrder.subtotal,
+                delivery_cost: updatedOrder.delivery_cost,
+                total: updatedOrder.total,
+                items: updatedOrder.items
+            }
+        });
+    } catch (error) {
+        console.error('❌ Ошибка добавления товара:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Удалить товар из заказа (для админки)
+app.delete('/api/order/:orderId/item/:itemId', requireAuth, (req, res) => {
+    try {
+        const { orderId, itemId } = req.params;
+
+        db.deleteOrderItem(orderId, parseInt(itemId));
+        const updatedOrder = db.getOrderById(orderId);
+
+        res.json({
+            success: true,
+            message: 'Товар удален',
+            order: {
+                subtotal: updatedOrder.subtotal,
+                delivery_cost: updatedOrder.delivery_cost,
+                total: updatedOrder.total,
+                items: updatedOrder.items
+            }
+        });
+    } catch (error) {
+        console.error('❌ Ошибка удаления товара:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
+});
+
+// Удалить заказ полностью (для админки)
+app.delete('/api/order/:orderId', requireAuth, (req, res) => {
+    try {
+        const { orderId } = req.params;
+
+        // Получаем информацию о заказе перед удалением (для логирования)
+        const order = db.getOrderById(orderId);
+        if (!order) {
+            return res.status(404).json({ success: false, message: 'Заказ не найден' });
+        }
+
+        const deleted = db.deleteOrder(orderId);
+
+        if (deleted) {
+            console.log(`🗑️ Заказ #${order.order_number} удалён`);
+
+            // Уведомляем в Telegram об удалении заказа
+            if (bot) {
+                const message = `
+🗑️ <b>Заказ удалён</b>
+
+Номер: #${order.order_number}
+Клиент: ${order.customer_name}
+Телефон: ${order.customer_phone}
+Сумма: ${(order.total || order.subtotal || 0).toLocaleString('ru-RU')} ₽
+                `.trim();
+
+                bot.sendMessage(TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' }).catch(console.error);
+            }
+
+            res.json({ success: true, message: 'Заказ удалён' });
+        } else {
+            res.status(404).json({ success: false, message: 'Заказ не найден' });
+        }
+    } catch (error) {
+        console.error('❌ Ошибка удаления заказа:', error);
         res.status(500).json({ success: false, message: 'Ошибка сервера' });
     }
 });

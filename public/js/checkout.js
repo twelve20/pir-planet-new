@@ -14,7 +14,7 @@ class CheckoutPage {
     init() {
         // Проверяем, есть ли товары в корзине
         if (cart.items.length === 0) {
-            window.location.href = 'https://pir-planet.ru/cart';
+            window.location.href = '/cart';
             return;
         }
 
@@ -103,7 +103,7 @@ class CheckoutPage {
     }
 
     saveFormData(formData) {
-        // Сохраняем данные формы в localStorage для восстановления при неудачной оплате
+        // Сохраняем данные формы в localStorage
         const formDataToSave = {
             name: formData.get('name'),
             phone: formData.get('phone'),
@@ -111,13 +111,10 @@ class CheckoutPage {
             deliveryMethod: formData.get('deliveryMethod'),
             city: formData.get('city'),
             address: formData.get('address'),
-            postcode: formData.get('postcode') || '',
-            paymentMethod: formData.get('paymentMethod'),
             comment: formData.get('comment') || ''
         };
 
         localStorage.setItem('checkoutFormData', JSON.stringify(formDataToSave));
-        console.log('💾 Данные формы сохранены в localStorage');
     }
 
     restoreFormData() {
@@ -125,13 +122,11 @@ class CheckoutPage {
         const savedData = localStorage.getItem('checkoutFormData');
 
         if (!savedData) {
-            console.log('📋 Нет сохраненных данных формы');
             return;
         }
 
         try {
             const formData = JSON.parse(savedData);
-            console.log('✅ Восстанавливаем данные формы:', formData);
 
             // Заполняем поля формы
             if (formData.name) document.getElementById('customerName').value = formData.name;
@@ -139,10 +134,6 @@ class CheckoutPage {
             if (formData.email) document.getElementById('customerEmail').value = formData.email;
             if (formData.city) document.getElementById('deliveryCity').value = formData.city;
             if (formData.address) document.getElementById('deliveryAddress').value = formData.address;
-            if (formData.postcode) {
-                const postcodeField = document.getElementById('deliveryPostcode');
-                if (postcodeField) postcodeField.value = formData.postcode;
-            }
             if (formData.comment) document.getElementById('orderComment').value = formData.comment;
 
             // Восстанавливаем radio buttons
@@ -150,22 +141,13 @@ class CheckoutPage {
                 const deliveryRadio = document.querySelector(`input[name="deliveryMethod"][value="${formData.deliveryMethod}"]`);
                 if (deliveryRadio) deliveryRadio.checked = true;
             }
-
-            if (formData.paymentMethod) {
-                const paymentRadio = document.querySelector(`input[name="paymentMethod"][value="${formData.paymentMethod}"]`);
-                if (paymentRadio) paymentRadio.checked = true;
-            }
-
-            console.log('✅ Данные формы восстановлены');
         } catch (e) {
-            console.error('❌ Ошибка восстановления данных формы:', e);
+            console.error('Ошибка восстановления данных формы:', e);
         }
     }
 
     clearFormData() {
-        // Очищаем сохраненные данные формы после успешной оплаты
         localStorage.removeItem('checkoutFormData');
-        console.log('🧹 Сохраненные данные формы очищены');
     }
 
     async handleSubmit(e) {
@@ -173,15 +155,14 @@ class CheckoutPage {
 
         const submitButton = document.getElementById('submitOrder');
         submitButton.disabled = true;
-        submitButton.textContent = 'Оформление...';
+        submitButton.textContent = 'Отправка...';
 
         try {
             // Собираем данные формы
             const formData = new FormData(this.form);
             const deliveryMethod = formData.get('deliveryMethod');
-            const paymentMethod = formData.get('paymentMethod');
 
-            // Сохраняем данные формы на случай неудачной оплаты
+            // Сохраняем данные формы
             this.saveFormData(formData);
 
             const orderData = {
@@ -193,11 +174,7 @@ class CheckoutPage {
                 delivery: {
                     method: deliveryMethod,
                     city: formData.get('city'),
-                    address: formData.get('address'),
-                    postcode: formData.get('postcode') || null
-                },
-                payment: {
-                    method: paymentMethod
+                    address: formData.get('address')
                 },
                 items: cart.items,
                 comment: formData.get('comment') || null,
@@ -218,107 +195,34 @@ class CheckoutPage {
             if (response.ok && result.success) {
                 // Успешное создание заказа
                 const orderId = result.orderId;
-                const orderNumber = result.orderNumber;
                 const accessToken = result.accessToken;
-
-                console.log('✅ Заказ создан:', { orderId, orderNumber });
 
                 // Сохраняем orderId и токен доступа в localStorage
                 localStorage.setItem('lastOrderId', orderId);
                 localStorage.setItem('orderAccessToken', accessToken);
-                console.log('💾 orderId и токен сохранены в localStorage');
 
-                // Если выбрана онлайн-оплата, открываем виджет Альфа-Банк
-                if (paymentMethod === 'card' || paymentMethod === 'sbp') {
-                    // Яндекс Метрика - переход к оплате
-                    if (typeof ym !== 'undefined') {
-                        ym(104857358, 'reachGoal', 'checkout_payment');
-                    }
-
-                    try {
-                        submitButton.textContent = 'Загрузка виджета...';
-
-                        const widgetContainer = document.getElementById('alfa-payment-button');
-                        console.log('🔍 Контейнер виджета:', widgetContainer);
-                        console.log('📋 Атрибуты виджета:', {
-                            token: widgetContainer.getAttribute('data-token'),
-                            gateway: widgetContainer.getAttribute('data-gateway')
-                        });
-
-                        // Заполняем скрытые поля для виджета
-                        // ВАЖНО: Добавляем timestamp к orderNumber для виджета, чтобы избежать кэширования
-                        // При этом сохраняем настоящий orderNumber в localStorage для страницы успеха
-                        const widgetOrderNumber = `${orderNumber}-${Date.now()}`;
-
-                        document.getElementById('hiddenClientName').value = formData.get('name');
-                        document.getElementById('hiddenClientEmail').value = formData.get('email') || '';
-                        document.getElementById('hiddenOrderNumber').value = widgetOrderNumber;
-
-                        // Сумма в копейках для виджета
-                        document.getElementById('hiddenTotalAmount').value = Math.round(orderData.totalPrice * 100);
-
-                        console.log('🔄 Обновляем значения виджета перед показом');
-                        console.log('Real orderNumber:', orderNumber);
-                        console.log('Widget orderNumber (с timestamp):', widgetOrderNumber);
-
-                        console.log('📝 Данные для виджета:', {
-                            name: formData.get('name'),
-                            orderNumber: orderNumber,
-                            amount: Math.round(orderData.totalPrice * 100)
-                        });
-
-                        // Скрываем обычную кнопку и показываем кнопку виджета
-                        submitButton.style.display = 'none';
-                        widgetContainer.style.display = 'block';
-                        console.log('👀 Виджет показан');
-
-                        // Ждём инициализации виджета и программно кликаем на кнопку
-                        let attempts = 0;
-                        const checkWidget = setInterval(() => {
-                            attempts++;
-                            console.log(`🔄 Попытка ${attempts}/10: ищем кнопку виджета...`);
-                            const widgetButton = document.querySelector('#alfa-payment-button button');
-
-                            if (widgetButton) {
-                                clearInterval(checkWidget);
-                                console.log('✅ Виджет загружен, открываем форму оплаты');
-
-                                // Добавляем класс к body для скрытия чата
-                                document.body.classList.add('payment-modal-open');
-
-                                widgetButton.click();
-                            } else if (attempts > 10) {
-                                clearInterval(checkWidget);
-                                console.error('❌ Виджет не загрузился после 5 секунд');
-                                console.error('HTML виджета:', widgetContainer.innerHTML);
-                                alert('Платёжный виджет не загрузился. Попробуйте обновить страницу или выберите другой способ оплаты.');
-                                window.location.href = `https://pir-planet.ru/order/${orderId}`;
-                            }
-                        }, 500);
-                    } catch (widgetError) {
-                        console.error('Ошибка инициализации виджета:', widgetError);
-                        alert('Не удалось загрузить платёжный виджет. Попробуйте позже или выберите другой способ оплаты.');
-                        window.location.href = `https://pir-planet.ru/order/${orderId}`;
-                    }
-                } else {
-                    // Для оплаты наличными сразу перенаправляем на страницу заказа
-
-                    // Яндекс Метрика - оформление заказа наличными
-                    if (typeof ym !== 'undefined') {
-                        ym(104857358, 'reachGoal', 'checkout_cash');
-                    }
-
-                    window.location.href = `https://pir-planet.ru/order/${orderId}`;
+                // Яндекс Метрика - заявка отправлена
+                if (typeof ym !== 'undefined') {
+                    ym(104857358, 'reachGoal', 'checkout_request_sent');
                 }
+
+                // Очищаем корзину
+                cart.clear();
+
+                // Очищаем сохранённые данные формы
+                this.clearFormData();
+
+                // Перенаправляем на страницу заказа
+                window.location.href = `/order/${orderId}`;
             } else {
                 throw new Error(result.message || 'Ошибка при создании заказа');
             }
         } catch (error) {
             console.error('Ошибка:', error);
-            alert('Произошла ошибка при оформлении заказа. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
+            alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
 
             submitButton.disabled = false;
-            submitButton.textContent = 'Оформить заказ';
+            submitButton.textContent = 'Отправить заявку';
         }
     }
 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ - Админ-панель</title>
+    <link rel="stylesheet" href="css/admin-order.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <a href="admin-orders.html" class="back-link">← Назад к списку</a>
+                <h1>Заказ <span id="orderNumber"></span></h1>
+            </div>
+        </header>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Загрузка заказа...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state" style="display: none;">
+            <p>❌ Ошибка загрузки заказа</p>
+            <button class="btn-secondary" onclick="location.href='admin-orders.html'">Вернуться к списку</button>
+        </div>
+
+        <!-- Order Content -->
+        <div id="orderContent" style="display: none;">
+            <!-- Customer Info -->
+            <section class="order-section">
+                <h2>Информация о клиенте</h2>
+                <div class="info-grid" id="customerInfo"></div>
+            </section>
+
+            <!-- Delivery Info -->
+            <section class="order-section">
+                <h2>Доставка</h2>
+                <div class="info-grid" id="deliveryInfo"></div>
+            </section>
+
+            <!-- Items -->
+            <section class="order-section">
+                <h2>Товары</h2>
+                <div id="itemsContainer"></div>
+
+                <!-- Add Item Form -->
+                <div class="add-item-form">
+                    <h3>Добавить товар</h3>
+                    <div class="add-item-row">
+                        <input type="text" id="newItemName" placeholder="Название товара" class="add-item-input">
+                        <input type="number" id="newItemQuantity" placeholder="Кол-во" min="1" value="1" class="add-item-quantity">
+                        <input type="number" id="newItemPrice" placeholder="Цена (₽)" min="0" step="1" class="add-item-price">
+                        <button type="button" class="btn-primary btn-add-item" onclick="orderPage.addNewItem()">+ Добавить</button>
+                    </div>
+                </div>
+
+                <!-- Totals -->
+                <div class="order-totals" id="orderTotals"></div>
+            </section>
+
+            <!-- Status Management -->
+            <section class="order-section">
+                <h2>Управление заказом</h2>
+                <form class="status-form" id="statusForm">
+                    <div class="form-group">
+                        <label for="orderStatus">Статус заказа:</label>
+                        <select id="orderStatus" name="status" required>
+                            <option value="new">Новый</option>
+                            <option value="processing">В обработке</option>
+                            <option value="confirmed">Подтвержден</option>
+                            <option value="paid">Оплачен</option>
+                            <option value="delivery_paid">Доставка оплачена</option>
+                            <option value="shipping">В доставке</option>
+                            <option value="completed">Выполнен</option>
+                            <option value="cancelled">Отменен</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryCost">Стоимость доставки (₽):</label>
+                        <input type="number" id="deliveryCost" name="deliveryCost" min="0" step="1" onchange="orderPage.updateTotalsDisplay()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="managerComment">Комментарий менеджера:</label>
+                        <textarea id="managerComment" name="comment" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Сохранить изменения</button>
+                        <button type="button" class="btn-secondary" onclick="location.href='admin-orders.html'">Отмена</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Delete Section -->
+            <section class="order-section delete-section">
+                <h2>Опасная зона</h2>
+                <p>Удаление заказа необратимо. Все данные будут потеряны.</p>
+                <button type="button" class="btn-danger" onclick="orderPage.deleteOrder()">Удалить заказ</button>
+            </section>
+
+            <!-- Order Info -->
+            <section class="order-section">
+                <div class="order-meta" id="orderMeta"></div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/admin-order.js"></script>
+</body>
+</html>

@@ -165,12 +165,6 @@
                             </div>
                         </div>
 
-                        <!-- Payment Info -->
-                        <div class="info-block">
-                            <h2>Способ оплаты</h2>
-                            <div class="info-value" id="paymentMethod"></div>
-                        </div>
-
                         <!-- Comment -->
                         <div class="info-block" id="commentBlock" style="display: none;">
                             <h2>Комментарий к заказу</h2>
@@ -180,6 +174,87 @@
 
                     <!-- Order Items -->
                     <div class="order-items-container">
+                        <!-- Payment Section - ПЕРЕМЕЩЕНА НАВЕРХ -->
+                        <div id="paymentSection" class="payment-section" style="display: none;">
+                            <h2>Оплата заказа</h2>
+
+                            <!-- Сообщение об ожидании подтверждения -->
+                            <div id="paymentWaiting" class="payment-waiting">
+                                <div class="waiting-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </div>
+                                <p>Ожидайте звонка менеджера для уточнения деталей и расчёта стоимости доставки</p>
+                            </div>
+
+                            <!-- Варианты оплаты - показываются после подтверждения -->
+                            <div id="paymentOptions" class="payment-options" style="display: none;">
+                                <p class="payment-intro">Выберите способ оплаты:</p>
+
+                                <!-- Оплата онлайн (Карта + СБП в одном виджете) -->
+                                <div class="payment-option" id="payFullOption">
+                                    <div class="payment-option-header">
+                                        <div class="payment-option-title">Оплата онлайн</div>
+                                        <div class="payment-option-desc">Банковская карта или СБП</div>
+                                    </div>
+                                    <div class="payment-option-amount">
+                                        <span>К оплате:</span>
+                                        <strong id="payFullAmount">0 ₽</strong>
+                                    </div>
+                                    <button class="btn-primary btn-full" id="payFullBtn">Оплатить</button>
+                                </div>
+
+                                <!-- Оплата наличными -->
+                                <div class="payment-option payment-cash-option" id="payCashOption">
+                                    <div class="payment-option-header">
+                                        <div class="payment-option-title">Наличными при получении</div>
+                                        <div class="payment-option-desc">Оплата товара при получении</div>
+                                    </div>
+                                    <div class="payment-cash-details">
+                                        <div class="cash-detail-row">
+                                            <span>Товары (при получении):</span>
+                                            <strong id="cashProductsAmount">0 ₽</strong>
+                                        </div>
+                                        <div class="cash-detail-row cash-delivery-row">
+                                            <span>Доставка (оплатить сейчас):</span>
+                                            <strong id="cashDeliveryAmount">0 ₽</strong>
+                                        </div>
+                                    </div>
+                                    <p class="cash-notice">Для оплаты наличными необходимо оплатить доставку онлайн</p>
+                                    <button class="btn-secondary btn-full" id="payDeliveryBtn">Оплатить доставку</button>
+                                </div>
+                            </div>
+
+                            <!-- Сообщение об оплаченном заказе -->
+                            <div id="paymentPaid" class="payment-paid" style="display: none;">
+                                <div class="paid-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <p>Заказ оплачен</p>
+                            </div>
+
+                            <!-- Сообщение об оплаченной доставке (наличные) -->
+                            <div id="paymentDeliveryPaid" class="payment-delivery-paid" style="display: none;">
+                                <div class="paid-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <p>Доставка оплачена. Товар оплатите при получении.</p>
+                                <div class="delivery-paid-amount">
+                                    <span>К оплате при получении:</span>
+                                    <strong id="deliveryPaidProductsAmount">0 ₽</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Состав заказа -->
                         <div class="info-block">
                             <h2>Состав заказа</h2>
                             <div id="orderItemsList" class="order-items-list">
@@ -201,6 +276,30 @@
                                     <span id="orderTotalPrice">0 ₽</span>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Alfa-Bank Widget Container (hidden) - НЕ ПОКАЗЫВАТЬ ПОЛЬЗОВАТЕЛЮ -->
+                        <div id="alfa-payment-container" style="display: none;">
+                            <div id="alfa-payment-button"
+                                 data-token="h4paptbbe3v3c5e5epcvqrp5nb"
+                                 data-gateway="payment"
+                                 data-version="1.0"
+                                 data-stages="1"
+                                 data-language="ru"
+                                 data-amount-format="kopeyki"
+                                 data-button-text="Оплатить"
+                                 data-return-url="https://pir-planet.ru/payment-success-popup.html"
+                                 data-fail-url="https://pir-planet.ru/payment-error-popup.html"
+                                 data-client-info-selector=".clientName"
+                                 data-email-selector=".clientEmail"
+                                 data-amount-selector=".totalAmount"
+                                 data-order-number-selector=".orderNumber"
+                                 data-description="Оплата заказа в интернет-магазине PIR Planet">
+                            </div>
+                            <input type="hidden" class="clientName" id="hiddenClientName" value="">
+                            <input type="hidden" class="clientEmail" id="hiddenClientEmail" value="">
+                            <input type="hidden" class="totalAmount" id="hiddenTotalAmount" value="">
+                            <input type="hidden" class="orderNumber" id="hiddenOrderNumber" value="">
                         </div>
 
                         <!-- Actions -->
@@ -268,6 +367,15 @@
     </footer>
 
     <script src="/js/cart.js"></script>
+
+    <!-- Альфа-Банк платёжный скрипт -->
+    <script
+        charset="utf-8"
+        id="alfa-payment-script"
+        type="text/javascript"
+        src="https://pay2.alfabank.ru/assets/alfa-payment.js">
+    </script>
+
     <script src="/js/order.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/new-year.js"></script>
