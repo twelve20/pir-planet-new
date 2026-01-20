@@ -346,10 +346,22 @@ class OrderPage {
         // Заполняем скрытые поля для виджета
         const widgetOrderNumber = `${this.order.order_number}-${type}-${Date.now()}`;
 
+        // Email обязателен для Альфа-Банка, используем дефолтный если не указан
+        const customerEmail = this.order.customer_email && this.order.customer_email.includes('@')
+            ? this.order.customer_email
+            : 'noreply@pir-planet.ru';
+
         document.getElementById('hiddenClientName').value = this.order.customer_name;
-        document.getElementById('hiddenClientEmail').value = this.order.customer_email || '';
+        document.getElementById('hiddenClientEmail').value = customerEmail;
         document.getElementById('hiddenOrderNumber').value = widgetOrderNumber;
         document.getElementById('hiddenTotalAmount').value = Math.round(amount * 100); // в копейках
+
+        console.log('Данные для виджета:', {
+            name: this.order.customer_name,
+            email: customerEmail,
+            orderNumber: widgetOrderNumber,
+            amount: Math.round(amount * 100)
+        });
 
         // Показываем контейнер виджета
         const widgetContainer = document.getElementById('alfa-payment-container');
