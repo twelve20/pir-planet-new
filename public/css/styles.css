@@ -202,6 +202,233 @@ a {
     text-align: center;
 }
 
+/* ===== DISCOUNT ANNOUNCEMENT BANNER ===== */
+.discount-announcement {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.discount-announcement::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    animation: floatBubble 20s ease-in-out infinite;
+}
+
+.discount-announcement::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    animation: floatBubble 15s ease-in-out infinite reverse;
+}
+
+@keyframes floatBubble {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(30px, -30px);
+    }
+}
+
+.discount-announcement-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.discount-announcement-badge {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.discount-announcement-percent {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.discount-announcement-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #059669;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
+}
+
+.discount-announcement-text {
+    flex: 1;
+}
+
+.discount-announcement-text h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.discount-announcement-text p {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.discount-announcement-action {
+    flex-shrink: 0;
+}
+
+.btn-discount {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: #059669;
+    padding: 0.875rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-discount::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-discount:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-discount:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-discount svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-discount:hover svg {
+    transform: translateX(4px);
+}
+
+/* Responsive for Discount Banner */
+@media (max-width: 968px) {
+    .discount-announcement {
+        padding: 1.25rem 0;
+    }
+
+    .discount-announcement-content {
+        gap: 1.5rem;
+    }
+
+    .discount-announcement-badge {
+        width: 70px;
+        height: 70px;
+    }
+
+    .discount-announcement-percent {
+        font-size: 1.5rem;
+    }
+
+    .discount-announcement-text h2 {
+        font-size: 1.25rem;
+    }
+
+    .discount-announcement-text p {
+        font-size: 0.875rem;
+    }
+
+    .btn-discount {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .discount-announcement-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .discount-announcement-badge {
+        width: 80px;
+        height: 80px;
+    }
+
+    .discount-announcement-percent {
+        font-size: 1.75rem;
+    }
+
+    .discount-announcement-text h2 {
+        font-size: 1.125rem;
+    }
+
+    .discount-announcement-action {
+        width: 100%;
+    }
+
+    .btn-discount {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
