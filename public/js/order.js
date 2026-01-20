@@ -199,10 +199,17 @@ class OrderPage {
             // Заказ подтверждён, показываем варианты оплаты
             this.paymentOptions.style.display = 'block';
 
+            // Применяем скидку 5% для онлайн-оплаты
+            const discountedTotal = Math.round(total * 0.95);
+
             // Заполняем суммы
-            document.getElementById('payFullAmount').textContent = this.formatPrice(total) + ' ₽';
+            document.getElementById('payFullAmount').textContent = this.formatPrice(discountedTotal) + ' ₽';
             document.getElementById('cashProductsAmount').textContent = this.formatPrice(subtotal) + ' ₽';
             document.getElementById('cashDeliveryAmount').textContent = this.formatPrice(deliveryCost) + ' ₽';
+
+            // Сохраняем суммы для использования в initiatePayment
+            this.discountedTotal = discountedTotal;
+            this.originalTotal = total;
 
             // Если доставка = 0, скрываем опцию наличных
             if (deliveryCost <= 0) {
@@ -322,15 +329,15 @@ class OrderPage {
 
         const subtotal = this.order.subtotal || 0;
         const deliveryCost = this.order.delivery_cost || 0;
-        const total = this.order.total || subtotal;
 
         // Определяем сумму к оплате
         let amount;
         let description;
 
         if (type === 'full') {
-            amount = total;
-            description = `Оплата заказа №${this.order.order_number}`;
+            // Используем сумму со скидкой 5%
+            amount = this.discountedTotal || Math.round((this.order.total || subtotal) * 0.95);
+            description = `Оплата заказа №${this.order.order_number} (скидка 5%)`;
         } else if (type === 'delivery') {
             amount = deliveryCost;
             description = `Оплата доставки заказа №${this.order.order_number}`;

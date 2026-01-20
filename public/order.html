@@ -191,13 +191,32 @@
 
                             <!-- Варианты оплаты - показываются после подтверждения -->
                             <div id="paymentOptions" class="payment-options" style="display: none;">
+                                <!-- Баннер скидки 5% -->
+                                <div class="discount-banner">
+                                    <div class="discount-badge">
+                                        <span class="discount-percent">-5%</span>
+                                    </div>
+                                    <div class="discount-content">
+                                        <h3>Скидка 5% при онлайн-оплате!</h3>
+                                        <p>Оплатите заказ прямо сейчас через сайт и получите скидку</p>
+                                    </div>
+                                    <div class="discount-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                </div>
+
                                 <p class="payment-intro">Выберите способ оплаты:</p>
 
                                 <!-- Оплата онлайн (Карта + СБП в одном виджете) -->
-                                <div class="payment-option" id="payFullOption">
+                                <div class="payment-option payment-option-recommended" id="payFullOption">
+                                    <div class="recommended-badge">Рекомендуем</div>
                                     <div class="payment-option-header">
                                         <div class="payment-option-title">Оплата онлайн</div>
-                                        <div class="payment-option-desc">Банковская карта или СБП</div>
+                                        <div class="payment-option-desc">Банковская карта или СБП • Скидка 5%</div>
                                     </div>
                                     <div class="payment-option-amount">
                                         <span>К оплате:</span>
