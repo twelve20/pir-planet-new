@@ -353,23 +353,36 @@ class OrderPage {
 
         // Показываем контейнер виджета
         const widgetContainer = document.getElementById('alfa-payment-container');
+        if (!widgetContainer) {
+            console.error('Контейнер виджета не найден');
+            alert('Ошибка: контейнер виджета не найден');
+            return;
+        }
+
         widgetContainer.style.display = 'block';
+        console.log('Инициирую оплату. Сумма:', amount, 'Тип:', type);
 
-        // Ждём инициализации виджета
-        let attempts = 0;
-        const checkWidget = setInterval(() => {
-            attempts++;
-            const widgetButton = document.querySelector('#alfa-payment-button button');
+        // Даём виджету время на инициализацию
+        setTimeout(() => {
+            // Ждём инициализации виджета
+            let attempts = 0;
+            const checkWidget = setInterval(() => {
+                attempts++;
+                const widgetButton = document.querySelector('#alfa-payment-button button');
+                console.log(`Попытка ${attempts}: кнопка виджета`, widgetButton ? 'найдена' : 'не найдена');
 
-            if (widgetButton) {
-                clearInterval(checkWidget);
-                document.body.classList.add('payment-modal-open');
-                widgetButton.click();
-            } else if (attempts > 10) {
-                clearInterval(checkWidget);
-                alert('Не удалось загрузить форму оплаты. Попробуйте обновить страницу.');
-            }
-        }, 500);
+                if (widgetButton) {
+                    clearInterval(checkWidget);
+                    console.log('Виджет инициализирован, открываю форму оплаты');
+                    document.body.classList.add('payment-modal-open');
+                    widgetButton.click();
+                } else if (attempts > 20) {
+                    clearInterval(checkWidget);
+                    console.error('Виджет не инициализировался после 20 попыток');
+                    alert('Не удалось загрузить форму оплаты. Попробуйте обновить страницу.');
+                }
+            }, 300);
+        }, 100);
     }
 
     getDeliveryMethodName(method) {
