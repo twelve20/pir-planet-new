@@ -85,9 +85,15 @@
     </header>
 
     <!-- Discount Announcement Banner -->
-    <section class="discount-announcement">
+    <section class="discount-announcement" id="discountBanner" style="display: none;">
         <div class="container">
             <div class="discount-announcement-content">
+                <button class="discount-announcement-close" id="closeBanner" aria-label="Закрыть баннер">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
                 <div class="discount-announcement-badge">
                     <span class="discount-announcement-percent">-5%</span>
                     <span class="discount-announcement-label">Скидка</span>
@@ -361,6 +367,7 @@
     }
     </script>
     <script src="js/cart.js"></script>
+    <script src="js/discount-banner.js"></script>
     <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
     <script src="js/new-year.js"></script>
 </body>

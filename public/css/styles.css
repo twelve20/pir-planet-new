@@ -209,6 +209,37 @@ a {
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    animation: slideDown 0.5s ease-out;
+    transform-origin: top;
+}
+
+.discount-announcement.hiding {
+    animation: slideUp 0.4s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 200px;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-100%);
+        max-height: 0;
+        padding: 0;
+    }
 }
 
 .discount-announcement::before {
@@ -250,6 +281,38 @@ a {
     gap: 2rem;
     position: relative;
     z-index: 2;
+}
+
+.discount-announcement-close {
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.discount-announcement-close:hover {
+    background: white;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.discount-announcement-close svg {
+    stroke: #059669;
+}
+
+.discount-announcement-close:active {
+    transform: scale(0.95);
 }
 
 .discount-announcement-badge {
@@ -400,10 +463,27 @@ a {
 }
 
 @media (max-width: 640px) {
+    .discount-announcement {
+        padding: 1rem 0;
+    }
+
     .discount-announcement-content {
         flex-direction: column;
         text-align: center;
         gap: 1rem;
+        padding-top: 1.5rem;
+    }
+
+    .discount-announcement-close {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 28px;
+        height: 28px;
+    }
+
+    .discount-announcement-close svg {
+        width: 18px;
+        height: 18px;
     }
 
     .discount-announcement-badge {
@@ -417,6 +497,10 @@ a {
 
     .discount-announcement-text h2 {
         font-size: 1.125rem;
+    }
+
+    .discount-announcement-text p {
+        font-size: 0.8125rem;
     }
 
     .discount-announcement-action {
