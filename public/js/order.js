@@ -346,8 +346,11 @@ class OrderPage {
         // Заполняем скрытые поля для виджета
         const widgetOrderNumber = `${this.order.order_number}-${type}-${Date.now()}`;
 
-        // Email обязателен для Альфа-Банка, используем дефолтный если не указан
-        const customerEmail = this.order.customer_email && this.order.customer_email.includes('@')
+        // Email обязателен для Альфа-Банка, используем дефолтный если не указан или невалиден
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValidEmail = this.order.customer_email && emailRegex.test(this.order.customer_email);
+
+        const customerEmail = isValidEmail
             ? this.order.customer_email
             : 'noreply@pir-planet.ru';
 
@@ -356,9 +359,15 @@ class OrderPage {
         document.getElementById('hiddenOrderNumber').value = widgetOrderNumber;
         document.getElementById('hiddenTotalAmount').value = Math.round(amount * 100); // в копейках
 
+        // Предупреждаем, если используем фолбэк email
+        if (!isValidEmail && this.order.customer_email) {
+            console.warn(`Email "${this.order.customer_email}" невалиден, используем фолбэк: ${customerEmail}`);
+        }
+
         console.log('Данные для виджета:', {
             name: this.order.customer_name,
             email: customerEmail,
+            emailUsed: isValidEmail ? 'customer' : 'fallback',
             orderNumber: widgetOrderNumber,
             amount: Math.round(amount * 100)
         });
