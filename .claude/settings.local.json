@@ -69,7 +69,8 @@
       "Bash(if exist nul del /F nul)",
       "Bash(npm start)",
       "Bash(cmd /c \"taskkill /PID 48356 /F\")",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(sqlite3:*)"
     ],
     "deny": [],
     "ask": []

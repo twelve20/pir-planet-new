@@ -138,7 +138,7 @@
                 <div class="catalog-item"
                      data-sku="logicpir-banya-30"
                      data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм"
-                     data-price="622"
+                     data-price="575"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 30мм">
@@ -147,7 +147,7 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">622 ₽</span>
+                            <span class="price">575 ₽</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -176,7 +176,7 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">692 ₽</span>
+                            <span class="price">620 ₽</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -198,7 +198,7 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">868 ₽</span>
+                            <span class="price">744 ₽</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -333,7 +333,7 @@
                     <div class="catalog-item-content">
                         <h3>PIR плита для бани ФОЛЬГА 40 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">692 ₽</span>
+                            <span class="price">620 ₽</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>600х1200 мм</span></div>
@@ -882,7 +882,7 @@
           },
           "offers": {
             "@type": "Offer",
-            "price": "622",
+            "price": "575",
             "priceCurrency": "RUB",
             "availability": "https://schema.org/InStock",
             "seller": {
@@ -903,7 +903,7 @@
           },
           "offers": {
             "@type": "Offer",
-            "price": "692",
+            "price": "620",
             "priceCurrency": "RUB",
             "availability": "https://schema.org/InStock",
             "seller": {
@@ -924,7 +924,7 @@
           },
           "offers": {
             "@type": "Offer",
-            "price": "868",
+            "price": "744",
             "priceCurrency": "RUB",
             "availability": "https://schema.org/InStock",
             "seller": {
