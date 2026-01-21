@@ -3,7 +3,7 @@ const products = {
     1: {
         id: 1,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм',
-        price: '622 ₽/шт',
+        price: '572 ₽/шт',
         packSize: 8,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
@@ -25,7 +25,7 @@ const products = {
     2: {
         id: 2,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм',
-        price: '692 ₽/шт',
+        price: '620 ₽/шт',
         packSize: 6,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
@@ -47,7 +47,7 @@ const products = {
     3: {
         id: 3,
         name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм',
-        price: '868 ₽/шт',
+        price: '744 ₽/шт',
         packSize: 5,
         image: 'images/techno1.webp',
         hoverImage: 'images/techno2.webp',
