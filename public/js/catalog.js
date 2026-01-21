@@ -157,7 +157,7 @@ const products = {
     8: {
         id: 8,
         name: 'PIR плита для бани ФОЛЬГА 30 мм',
-        price: '566 ₽/шт',
+        price: '572 ₽/шт',
         packSize: 8,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
@@ -179,7 +179,7 @@ const products = {
     9: {
         id: 9,
         name: 'PIR плита для бани ФОЛЬГА 40 мм',
-        price: '692 ₽/шт',
+        price: '620 ₽/шт',
         packSize: 6,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
@@ -201,7 +201,7 @@ const products = {
     10: {
         id: 10,
         name: 'PIR плита для бани ФОЛЬГА 50 мм',
-        price: '782 ₽/шт',
+        price: '744 ₽/шт',
         packSize: 5,
         image: 'images/pirro1.webp',
         hoverImage: 'images/pirro2.webp',
