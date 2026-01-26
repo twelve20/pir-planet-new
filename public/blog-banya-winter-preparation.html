@@ -360,6 +360,48 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* --- ЗАЩИТА ОТ КОПИРОВАНИЯ --- */
+        .watermark {
+            position: fixed;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            user-select: none;
+        }
+
+        /* Защита изображений */
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: auto;
+        }
+
+        /* Блокировка выделения текста */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Блокировка печати */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -733,40 +775,159 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="/images/favicon.svg" alt="Планета PIR" class="footer-logo-img">
-                        <span>Планета PIR</span>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
                     </div>
-                    <p>Профессиональные решения для утепления вашего дома</p>
+                    <p>Продажа PIR плит в Москве и Московской области</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Контакты</h3>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
                     <ul>
-                        <li>Телефон: <a href="tel:+79999999999">+7 (999) 999-99-99</a></li>
-                        <li>Email: <a href="mailto:info@pir-planet.ru">info@pir-planet.ru</a></li>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                        <li><a href="/reviews">Отзывы</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Информация</h3>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
                     <ul>
-                        <li>Доставка по всей России</li>
-                        <li>Работаем с юр. лицами</li>
-                        <li>Гарантия качества</li>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Москва и МО</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Планета PIR. Все права защищены.</p>
+                <p>&copy; 2026 Планета PIR. Все права защищены. | <a href="/privacy">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="/js/cart.js"></script>
+    <script>
+        // Усиленная защита от копирования и скачивания
+
+        // Блокировка правой кнопки мыши
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Блокировка горячих клавиш
+        document.addEventListener('keydown', function(e) {
+            // Блокировка Ctrl+S, Ctrl+P, Ctrl+U, Ctrl+C, Ctrl+A
+            if (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) {
+                e.preventDefault();
+                return false;
+            }
+            // Блокировка Cmd на Mac
+            if (e.metaKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) {
+                e.preventDefault();
+                return false;
+            }
+            // Блокировка F12 (DevTools)
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            // Блокировка Ctrl+Shift+I (DevTools)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                return false;
+            }
+            // Блокировка Ctrl+Shift+J (Console)
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                e.preventDefault();
+                return false;
+            }
+            // Блокировка Ctrl+Shift+C (Inspect)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Полная блокировка выделения
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Блокировка перетаскивания
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Блокировка копирования
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Блокировка вырезания
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Защита от скриншотов через CSS (отключаем печать)
+        window.addEventListener('beforeprint', function(e) {
+            e.preventDefault();
+            alert('Печать и сохранение страницы запрещены.');
+            return false;
+        });
+
+        // Водяные знаки
+        function createWatermarks() {
+            const watermarks = [
+                { top: '20%', left: '20%' },
+                { top: '20%', left: '70%' },
+                { top: '50%', left: '35%' },
+                { top: '80%', left: '20%' },
+                { top: '80%', left: '70%' }
+            ];
+
+            watermarks.forEach(pos => {
+                const mark = document.createElement('div');
+                mark.className = 'watermark';
+                mark.textContent = 'PIR-PLANET.RU';
+                mark.style.top = pos.top;
+                mark.style.left = pos.left;
+                document.body.appendChild(mark);
+            });
+        }
+
+        // Добавляем прозрачные блоки поверх изображений
+        function protectImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+                img.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+            });
+        }
+
+        window.addEventListener('load', function() {
+            createWatermarks();
+            protectImages();
+        });
+    </script>
+
+    <script src="/js/security.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/new-year.js"></script>
 
+    <!-- Прогресс бар чтения -->
     <script>
         window.addEventListener('scroll', function() {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
