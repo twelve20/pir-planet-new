@@ -283,6 +283,10 @@ app.get('/blog/balcony-insulation', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog-balcony-insulation.html'));
 });
 
+app.get('/blog/banya-winter-preparation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'blog-banya-winter-preparation.html'));
+});
+
 // ===== API ДЛЯ ЗАКАЗОВ =====
 
 // Создание нового заказа
