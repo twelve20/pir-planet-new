@@ -1118,7 +1118,7 @@ body.payment-modal-open #jivo-iframe-container {
 /* ===== FLOATING CART BUTTON ===== */
 .floating-cart {
     position: fixed;
-    bottom: 100px;
+    bottom: 24px;
     left: 24px;
     z-index: 9999;
     opacity: 0;
@@ -1137,8 +1137,8 @@ body.payment-modal-open #jivo-iframe-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     border-radius: 50%;
     box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
@@ -1158,8 +1158,8 @@ body.payment-modal-open #jivo-iframe-container {
 }
 
 .floating-cart-btn svg {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
     color: white;
     stroke: white;
 }
@@ -1184,7 +1184,7 @@ body.payment-modal-open #jivo-iframe-container {
 
 .floating-cart-tooltip {
     position: absolute;
-    left: 70px;
+    left: 82px;
     top: 50%;
     transform: translateY(-50%);
     background: var(--text-dark);
@@ -1218,13 +1218,18 @@ body.payment-modal-open #jivo-iframe-container {
 
 @media (max-width: 768px) {
     .floating-cart {
-        bottom: 90px;
+        bottom: 20px;
         left: 16px;
     }
 
     .floating-cart-btn {
-        width: 54px;
-        height: 54px;
+        width: 64px;
+        height: 64px;
+    }
+
+    .floating-cart-btn svg {
+        width: 30px;
+        height: 30px;
     }
 
     .floating-cart-btn svg {
