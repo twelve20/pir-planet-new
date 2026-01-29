@@ -143,7 +143,7 @@ class Cart {
         }
 
         if (tooltipEl) {
-            tooltipEl.textContent = totalPrice.toLocaleString('ru-RU') + ' ₽';
+            tooltipEl.textContent = '=' + totalPrice.toLocaleString('ru-RU') + ' ₽';
         }
 
         // Показываем/скрываем кнопку
