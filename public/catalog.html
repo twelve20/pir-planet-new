@@ -139,6 +139,8 @@
                      data-sku="logicpir-banya-30"
                      data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм"
                      data-price="575"
+                     data-price-pack="4600"
+                     data-price-sqm="819"
                      data-packsize="8"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
@@ -148,13 +150,35 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">575 ₽/шт</span>
+                            <span class="price" data-price-display>575 ₽</span>
+                        </div>
+                        <div class="catalog-unit-selector">
+                            <button class="catalog-unit-btn" onclick="toggleCatalogUnit(this)">
+                                <span class="selected-unit-text">1 штука</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="catalog-unit-dropdown">
+                                <div class="catalog-unit-option selected" data-unit="piece" onclick="selectCatalogUnit(this, 'piece', 575)">
+                                    <span>1 штука</span>
+                                    <span class="catalog-unit-option-price">575 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="pack" onclick="selectCatalogUnit(this, 'pack', 4600)">
+                                    <span>1 упаковка (8 шт)</span>
+                                    <span class="catalog-unit-option-price">4 600 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="sqm" onclick="selectCatalogUnit(this, 'sqm', 819)">
+                                    <span>1 м²</span>
+                                    <span class="catalog-unit-option-price">819 ₽</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="catalog-pack-info">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
                             </svg>
-                            <span>В упаковке: 8 шт</span>
+                            <span>В упаковке: 8 шт (5,62 м²)</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -162,9 +186,9 @@
                             <div class="spec-item"><strong>Покрытие:</strong> <span>Фольга Ф/Ф</span></div>
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="1">Подробнее</button>
+                        <a href="/product/logicpir-banya-30" class="btn-secondary btn-full">Подробнее</a>
                         <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
+                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCartWithUnit(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
                                 <div class="quantity-controls">
                                     <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
@@ -182,6 +206,8 @@
                      data-sku="logicpir-banya-40"
                      data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм"
                      data-price="620"
+                     data-price-pack="3720"
+                     data-price-sqm="886"
                      data-packsize="6"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
@@ -191,13 +217,35 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">620 ₽/шт</span>
+                            <span class="price" data-price-display>620 ₽</span>
+                        </div>
+                        <div class="catalog-unit-selector">
+                            <button class="catalog-unit-btn" onclick="toggleCatalogUnit(this)">
+                                <span class="selected-unit-text">1 штука</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="catalog-unit-dropdown">
+                                <div class="catalog-unit-option selected" data-unit="piece" onclick="selectCatalogUnit(this, 'piece', 620)">
+                                    <span>1 штука</span>
+                                    <span class="catalog-unit-option-price">620 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="pack" onclick="selectCatalogUnit(this, 'pack', 3720)">
+                                    <span>1 упаковка (6 шт)</span>
+                                    <span class="catalog-unit-option-price">3 720 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="sqm" onclick="selectCatalogUnit(this, 'sqm', 886)">
+                                    <span>1 м²</span>
+                                    <span class="catalog-unit-option-price">886 ₽</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="catalog-pack-info">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
                             </svg>
-                            <span>В упаковке: 6 шт</span>
+                            <span>В упаковке: 6 шт (4,21 м²)</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -205,9 +253,9 @@
                             <div class="spec-item"><strong>Покрытие:</strong> <span>Фольга Ф/Ф</span></div>
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="2">Подробнее</button>
+                        <a href="/product/logicpir-banya-40" class="btn-secondary btn-full">Подробнее</a>
                         <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
+                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCartWithUnit(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
                                 <div class="quantity-controls">
                                     <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
@@ -225,6 +273,8 @@
                      data-sku="logicpir-banya-50"
                      data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм"
                      data-price="744"
+                     data-price-pack="3720"
+                     data-price-sqm="1063"
                      data-packsize="5"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
@@ -234,13 +284,35 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">744 ₽/шт</span>
+                            <span class="price" data-price-display>744 ₽</span>
+                        </div>
+                        <div class="catalog-unit-selector">
+                            <button class="catalog-unit-btn" onclick="toggleCatalogUnit(this)">
+                                <span class="selected-unit-text">1 штука</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="catalog-unit-dropdown">
+                                <div class="catalog-unit-option selected" data-unit="piece" onclick="selectCatalogUnit(this, 'piece', 744)">
+                                    <span>1 штука</span>
+                                    <span class="catalog-unit-option-price">744 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="pack" onclick="selectCatalogUnit(this, 'pack', 3720)">
+                                    <span>1 упаковка (5 шт)</span>
+                                    <span class="catalog-unit-option-price">3 720 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="sqm" onclick="selectCatalogUnit(this, 'sqm', 1063)">
+                                    <span>1 м²</span>
+                                    <span class="catalog-unit-option-price">1 063 ₽</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="catalog-pack-info">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
                             </svg>
-                            <span>В упаковке: 5 шт</span>
+                            <span>В упаковке: 5 шт (3,51 м²)</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -248,9 +320,9 @@
                             <div class="spec-item"><strong>Покрытие:</strong> <span>Фольга Ф/Ф</span></div>
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="3">Подробнее</button>
+                        <a href="/product/logicpir-banya-50" class="btn-secondary btn-full">Подробнее</a>
                         <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
+                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCartWithUnit(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
                                 <div class="quantity-controls">
                                     <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
@@ -263,166 +335,66 @@
                     </div>
                 </div>
 
-                <!-- Product 4 -->
+                <!-- ВРЕМЕННО СКРЫТО: Product 4 - LOGICPIR СТЕКЛОХОЛСТ 30 мм -->
+                <!-- ВРЕМЕННО СКРЫТО: Product 5 - LOGICPIR СТЕКЛОХОЛСТ 50 мм -->
+                <!-- ВРЕМЕННО СКРЫТО: Product 6 - LOGICPIR СТЕКЛОХОЛСТ 80 мм -->
+                <!-- ВРЕМЕННО СКРЫТО: Product 7 - LOGICPIR СТЕКЛОХОЛСТ 100 мм -->
+
+                <!-- LOGICPIR PROF ФОЛЬГА Г1 100 мм -->
                 <div class="catalog-item"
-                     data-sku="logicpir-steklo-30"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 30 мм"
-                     data-price="833"
-                     data-packsize="8"
-                     data-image="images/techno5.webp">
+                     data-sku="logicpir-prof-folga-100"
+                     data-name="LOGICPIR PROF ФОЛЬГА Г1 Ф/Ф L 100 мм"
+                     data-price="1540"
+                     data-price-pack="18480"
+                     data-price-sqm="545"
+                     data-packsize="12"
+                     data-image="images/prof1.webp">
                     <div class="catalog-item-image">
-                        <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 30мм">
-                        <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 30мм" class="hover-image">
+                        <img src="images/prof1.webp" alt="LOGICPIR PROF ФОЛЬГА Г1 100мм">
+                        <img src="images/prof2.webp" alt="LOGICPIR PROF ФОЛЬГА Г1 100мм" class="hover-image">
                     </div>
                     <div class="catalog-item-content">
-                        <h3>LOGICPIR СТЕКЛОХОЛСТ 30 мм</h3>
+                        <h3>LOGICPIR PROF ФОЛЬГА Г1 Ф/Ф L 100 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">833 ₽/шт</span>
+                            <span class="price" data-price-display>1 540 ₽</span>
                         </div>
-                        <div class="catalog-pack-info">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
-                            </svg>
-                            <span>В упаковке: 8 шт</span>
-                        </div>
-                        <div class="catalog-specs">
-                            <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
-                            <div class="spec-item"><strong>Горючесть:</strong> <span>Г4</span></div>
-                            <div class="spec-item"><strong>Покрытие:</strong> <span>Стеклохолст</span></div>
-                            <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
-                        </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="4">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="cart-added-controls" style="display: none;">
-                                <div class="quantity-controls">
-                                    <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                    <span class="qty-value">1</span>
-                                    <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
+                        <div class="catalog-unit-selector">
+                            <button class="catalog-unit-btn" onclick="toggleCatalogUnit(this)">
+                                <span class="selected-unit-text">1 штука</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="catalog-unit-dropdown">
+                                <div class="catalog-unit-option selected" data-unit="piece" onclick="selectCatalogUnit(this, 'piece', 1540)">
+                                    <span>1 штука</span>
+                                    <span class="catalog-unit-option-price">1 540 ₽</span>
                                 </div>
-                                <a href="/cart" class="btn-go-to-cart btn-secondary btn-full">Перейти в корзину</a>
+                                <div class="catalog-unit-option" data-unit="pack" onclick="selectCatalogUnit(this, 'pack', 18480)">
+                                    <span>1 упаковка (12 шт)</span>
+                                    <span class="catalog-unit-option-price">18 480 ₽</span>
+                                </div>
+                                <div class="catalog-unit-option" data-unit="sqm" onclick="selectCatalogUnit(this, 'sqm', 545)">
+                                    <span>1 м²</span>
+                                    <span class="catalog-unit-option-price">545 ₽</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-50"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 50 мм"
-                     data-price="1043"
-                     data-packsize="5"
-                     data-image="images/techno5.webp">
-                    <div class="catalog-item-image">
-                        <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 50мм">
-                        <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 50мм" class="hover-image">
-                    </div>
-                    <div class="catalog-item-content">
-                        <h3>LOGICPIR СТЕКЛОХОЛСТ 50 мм</h3>
-                        <div class="catalog-price">
-                            <span class="price">1043 ₽/шт</span>
-                        </div>
                         <div class="catalog-pack-info">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
                             </svg>
-                            <span>В упаковке: 5 шт</span>
+                            <span>В упаковке: 12 шт (33,91 м²)</span>
                         </div>
                         <div class="catalog-specs">
-                            <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
-                            <div class="spec-item"><strong>Горючесть:</strong> <span>Г4</span></div>
-                            <div class="spec-item"><strong>Покрытие:</strong> <span>Стеклохолст</span></div>
+                            <div class="spec-item"><strong>Размер:</strong> <span>2385х1185 мм</span></div>
+                            <div class="spec-item"><strong>Горючесть:</strong> <span>Г1</span></div>
+                            <div class="spec-item"><strong>Покрытие:</strong> <span>Фольга Ф/Ф</span></div>
                             <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
                         </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="5">Подробнее</button>
+                        <a href="/product/logicpir-prof-100" class="btn-secondary btn-full">Подробнее</a>
                         <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="cart-added-controls" style="display: none;">
-                                <div class="quantity-controls">
-                                    <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                    <span class="qty-value">1</span>
-                                    <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                                </div>
-                                <a href="/cart" class="btn-go-to-cart btn-secondary btn-full">Перейти в корзину</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-80"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 80 мм"
-                     data-price="1429"
-                     data-packsize="7"
-                     data-image="images/techno5.webp">
-                    <div class="catalog-item-image">
-                        <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 80мм">
-                        <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 80мм" class="hover-image">
-                    </div>
-                    <div class="catalog-item-content">
-                        <h3>LOGICPIR СТЕКЛОХОЛСТ 80 мм</h3>
-                        <div class="catalog-price">
-                            <span class="price">1429 ₽/шт</span>
-                        </div>
-                        <div class="catalog-pack-info">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
-                            </svg>
-                            <span>В упаковке: 7 шт</span>
-                        </div>
-                        <div class="catalog-specs">
-                            <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
-                            <div class="spec-item"><strong>Горючесть:</strong> <span>Г4</span></div>
-                            <div class="spec-item"><strong>Покрытие:</strong> <span>Стеклохолст</span></div>
-                            <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
-                        </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="6">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
-                            <div class="cart-added-controls" style="display: none;">
-                                <div class="quantity-controls">
-                                    <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
-                                    <span class="qty-value">1</span>
-                                    <button class="qty-btn qty-plus" onclick="increaseQuantity(this)">+</button>
-                                </div>
-                                <a href="/cart" class="btn-go-to-cart btn-secondary btn-full">Перейти в корзину</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="catalog-item"
-                     data-sku="logicpir-steklo-100"
-                     data-name="LOGICPIR СТЕКЛОХОЛСТ 100 мм"
-                     data-price="1535"
-                     data-packsize="6"
-                     data-image="images/techno5.webp">
-                    <div class="catalog-item-image">
-                        <img src="images/techno5.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 100мм">
-                        <img src="images/techno6.webp" alt="LOGICPIR СТЕКЛОХОЛСТ 100мм" class="hover-image">
-                    </div>
-                    <div class="catalog-item-content">
-                        <h3>LOGICPIR СТЕКЛОХОЛСТ 100 мм</h3>
-                        <div class="catalog-price">
-                            <span class="price">1535 ₽/шт</span>
-                        </div>
-                        <div class="catalog-pack-info">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
-                            </svg>
-                            <span>В упаковке: 6 шт</span>
-                        </div>
-                        <div class="catalog-specs">
-                            <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
-                            <div class="spec-item"><strong>Горючесть:</strong> <span>Г4</span></div>
-                            <div class="spec-item"><strong>Покрытие:</strong> <span>Стеклохолст</span></div>
-                            <div class="spec-item"><strong>Кромка:</strong> <span>L-кромка</span></div>
-                        </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="7">Подробнее</button>
-                        <div class="cart-controls">
-                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
+                            <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCartWithUnit(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
                                 <div class="quantity-controls">
                                     <button class="qty-btn qty-minus" onclick="decreaseQuantity(this)">-</button>
@@ -837,7 +809,7 @@
                             <div class="spec-item"><strong>Применение:</strong> <span>Проклейка стыков PIR плит</span></div>
                             <div class="spec-item"><strong>Температура:</strong> <span>от -40°С до +80°С</span></div>
                         </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="17">Подробнее</button>
+                        <a href="/product/alu-tape" class="btn-secondary btn-full">Подробнее</a>
                         <div class="cart-controls">
                             <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
@@ -872,7 +844,7 @@
                             <div class="spec-item"><strong>Применение:</strong> <span>Приклейка PIR плит</span></div>
                             <div class="spec-item"><strong>Температура:</strong> <span>от -60°С до +90°С</span></div>
                         </div>
-                        <button class="btn-secondary btn-full product-details-btn" data-product="20">Подробнее</button>
+                        <a href="/product/techno-glue" class="btn-secondary btn-full">Подробнее</a>
                         <div class="cart-controls">
                             <button class="btn-add-to-cart btn-primary btn-full" onclick="addToCart(this)">В корзину</button>
                             <div class="cart-added-controls" style="display: none;">
@@ -1298,6 +1270,114 @@
     </script>
     <script src="/js/cart.js"></script>
     <script src="/js/catalog.js"></script>
+    <script>
+        // Toggle catalog unit dropdown
+        function toggleCatalogUnit(btn) {
+            // Close all other dropdowns
+            document.querySelectorAll('.catalog-unit-btn.active').forEach(b => {
+                if (b !== btn) {
+                    b.classList.remove('active');
+                    b.nextElementSibling.classList.remove('show');
+                }
+            });
+
+            btn.classList.toggle('active');
+            btn.nextElementSibling.classList.toggle('show');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.catalog-unit-selector')) {
+                document.querySelectorAll('.catalog-unit-btn.active').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.nextElementSibling.classList.remove('show');
+                });
+            }
+        });
+
+        // Select unit in catalog
+        function selectCatalogUnit(option, unit, price) {
+            const selector = option.closest('.catalog-unit-selector');
+            const item = option.closest('.catalog-item');
+            const btn = selector.querySelector('.catalog-unit-btn');
+            const priceDisplay = item.querySelector('[data-price-display]');
+
+            // Update selected state
+            selector.querySelectorAll('.catalog-unit-option').forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+
+            // Update button text
+            btn.querySelector('.selected-unit-text').textContent = option.querySelector('span:first-child').textContent;
+
+            // Update price display
+            priceDisplay.textContent = price.toLocaleString('ru-RU') + ' ₽';
+
+            // Store selected unit on item
+            item.dataset.selectedUnit = unit;
+
+            // Close dropdown
+            btn.classList.remove('active');
+            selector.querySelector('.catalog-unit-dropdown').classList.remove('show');
+        }
+
+        // Add to cart with selected unit
+        function addToCartWithUnit(btn) {
+            const item = btn.closest('.catalog-item');
+            const sku = item.dataset.sku;
+            const name = item.dataset.name;
+            const packSize = parseInt(item.dataset.packsize);
+            const image = item.dataset.image;
+            const selectedUnit = item.dataset.selectedUnit || 'piece';
+
+            const pricePiece = parseInt(item.dataset.price);
+            const pricePack = parseInt(item.dataset.pricePack);
+            const priceSqm = parseInt(item.dataset.priceSqm);
+
+            let product = {
+                image: image,
+                quantity: 1
+            };
+
+            let feedbackText = '';
+
+            if (selectedUnit === 'piece') {
+                // При выборе штуки - добавляем упаковку (кратность)
+                product.sku = sku + '-pack';
+                product.name = name + ' (упаковка ' + packSize + ' шт)';
+                product.price = pricePack;
+                product.packSize = packSize;
+                feedbackText = '✓ (' + packSize + ' шт)';
+            } else if (selectedUnit === 'pack') {
+                // При выборе упаковки - добавляем 1 упаковку
+                product.sku = sku + '-pack';
+                product.name = name + ' (упаковка ' + packSize + ' шт)';
+                product.price = pricePack;
+                product.packSize = packSize;
+                feedbackText = '✓ (1 уп.)';
+            } else if (selectedUnit === 'sqm') {
+                // При выборе м² - добавляем 1 м²
+                product.sku = sku + '-sqm';
+                product.name = name + ' (1 м²)';
+                product.price = priceSqm;
+                product.packSize = 1;
+                feedbackText = '✓ (1 м²)';
+            }
+
+            if (window.cart) {
+                window.cart.addItem(product);
+
+                // Show feedback
+                const originalText = btn.textContent;
+                btn.textContent = feedbackText;
+                btn.style.background = '#10b981';
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }
+        }
+    </script>
     <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
     <script src="/js/new-year.js"></script>
 </body>

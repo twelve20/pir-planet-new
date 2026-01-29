@@ -287,6 +287,31 @@ app.get('/blog/banya-winter-preparation', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog-banya-winter-preparation.html'));
 });
 
+// Обработка маршрутов для страниц товаров
+app.get('/product/logicpir-banya-30', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-logicpir-banya-30.html'));
+});
+
+app.get('/product/logicpir-banya-40', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-logicpir-banya-40.html'));
+});
+
+app.get('/product/logicpir-banya-50', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-logicpir-banya-50.html'));
+});
+
+app.get('/product/logicpir-prof-100', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-logicpir-prof-100.html'));
+});
+
+app.get('/product/alu-tape', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-alu-tape.html'));
+});
+
+app.get('/product/techno-glue', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-techno-glue.html'));
+});
+
 // ===== API ДЛЯ ЗАКАЗОВ =====
 
 // Создание нового заказа
