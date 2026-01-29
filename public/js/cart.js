@@ -4,6 +4,8 @@ class Cart {
     constructor() {
         this.items = this.loadCart();
         this.updateCartIcon();
+        this.createFloatingCart();
+        this.updateFloatingCart();
     }
 
     // Загрузить корзину из localStorage
@@ -16,6 +18,7 @@ class Cart {
     saveCart() {
         localStorage.setItem('pirplanet_cart', JSON.stringify(this.items));
         this.updateCartIcon();
+        this.updateFloatingCart();
     }
 
     // Добавить товар в корзину
@@ -99,6 +102,55 @@ class Cart {
         if (cartCount) {
             cartCount.textContent = totalItems;
             cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+    }
+
+    // Создать плавающую кнопку корзины
+    createFloatingCart() {
+        // Проверяем, не создана ли уже кнопка
+        if (document.querySelector('.floating-cart')) return;
+
+        const floatingCart = document.createElement('div');
+        floatingCart.className = 'floating-cart';
+        floatingCart.innerHTML = `
+            <a href="/cart" class="floating-cart-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                </svg>
+                <span class="floating-cart-count">0</span>
+            </a>
+            <div class="floating-cart-tooltip">0 ₽</div>
+        `;
+
+        document.body.appendChild(floatingCart);
+    }
+
+    // Обновить плавающую корзину
+    updateFloatingCart() {
+        const floatingCart = document.querySelector('.floating-cart');
+        if (!floatingCart) return;
+
+        const totalItems = this.getTotalItems();
+        const totalPrice = this.getTotalPrice();
+
+        const countEl = floatingCart.querySelector('.floating-cart-count');
+        const tooltipEl = floatingCart.querySelector('.floating-cart-tooltip');
+
+        if (countEl) {
+            countEl.textContent = totalItems;
+        }
+
+        if (tooltipEl) {
+            tooltipEl.textContent = totalPrice.toLocaleString('ru-RU') + ' ₽';
+        }
+
+        // Показываем/скрываем кнопку
+        if (totalItems > 0) {
+            floatingCart.classList.add('visible');
+        } else {
+            floatingCart.classList.remove('visible');
         }
     }
 

@@ -1114,3 +1114,125 @@ body.payment-modal-open jdiv,
 body.payment-modal-open #jivo-iframe-container {
     display: none !important;
 }
+
+/* ===== FLOATING CART BUTTON ===== */
+.floating-cart {
+    position: fixed;
+    bottom: 100px;
+    left: 24px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-cart.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+}
+
+.floating-cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.floating-cart-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37, 99, 235, 0.5);
+}
+
+.floating-cart-btn:active {
+    transform: scale(1.05);
+}
+
+.floating-cart-btn svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+    stroke: white;
+}
+
+.floating-cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 24px;
+    height: 24px;
+    background: #ef4444;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
+.floating-cart-tooltip {
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--text-dark);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.floating-cart-tooltip::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: var(--text-dark);
+    border-left: none;
+}
+
+.floating-cart:hover .floating-cart-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .floating-cart {
+        bottom: 90px;
+        left: 16px;
+    }
+
+    .floating-cart-btn {
+        width: 54px;
+        height: 54px;
+    }
+
+    .floating-cart-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .floating-cart-tooltip {
+        display: none;
+    }
+}
