@@ -60,14 +60,31 @@ class CartPage {
         const subtotal = item.price * item.quantity;
 
         // Формируем информацию об упаковке
-        const packInfo = item.packSize ? `
-            <div class="cart-item-pack-info">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
-                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
-                </svg>
-                <span>${Math.floor(item.quantity / item.packSize)} упак. × ${item.packSize} шт</span>
-            </div>
-        ` : '';
+        let packInfo = '';
+        if (item.packPieces && item.packAreaM2) {
+            // Новый формат: количество упаковок с инфо о содержимом
+            packInfo = `
+                <div class="cart-item-pack-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+                    </svg>
+                    <span>${item.quantity} упак. (${item.quantity * item.packPieces} шт / ${(item.quantity * item.packAreaM2).toFixed(2)} м²)</span>
+                </div>
+            `;
+        } else if (item.packSize && item.packSize > 1) {
+            // Старый формат для совместимости
+            packInfo = `
+                <div class="cart-item-pack-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+                    </svg>
+                    <span>${Math.floor(item.quantity / item.packSize)} упак. × ${item.packSize} шт</span>
+                </div>
+            `;
+        }
+
+        // Определяем текст "за упак." или "за шт"
+        const priceUnit = (item.packPieces || (item.packSize && item.packSize > 1)) ? 'за упак.' : 'за шт';
 
         div.innerHTML = `
             <div class="cart-item-image">
@@ -75,7 +92,7 @@ class CartPage {
             </div>
             <div class="cart-item-details">
                 <h3 class="cart-item-name">${item.name}</h3>
-                <div class="cart-item-price">${this.formatPrice(item.price)} ₽ <span class="price-per-unit">за шт</span></div>
+                <div class="cart-item-price">${this.formatPrice(item.price)} ₽ <span class="price-per-unit">${priceUnit}</span></div>
                 ${packInfo}
                 <div class="cart-item-quantity">
                     <button class="quantity-decrease" data-sku="${item.sku}">−</button>

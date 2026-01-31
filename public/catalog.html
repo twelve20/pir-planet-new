@@ -142,6 +142,7 @@
                      data-price-pack="4480"
                      data-price-sqm="798"
                      data-packsize="8"
+                     data-pack-area="5.62"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 30мм">
@@ -209,6 +210,7 @@
                      data-price-pack="3720"
                      data-price-sqm="886"
                      data-packsize="6"
+                     data-pack-area="4.21"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 40мм">
@@ -276,6 +278,7 @@
                      data-price-pack="3850"
                      data-price-sqm="1097"
                      data-packsize="5"
+                     data-pack-area="3.51"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 50мм">
@@ -348,6 +351,7 @@
                      data-price-pack="70872"
                      data-price-sqm="2090"
                      data-packsize="12"
+                     data-pack-area="33.91"
                      data-image="images/prof1.webp">
                     <div class="catalog-item-image">
                         <img src="images/prof1.webp" alt="LOGICPIR PROF ФОЛЬГА Г1 100мм">
@@ -1321,47 +1325,41 @@
         }
 
         // Add to cart with selected unit
+        // Продажа ведется ТОЛЬКО упаковками (минимум 1 упаковка)
         function addToCartWithUnit(btn) {
             const item = btn.closest('.catalog-item');
             const sku = item.dataset.sku;
             const name = item.dataset.name;
             const packSize = parseInt(item.dataset.packsize);
+            const packArea = parseFloat(item.dataset.packArea) || 1;
             const image = item.dataset.image;
             const selectedUnit = item.dataset.selectedUnit || 'piece';
 
-            const pricePiece = parseInt(item.dataset.price);
             const pricePack = parseInt(item.dataset.pricePack);
-            const priceSqm = parseInt(item.dataset.priceSqm);
 
-            let product = {
-                image: image,
-                quantity: 1
-            };
-
+            let packQty = 1; // количество упаковок
             let feedbackText = '';
 
-            if (selectedUnit === 'piece') {
-                // При выборе штуки - добавляем упаковку (кратность)
-                product.sku = sku + '-pack';
-                product.name = name + ' (упаковка ' + packSize + ' шт)';
-                product.price = pricePack;
-                product.packSize = packSize;
-                feedbackText = '✓ (' + packSize + ' шт)';
-            } else if (selectedUnit === 'pack') {
-                // При выборе упаковки - добавляем 1 упаковку
-                product.sku = sku + '-pack';
-                product.name = name + ' (упаковка ' + packSize + ' шт)';
-                product.price = pricePack;
-                product.packSize = packSize;
-                feedbackText = '✓ (1 уп.)';
+            if (selectedUnit === 'piece' || selectedUnit === 'pack') {
+                // При выборе штуки или упаковки - добавляем 1 упаковку
+                packQty = 1;
+                feedbackText = '✓ (1 уп. / ' + packSize + ' шт)';
             } else if (selectedUnit === 'sqm') {
-                // При выборе м² - добавляем 1 м²
-                product.sku = sku + '-sqm';
-                product.name = name + ' (1 м²)';
-                product.price = priceSqm;
-                product.packSize = 1;
-                feedbackText = '✓ (1 м²)';
+                // При выборе м² - минимум 1 упаковка (нельзя купить меньше)
+                packQty = 1;
+                feedbackText = '✓ (1 уп. / ' + packArea + ' м²)';
             }
+
+            const product = {
+                sku: sku + '-pack',
+                name: name + ' (' + packSize + ' шт / ' + packArea + ' м²)',
+                price: pricePack,
+                quantity: packQty,
+                packSize: 1, // шаг = 1 упаковка
+                packPieces: packSize, // штук в упаковке (для отображения)
+                packAreaM2: packArea, // площадь упаковки (для отображения)
+                image: image
+            };
 
             if (window.cart) {
                 window.cart.addItem(product);
