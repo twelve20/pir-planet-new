@@ -471,29 +471,29 @@
         }
 
         // Add product to cart based on selected unit
-        // Продажа ведется ТОЛЬКО упаковками (минимум 1 упаковка)
+        // Добавляем ШТУКИ, кратные упаковке или м²
         function addProductToCart() {
-            let packQty = 1; // количество упаковок
+            const pieceArea = productData.packArea / productData.packSize; // площадь 1 штуки
+            let qty = productData.packSize; // количество штук
             let feedbackText = '';
 
             if (selectedUnit === 'piece' || selectedUnit === 'pack') {
-                // При выборе штуки или упаковки - добавляем 1 упаковку
-                packQty = 1;
-                feedbackText = '✓ (1 уп. / ' + productData.packSize + ' шт)';
+                // При выборе штуки или упаковки - добавляем packSize штук (1 упаковка)
+                qty = productData.packSize;
+                feedbackText = '✓ (' + qty + ' шт)';
             } else if (selectedUnit === 'sqm') {
-                // При выборе м² - минимум 1 упаковка
-                packQty = 1;
-                feedbackText = '✓ (1 уп. / ' + productData.packArea + ' м²)';
+                // При выборе м² - штуки для покрытия 1 м², кратно упаковке
+                const piecesFor1m2 = Math.ceil(1 / pieceArea);
+                qty = Math.ceil(piecesFor1m2 / productData.packSize) * productData.packSize;
+                feedbackText = '✓ (' + qty + ' шт / ' + (qty * pieceArea).toFixed(2) + ' м²)';
             }
 
             const product = {
-                sku: productData.sku + '-pack',
-                name: productData.baseName + ' (' + productData.packSize + ' шт / ' + productData.packArea + ' м²)',
-                price: productData.prices.pack,
-                quantity: packQty,
-                packSize: 1, // шаг = 1 упаковка
-                packPieces: productData.packSize,
-                packAreaM2: productData.packArea,
+                sku: productData.sku,
+                name: productData.baseName,
+                price: productData.prices.piece,
+                quantity: qty,
+                packSize: productData.packSize,
                 image: productData.image
             };
 

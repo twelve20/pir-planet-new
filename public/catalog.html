@@ -1325,39 +1325,40 @@
         }
 
         // Add to cart with selected unit
-        // Продажа ведется ТОЛЬКО упаковками (минимум 1 упаковка)
+        // Добавляем ШТУКИ, кратные упаковке или м²
         function addToCartWithUnit(btn) {
             const item = btn.closest('.catalog-item');
             const sku = item.dataset.sku;
             const name = item.dataset.name;
-            const packSize = parseInt(item.dataset.packsize);
-            const packArea = parseFloat(item.dataset.packArea) || 1;
+            const packSize = parseInt(item.dataset.packsize); // штук в упаковке
+            const packArea = parseFloat(item.dataset.packArea) || 1; // м² в упаковке
             const image = item.dataset.image;
             const selectedUnit = item.dataset.selectedUnit || 'piece';
 
-            const pricePack = parseInt(item.dataset.pricePack);
+            const pricePiece = parseInt(item.dataset.price); // цена за штуку
+            const pieceArea = packArea / packSize; // площадь 1 штуки в м²
 
-            let packQty = 1; // количество упаковок
+            let qty = packSize; // количество штук
             let feedbackText = '';
 
             if (selectedUnit === 'piece' || selectedUnit === 'pack') {
-                // При выборе штуки или упаковки - добавляем 1 упаковку
-                packQty = 1;
-                feedbackText = '✓ (1 уп. / ' + packSize + ' шт)';
+                // При выборе штуки или упаковки - добавляем packSize штук (1 упаковка)
+                qty = packSize;
+                feedbackText = '✓ (' + packSize + ' шт)';
             } else if (selectedUnit === 'sqm') {
-                // При выборе м² - минимум 1 упаковка (нельзя купить меньше)
-                packQty = 1;
-                feedbackText = '✓ (1 уп. / ' + packArea + ' м²)';
+                // При выборе м² - добавляем штуки для покрытия 1 м² (округление вверх), но кратно упаковке
+                const piecesFor1m2 = Math.ceil(1 / pieceArea);
+                // Округляем до кратности упаковки
+                qty = Math.ceil(piecesFor1m2 / packSize) * packSize;
+                feedbackText = '✓ (' + qty + ' шт / ' + (qty * pieceArea).toFixed(2) + ' м²)';
             }
 
             const product = {
-                sku: sku + '-pack',
-                name: name + ' (' + packSize + ' шт / ' + packArea + ' м²)',
-                price: pricePack,
-                quantity: packQty,
-                packSize: 1, // шаг = 1 упаковка
-                packPieces: packSize, // штук в упаковке (для отображения)
-                packAreaM2: packArea, // площадь упаковки (для отображения)
+                sku: sku,
+                name: name,
+                price: pricePiece,
+                quantity: qty,
+                packSize: packSize, // шаг изменения = размер упаковки
                 image: image
             };
 
