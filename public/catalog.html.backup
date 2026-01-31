@@ -138,7 +138,7 @@
                 <div class="catalog-item"
                      data-sku="logicpir-banya-30"
                      data-name="LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм"
-                     data-price="575"
+                     data-price="560"
                      data-image="images/techno1.webp">
                     <div class="catalog-item-image">
                         <img src="images/techno1.webp" alt="LOGICPIR БАНЯ ФОЛЬГА 30мм">
@@ -147,7 +147,7 @@
                     <div class="catalog-item-content">
                         <h3>LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм</h3>
                         <div class="catalog-price">
-                            <span class="price">575 ₽</span>
+                            <span class="price">560 ₽</span>
                         </div>
                         <div class="catalog-specs">
                             <div class="spec-item"><strong>Размер:</strong> <span>1190х590 мм</span></div>
@@ -882,7 +882,7 @@
           },
           "offers": {
             "@type": "Offer",
-            "price": "575",
+            "price": "560",
             "priceCurrency": "RUB",
             "availability": "https://schema.org/InStock",
             "seller": {
