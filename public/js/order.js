@@ -36,8 +36,17 @@ class OrderPage {
 
     async loadOrder() {
         try {
-            // Получаем токен доступа из localStorage
-            const accessToken = localStorage.getItem('orderAccessToken');
+            // Получаем токен доступа из URL (приоритет) или из localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            let accessToken = urlParams.get('token');
+
+            // Если токен в URL, сохраняем его в localStorage для последующих визитов
+            if (accessToken) {
+                localStorage.setItem('orderAccessToken', accessToken);
+            } else {
+                // Если токена в URL нет, пробуем взять из localStorage
+                accessToken = localStorage.getItem('orderAccessToken');
+            }
 
             if (!accessToken) {
                 console.error('Токен доступа не найден');

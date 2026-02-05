@@ -373,7 +373,7 @@ ${delivery.type === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.
 
 📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
 
-🔗 <b>Ссылка на заказ:</b> https://pir-planet.ru/order/${orderId}
+🔗 <b>Ссылка на заказ:</b> https://pir-planet.ru/order/${orderId}?token=${accessToken}
         `.trim();
 
         if (bot) {
