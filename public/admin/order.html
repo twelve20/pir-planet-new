@@ -65,6 +65,20 @@
             <!-- Status Management -->
             <section class="order-section">
                 <h2>Управление заказом</h2>
+
+                <!-- Customer Link -->
+                <div class="customer-link-section" style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                        <div>
+                            <strong>Ссылка для клиента:</strong>
+                            <p style="margin: 5px 0 0; font-size: 13px; color: #666;">Скопируйте эту ссылку и отправьте клиенту для оплаты заказа</p>
+                        </div>
+                        <button type="button" class="btn-primary" onclick="orderPage.copyCustomerLink()" style="white-space: nowrap;">
+                            📋 Скопировать ссылку
+                        </button>
+                    </div>
+                </div>
+
                 <form class="status-form" id="statusForm">
                     <div class="form-group">
                         <label for="orderStatus">Статус заказа:</label>

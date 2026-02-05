@@ -361,6 +361,36 @@ class AdminOrderPage {
         }
     }
 
+    async copyCustomerLink() {
+        if (!this.order || !this.order.access_token) {
+            alert('❌ Ошибка: токен доступа не найден');
+            return;
+        }
+
+        const link = `https://pir-planet.ru/order/${this.orderId}?token=${this.order.access_token}`;
+
+        try {
+            await navigator.clipboard.writeText(link);
+            alert('✅ Ссылка скопирована в буфер обмена!\n\nОтправьте её клиенту для просмотра и оплаты заказа.');
+        } catch (error) {
+            console.error('Ошибка копирования:', error);
+            // Fallback для старых браузеров
+            const textarea = document.createElement('textarea');
+            textarea.value = link;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                alert('✅ Ссылка скопирована в буфер обмена!\n\nОтправьте её клиенту для просмотра и оплаты заказа.');
+            } catch (err) {
+                alert('❌ Не удалось скопировать ссылку.\n\nСсылка:\n' + link);
+            }
+            document.body.removeChild(textarea);
+        }
+    }
+
     async deleteOrder() {
         if (!confirm(`Вы уверены, что хотите удалить заказ #${this.order.order_number}?\n\nЭто действие необратимо!`)) {
             return;
