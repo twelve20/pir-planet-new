@@ -174,20 +174,20 @@ class AdminOrderPage {
                     <tbody>
                         ${this.editedItems.map((item, index) => `
                             <tr>
-                                <td class="item-name-cell">${this.escapeHtml(item.product_name)}</td>
-                                <td>
+                                <td class="item-name-cell" data-label="Товар">${this.escapeHtml(item.product_name)}</td>
+                                <td data-label="Количество">
                                     <input type="number" class="item-quantity-input"
                                            value="${item.quantity}" min="1"
                                            onchange="orderPage.updateItemQuantity(${index}, this.value)">
                                 </td>
-                                <td>
+                                <td data-label="Цена за единицу">
                                     <input type="number" class="item-price-input"
                                            value="${item.unit_price}" min="0" step="1"
                                            onchange="orderPage.updateItemPrice(${index}, this.value)">
                                 </td>
-                                <td class="item-total">${(item.unit_price * item.quantity).toLocaleString('ru-RU')} ₽</td>
-                                <td>
-                                    <button type="button" class="btn-delete-item" onclick="orderPage.deleteItem(${index})">✕</button>
+                                <td class="item-total" data-label="Итого">${(item.unit_price * item.quantity).toLocaleString('ru-RU')} ₽</td>
+                                <td data-label="Действия">
+                                    <button type="button" class="btn-delete-item" onclick="orderPage.deleteItem(${index})">✕ Удалить</button>
                                 </td>
                             </tr>
                         `).join('')}

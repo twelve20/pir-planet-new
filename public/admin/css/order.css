@@ -432,26 +432,249 @@ body {
         padding: 1rem;
     }
 
+    /* Header */
+    .page-header {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Order sections */
+    .order-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .order-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Info grid */
     .info-row {
         grid-template-columns: 1fr;
         gap: 0.25rem;
+        padding: 0.5rem 0;
+    }
+
+    .info-label {
+        font-size: 0.85rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .info-value {
+        font-size: 0.95rem;
+    }
+
+    /* Customer Link Section */
+    .customer-link-section {
+        padding: 1rem !important;
+    }
+
+    .customer-link-section > div {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+
+    .customer-link-section button {
+        width: 100%;
+        padding: 0.875rem 1rem !important;
+    }
+
+    .customer-link-section p {
+        font-size: 12px !important;
+    }
+
+    /* Items Table - превращаем в карточки */
+    .items-table {
+        display: block;
+        overflow: visible;
+    }
+
+    .items-table thead {
+        display: none;
+    }
+
+    .items-table tbody {
+        display: block;
+    }
+
+    .items-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 1rem;
+        background: white;
+    }
+
+    .items-table td {
+        display: block;
+        padding: 0.5rem 0;
+        border: none;
+        text-align: left;
+    }
+
+    .items-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.85rem;
+    }
+
+    .item-name-cell {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .item-name-cell::before {
+        display: none;
+    }
+
+    .item-quantity-input,
+    .item-price-input {
+        max-width: 100%;
+        width: 100%;
+        padding: 0.65rem;
+    }
+
+    .item-total {
+        font-size: 1.1rem;
+        color: #3b82f6;
+    }
+
+    .btn-delete-item {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Add Item Form */
+    .add-item-form {
+        padding: 1rem;
+    }
+
+    .add-item-form h3 {
+        font-size: 1rem;
     }
 
     .add-item-row {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 
+    .add-item-input,
     .add-item-quantity,
     .add-item-price {
         width: 100%;
+        padding: 0.75rem;
+    }
+
+    .btn-add-item {
+        width: 100%;
+        padding: 0.875rem;
+    }
+
+    /* Totals */
+    .order-totals {
+        padding: 1rem;
+    }
+
+    .total-line {
+        font-size: 0.95rem;
+    }
+
+    .total-final {
+        font-size: 1.15rem;
+    }
+
+    /* Form */
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+        padding: 0.75rem;
+        font-size: 1rem;
     }
 
     .form-actions {
         flex-direction: column;
+        gap: 0.75rem;
     }
 
     .btn-primary,
-    .btn-secondary {
+    .btn-secondary,
+    .btn-danger {
         width: 100%;
+        padding: 0.875rem 1.5rem;
+    }
+
+    /* Delete Section */
+    .delete-section p {
+        font-size: 0.9rem;
+    }
+
+    /* Order Meta */
+    .order-meta {
+        font-size: 0.85rem;
+    }
+
+    /* Status Badge */
+    .status-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .page-header {
+        padding: 0.75rem;
+        border-radius: 8px;
+    }
+
+    .page-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .order-section {
+        padding: 0.875rem;
+        border-radius: 8px;
+    }
+
+    .order-section h2 {
+        font-size: 1rem;
+    }
+
+    .customer-link-section {
+        padding: 0.875rem !important;
+    }
+
+    .customer-link-section strong {
+        font-size: 0.9rem;
+    }
+
+    .items-table tr {
+        padding: 0.875rem;
+    }
+
+    .total-final {
+        font-size: 1.1rem;
     }
 }
