@@ -106,16 +106,16 @@ class AdminOrdersPage {
 
             return `
                 <tr>
-                    <td><strong>#${order.order_number}</strong></td>
-                    <td>${date}</td>
-                    <td>${this.escapeHtml(order.customer_name)}</td>
-                    <td>${this.escapeHtml(order.customer_phone)}</td>
-                    <td><strong>${total.toLocaleString('ru-RU')} ₽</strong></td>
-                    <td>${this.renderStatusBadge(order.status)}</td>
-                    <td>
+                    <td data-label="Заказ"><strong>#${order.order_number}</strong></td>
+                    <td data-label="Дата">${date}</td>
+                    <td data-label="Клиент">${this.escapeHtml(order.customer_name)}</td>
+                    <td data-label="Телефон">${this.escapeHtml(order.customer_phone)}</td>
+                    <td data-label="Сумма"><strong>${total.toLocaleString('ru-RU')} ₽</strong></td>
+                    <td data-label="Статус">${this.renderStatusBadge(order.status)}</td>
+                    <td data-label="Действия">
                         <div class="action-buttons">
                             <a href="/admin/order?id=${order.id}" class="btn-view">
-                                Просмотр
+                                👁 Просмотр
                             </a>
                         </div>
                     </td>
