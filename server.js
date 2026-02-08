@@ -287,6 +287,10 @@ app.get('/blog/banya-winter-preparation', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog-banya-winter-preparation.html'));
 });
 
+app.get('/blog/wall-insulation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'blog-wall-insulation.html'));
+});
+
 // Обработка маршрутов для страниц товаров
 app.get('/product/logicpir-banya-30', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'product-logicpir-banya-30.html'));
