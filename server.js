@@ -300,6 +300,10 @@ app.get('/product/logicpir-banya-50', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'product-logicpir-banya-50.html'));
 });
 
+app.get('/product/logicpir-prof-80', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'product-logicpir-prof-80.html'));
+});
+
 app.get('/product/logicpir-prof-100', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'product-logicpir-prof-100.html'));
 });
