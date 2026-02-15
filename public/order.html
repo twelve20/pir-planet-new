@@ -176,17 +176,18 @@
                     <div class="order-items-container">
                         <!-- Payment Section - ПЕРЕМЕЩЕНА НАВЕРХ -->
                         <div id="paymentSection" class="payment-section" style="display: none;">
-                            <h2>Оплата заказа</h2>
+                            <h2>Как оплатить заказ?</h2>
 
                             <!-- Сообщение об ожидании подтверждения -->
                             <div id="paymentWaiting" class="payment-waiting">
                                 <div class="waiting-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="50" height="50">
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <polyline points="12 6 12 12 16 14"></polyline>
                                     </svg>
                                 </div>
-                                <p>Ожидайте звонка менеджера для уточнения деталей и расчёта стоимости доставки</p>
+                                <h3 style="font-size: 1.5rem; font-weight: 800; color: #92400e; margin: 1rem 0 0.75rem;">📞 Ожидайте звонка менеджера!</h3>
+                                <p style="font-size: 1.125rem; line-height: 1.6;">Наш менеджер свяжется с вами для уточнения деталей и расчёта стоимости доставки. После этого здесь появятся кнопки для оплаты заказа.</p>
                             </div>
 
                             <!-- Варианты оплаты - показываются после подтверждения -->
@@ -208,20 +209,20 @@
                                 <div class="payment-option payment-option-recommended" id="payFullOption">
                                     <div class="recommended-badge">Рекомендуем</div>
                                     <div class="payment-option-header">
-                                        <div class="payment-option-title">Оплата онлайн</div>
+                                        <div class="payment-option-title">💳 Оплата онлайн</div>
                                         <div class="payment-option-desc">Банковская карта или СБП • Скидка 5%</div>
                                     </div>
                                     <div class="payment-option-amount">
                                         <span>К оплате:</span>
                                         <strong id="payFullAmount">0 ₽</strong>
                                     </div>
-                                    <button class="btn-primary btn-full" id="payFullBtn">Оплатить</button>
+                                    <button class="btn-primary btn-full" id="payFullBtn">💰 ОПЛАТИТЬ ЗАКАЗ ОНЛАЙН</button>
                                 </div>
 
                                 <!-- Оплата наличными -->
                                 <div class="payment-option payment-cash-option" id="payCashOption">
                                     <div class="payment-option-header">
-                                        <div class="payment-option-title">Наличными при получении</div>
+                                        <div class="payment-option-title">💵 Наличными при получении</div>
                                         <div class="payment-option-desc">Оплата товара при получении</div>
                                     </div>
                                     <div class="payment-cash-details">
@@ -234,8 +235,8 @@
                                             <strong id="cashDeliveryAmount">0 ₽</strong>
                                         </div>
                                     </div>
-                                    <p class="cash-notice">Для оплаты наличными необходимо оплатить доставку онлайн</p>
-                                    <button class="btn-secondary btn-full" id="payDeliveryBtn">Оплатить доставку</button>
+                                    <p class="cash-notice">⚠️ Для оплаты наличными необходимо оплатить доставку онлайн</p>
+                                    <button class="btn-secondary btn-full" id="payDeliveryBtn">💳 ОПЛАТИТЬ ДОСТАВКУ СЕЙЧАС</button>
                                 </div>
                             </div>
 

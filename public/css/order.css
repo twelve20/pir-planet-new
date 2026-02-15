@@ -532,20 +532,35 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #5568d3 100%);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    font-size: 1.125rem;
+    font-weight: 800;
+    animation: buttonPulse 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 12px 32px rgba(16, 185, 129, 0.6);
+        transform: scale(1.03);
+    }
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #5568d3 0%, var(--primary-color) 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 16px 40px rgba(16, 185, 129, 0.5);
+    animation: none;
 }
 
 .btn-primary:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
 }
 
 .btn-primary:disabled,
@@ -646,26 +661,91 @@
 
 /* Payment Section */
 .payment-section {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border-radius: 16px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.35), 0 0 0 3px rgba(102, 126, 234, 0.1);
     margin-bottom: 1.5rem;
-    border: 1px solid #e2e8f0;
-    animation: fadeIn 0.5s ease-in-out;
+    border: 3px solid #ffffff;
+    animation: paymentPulse 3s ease-in-out infinite, fadeIn 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.payment-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@keyframes paymentPulse {
+    0%, 100% {
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.35), 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    50% {
+        box-shadow: 0 16px 60px rgba(102, 126, 234, 0.5), 0 0 0 5px rgba(102, 126, 234, 0.2);
+    }
 }
 
 .payment-section h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: var(--text-dark);
-    font-weight: 700;
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--primary-color);
-    background: linear-gradient(135deg, var(--primary-color), #5568d3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: titleBounce 2s ease-in-out infinite;
+}
+
+@keyframes titleBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.payment-section h2::before {
+    content: '💳';
+    font-size: 1.75rem;
+    margin-right: 0.75rem;
+    animation: iconSpin 3s linear infinite;
+    display: inline-block;
+}
+
+@keyframes iconSpin {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(10deg);
+    }
 }
 
 /* Payment Waiting */
@@ -674,12 +754,33 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border-radius: 12px;
-    border: 2px solid #fcd34d;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+    border-radius: 16px;
+    border: 3px solid #fbbf24;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
     animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+.payment-waiting::before {
+    content: '⏱️';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    animation: clockSpin 10s linear infinite;
+}
+
+@keyframes clockSpin {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
 }
 
 @keyframes fadeIn {
@@ -1122,21 +1223,50 @@
 /* Responsive for Payment Section */
 @media (max-width: 640px) {
     .payment-section {
-        padding: 1.25rem;
+        padding: 1.5rem;
+        margin: -1rem -1rem 1.5rem -1rem;
+        border-radius: 24px 24px 20px 20px;
+        border-width: 4px;
+    }
+
+    .payment-section h2 {
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .payment-section h2::before {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
     }
 
     .payment-waiting,
     .payment-paid,
     .payment-delivery-paid {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
     }
 
     .payment-option {
-        padding: 1rem;
+        padding: 1.25rem;
     }
 
     .payment-option-title {
-        font-size: 1rem;
+        font-size: 1.125rem;
+    }
+
+    .payment-option-desc {
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        font-size: 1.25rem;
+        padding: 1.25rem 2rem;
+        font-weight: 900;
+    }
+
+    .btn-secondary {
+        font-size: 1.125rem;
+        padding: 1.125rem 2rem;
     }
 
     .cash-payment-buttons {
@@ -1145,6 +1275,30 @@
 
     .cash-payment-buttons button {
         width: 100%;
+    }
+
+    .discount-banner {
+        margin: 0 -0.5rem 1.5rem -0.5rem;
+    }
+}
+
+/* Extra emphasis on very small screens */
+@media (max-width: 480px) {
+    .payment-section {
+        border-width: 5px;
+        box-shadow: 0 16px 60px rgba(102, 126, 234, 0.5), 0 0 0 4px rgba(102, 126, 234, 0.15);
+    }
+
+    .payment-section h2 {
+        font-size: 1.375rem;
+        animation: titleBounce 1.5s ease-in-out infinite;
+    }
+
+    .btn-primary {
+        font-size: 1.375rem;
+        padding: 1.5rem 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 }
 
