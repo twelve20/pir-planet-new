@@ -354,6 +354,28 @@ app.post('/api/create-order', async (req, res) => {
         const { orderId, orderNumber, accessToken } = db.createOrder(orderData);
 
         // Отправляем уведомление в Telegram
+        const deliveryTypeLabels = {
+            'delivery': 'Доставка курьером',
+            'courier': 'Курьерская доставка',
+            'pickup': 'Самовывоз',
+            'transport': 'Транспортная компания'
+        };
+
+        const deliveryTypeLabel = deliveryTypeLabels[delivery.method] || delivery.method || 'Не указан';
+
+        let deliveryInfo = `🚚 <b>Доставка:</b> ${deliveryTypeLabel}`;
+
+        // Добавляем адрес для всех типов кроме самовывоза
+        if (delivery.method !== 'pickup') {
+            if (delivery.city && delivery.address) {
+                deliveryInfo += `\n📍 <b>Адрес:</b> ${delivery.city}, ${delivery.address}`;
+            } else if (delivery.address) {
+                deliveryInfo += `\n📍 <b>Адрес:</b> ${delivery.address}`;
+            }
+        } else if (delivery.pickupLocation) {
+            deliveryInfo += `\n📍 <b>Пункт выдачи:</b> ${delivery.pickupLocation}`;
+        }
+
         const telegramMessage = `
 🛒 <b>Новый заказ #${orderNumber}</b>
 
@@ -367,9 +389,7 @@ ${items.map(item => `• ${item.name} x ${item.quantity} шт. = ${(item.price *
 
 💰 <b>Сумма без доставки:</b> ${subtotal.toLocaleString('ru-RU')} ₽
 
-🚚 <b>Доставка:</b> ${delivery.type === 'delivery' ? 'Доставка' : 'Самовывоз'}
-${delivery.type === 'delivery' ? `📍 <b>Адрес:</b> ${delivery.city}, ${delivery.address}` : ''}
-${delivery.type === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.pickupLocation}` : ''}
+${deliveryInfo}
 
 📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
 
