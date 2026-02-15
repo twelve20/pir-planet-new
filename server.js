@@ -516,7 +516,7 @@ app.post('/api/order/:orderId/status', requireAuth, async (req, res) => {
 Статус изменен на: ${statusNames[status]}
 ${comment ? `\n💬 Комментарий: ${comment}` : ''}
 
-🔗 <b>Ссылка:</b> https://pir-planet.ru/order/${orderId}
+🔗 <b>Ссылка:</b> https://pir-planet.ru/order/${orderId}?token=${order.access_token}
             `.trim();
 
             await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' });
