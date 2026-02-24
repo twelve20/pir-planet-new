@@ -638,6 +638,207 @@ a {
     line-height: 1.6;
 }
 
+/* ===== PROMO SECTION ===== */
+.promo-section {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #d1fae5 100%);
+}
+
+.promo-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    box-shadow: 0 4px 24px rgba(16, 185, 129, 0.15);
+    border: 2px solid #10b981;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.promo-badge-wrapper {
+    flex-shrink: 0;
+}
+
+.promo-badge {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+    animation: promo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes promo-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35); }
+    50% { transform: scale(1.05); box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5); }
+}
+
+.promo-badge-percent {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+}
+
+.promo-info {
+    flex: 1;
+}
+
+.promo-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #064e3b;
+    margin-bottom: 0.75rem;
+}
+
+.promo-description {
+    font-size: 1.1rem;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.promo-description strong {
+    color: #059669;
+}
+
+.promo-note {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 1.25rem;
+}
+
+.promo-steps {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.promo-step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.promo-step-number {
+    width: 28px;
+    height: 28px;
+    background: #10b981;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.promo-action {
+    flex-shrink: 0;
+}
+
+.btn-promo {
+    display: inline-block;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+    white-space: nowrap;
+}
+
+.btn-promo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+}
+
+.btn-promo:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .promo-card {
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .promo-badge {
+        width: 100px;
+        height: 100px;
+    }
+
+    .promo-badge-percent {
+        font-size: 2rem;
+    }
+
+    .promo-title {
+        font-size: 1.4rem;
+    }
+
+    .promo-steps {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .promo-step {
+        text-align: left;
+    }
+
+    .promo-action {
+        width: 100%;
+    }
+
+    .btn-promo {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .promo-card {
+        padding: 1.5rem;
+    }
+
+    .promo-title {
+        font-size: 1.25rem;
+    }
+
+    .promo-description {
+        font-size: 1rem;
+    }
+}
+
 /* ===== PRODUCTS PREVIEW ===== */
 .products-preview {
     background: var(--bg-light);
