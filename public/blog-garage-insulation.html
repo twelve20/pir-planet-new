@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Полное руководство по утеплению гаража PIR-плитами. Стены, потолок, ворота — пошаговые инструкции, расчет материалов и типичные ошибки.">
+    <meta name="keywords" content="утепление гаража, PIR плиты для гаража, утеплить гараж изнутри, теплоизоляция гаража, утепление ворот гаража">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pir-planet.ru/blog/garage-insulation">
+    <meta property="og:title" content="Утепление гаража PIR-плитами: стены, потолок, ворота — полное руководство">
+    <meta property="og:description" content="Как правильно утеплить гараж PIR-плитами. Пошаговые инструкции для стен, потолка и ворот, расчет материалов, типичные ошибки.">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog-garage-hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pir-planet.ru/blog/garage-insulation">
+    <meta property="twitter:title" content="Утепление гаража PIR-плитами: стены, потолок, ворота — полное руководство">
+    <meta property="twitter:description" content="Как правильно утеплить гараж PIR-плитами. Пошаговые инструкции для стен, потолка и ворот, расчет материалов, типичные ошибки.">
+    <meta property="twitter:image" content="https://pir-planet.ru/images/blog-garage-hero.webp">
+
+    <title>Утепление гаража PIR-плитами | Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/blog/garage-insulation">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/new-year.css">
+
+    <style>
+        /* --- ПЕРЕМЕННЫЕ (Стиль сайта) --- */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- ПРОГРЕСС БАР ЧТЕНИЯ --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-white);
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* --- ОБЩИЕ СТИЛИ --- */
+        body {
+            font-family: var(--font-main);
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumbs-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--text-secondary);
+            margin: 0 0.5rem;
+        }
+
+        /* --- HERO СЕКЦИЯ --- */
+        .article-hero {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0 2rem;
+        }
+
+        .article-hero-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--quote-bg);
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* --- КОНТЕНТ СТАТЬИ --- */
+        .article-content {
+            background: var(--bg-white);
+            max-width: var(--content-width);
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .article-content h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content p {
+            margin: 1.2rem 0;
+            line-height: 1.8;
+        }
+
+        .article-content strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin: 0.8rem 0;
+            line-height: 1.7;
+        }
+
+        .article-content li strong {
+            color: var(--accent-color);
+        }
+
+        /* --- ТАБЛИЦЫ --- */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        /* --- БЛОК С ПРЕДУПРЕЖДЕНИЕМ --- */
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: #92400e;
+            font-size: 1.1rem;
+        }
+
+        .warning-box p {
+            margin: 0.5rem 0;
+            color: #78350f;
+        }
+
+        /* --- БЛОК С СОВЕТОМ --- */
+        .tip-box {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .tip-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .tip-box p {
+            margin: 0.5rem 0;
+        }
+
+        /* --- FAQ --- */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8fafc;
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* --- ЗАЩИТА ОТ КОПИРОВАНИЯ --- */
+        .watermark {
+            position: fixed;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            user-select: none;
+        }
+
+        .article-image, .article-featured-image {
+            position: relative;
+        }
+
+        .article-image::after, .article-featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .article-hero-container,
+            .breadcrumbs-container,
+            .article-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Утепление гаража PIR-плитами: стены, потолок, ворота — полное руководство",
+      "description": "Полное руководство по утеплению гаража PIR-плитами. Стены, потолок, ворота — пошаговые инструкции, расчет материалов и типичные ошибки.",
+      "image": "https://pir-planet.ru/images/blog-garage-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Планета PIR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Планета PIR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pir-planet.ru/images/favicon.svg"
+        }
+      },
+      "datePublished": "2026-02-24",
+      "dateModified": "2026-02-24"
+    }
+    </script>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+</head>
+<body>
+    <!-- Прогресс бар чтения -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                    <span class="logo-text">Планета PIR</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog" class="active">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-container">
+            <a href="/">Главная</a>
+            <span>/</span>
+            <a href="/blog">Блог</a>
+            <span>/</span>
+            Утепление гаража
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="article-hero">
+        <div class="article-hero-container">
+            <span class="article-category">Инструкции</span>
+            <h1 class="article-title">Утепление гаража PIR-плитами: стены, потолок, ворота — полное руководство</h1>
+            <div class="article-meta">
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>24 февраля 2026</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>18 мин</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Планета PIR</span>
+                </div>
+            </div>
+            <img src="/images/blog-garage-hero.webp" alt="Утепление гаража PIR-плитами" class="article-image">
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>
+            Неутеплённый гараж зимой превращается в холодильник: замерзает замок, не заводится двигатель, инструмент покрывается конденсатом, а работать внутри невозможно. Летом — наоборот: металлические стены раскаляются, и гараж становится духовкой. Правильное утепление PIR-плитами решает обе проблемы, при этом практически не крадёт полезную площадь.
+        </p>
+
+        <div class="tip-box">
+            <h4>Почему именно PIR для гаража?</h4>
+            <p>PIR-плиты — один из лучших утеплителей для гаража. Толщина всего 50 мм даёт тот же эффект, что 100 мм минваты. Они не впитывают влагу, не гниют, не привлекают грызунов и имеют группу горючести Г1 — важно для помещения, где хранятся ГСМ и стоит автомобиль.</p>
+        </div>
+
+        <h2>Зачем утеплять гараж: 5 причин не откладывать</h2>
+        <p>
+            Многие считают гараж подсобным помещением, не стоящим затрат на утепление. Это ошибка. Вот почему:
+        </p>
+        <ol>
+            <li><strong>Защита автомобиля.</strong> Резкие перепады температуры вызывают конденсат на кузове, ускоряя коррозию. В утеплённом гараже температура стабильна — даже без отопления она не опускается ниже +5°C.</li>
+            <li><strong>Лёгкий запуск двигателя.</strong> При температуре ниже -15°C масло густеет, аккумулятор теряет ёмкость. В утеплённом гараже запуск двигателя — без проблем даже в сильные морозы.</li>
+            <li><strong>Мастерская круглый год.</strong> Если вы используете гараж как мастерскую — без утепления работать зимой невозможно, а обогреватель без изоляции «греет улицу».</li>
+            <li><strong>Сохранность вещей.</strong> Инструменты, запчасти, сезонные шины — всё страдает от влажности и перепадов температуры. Утепление снижает влажность и предотвращает образование конденсата.</li>
+            <li><strong>Экономия на отоплении.</strong> Если в гараже есть обогрев — без утепления вы отапливаете улицу. С PIR-плитами достаточно маломощного обогревателя для поддержания комфортной температуры.</li>
+        </ol>
+
+        <h2>Особенности разных типов гаражей</h2>
+
+        <h3>Металлический гараж</h3>
+        <p>
+            Самый холодный вариант — стены из тонкого металла мгновенно промерзают и раскаляются. Утепление обязательно изнутри, снаружи нецелесообразно. Главная проблема — конденсат на металле под утеплителем.
+        </p>
+        <ul>
+            <li><strong>Решение:</strong> PIR-плиты с фольгой приклеиваются вплотную к металлу, без воздушного зазора. Фольга создаёт паробарьер и не даёт влаге попадать на металл.</li>
+            <li><strong>Толщина:</strong> 50 мм для средней полосы, 30 мм для юга.</li>
+        </ul>
+
+        <h3>Кирпичный гараж</h3>
+        <p>
+            Кирпичные стены сами по себе дают определённую теплоизоляцию, но недостаточную. В гараже из кирпича в один ряд (250 мм) зимой будет чуть выше нуля.
+        </p>
+        <ul>
+            <li><strong>Решение:</strong> утепление изнутри или снаружи. PIR-плиты клеятся на стену на клей-пену.</li>
+            <li><strong>Толщина:</strong> 30-50 мм в зависимости от толщины кладки и региона.</li>
+        </ul>
+
+        <h3>Гараж из бетонных блоков / пеноблоков</h3>
+        <p>
+            Пеноблоки имеют неплохие теплоизолирующие свойства, но продуваются через швы. Бетонные блоки — холодные, аналогично кирпичу.
+        </p>
+        <ul>
+            <li><strong>Решение:</strong> заделка швов + PIR-плиты 30-40 мм.</li>
+        </ul>
+
+        <div class="warning-box">
+            <h4>Важно: вентиляция!</h4>
+            <p>Утеплённый гараж обязательно нуждается в вентиляции. Без неё будет скапливаться влага, выхлопные газы и пары ГСМ. Оставьте приточное отверстие внизу (диаметр 100-150 мм) и вытяжное вверху на противоположной стене. Не заделывайте существующие вентиляционные каналы!</p>
+        </div>
+
+        <h2>Утепление стен гаража: пошаговая инструкция</h2>
+
+        <h3>Подготовка поверхности</h3>
+        <ol>
+            <li><strong>Очистите стены</strong> от грязи, пыли, масляных пятен. Металлические стены зачистите от ржавчины и обработайте антикоррозийной грунтовкой.</li>
+            <li><strong>Заделайте щели и трещины</strong> монтажной пеной или цементным раствором.</li>
+            <li><strong>Просушите стены</strong> — утеплять мокрую поверхность нельзя.</li>
+            <li><strong>Загрунтуйте</strong> кирпичные и бетонные стены для лучшей адгезии клея.</li>
+        </ol>
+
+        <h3>Монтаж PIR-плит на стены</h3>
+        <ol>
+            <li><strong>Нанесите клей-пену</strong> по периметру плиты и 1-2 полосы посередине. Отступ от края — 2-3 см.</li>
+            <li><strong>Приклейте плиту</strong> к стене, начиная от нижнего угла. Прижмите на 30-60 секунд.</li>
+            <li><strong>Следующую плиту</strong> установите встык к предыдущей. Соблюдайте перевязку швов — вертикальные стыки не должны совпадать в соседних рядах.</li>
+            <li><strong>Для металлического гаража:</strong> дополнительно закрепите плиты саморезами с шайбами через каждые 40-50 см, чтобы компенсировать вибрации стен.</li>
+            <li><strong>Для кирпичного/бетонного:</strong> после высыхания клея (24 ч) зафиксируйте тарельчатыми дюбелями — 4-5 штук на плиту.</li>
+            <li><strong>Проклейте все стыки</strong> фольгированным скотчем. Это создаёт сплошной паробарьер и предотвращает мостики холода.</li>
+        </ol>
+
+        <div class="tip-box">
+            <h4>Совет</h4>
+            <p>Если стены гаража неровные (перепад более 15 мм), установите PIR-плиты на деревянную обрешётку из бруска 40×40 мм. Плиты вставляются между брусками враспор, стыки запениваются и проклеиваются скотчем.</p>
+        </div>
+
+        <h2>Утепление потолка гаража</h2>
+        <p>
+            Через неутеплённый потолок теряется до 25% тепла. Для гаражей с плоской бетонной крышей или металлическим верхом утепление потолка — обязательный этап.
+        </p>
+
+        <h3>Порядок работ</h3>
+        <ol>
+            <li><strong>Очистите потолок</strong> от пыли, побелки, отслаивающейся краски.</li>
+            <li><strong>Обработайте антисептиком</strong> (бетонный потолок) или антикоррозийным составом (металлический).</li>
+            <li><strong>Нанесите клей-пену на плиту</strong> и приклейте к потолку. Для надёжности используйте подпорки из бруска, пока клей не схватится (2-3 часа).</li>
+            <li><strong>Зафиксируйте тарельчатыми дюбелями</strong> — 5-6 штук на плиту (для бетонного потолка).</li>
+            <li><strong>Проклейте стыки</strong> фольгированным скотчем.</li>
+            <li><strong>Не забудьте про примыкания</strong> — стык стены и потолка запеньте и проклейте скотчем.</li>
+        </ol>
+
+        <div class="warning-box">
+            <h4>Если над гаражом — чужой гараж</h4>
+            <p>В многоярусных гаражных комплексах утепление потолка менее критично — сверху тоже отапливаемое (или хотя бы закрытое) помещение. Сосредоточьтесь на стенах и воротах.</p>
+        </div>
+
+        <h2>Утепление ворот гаража — самое слабое место</h2>
+        <p>
+            Гаражные ворота — это огромная металлическая поверхность с минимальной теплоизоляцией. Через неутеплённые ворота уходит до 40-60% тепла. Это главный «мост холода» в любом гараже.
+        </p>
+
+        <h3>Подготовка ворот</h3>
+        <ul>
+            <li>Зачистите ворота от ржавчины и старой краски</li>
+            <li>Обработайте антикоррозийной грунтовкой</li>
+            <li>Обезжирьте поверхность</li>
+            <li>Проверьте и замените уплотнительные резинки по периметру — через щели задувает холодный воздух</li>
+        </ul>
+
+        <h3>Монтаж утеплителя на ворота</h3>
+        <ol>
+            <li><strong>Замерьте секции ворот</strong> между рёбрами жёсткости (для распашных ворот — между горизонтальными и вертикальными профилями).</li>
+            <li><strong>Нарежьте PIR-плиты</strong> по размерам секций с припуском 2-3 мм для плотной посадки. Режутся обычным строительным ножом.</li>
+            <li><strong>Вклейте плиты</strong> в секции на клей-пену. PIR-плиты лёгкие, поэтому клей-пены достаточно — дюбели в ворота сверлить не нужно.</li>
+            <li><strong>Запеньте зазоры</strong> между плитами и рёбрами жёсткости монтажной пеной. После высыхания срежьте излишки.</li>
+            <li><strong>Проклейте все стыки</strong> фольгированным скотчем.</li>
+        </ol>
+
+        <h3>Финишная отделка ворот</h3>
+        <p>
+            PIR-плиты можно оставить открытыми (фольгированное покрытие достаточно эстетично), но для защиты от механических повреждений рекомендуется закрыть:
+        </p>
+        <ul>
+            <li><strong>ОСП или фанера 4-6 мм</strong> — крепится к рёбрам жёсткости ворот саморезами. Недорого и практично.</li>
+            <li><strong>Пластиковые панели</strong> — лёгкие, моются, не боятся влаги.</li>
+            <li><strong>Оцинкованный профлист</strong> — максимальная прочность и долговечность.</li>
+        </ul>
+
+        <div class="tip-box">
+            <h4>Дополнительная мера: штора на ворота</h4>
+            <p>Повесьте ленточную ПВХ-штору (как на складских помещениях) с внутренней стороны ворот. Она создаёт дополнительный воздушный барьер при открытии ворот и не даёт холоду резко врываться внутрь. Стоимость — от 2000 ₽, эффект — значительный.</p>
+        </div>
+
+        <h2>Утепление пола гаража</h2>
+        <p>
+            Пол утепляют не всегда — только если гараж стоит на грунте без подвала и пол ощутимо холодный. Если под гаражом есть подвал — утепляйте потолок подвала, а не пол гаража.
+        </p>
+
+        <h3>Когда стоит утеплять пол</h3>
+        <ul>
+            <li>Гараж на грунте без фундаментной плиты</li>
+            <li>Гараж используется как мастерская, где вы проводите много времени</li>
+            <li>Планируется отопление гаража</li>
+        </ul>
+
+        <h3>Порядок работ</h3>
+        <ol>
+            <li>Выровняйте бетонное основание (стяжка 3-5 см)</li>
+            <li>Уложите PIR-плиты 30-50 мм, плотно стыкуя друг к другу</li>
+            <li>Проклейте стыки скотчем</li>
+            <li>Залейте армированную стяжку 5-7 см поверх утеплителя</li>
+        </ol>
+
+        <div class="warning-box">
+            <h4>Учитывайте высоту!</h4>
+            <p>Утепление пола поднимает уровень на 8-12 см (утеплитель + стяжка). Убедитесь, что автомобиль свободно заезжает через ворота после подъёма пола. Иногда проще утеплить только рабочую зону, оставив проезжую часть без утепления.</p>
+        </div>
+
+        <h2>Расчёт материалов для стандартного гаража</h2>
+
+        <p><strong>Исходные данные:</strong> гараж 6×4 м, высота 2.5 м, распашные ворота 2.5×2.1 м, кирпичные стены 250 мм, бетонный потолок. Средняя полоса России.</p>
+
+        <h3>Площадь утепления</h3>
+        <ul>
+            <li>Боковые стены: 2 × (6 × 2.5) = 30 м²</li>
+            <li>Задняя стена: 4 × 2.5 = 10 м²</li>
+            <li>Передняя стена (минус ворота): 4 × 2.5 - 2.5 × 2.1 = 4.75 м²</li>
+            <li>Потолок: 6 × 4 = 24 м²</li>
+            <li>Ворота: 2.5 × 2.1 = 5.25 м²</li>
+            <li><strong>Итого:</strong> ~74 м² (с запасом 10% = 82 м²)</li>
+        </ul>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Позиция</th>
+                        <th>Количество</th>
+                        <th>Цена за ед.</th>
+                        <th>Итого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIR-плиты 50 мм (стены + потолок, 75 м²)</td>
+                        <td>110 плит</td>
+                        <td>560 ₽</td>
+                        <td>61 600 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>PIR-плиты 50 мм (ворота, 7 м²)</td>
+                        <td>11 плит</td>
+                        <td>560 ₽</td>
+                        <td>6 160 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Клей-пена для PIR</td>
+                        <td>10 баллонов</td>
+                        <td>500 ₽</td>
+                        <td>5 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Фольгированный скотч</td>
+                        <td>8 рулонов</td>
+                        <td>350 ₽</td>
+                        <td>2 800 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Тарельчатые дюбели</td>
+                        <td>500 шт</td>
+                        <td>4 ₽</td>
+                        <td>2 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Монтажная пена</td>
+                        <td>5 баллонов</td>
+                        <td>400 ₽</td>
+                        <td>2 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Антикоррозийная грунтовка</td>
+                        <td>2 банки</td>
+                        <td>700 ₽</td>
+                        <td>1 400 ₽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ИТОГО материалы:</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>80 960 ₽</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Для сравнения:</strong> утепление того же гаража минеральной ватой 100 мм + пароизоляция + каркас обойдётся в 90 000-110 000 ₽, при этом «съест» по 7-8 см с каждой стены вместо 5 см.
+        </p>
+
+        <h2>Отопление утеплённого гаража</h2>
+        <p>
+            После утепления PIR-плитами для поддержания комфортной температуры +15-18°C достаточно маломощного обогревателя:
+        </p>
+        <ul>
+            <li><strong>Инфракрасный обогреватель 1-1.5 кВт</strong> — самый экономичный вариант, греет предметы, а не воздух</li>
+            <li><strong>Тепловентилятор 2 кВт</strong> — быстро прогревает воздух, но потребляет больше</li>
+            <li><strong>Конвектор 1.5 кВт</strong> — тихий, равномерный обогрев</li>
+        </ul>
+        <p>
+            Без утепления для того же гаража потребовался бы обогреватель на 5-7 кВт, а счета за электричество выросли бы в 3-4 раза. Утепление PIR-плитами окупается за 2-3 отопительных сезона.
+        </p>
+
+        <h2>Типичные ошибки при утеплении гаража</h2>
+
+        <h3>1. Заделка вентиляции</h3>
+        <p>
+            <strong>Ошибка:</strong> «Зачем мне вентиляция, если я утепляю? Через неё же холод идёт!»
+        </p>
+        <p>
+            <strong>Последствия:</strong> Скопление влаги, конденсат, ржавчина на автомобиле и инструментах, токсичные пары ГСМ.
+        </p>
+        <p>
+            <strong>Решение:</strong> Вентиляция обязательна! Используйте приточно-вытяжную систему с регулируемыми заслонками.
+        </p>
+
+        <h3>2. Воздушный зазор между утеплителем и металлической стеной</h3>
+        <p>
+            <strong>Ошибка:</strong> Между PIR-плитой и металлической стеной остаётся воздушная прослойка.
+        </p>
+        <p>
+            <strong>Последствия:</strong> В зазоре конденсируется влага, металл ржавеет, утеплитель не работает на полную мощность.
+        </p>
+        <p>
+            <strong>Решение:</strong> Приклеивайте PIR вплотную к металлу без зазоров. Используйте достаточное количество клея-пены.
+        </p>
+
+        <h3>3. Утепление стен без ворот</h3>
+        <p>
+            <strong>Ошибка:</strong> Утеплили стены и потолок, а ворота оставили «на потом».
+        </p>
+        <p>
+            <strong>Последствия:</strong> 40-60% тепла уходит через ворота. Эффект от утепления минимальный.
+        </p>
+        <p>
+            <strong>Решение:</strong> Всегда утепляйте ворота. Это самый «слабый» элемент с точки зрения теплопотерь.
+        </p>
+
+        <h3>4. Использование пенопласта (ПСБ) вместо PIR</h3>
+        <p>
+            <strong>Ошибка:</strong> Экономия на утеплителе — покупка дешёвого пенопласта.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Пенопласт горюч (группа Г3-Г4), выделяет токсичный дым, привлекает грызунов, хрупкий. В гараже с автомобилем и ГСМ это пожарная опасность.
+        </p>
+        <p>
+            <strong>Решение:</strong> PIR-плиты имеют группу горючести Г1, самозатухают, не выделяют токсичных веществ. Для гаража это принципиально важно.
+        </p>
+
+        <h2>Часто задаваемые вопросы</h2>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли утеплить гараж PIR-плитами самостоятельно?
+                </div>
+                <div class="faq-answer">
+                    Да, утепление гаража PIR-плитами — одна из самых простых задач для самостоятельного выполнения. Плиты лёгкие (около 3 кг), легко режутся строительным ножом, клеятся на пену. Один человек может утеплить стандартный гараж за 2-3 выходных дня. Специальных навыков не требуется.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Какая минимальная толщина PIR-плит для гаража?
+                </div>
+                <div class="faq-answer">
+                    Для южных регионов — 30 мм, для средней полосы — 50 мм, для северных регионов — 50-60 мм. Для ворот из тонкого металла рекомендуется не менее 50 мм независимо от региона, так как ворота — основной источник теплопотерь.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Нужно ли утеплять гараж, если я не планирую его отапливать?
+                </div>
+                <div class="faq-answer">
+                    Да, даже без отопления утепление имеет смысл. Утеплённый неотапливаемый гараж зимой поддерживает температуру на 8-15°C выше уличной за счёт теплоёмкости земли и стен. Этого достаточно, чтобы температура не опускалась ниже -5°C даже в сильные морозы, что защищает автомобиль и инструменты.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли красить PIR-плиты?
+                </div>
+                <div class="faq-answer">
+                    Фольгированное покрытие красить не рекомендуется — краска плохо держится на фольге. Если нужен определённый цвет — закройте утеплитель отделочным материалом (ОСП, пластиковые панели) и покрасьте его. Плиты со стеклохолстом можно штукатурить и красить.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Грызуны не портят PIR-плиты?
+                </div>
+                <div class="faq-answer">
+                    Нет, PIR-плиты не представляют интереса для грызунов — они не содержат органических веществ, которые могут привлечь мышей или крыс. В отличие от пенопласта, в PIR-плитах грызуны не устраивают гнёзда. Это подтверждено лабораторными испытаниями.
+                </div>
+            </div>
+        </div>
+
+        <h2>Заключение</h2>
+        <p>
+            Утепление гаража PIR-плитами — это инвестиция, которая окупается за 2-3 сезона. Вы получаете тёплый гараж, защиту автомобиля от коррозии, возможность работать в мастерской круглый год и значительную экономию на отоплении.
+        </p>
+        <p>
+            <strong>Главные правила:</strong>
+        </p>
+        <ul>
+            <li>Утепляйте всё: стены, потолок и обязательно ворота</li>
+            <li>Клейте PIR вплотную к поверхности без зазоров</li>
+            <li>Проклеивайте все стыки фольгированным скотчем</li>
+            <li>Не забывайте про вентиляцию</li>
+            <li>Для металлического гаража используйте только фольгированные PIR-плиты</li>
+        </ul>
+        <p>
+            <strong>Нужна помощь с расчётом материалов или консультация по утеплению вашего гаража?</strong> Позвоните нам по телефону +7 (963) 927-31-24 или оставьте заявку на сайте — поможем подобрать оптимальное решение!
+        </p>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </div>
+                    <p>Продажа PIR плит по всей России. Профессиональная консультация специалистов</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                        <li><a href="/reviews">Отзывы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Планета PIR. Все права защищены.</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">Данная статья защищена авторским правом. Копирование, распространение и использование материалов без письменного разрешения правообладателя запрещено.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Защита от копирования
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.metaKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); return false; }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        window.addEventListener('beforeprint', function(e) { e.preventDefault(); alert('Печать и сохранение страницы запрещены.'); return false; });
+
+        function createWatermarks() {
+            const watermarks = [
+                { top: '20%', left: '20%' }, { top: '20%', left: '70%' },
+                { top: '50%', left: '35%' }, { top: '80%', left: '20%' }, { top: '80%', left: '70%' }
+            ];
+            watermarks.forEach(pos => {
+                const mark = document.createElement('div');
+                mark.className = 'watermark';
+                mark.textContent = 'PIR-PLANET.RU';
+                mark.style.top = pos.top;
+                mark.style.left = pos.left;
+                document.body.appendChild(mark);
+            });
+        }
+
+        function protectImages() {
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('mousedown', function(e) { e.preventDefault(); return false; });
+                img.addEventListener('touchstart', function(e) { e.preventDefault(); return false; });
+            });
+        }
+
+        window.addEventListener('load', function() { createWatermarks(); protectImages(); });
+    </script>
+
+    <script src="/js/security.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/new-year.js"></script>
+
+    <!-- Прогресс бар чтения -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+</body>
+</html>
