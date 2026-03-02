@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Как утеплить каркасный дом PIR-плитами. Перекрёстное утепление, обшивка снаружи и изнутри, пирог стены, расчёт толщины и материалов. Полное руководство.">
+    <meta name="keywords" content="утепление каркасного дома, PIR плиты каркасный дом, перекрёстное утепление PIR, пирог стены каркасного дома, утеплитель для каркасника">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pir-planet.ru/blog/frame-house-insulation">
+    <meta property="og:title" content="Утепление каркасного дома PIR-плитами: перекрёстное утепление, пирог стены, расчёт">
+    <meta property="og:description" content="Полное руководство по утеплению каркасного дома PIR-плитами. Перекрёстное утепление, пирог стены, пошаговый монтаж, расчёт материалов.">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog-frame-house-hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pir-planet.ru/blog/frame-house-insulation">
+    <meta property="twitter:title" content="Утепление каркасного дома PIR-плитами: перекрёстное утепление, пирог стены, расчёт">
+    <meta property="twitter:description" content="Полное руководство по утеплению каркасного дома PIR-плитами. Перекрёстное утепление, пирог стены, пошаговый монтаж, расчёт материалов.">
+    <meta property="twitter:image" content="https://pir-planet.ru/images/blog-frame-house-hero.webp">
+
+    <title>Утепление каркасного дома PIR-плитами | Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/blog/frame-house-insulation">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/new-year.css">
+
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-white);
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .breadcrumbs {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumbs-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--text-secondary);
+            margin: 0 0.5rem;
+        }
+
+        .article-hero {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0 2rem;
+        }
+
+        .article-hero-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--quote-bg);
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .article-content {
+            background: var(--bg-white);
+            max-width: var(--content-width);
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .article-content h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content p {
+            margin: 1.2rem 0;
+            line-height: 1.8;
+        }
+
+        .article-content strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin: 0.8rem 0;
+            line-height: 1.7;
+        }
+
+        .article-content li strong {
+            color: var(--accent-color);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: #92400e;
+            font-size: 1.1rem;
+        }
+
+        .warning-box p {
+            margin: 0.5rem 0;
+            color: #78350f;
+        }
+
+        .tip-box {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .tip-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .tip-box p {
+            margin: 0.5rem 0;
+        }
+
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8fafc;
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .watermark {
+            position: fixed;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            user-select: none;
+        }
+
+        .article-image, .article-featured-image {
+            position: relative;
+        }
+
+        .article-image::after, .article-featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .article-hero-container,
+            .breadcrumbs-container,
+            .article-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Утепление каркасного дома PIR-плитами: перекрёстное утепление, пирог стены, расчёт",
+      "description": "Полное руководство по утеплению каркасного дома PIR-плитами. Перекрёстное утепление, пирог стены, пошаговый монтаж, расчёт материалов.",
+      "image": "https://pir-planet.ru/images/blog-frame-house-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Планета PIR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Планета PIR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pir-planet.ru/images/favicon.svg"
+        }
+      },
+      "datePublished": "2026-03-02",
+      "dateModified": "2026-03-02"
+    }
+    </script>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+</head>
+<body>
+    <!-- Прогресс бар чтения -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                    <span class="logo-text">Планета PIR</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog" class="active">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-container">
+            <a href="/">Главная</a>
+            <span>/</span>
+            <a href="/blog">Блог</a>
+            <span>/</span>
+            Утепление каркасного дома
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="article-hero">
+        <div class="article-hero-container">
+            <span class="article-category">Инструкции</span>
+            <h1 class="article-title">Утепление каркасного дома PIR-плитами: перекрёстное утепление, пирог стены и пошаговый монтаж</h1>
+            <div class="article-meta">
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>2 марта 2026</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>20 мин</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Планета PIR</span>
+                </div>
+            </div>
+            <img src="/images/blog-frame-house-hero.webp" alt="Утепление каркасного дома PIR-плитами" class="article-image">
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>
+            Каркасный дом — одна из самых популярных технологий строительства в России. Быстро, относительно недорого, тёплый при правильном утеплении. Но именно «при правильном» — ключевые слова. Ошибки в утеплении каркасника приводят к промерзанию, конденсату и даже гниению деревянного каркаса. PIR-плиты позволяют избежать большинства этих проблем и вывести энергоэффективность дома на совершенно другой уровень.
+        </p>
+
+        <div class="tip-box">
+            <h4>Главное преимущество PIR в каркаснике</h4>
+            <p>PIR-плиты в каркасном доме работают не только как утеплитель, но и как паробарьер (фольгированные плиты), ветрозащита (при наружной обшивке) и дополнительная жёсткость конструкции. Один материал заменяет три — это экономит время и деньги.</p>
+        </div>
+
+        <h2>Слабое место каркасного дома — мостики холода</h2>
+        <p>
+            Классическая схема утепления каркасника: минеральная вата между стойками каркаса. Звучит просто, но у неё есть серьёзный недостаток — <strong>мостики холода через деревянные стойки</strong>.
+        </p>
+        <p>
+            Дерево проводит тепло в 5-7 раз лучше, чем минвата. Стойка каркаса сечением 150×50 мм, установленная с шагом 600 мм, занимает примерно 8% площади стены. Через эти 8% уходит непропорционально много тепла. В сильные морозы на внутренней отделке напротив стоек могут появляться холодные полосы и даже конденсат.
+        </p>
+        <p>
+            <strong>Решение — перекрёстное утепление PIR-плитами.</strong> Слой PIR накрывает стойки сплошным контуром, перекрывая все мостики холода. Результат — стена работает как единый теплоизоляционный щит.
+        </p>
+
+        <h2>Три схемы применения PIR в каркасном доме</h2>
+
+        <h3>Схема 1: Перекрёстное утепление снаружи (рекомендуемая)</h3>
+        <p>
+            Самая эффективная схема. Между стойками каркаса — минвата или PIR, а поверх стоек снаружи — сплошной слой PIR-плит.
+        </p>
+        <p><strong>Пирог стены (изнутри наружу):</strong></p>
+        <ol>
+            <li>Внутренняя отделка (гипсокартон, вагонка)</li>
+            <li>Пароизоляция (или фольгированный PIR как паробарьер)</li>
+            <li>Основной утеплитель между стойками (минвата 150 мм или PIR)</li>
+            <li>Деревянный каркас (стойки 150×50 мм)</li>
+            <li><strong>PIR-плиты 30-50 мм — сплошной наружный слой</strong></li>
+            <li>Контробрешётка (для вентзазора 40-50 мм)</li>
+            <li>Наружная отделка (сайдинг, имитация бруса, фасадные панели)</li>
+        </ol>
+
+        <div class="tip-box">
+            <h4>Почему снаружи лучше?</h4>
+            <p>Наружный слой PIR перекрывает стойки, устраняя мостики холода. Точка росы смещается за пределы каркаса — дерево остаётся сухим и тёплым. Паропроницаемость стены работает правильно: изнутри — пароизоляция, снаружи — паропроницаемый слой.</p>
+        </div>
+
+        <h3>Схема 2: Перекрёстное утепление изнутри</h3>
+        <p>
+            Применяется, когда наружная отделка уже выполнена и менять её нецелесообразно.
+        </p>
+        <p><strong>Пирог стены (изнутри наружу):</strong></p>
+        <ol>
+            <li>Внутренняя отделка (ГКЛ)</li>
+            <li><strong>PIR-плиты 30 мм с фольгой — сплошной внутренний слой (одновременно паробарьер)</strong></li>
+            <li>Основной утеплитель между стойками (минвата 150 мм)</li>
+            <li>Деревянный каркас</li>
+            <li>Ветрозащитная мембрана</li>
+            <li>Контробрешётка + вентзазор</li>
+            <li>Наружная отделка</li>
+        </ol>
+        <p>
+            При этой схеме фольгированный PIR заменяет отдельную пароизоляционную плёнку. Стыки плит проклеиваются фольгированным скотчем — получается герметичный паробарьер.
+        </p>
+
+        <h3>Схема 3: Полная замена минваты на PIR</h3>
+        <p>
+            Для тех, кто хочет максимальной энергоэффективности и долговечности.
+        </p>
+        <p><strong>Пирог стены:</strong></p>
+        <ol>
+            <li>Внутренняя отделка</li>
+            <li>PIR-плиты между стойками (заполнение каркаса)</li>
+            <li>PIR-плиты поверх стоек (перекрёстный слой)</li>
+            <li>Контробрешётка + вентзазор</li>
+            <li>Наружная отделка</li>
+        </ol>
+        <p>
+            При этой схеме отдельная пароизоляция не нужна — фольгированные PIR-плиты с проклеенными стыками сами являются паробарьером. Стена получается тоньше, теплее и полностью защищена от влаги.
+        </p>
+
+        <div class="warning-box">
+            <h4>Важно при полной замене</h4>
+            <p>При заполнении каркаса PIR-плитами нарезайте их точно в размер между стойками. Зазоры более 5 мм заполняйте монтажной пеной. Каждый незаделанный зазор — это щель, через которую уходит тепло.</p>
+        </div>
+
+        <h2>Выбор толщины PIR-плит для перекрёстного утепления</h2>
+        <p>
+            Толщина наружного перекрёстного слоя PIR зависит от основного утеплителя в каркасе и климатического региона.
+        </p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Основной утеплитель</th>
+                        <th>Юг России</th>
+                        <th>Средняя полоса</th>
+                        <th>Урал, Сибирь</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Минвата 100 мм в каркасе</td>
+                        <td>30 мм PIR</td>
+                        <td>50 мм PIR</td>
+                        <td>50-60 мм PIR</td>
+                    </tr>
+                    <tr>
+                        <td>Минвата 150 мм в каркасе</td>
+                        <td>20 мм PIR</td>
+                        <td>30 мм PIR</td>
+                        <td>50 мм PIR</td>
+                    </tr>
+                    <tr>
+                        <td>Минвата 200 мм в каркасе</td>
+                        <td>—</td>
+                        <td>20-30 мм PIR</td>
+                        <td>30 мм PIR</td>
+                    </tr>
+                    <tr>
+                        <td>Только PIR (без минваты)</td>
+                        <td>80 мм PIR</td>
+                        <td>100-120 мм PIR</td>
+                        <td>120-150 мм PIR</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Оптимальный вариант для средней полосы:</strong> минвата 150 мм между стойками + PIR 30 мм перекрёстно снаружи. Общее сопротивление теплопередаче такой стены — около 5.0 м²·°C/Вт, что с запасом перекрывает требования СП 50.13330.
+        </p>
+
+        <h2>Пошаговый монтаж: перекрёстное утепление снаружи</h2>
+
+        <h3>Инструменты и материалы</h3>
+        <ul>
+            <li>PIR-плиты фольгированные (LOGICPIR или PIRRO) нужной толщины</li>
+            <li>Тарельчатые дюбели с пластиковым гвоздём (длина = толщина PIR + 50 мм)</li>
+            <li>Фольгированный скотч шириной 50 мм</li>
+            <li>Монтажная пена</li>
+            <li>Строительный нож</li>
+            <li>Рулетка, уровень, маркер</li>
+            <li>Шуруповёрт</li>
+            <li>Бруски для контробрешётки 40×50 мм</li>
+        </ul>
+
+        <h3>Этап 1: Подготовка каркаса</h3>
+        <ol>
+            <li>Убедитесь, что основной утеплитель (минвата) установлен в каркас без пустот и зазоров.</li>
+            <li>Проверьте, что ветрозащитная мембрана (если предусмотрена проектом) закреплена на стойках.</li>
+            <li>Осмотрите наружную поверхность каркаса — стойки должны быть в одной плоскости. Выступы стесайте, впадины компенсируются клей-пеной.</li>
+        </ol>
+
+        <h3>Этап 2: Монтаж PIR-плит</h3>
+        <ol>
+            <li><strong>Начните с нижнего угла.</strong> Первую плиту установите горизонтально, плотно прижав к стене.</li>
+            <li><strong>Закрепите тарельчатыми дюбелями</strong> — 5 штук на плиту (4 по углам на расстоянии 5-7 см от края + 1 в центре). Дюбель должен войти в деревянную стойку или обвязку минимум на 30 мм.</li>
+            <li><strong>Следующую плиту</strong> установите встык, без зазора. При необходимости подрезки — используйте строительный нож и линейку.</li>
+            <li><strong>Соблюдайте перевязку швов</strong> — смещайте плиты в каждом ряду минимум на 200 мм, чтобы вертикальные стыки не совпадали.</li>
+            <li><strong>Вокруг окон и дверей</strong> — вырезайте PIR точно по проёму. Не допускайте стыков плит на углах проёмов — от угла проёма до ближайшего стыка должно быть минимум 150 мм.</li>
+        </ol>
+
+        <h3>Этап 3: Герметизация стыков</h3>
+        <ol>
+            <li><strong>Проклейте все стыки</strong> между плитами фольгированным скотчем.</li>
+            <li><strong>Зазоры более 2-3 мм</strong> предварительно заполните монтажной пеной, дождитесь высыхания, срежьте излишки, затем проклейте скотчем.</li>
+            <li><strong>Примыкания к цоколю, мауэрлату, оконным рамам</strong> — заполните пеной и проклейте скотчем. Герметичность на этих участках критически важна.</li>
+        </ol>
+
+        <h3>Этап 4: Контробрешётка и вентзазор</h3>
+        <ol>
+            <li><strong>Установите бруски контробрешётки</strong> 40×50 мм вертикально с шагом 400-600 мм (под шаг наружной отделки).</li>
+            <li><strong>Крепите бруски саморезами</strong> через PIR-плиты в стойки каркаса. Длина самореза = толщина бруска + толщина PIR + 40 мм.</li>
+            <li><strong>Вентзазор 40-50 мм</strong> между PIR и наружной отделкой обеспечивает удаление влаги и продлевает срок службы конструкции.</li>
+        </ol>
+
+        <div class="warning-box">
+            <h4>Не пропускайте вентзазор!</h4>
+            <p>Монтаж наружной отделки вплотную к PIR-плитам без вентзазора — грубая ошибка. Между утеплителем и отделкой будет скапливаться влага, что приведёт к гниению обрешётки и порче отделочного материала. Вентзазор должен быть открыт снизу (вход воздуха) и сверху (выход).</p>
+        </div>
+
+        <h2>Утепление перекрытий каркасного дома</h2>
+
+        <h3>Пол первого этажа</h3>
+        <p>
+            Если дом на свайном или столбчатом фундаменте — пол продувается снизу и нуждается в серьёзном утеплении.
+        </p>
+        <p><strong>Пирог пола (снизу вверх):</strong></p>
+        <ol>
+            <li>Ветрозащитная мембрана или черновой пол</li>
+            <li>Основной утеплитель между лагами (минвата 200 мм или PIR)</li>
+            <li><strong>PIR-плиты 30-50 мм сплошным слоем поверх лаг</strong></li>
+            <li>Фанера или ОСП 18-22 мм (черновой пол)</li>
+            <li>Финишное покрытие</li>
+        </ol>
+        <p>
+            Перекрёстный слой PIR поверх лаг устраняет мостики холода через деревянные балки и создаёт дополнительный паробарьер.
+        </p>
+
+        <h3>Чердачное / межэтажное перекрытие</h3>
+        <p>
+            Если чердак холодный — утепление перекрытия обязательно. Через неутеплённый потолок уходит до 30% тепла.
+        </p>
+        <p><strong>Пирог перекрытия (снизу вверх):</strong></p>
+        <ol>
+            <li>Потолочная отделка (ГКЛ, вагонка)</li>
+            <li><strong>PIR-плиты 30 мм с фольгой (паробарьер + перекрёстное утепление)</strong></li>
+            <li>Балки перекрытия с утеплителем между ними (минвата 200-250 мм)</li>
+            <li>Ветрозащитная мембрана</li>
+            <li>Настил чердака (если эксплуатируемый)</li>
+        </ol>
+
+        <h2>Расчёт материалов для дома 8×10 м</h2>
+
+        <p><strong>Исходные данные:</strong> каркасный дом 8×10 м, один этаж, высота стен 2.8 м, 6 окон (1.4×1.4 м), 1 дверь (0.9×2.1 м). Перекрёстное утепление стен снаружи PIR 30 мм. Средняя полоса России.</p>
+
+        <h3>Площадь утепления стен</h3>
+        <ul>
+            <li>Периметр: (8 + 10) × 2 = 36 м</li>
+            <li>Общая площадь стен: 36 × 2.8 = 100.8 м²</li>
+            <li>Окна: 6 × (1.4 × 1.4) = 11.76 м²</li>
+            <li>Дверь: 0.9 × 2.1 = 1.89 м²</li>
+            <li><strong>Площадь утепления:</strong> 100.8 - 11.76 - 1.89 = 87.15 м²</li>
+            <li>С запасом 10% на подрезку: <strong>~96 м²</strong></li>
+        </ul>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Позиция</th>
+                        <th>Количество</th>
+                        <th>Цена за ед.</th>
+                        <th>Итого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIR-плиты 30 мм (стены, 96 м²)</td>
+                        <td>140 плит (0.69 м²/шт)</td>
+                        <td>430 ₽</td>
+                        <td>60 200 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Тарельчатые дюбели 8×100 мм</td>
+                        <td>700 шт</td>
+                        <td>4 ₽</td>
+                        <td>2 800 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Фольгированный скотч 50 мм</td>
+                        <td>10 рулонов</td>
+                        <td>350 ₽</td>
+                        <td>3 500 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Монтажная пена</td>
+                        <td>8 баллонов</td>
+                        <td>400 ₽</td>
+                        <td>3 200 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Брусок 40×50 мм для контробрешётки</td>
+                        <td>120 п.м.</td>
+                        <td>45 ₽/п.м.</td>
+                        <td>5 400 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Саморезы для контробрешётки</td>
+                        <td>300 шт</td>
+                        <td>3 ₽</td>
+                        <td>900 ₽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ИТОГО (перекрёстное утепление стен):</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>76 000 ₽</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Стоимость квадратного метра перекрёстного утепления:</strong> около 790 ₽/м² (материалы). Для сравнения — просто наклеить ветрозащитную плёнку обойдётся в 50-80 ₽/м², но вы потеряете 15-20% тепла через мостики холода стоек. PIR окупается за 3-4 отопительных сезона за счёт экономии на газе или электричестве.
+        </p>
+
+        <h2>Типичные ошибки при утеплении каркасного дома</h2>
+
+        <h3>1. Щели между минватой и стойками</h3>
+        <p>
+            <strong>Ошибка:</strong> Минвата нарезана неточно, между плитой утеплителя и стойкой каркаса — зазоры 5-15 мм.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Через щели циркулирует воздух (конвекция), вынося тепло. Эффективность утепления падает на 20-30%.
+        </p>
+        <p>
+            <strong>Решение:</strong> Нарезайте минвату на 10-15 мм шире проёма — она должна вставляться враспор. PIR-плиты нарезайте точно в размер, зазоры заполняйте монтажной пеной.
+        </p>
+
+        <h3>2. Отсутствие пароизоляции</h3>
+        <p>
+            <strong>Ошибка:</strong> «Дом каркасный, он и так дышит» — пароизоляцию не ставят.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Тёплый влажный воздух из помещения проникает в утеплитель, конденсируется внутри стены. Минвата намокает, теряет свойства. Дерево каркаса гниёт.
+        </p>
+        <p>
+            <strong>Решение:</strong> Пароизоляция обязательна! Используйте специальную плёнку или фольгированные PIR-плиты в качестве внутреннего перекрёстного слоя — они выполняют роль и утеплителя, и паробарьера.
+        </p>
+
+        <h3>3. Негерметичная пароизоляция</h3>
+        <p>
+            <strong>Ошибка:</strong> Пароизоляция установлена, но стыки не проклеены, есть дырки от крепежа, примыкания к стенам не заделаны.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Пар находит любую дырку и проникает в утеплитель. Даже одна незаделанная щель сводит на нет всю работу пароизоляции.
+        </p>
+        <p>
+            <strong>Решение:</strong> Проклеивайте все стыки специальным скотчем. Места прохода коммуникаций герметизируйте. PIR с проклеенными фольгированным скотчем стыками — один из самых надёжных паробарьеров.
+        </p>
+
+        <h3>4. Отсутствие вентзазора на фасаде</h3>
+        <p>
+            <strong>Ошибка:</strong> Сайдинг или имитацию бруса монтируют вплотную к утеплителю.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Влага, которая неизбежно попадает под отделку (дождь, конденсат), не может высохнуть. Отделка вздувается, обрешётка гниёт.
+        </p>
+        <p>
+            <strong>Решение:</strong> Вентзазор 40-50 мм обязателен. Внизу и вверху зазор должен быть открыт для циркуляции воздуха.
+        </p>
+
+        <h3>5. Экономия на толщине утеплителя</h3>
+        <p>
+            <strong>Ошибка:</strong> «150 мм минваты хватит для Подмосковья» — без перекрёстного утепления.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Формально теплотехнический расчёт может сходиться, но он не учитывает мостики холода через стойки. Реальные теплопотери на 15-25% выше расчётных.
+        </p>
+        <p>
+            <strong>Решение:</strong> Добавьте перекрёстный слой PIR 30 мм — это увеличит стоимость стены на 790 ₽/м², но уберёт мостики холода и даст реальное, а не расчётное утепление.
+        </p>
+
+        <h2>Часто задаваемые вопросы</h2>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли использовать PIR вместо ветрозащитной мембраны?
+                </div>
+                <div class="faq-answer">
+                    Да, при наружном перекрёстном утеплении PIR-плиты с проклеенными стыками полностью заменяют ветрозащитную мембрану. Они не продуваются ветром и не пропускают влагу снаружи. Однако вентзазор между PIR и наружной отделкой всё равно необходим.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Какой PIR лучше для каркасного дома — фольгированный или со стеклохолстом?
+                </div>
+                <div class="faq-answer">
+                    Для наружного перекрёстного слоя подходят оба варианта. Фольгированный PIR удобнее — стыки легко проклеивать фольгированным скотчем, и он дополнительно отражает тепловое излучение. Для внутреннего перекрёстного слоя фольгированный PIR предпочтительнее, так как одновременно работает паробарьером.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Не будет ли стена «не дышать» с PIR?
+                </div>
+                <div class="faq-answer">
+                    Концепция «дышащих стен» — миф. Через стены удаляется менее 3% влаги из помещения, остальное — через вентиляцию. Правильный пирог стены: пароизоляция изнутри (или фольгированный PIR), утеплитель, ветрозащита снаружи (или PIR). Воздухообмен обеспечивается вентиляцией, а не стенами.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли утеплить PIR уже построенный каркасный дом?
+                </div>
+                <div class="faq-answer">
+                    Да. Снаружи — демонтируете отделку, монтируете PIR поверх существующего каркаса, устанавливаете контробрешётку и возвращаете отделку. Изнутри — крепите PIR-плиты на стены, поверх монтируете гипсокартон. Наружный вариант предпочтительнее, так как не уменьшает площадь помещений.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Какой срок службы PIR-плит в каркасной стене?
+                </div>
+                <div class="faq-answer">
+                    Срок службы PIR-плит — более 50 лет без потери теплоизолирующих свойств. Это подтверждено лабораторными испытаниями ускоренного старения. PIR не впитывает влагу, не гниёт, не подвержен биологическому разрушению. Фактически, PIR переживёт сам деревянный каркас.
+                </div>
+            </div>
+        </div>
+
+        <h2>Заключение</h2>
+        <p>
+            Перекрёстное утепление каркасного дома PIR-плитами — это не роскошь, а разумное решение, которое окупается за несколько отопительных сезонов. Вы устраняете мостики холода через стойки каркаса, получаете герметичный контур утепления и защищаете деревянный каркас от влаги.
+        </p>
+        <p>
+            <strong>Главные принципы:</strong>
+        </p>
+        <ul>
+            <li>Перекрёстный слой PIR снаружи — лучшая схема для нового строительства</li>
+            <li>Фольгированный PIR изнутри заменяет пароизоляцию</li>
+            <li>Все стыки проклеивайте фольгированным скотчем</li>
+            <li>Вентзазор на фасаде обязателен</li>
+            <li>30 мм PIR поверх стоек устраняют мостики холода на 90%+</li>
+        </ul>
+        <p>
+            <strong>Строите каркасный дом или хотите доутеплить существующий?</strong> Позвоните нам по телефону +7 (963) 927-31-24 или оставьте заявку на сайте — поможем рассчитать материалы и подобрать оптимальную схему утепления!
+        </p>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </div>
+                    <p>Продажа PIR плит по всей России. Профессиональная консультация специалистов</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                        <li><a href="/reviews">Отзывы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Планета PIR. Все права защищены.</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">Данная статья защищена авторским правом. Копирование, распространение и использование материалов без письменного разрешения правообладателя запрещено.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.metaKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); return false; }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        window.addEventListener('beforeprint', function(e) { e.preventDefault(); alert('Печать и сохранение страницы запрещены.'); return false; });
+
+        function createWatermarks() {
+            const watermarks = [
+                { top: '20%', left: '20%' }, { top: '20%', left: '70%' },
+                { top: '50%', left: '35%' }, { top: '80%', left: '20%' }, { top: '80%', left: '70%' }
+            ];
+            watermarks.forEach(pos => {
+                const mark = document.createElement('div');
+                mark.className = 'watermark';
+                mark.textContent = 'PIR-PLANET.RU';
+                mark.style.top = pos.top;
+                mark.style.left = pos.left;
+                document.body.appendChild(mark);
+            });
+        }
+
+        function protectImages() {
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('mousedown', function(e) { e.preventDefault(); return false; });
+                img.addEventListener('touchstart', function(e) { e.preventDefault(); return false; });
+            });
+        }
+
+        window.addEventListener('load', function() { createWatermarks(); protectImages(); });
+    </script>
+
+    <script src="/js/security.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/new-year.js"></script>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+</body>
+</html>
