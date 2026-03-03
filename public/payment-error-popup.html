@@ -110,45 +110,16 @@
             ym(104857358, 'reachGoal', 'payment_declined');
         }
 
-        console.log('🔍 Payment Error - Debug Info:');
-        console.log('In iframe?', window.self !== window.top);
-        console.log('Has opener?', window.opener && !window.opener.closed);
-
         // Получаем orderId из localStorage
         const orderId = localStorage.getItem('lastOrderId');
         console.log('📋 Order ID from localStorage:', orderId);
 
-        // Показываем сообщение 2 секунды, затем возвращаем на checkout для повторной попытки
+        // Показываем сообщение 2 секунды, затем возвращаем на страницу заказа для повторной попытки
         setTimeout(() => {
-            // НЕ очищаем корзину - пользователь может попробовать оплатить снова
-
-            // Проверяем, находимся ли мы в iframe
-            if (window.self !== window.top) {
-                console.log('📍 In iframe, redirecting top window to checkout');
-                try {
-                    // Перенаправляем на checkout для повторной попытки оплаты
-                    window.top.location.href = 'https://pir-planet.ru/checkout';
-                } catch (e) {
-                    console.error('Error redirecting top:', e);
-                    window.location.href = 'https://pir-planet.ru/checkout';
-                }
-            }
-            // Проверяем, есть ли родительское окно (для обычного popup)
-            else if (window.opener && !window.opener.closed) {
-                console.log('📍 Has opener, redirecting opener to checkout');
-                try {
-                    // Перенаправляем родительское окно на checkout для повторной попытки
-                    window.opener.location.href = 'https://pir-planet.ru/checkout';
-                    setTimeout(() => window.close(), 500);
-                } catch (e) {
-                    console.error('Error redirecting opener:', e);
-                    window.location.href = 'https://pir-planet.ru/checkout';
-                }
-            }
-            // Обычное окно
-            else {
-                console.log('📍 Regular window, redirecting to checkout');
-                window.location.href = 'https://pir-planet.ru/checkout';
+            if (orderId) {
+                window.location.href = `/order/${orderId}?payment=failed`;
+            } else {
+                window.location.href = '/';
             }
         }, 2000);
     </script>

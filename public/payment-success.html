@@ -137,7 +137,7 @@
                 Мы отправили подтверждение на вашу электронную почту.<br>
                 Наш менеджер свяжется с вами в ближайшее время для уточнения деталей доставки.
             </p>
-            <div class="action-buttons">
+            <div class="action-buttons" id="actionButtons">
                 <a href="/" class="btn btn-primary">Вернуться на главную</a>
                 <a href="/catalog" class="btn btn-secondary">Продолжить покупки</a>
             </div>
@@ -179,11 +179,22 @@
     <script src="/js/cart.js"></script>
     <script src="/js/script.js"></script>
 
-    <!-- Яндекс.Метрика -->
     <script>
         // Отправляем цель в Яндекс.Метрику
         if (typeof ym !== 'undefined') {
             ym(104857358, 'reachGoal', 'payment_success');
+        }
+
+        // Добавляем ссылку на заказ если есть orderId
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId') || localStorage.getItem('lastOrderId');
+        if (orderId) {
+            const buttons = document.getElementById('actionButtons');
+            const orderLink = document.createElement('a');
+            orderLink.href = `/order/${orderId}`;
+            orderLink.className = 'btn btn-primary';
+            orderLink.textContent = 'Перейти к заказу';
+            buttons.insertBefore(orderLink, buttons.firstChild);
         }
     </script>
 </body>

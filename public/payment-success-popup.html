@@ -116,17 +116,17 @@
             ym(104857358, 'reachGoal', 'payment_success');
         }
 
-        // Получаем orderId ТОЛЬКО из localStorage
-        // orderId в URL от Альфа-Банка - это ID платежа, а не ID заказа в нашей БД!
+        // Получаем orderId из URL-параметров (от нашего callback) или из localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderIdFromUrl = urlParams.get('orderId');
         const orderIdFromStorage = localStorage.getItem('lastOrderId');
-        const orderId = orderIdFromStorage;
+        const orderId = orderIdFromUrl || orderIdFromStorage;
 
         console.log('🔍 Payment Success - Debug Info:');
         console.log('URL:', window.location.href);
+        console.log('orderId from URL:', orderIdFromUrl);
         console.log('orderId from localStorage:', orderIdFromStorage);
         console.log('Final orderId:', orderId);
-        console.log('In iframe?', window.self !== window.top);
-        console.log('Has opener?', window.opener && !window.opener.closed);
 
         // Очищаем корзину и данные формы после успешной оплаты
         try {
@@ -137,60 +137,16 @@
             console.error('Error clearing cart:', e);
         }
 
-        // Показываем сообщение 1 секунду, затем перенаправляем
+        // Показываем сообщение 1.5 секунды, затем перенаправляем на страницу заказа
         setTimeout(() => {
             if (orderId) {
-                console.log('✅ Redirecting to order page:', `https://pir-planet.ru/order/${orderId}`);
-
-                // Проверяем, находимся ли мы в iframe
-                if (window.self !== window.top) {
-                    console.log('📍 In iframe, redirecting top window');
-                    try {
-                        window.top.location.href = `https://pir-planet.ru/order/${orderId}`;
-                    } catch (e) {
-                        console.error('Error redirecting top:', e);
-                        window.location.href = `https://pir-planet.ru/order/${orderId}`;
-                    }
-                }
-                // Проверяем, есть ли родительское окно (для обычного popup)
-                else if (window.opener && !window.opener.closed) {
-                    console.log('📍 Has opener, redirecting opener window');
-                    try {
-                        window.opener.location.href = `https://pir-planet.ru/order/${orderId}`;
-                        setTimeout(() => window.close(), 500);
-                    } catch (e) {
-                        console.error('Error redirecting opener:', e);
-                        window.location.href = `https://pir-planet.ru/order/${orderId}`;
-                    }
-                }
-                // Обычное окно
-                else {
-                    console.log('📍 Regular window, redirecting self');
-                    window.location.href = `https://pir-planet.ru/order/${orderId}`;
-                }
+                console.log('✅ Redirecting to order page:', `/order/${orderId}`);
+                window.location.href = `/order/${orderId}`;
             } else {
                 console.log('⚠️ No orderId found, redirecting to homepage');
-
-                if (window.self !== window.top) {
-                    try {
-                        window.top.location.href = 'https://pir-planet.ru/';
-                    } catch (e) {
-                        console.error('Error:', e);
-                        window.location.href = 'https://pir-planet.ru/';
-                    }
-                } else if (window.opener && !window.opener.closed) {
-                    try {
-                        window.opener.location.href = 'https://pir-planet.ru/';
-                        setTimeout(() => window.close(), 500);
-                    } catch (e) {
-                        console.error('Error:', e);
-                        window.location.href = 'https://pir-planet.ru/';
-                    }
-                } else {
-                    window.location.href = 'https://pir-planet.ru/';
-                }
+                window.location.href = '/';
             }
-        }, 1000);
+        }, 1500);
     </script>
 </body>
 </html>

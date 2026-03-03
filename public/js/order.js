@@ -259,151 +259,83 @@ class OrderPage {
     }
 
     setupPaymentHandlers() {
-        // Оплата полной суммы (карта + СБП в одном виджете)
+        // Оплата полной суммы
         const payFullBtn = document.getElementById('payFullBtn');
         if (payFullBtn) {
             payFullBtn.addEventListener('click', () => this.initiatePayment('full'));
         }
 
-        // Оплата доставки (карта + СБП в одном виджете)
+        // Оплата доставки
         const payDeliveryBtn = document.getElementById('payDeliveryBtn');
         if (payDeliveryBtn) {
             payDeliveryBtn.addEventListener('click', () => this.initiatePayment('delivery'));
         }
 
-        // Отслеживание закрытия виджета оплаты
-        this.setupPaymentCloseHandler();
+        // Проверяем, если пришли с неудачной оплатой
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('payment') === 'failed') {
+            this.showPaymentError();
+        }
     }
 
-    setupPaymentCloseHandler() {
-        const widgetContainer = document.getElementById('alfa-payment-container');
+    showPaymentError() {
+        const paymentOptions = document.getElementById('paymentOptions');
+        if (!paymentOptions) return;
 
-        // Проверяем несколькими способами
-        const checkAndUnlock = () => {
-            const modal = document.querySelector('.alfa-widget-modal');
-            const overlay = document.querySelector('.alfa-widget-overlay');
-
-            // Проверяем, есть ли видимый модал или оверлей
-            const isModalVisible = modal && getComputedStyle(modal).display !== 'none' && getComputedStyle(modal).visibility !== 'hidden';
-            const isOverlayVisible = overlay && getComputedStyle(overlay).display !== 'none';
-
-            if (!isModalVisible && !isOverlayVisible) {
-                // Виджет точно закрыт - разблокируем всё
-                document.body.classList.remove('payment-modal-open');
-                if (widgetContainer) {
-                    widgetContainer.style.display = 'none';
-                }
-            }
-        };
-
-        // Периодически проверяем
-        setInterval(checkAndUnlock, 200);
-
-        // Слушаем клики по overlay (закрытие виджета)
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('alfa-widget-overlay')) {
-                setTimeout(checkAndUnlock, 100);
-            }
-        });
-
-        // Слушаем escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                setTimeout(checkAndUnlock, 100);
-            }
-        });
-
-        // Слушаем изменения в DOM (когда виджет удаляет модал)
-        const observer = new MutationObserver(() => {
-            checkAndUnlock();
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+        // Добавляем сообщение об ошибке перед вариантами оплаты
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'payment-error-message';
+        errorDiv.innerHTML = `
+            <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; color: #991b1b; font-size: 14px;">
+                Оплата не прошла. Пожалуйста, попробуйте ещё раз или выберите другой способ оплаты.
+            </div>
+        `;
+        paymentOptions.insertBefore(errorDiv, paymentOptions.firstChild);
     }
 
-    initiatePayment(type) {
+    async initiatePayment(type) {
         if (!this.order) return;
 
-        const subtotal = this.order.subtotal || 0;
-        const deliveryCost = this.order.delivery_cost || 0;
+        const btn = type === 'full'
+            ? document.getElementById('payFullBtn')
+            : document.getElementById('payDeliveryBtn');
 
-        // Определяем сумму к оплате
-        let amount;
-        let description;
-
-        if (type === 'full') {
-            // Используем сумму со скидкой 5%
-            amount = this.discountedTotal || Math.round((this.order.total || subtotal) * 0.95);
-            description = `Оплата заказа №${this.order.order_number} (скидка 5%)`;
-        } else if (type === 'delivery') {
-            amount = deliveryCost;
-            description = `Оплата доставки заказа №${this.order.order_number}`;
+        if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Подождите...';
         }
 
-        // Заполняем скрытые поля для виджета
-        const widgetOrderNumber = `${this.order.order_number}-${type}-${Date.now()}`;
+        try {
+            const accessToken = localStorage.getItem('orderAccessToken');
 
-        // Email обязателен для Альфа-Банка, используем дефолтный если не указан или невалиден
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const isValidEmail = this.order.customer_email && emailRegex.test(this.order.customer_email);
+            const response = await fetch('/api/payment/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    orderId: this.orderId,
+                    paymentType: type,
+                    token: accessToken
+                })
+            });
 
-        const customerEmail = isValidEmail
-            ? this.order.customer_email
-            : 'noreply@pir-planet.ru';
+            const result = await response.json();
 
-        document.getElementById('hiddenClientName').value = this.order.customer_name;
-        document.getElementById('hiddenClientEmail').value = customerEmail;
-        document.getElementById('hiddenOrderNumber').value = widgetOrderNumber;
-        document.getElementById('hiddenTotalAmount').value = Math.round(amount * 100); // в копейках
+            if (response.ok && result.success && result.formUrl) {
+                // Перенаправляем на платёжную страницу банка
+                console.log('💳 Перенаправление на страницу оплаты:', result.formUrl);
+                window.location.href = result.formUrl;
+            } else {
+                throw new Error(result.message || 'Ошибка при создании платежа');
+            }
+        } catch (error) {
+            console.error('Ошибка оплаты:', error);
+            alert('Произошла ошибка при создании платежа. Попробуйте ещё раз или свяжитесь с нами по телефону.');
 
-        // Предупреждаем, если используем фолбэк email
-        if (!isValidEmail && this.order.customer_email) {
-            console.warn(`Email "${this.order.customer_email}" невалиден, используем фолбэк: ${customerEmail}`);
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = type === 'full' ? 'Оплатить' : 'Оплатить доставку';
+            }
         }
-
-        console.log('Данные для виджета:', {
-            name: this.order.customer_name,
-            email: customerEmail,
-            emailUsed: isValidEmail ? 'customer' : 'fallback',
-            orderNumber: widgetOrderNumber,
-            amount: Math.round(amount * 100)
-        });
-
-        // Показываем контейнер виджета
-        const widgetContainer = document.getElementById('alfa-payment-container');
-        if (!widgetContainer) {
-            console.error('Контейнер виджета не найден');
-            alert('Ошибка: контейнер виджета не найден');
-            return;
-        }
-
-        widgetContainer.style.display = 'block';
-        console.log('Инициирую оплату. Сумма:', amount, 'Тип:', type);
-
-        // Даём виджету время на инициализацию
-        setTimeout(() => {
-            // Ждём инициализации виджета
-            let attempts = 0;
-            const checkWidget = setInterval(() => {
-                attempts++;
-                const widgetButton = document.querySelector('#alfa-payment-button button');
-                console.log(`Попытка ${attempts}: кнопка виджета`, widgetButton ? 'найдена' : 'не найдена');
-
-                if (widgetButton) {
-                    clearInterval(checkWidget);
-                    console.log('Виджет инициализирован, открываю форму оплаты');
-                    document.body.classList.add('payment-modal-open');
-                    widgetButton.click();
-                } else if (attempts > 20) {
-                    clearInterval(checkWidget);
-                    console.error('Виджет не инициализировался после 20 попыток');
-                    alert('Не удалось загрузить форму оплаты. Попробуйте обновить страницу.');
-                }
-            }, 300);
-        }, 100);
     }
 
     getDeliveryMethodName(method) {

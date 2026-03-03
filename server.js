@@ -7,6 +7,7 @@ const db = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const SITE_URL = process.env.SITE_URL || 'https://pir-planet.ru';
 
 // Инициализация базы данных
 db.initDatabase();
@@ -383,13 +384,13 @@ ${items.map(item => `• ${item.name} x ${item.quantity} шт. = ${(item.price *
 
 💰 <b>Сумма без доставки:</b> ${subtotal.toLocaleString('ru-RU')} ₽
 
-🚚 <b>Доставка:</b> ${delivery.type === 'delivery' ? 'Доставка' : 'Самовывоз'}
-${delivery.type === 'delivery' ? `📍 <b>Адрес:</b> ${delivery.city}, ${delivery.address}` : ''}
-${delivery.type === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.pickupLocation}` : ''}
+🚚 <b>Доставка:</b> ${delivery.method === 'pickup' ? 'Самовывоз' : delivery.method === 'transport' ? 'Транспортная компания' : 'Курьерская доставка'}
+${delivery.method !== 'pickup' ? `📍 <b>Адрес:</b> ${delivery.city || ''}, ${delivery.address || ''}` : ''}
+${delivery.method === 'pickup' ? `📍 <b>Пункт выдачи:</b> ${delivery.pickupLocation || 'Люберцы / Солнечногорск'}` : ''}
 
 📅 <b>Дата:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
 
-🔗 <b>Ссылка на заказ:</b> https://pir-planet.ru/order/${orderId}
+🔗 <b>Ссылка на заказ:</b> ${SITE_URL}/order/${orderId}
         `.trim();
 
         if (bot) {
@@ -512,7 +513,7 @@ app.post('/api/order/:orderId/status', requireAuth, async (req, res) => {
 Статус изменен на: ${statusNames[status]}
 ${comment ? `\n💬 Комментарий: ${comment}` : ''}
 
-🔗 <b>Ссылка:</b> https://pir-planet.ru/order/${orderId}
+🔗 <b>Ссылка:</b> ${SITE_URL}/order/${orderId}
             `.trim();
 
             await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' });
@@ -713,7 +714,7 @@ app.delete('/api/order/:orderId', requireAuth, (req, res) => {
 Сумма: ${(order.total || order.subtotal || 0).toLocaleString('ru-RU')} ₽
                 `.trim();
 
-                bot.sendMessage(TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' }).catch(console.error);
+                bot.sendMessage(process.env.TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' }).catch(console.error);
             }
 
             res.json({ success: true, message: 'Заказ удалён' });
@@ -726,12 +727,237 @@ app.delete('/api/order/:orderId', requireAuth, (req, res) => {
     }
 });
 
-// API для получения конфигурации платёжного виджета
-app.get('/api/payment/config', (req, res) => {
-    res.json({
-        token: process.env.ALFABANK_TOKEN || 'replace_this_to_merchant_token',
-        gateway: process.env.ALFABANK_GATEWAY || 'test'
-    });
+// ===== ALFA-BANK PAYMENT API =====
+
+const ALFABANK_API_URL = process.env.ALFABANK_API_URL || 'https://payment.alfabank.ru/payment/rest';
+const ALFABANK_USERNAME = process.env.ALFABANK_USERNAME;
+const ALFABANK_PASSWORD = process.env.ALFABANK_PASSWORD;
+
+// Регистрация заказа в Альфа-Банке и получение ссылки на оплату
+app.post('/api/payment/create', async (req, res) => {
+    try {
+        const { orderId, paymentType, token } = req.body;
+
+        // Получаем заказ из БД
+        const order = db.getOrderById(orderId);
+        if (!order) {
+            return res.status(404).json({ success: false, message: 'Заказ не найден' });
+        }
+
+        // Проверяем токен доступа
+        if (!token || order.access_token !== token) {
+            return res.status(403).json({ success: false, message: 'Неверный токен доступа' });
+        }
+
+        // Проверяем статус заказа
+        if (order.status !== 'confirmed') {
+            return res.status(400).json({ success: false, message: 'Заказ не подтверждён для оплаты' });
+        }
+
+        // Проверяем учётные данные банка
+        if (!ALFABANK_USERNAME || !ALFABANK_PASSWORD) {
+            console.error('❌ Не настроены учётные данные Альфа-Банка');
+            return res.status(500).json({ success: false, message: 'Платёжная система не настроена' });
+        }
+
+        // Определяем сумму к оплате
+        const subtotal = order.subtotal || 0;
+        const deliveryCost = order.delivery_cost || 0;
+        const total = order.total || subtotal;
+        let amount;
+        let description;
+
+        if (paymentType === 'full') {
+            // Полная оплата со скидкой 5%
+            amount = Math.round(total * 0.95);
+            description = `Оплата заказа №${order.order_number} (скидка 5%)`;
+        } else if (paymentType === 'delivery') {
+            // Только доставка
+            amount = deliveryCost;
+            description = `Оплата доставки заказа №${order.order_number}`;
+        } else {
+            return res.status(400).json({ success: false, message: 'Неверный тип оплаты' });
+        }
+
+        if (amount <= 0) {
+            return res.status(400).json({ success: false, message: 'Сумма оплаты должна быть больше 0' });
+        }
+
+        // Сумма в копейках
+        const amountInKopecks = Math.round(amount * 100);
+
+        // Уникальный номер заказа для банка
+        const bankOrderNumber = `${order.order_number}-${paymentType}-${Date.now()}`;
+
+        // Формируем returnUrl - банк перенаправит сюда после оплаты
+        // Используем internalId вместо orderId, т.к. банк сам добавит параметр orderId (свой)
+        const returnUrl = `${SITE_URL}/api/payment/callback?internalId=${orderId}&paymentType=${paymentType}`;
+
+        // Формируем параметры запроса к API Альфа-Банка
+        const params = new URLSearchParams({
+            userName: ALFABANK_USERNAME,
+            password: ALFABANK_PASSWORD,
+            orderNumber: bankOrderNumber,
+            amount: amountInKopecks.toString(),
+            returnUrl: returnUrl,
+            description: description,
+            language: 'ru'
+        });
+
+        // Добавляем email если есть
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (order.customer_email && emailRegex.test(order.customer_email)) {
+            params.append('email', order.customer_email);
+        }
+
+        console.log(`💳 Регистрация платежа в Альфа-Банке: заказ #${order.order_number}, сумма ${amount} ₽, тип: ${paymentType}`);
+
+        // Вызываем register.do
+        const response = await fetch(`${ALFABANK_API_URL}/register.do`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString()
+        });
+
+        const result = await response.json();
+
+        if (result.orderId && result.formUrl) {
+            console.log(`✅ Платёж зарегистрирован: bankOrderId=${result.orderId}`);
+
+            // Отправляем ссылку на оплату клиенту
+            res.json({
+                success: true,
+                formUrl: result.formUrl,
+                bankOrderId: result.orderId
+            });
+        } else {
+            console.error(`❌ Ошибка регистрации платежа:`, result);
+            res.status(400).json({
+                success: false,
+                message: result.errorMessage || 'Ошибка при создании платежа'
+            });
+        }
+
+    } catch (error) {
+        console.error('❌ Ошибка создания платежа:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера при создании платежа' });
+    }
+});
+
+// Callback от Альфа-Банка после оплаты (returnUrl)
+// Банк перенаправляет сюда и добавляет свой параметр orderId (ID заказа в банке)
+app.get('/api/payment/callback', async (req, res) => {
+    try {
+        const internalId = req.query.internalId; // наш ID заказа
+        const paymentType = req.query.paymentType;
+        const bankOrderId = req.query.orderId; // ID заказа в Альфа-Банке (банк добавляет автоматически)
+
+        if (!internalId) {
+            console.error('❌ Callback без internalId');
+            return res.redirect('/payment/fail');
+        }
+
+        const order = db.getOrderById(internalId);
+        if (!order) {
+            console.error(`❌ Заказ ${internalId} не найден`);
+            return res.redirect('/payment/fail');
+        }
+
+        let paymentSuccess = false;
+
+        if (bankOrderId && ALFABANK_USERNAME && ALFABANK_PASSWORD) {
+            // Проверяем статус платежа в банке
+            const params = new URLSearchParams({
+                userName: ALFABANK_USERNAME,
+                password: ALFABANK_PASSWORD,
+                orderId: bankOrderId
+            });
+
+            const response = await fetch(`${ALFABANK_API_URL}/getOrderStatusExtended.do`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString()
+            });
+
+            const result = await response.json();
+            // orderStatus: 2 = оплата подтверждена (DEPOSITED)
+            paymentSuccess = result.orderStatus === 2;
+
+            console.log(`💳 Callback: bankOrderId=${bankOrderId}, orderStatus=${result.orderStatus}, success=${paymentSuccess}`);
+        }
+
+        if (paymentSuccess) {
+            // Обновляем статус заказа
+            if (paymentType === 'full') {
+                db.updateOrderStatus(internalId, 'paid', 'Заказ оплачен онлайн через Альфа-Банк');
+            } else if (paymentType === 'delivery') {
+                db.updateOrderStatus(internalId, 'delivery_paid', 'Доставка оплачена онлайн через Альфа-Банк');
+            }
+
+            // Уведомляем в Telegram
+            if (bot) {
+                const statusText = paymentType === 'full' ? 'Заказ полностью оплачен' : 'Доставка оплачена';
+                const message = `
+💰 <b>${statusText}</b>
+
+📦 Заказ: #${order.order_number}
+👤 Клиент: ${order.customer_name}
+📞 Телефон: ${order.customer_phone}
+💳 Способ: Онлайн (Альфа-Банк)
+
+🔗 <b>Ссылка:</b> ${SITE_URL}/order/${internalId}
+                `.trim();
+
+                await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, message, { parse_mode: 'HTML' }).catch(console.error);
+            }
+
+            // Перенаправляем на страницу успешной оплаты
+            res.redirect(`/payment/success?orderId=${internalId}`);
+        } else {
+            // Оплата не подтверждена - возвращаем на страницу заказа
+            res.redirect(`/order/${internalId}?payment=failed`);
+        }
+
+    } catch (error) {
+        console.error('❌ Ошибка обработки callback оплаты:', error);
+        res.redirect('/payment/fail');
+    }
+});
+
+// Проверка статуса оплаты (для клиентской части)
+app.post('/api/payment/check-status', async (req, res) => {
+    try {
+        const { bankOrderId } = req.body;
+
+        if (!bankOrderId || !ALFABANK_USERNAME || !ALFABANK_PASSWORD) {
+            return res.status(400).json({ success: false, message: 'Недостаточно данных' });
+        }
+
+        const params = new URLSearchParams({
+            userName: ALFABANK_USERNAME,
+            password: ALFABANK_PASSWORD,
+            orderId: bankOrderId
+        });
+
+        const response = await fetch(`${ALFABANK_API_URL}/getOrderStatusExtended.do`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString()
+        });
+
+        const result = await response.json();
+
+        res.json({
+            success: true,
+            orderStatus: result.orderStatus,
+            actionCode: result.actionCode,
+            actionCodeDescription: result.actionCodeDescription
+        });
+
+    } catch (error) {
+        console.error('❌ Ошибка проверки статуса платежа:', error);
+        res.status(500).json({ success: false, message: 'Ошибка сервера' });
+    }
 });
 
 // Страница заказа для клиента
