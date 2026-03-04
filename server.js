@@ -979,6 +979,11 @@ app.get('/admin/orders', requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin-orders.html'));
 });
 
+// 404 - Страница не найдена
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
     console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
