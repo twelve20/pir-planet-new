@@ -14,6 +14,14 @@ Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /server.js
 Disallow: /package.json
+Disallow: /admin/
+Disallow: /api/
+Disallow: /payment/
+
+# Игнорировать GET-параметры (убирает дубли страниц)
+Clean-param: payment /order
+Clean-param: token /order
+Clean-param: from&utm_source&utm_medium&utm_campaign&utm_content&utm_term /
 
 # Sitemap
 Sitemap: https://pir-planet.ru/sitemap.xml
