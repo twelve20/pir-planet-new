@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Полное руководство по утеплению плоской кровли PIR-плитами. Однослойная и двухслойная укладка, кровельный пирог, уклонообразование и типичные ошибки.">
+    <meta name="keywords" content="утепление плоской кровли, PIR плиты для кровли, плоская крыша утепление, кровельный пирог PIR, теплоизоляция кровли">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pir-planet.ru/blog/flat-roof-insulation">
+    <meta property="og:title" content="Утепление плоской кровли PIR-плитами: кровельный пирог, уклоны и пошаговый монтаж">
+    <meta property="og:description" content="Как правильно утеплить плоскую кровлю PIR-плитами. Однослойная и двухслойная укладка, уклонообразование, расчёт материалов.">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog-flat-roof-hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pir-planet.ru/blog/flat-roof-insulation">
+    <meta property="twitter:title" content="Утепление плоской кровли PIR-плитами: кровельный пирог, уклоны и пошаговый монтаж">
+    <meta property="twitter:description" content="Как правильно утеплить плоскую кровлю PIR-плитами. Однослойная и двухслойная укладка, уклонообразование, расчёт материалов.">
+    <meta property="twitter:image" content="https://pir-planet.ru/images/blog-flat-roof-hero.webp">
+
+    <title>Утепление плоской кровли PIR-плитами | Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/blog/flat-roof-insulation">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/new-year.css">
+
+    <style>
+        /* --- ПЕРЕМЕННЫЕ (Стиль сайта) --- */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- ПРОГРЕСС БАР ЧТЕНИЯ --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-white);
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* --- ОБЩИЕ СТИЛИ --- */
+        body {
+            font-family: var(--font-main);
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumbs-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--text-secondary);
+            margin: 0 0.5rem;
+        }
+
+        /* --- HERO СЕКЦИЯ --- */
+        .article-hero {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0 2rem;
+        }
+
+        .article-hero-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--quote-bg);
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* --- КОНТЕНТ СТАТЬИ --- */
+        .article-content {
+            background: var(--bg-white);
+            max-width: var(--content-width);
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .article-content h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content p {
+            margin: 1.2rem 0;
+            line-height: 1.8;
+        }
+
+        .article-content strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin: 0.8rem 0;
+            line-height: 1.7;
+        }
+
+        .article-content li strong {
+            color: var(--accent-color);
+        }
+
+        /* --- ТАБЛИЦЫ --- */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        /* --- БЛОК С ПРЕДУПРЕЖДЕНИЕМ --- */
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: #92400e;
+            font-size: 1.1rem;
+        }
+
+        .warning-box p {
+            margin: 0.5rem 0;
+            color: #78350f;
+        }
+
+        /* --- БЛОК С СОВЕТОМ --- */
+        .tip-box {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .tip-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .tip-box p {
+            margin: 0.5rem 0;
+        }
+
+        /* --- FAQ --- */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8fafc;
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* --- ЗАЩИТА ОТ КОПИРОВАНИЯ --- */
+        .watermark {
+            position: fixed;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            user-select: none;
+        }
+
+        .article-image, .article-featured-image {
+            position: relative;
+        }
+
+        .article-image::after, .article-featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .article-hero-container,
+            .breadcrumbs-container,
+            .article-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Утепление плоской кровли PIR-плитами: кровельный пирог, уклоны и пошаговый монтаж",
+      "description": "Полное руководство по утеплению плоской кровли PIR-плитами. Однослойная и двухслойная укладка, кровельный пирог, уклонообразование и типичные ошибки.",
+      "image": "https://pir-planet.ru/images/blog-flat-roof-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Планета PIR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Планета PIR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pir-planet.ru/images/favicon.svg"
+        }
+      },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    }
+    </script>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+</head>
+<body>
+    <!-- Прогресс бар чтения -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                    <span class="logo-text">Планета PIR</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog" class="active">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-container">
+            <a href="/">Главная</a>
+            <span>/</span>
+            <a href="/blog">Блог</a>
+            <span>/</span>
+            Утепление плоской кровли
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="article-hero">
+        <div class="article-hero-container">
+            <span class="article-category">Инструкции</span>
+            <h1 class="article-title">Утепление плоской кровли PIR-плитами: кровельный пирог, уклоны и пошаговый монтаж</h1>
+            <div class="article-meta">
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>19 марта 2026</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>22 мин</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Планета PIR</span>
+                </div>
+            </div>
+            <img src="/images/blog-flat-roof-hero.webp" alt="Утепление плоской кровли PIR-плитами" class="article-image">
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>
+            Плоская кровля — один из самых распространённых типов крыш в коммерческом и промышленном строительстве, а в последние годы она всё чаще встречается и в частных домах. Главная проблема плоской крыши — теплопотери: тёплый воздух поднимается вверх и уходит через неутеплённое перекрытие. PIR-плиты решают эту задачу с минимальной толщиной и максимальной эффективностью.
+        </p>
+
+        <div class="tip-box">
+            <h4>Почему PIR — идеальный утеплитель для плоской кровли?</h4>
+            <p>PIR-плиты имеют самый низкий коэффициент теплопроводности среди всех доступных утеплителей — 0,022 Вт/(м*К). Это означает, что 80 мм PIR заменяют 150 мм минваты. Кроме того, PIR не впитывает воду (водопоглощение менее 1%), выдерживает нагрузку до 120 кПа и не теряет свойств за весь срок эксплуатации кровли — 50+ лет.</p>
+        </div>
+
+        <h2>Типы плоских кровель и подход к утеплению</h2>
+        <p>
+            Прежде чем приступить к утеплению, важно понимать, какой тип плоской кровли у вас — от этого зависит состав кровельного пирога и способ крепления утеплителя.
+        </p>
+
+        <h3>Традиционная (классическая) плоская кровля</h3>
+        <p>
+            Самый распространённый вариант. Утеплитель укладывается на несущее основание (бетонная плита, профлист), сверху — гидроизоляция. Порядок слоёв снизу вверх:
+        </p>
+        <ol>
+            <li><strong>Несущее основание</strong> — железобетонная плита или профилированный лист</li>
+            <li><strong>Пароизоляция</strong> — полиэтиленовая плёнка или битумная мембрана</li>
+            <li><strong>Утеплитель</strong> — PIR-плиты в один или два слоя</li>
+            <li><strong>Уклонообразующий слой</strong> — клиновидные PIR-плиты (или разуклонка из керамзита)</li>
+            <li><strong>Гидроизоляция</strong> — ПВХ-мембрана или наплавляемый битумный ковёр</li>
+        </ol>
+
+        <h3>Инверсионная кровля</h3>
+        <p>
+            В инверсионной кровле утеплитель укладывается поверх гидроизоляции. Это защищает гидроизоляционный слой от механических повреждений, перепадов температуры и УФ-излучения.
+        </p>
+        <ol>
+            <li><strong>Несущее основание</strong></li>
+            <li><strong>Уклонообразующая стяжка</strong></li>
+            <li><strong>Гидроизоляция</strong></li>
+            <li><strong>Утеплитель</strong> — PIR-плиты (обязательно с закрытой ячеистой структурой)</li>
+            <li><strong>Разделительный слой</strong> — геотекстиль</li>
+            <li><strong>Балласт</strong> — гравий, тротуарная плитка или грунт (эксплуатируемая кровля)</li>
+        </ol>
+
+        <div class="warning-box">
+            <h4>Важно: инверсионная кровля — только с PIR или XPS</h4>
+            <p>Для инверсионной кровли подходят только утеплители с закрытой ячеистой структурой, не впитывающие воду. PIR-плиты идеально подходят для этой задачи. Минеральная вата в инверсионной кровле недопустима — она наберёт воду и потеряет все теплоизолирующие свойства.</p>
+        </div>
+
+        <h3>Эксплуатируемая кровля</h3>
+        <p>
+            Если на кровле планируется зона отдыха, парковка или озеленение, к утеплителю предъявляются повышенные требования по прочности на сжатие. PIR-плиты с прочностью 120 кПа выдерживают пешеходную нагрузку и лёгкий транспорт.
+        </p>
+
+        <h2>Однослойная и двухслойная укладка: когда что выбрать</h2>
+
+        <h3>Однослойная укладка</h3>
+        <p>
+            Один слой PIR-плит толщиной 80-150 мм. Подходит для:
+        </p>
+        <ul>
+            <li>Небольших зданий и хозпостроек</li>
+            <li>Регионов с мягким климатом (юг России)</li>
+            <li>Реконструкции кровли с ограничением по высоте</li>
+        </ul>
+        <p>
+            <strong>Плюсы:</strong> быстрый монтаж, меньше расходных материалов.<br>
+            <strong>Минусы:</strong> стыки плит — потенциальные мостики холода.
+        </p>
+
+        <h3>Двухслойная укладка</h3>
+        <p>
+            Два слоя PIR-плит, уложенных со смещением стыков. Нижний слой — основной (60-100 мм), верхний — дополнительный (30-50 мм). Подходит для:
+        </p>
+        <ul>
+            <li>Коммерческих и промышленных зданий</li>
+            <li>Регионов с суровым климатом (средняя полоса, Урал, Сибирь)</li>
+            <li>Зданий с повышенными требованиями к энергоэффективности</li>
+        </ul>
+        <p>
+            <strong>Плюсы:</strong> полное исключение мостиков холода, повышенная надёжность.<br>
+            <strong>Минусы:</strong> больше материалов, чуть дольше монтаж.
+        </p>
+
+        <div class="tip-box">
+            <h4>Рекомендация</h4>
+            <p>Для большинства объектов в средней полосе России оптимальна двухслойная укладка: нижний слой 80 мм + верхний 50 мм = 130 мм общей толщины. Это обеспечивает термическое сопротивление R = 5,9 м²*К/Вт — с запасом перекрывает требования СП 50.13330.2012 для всех климатических зон.</p>
+        </div>
+
+        <h2>Уклонообразование: зачем и как</h2>
+        <p>
+            Плоская кровля — не значит «нулевой уклон». Для отвода воды к воронкам необходим уклон не менее 1,5-2% (по СП 17.13330). Стоячая вода на кровле — это разрушение гидроизоляции, протечки и промерзание.
+        </p>
+
+        <h3>Способы создания уклона</h3>
+        <ul>
+            <li><strong>Клиновидные PIR-плиты</strong> — заводские плиты с переменной толщиной, создающие заданный уклон. Самый технологичный способ: точный уклон, минимум отходов, быстрый монтаж.</li>
+            <li><strong>Разуклонка из керамзита</strong> — слой керамзита переменной толщины под стяжку. Дешевле, но тяжелее и менее точно.</li>
+            <li><strong>Цементно-песчаная стяжка</strong> переменной толщины — традиционный метод, но значительно увеличивает нагрузку на перекрытие.</li>
+        </ul>
+
+        <div class="tip-box">
+            <h4>Преимущество клиновидных PIR-плит</h4>
+            <p>Клиновидные PIR-плиты совмещают две функции: утепление и уклонообразование. Это сокращает количество слоёв в кровельном пироге, снижает нагрузку на перекрытие (PIR в 10-15 раз легче керамзитовой разуклонки) и ускоряет монтаж.</p>
+        </div>
+
+        <h2>Пошаговый монтаж: традиционная кровля с ПВХ-мембраной</h2>
+        <p>
+            Рассмотрим самый популярный вариант — утепление плоской кровли по железобетонному основанию с финишной ПВХ-мембраной.
+        </p>
+
+        <h3>Шаг 1. Подготовка основания</h3>
+        <ol>
+            <li><strong>Очистите основание</strong> от мусора, пыли, наплывов бетона. Поверхность должна быть ровной — перепады не более 5 мм на 2 м.</li>
+            <li><strong>Заделайте трещины и раковины</strong> цементным раствором.</li>
+            <li><strong>Просушите поверхность</strong> — влажность основания не должна превышать 4%.</li>
+            <li><strong>Обработайте праймером</strong> (битумной грунтовкой) для лучшей адгезии пароизоляции.</li>
+        </ol>
+
+        <h3>Шаг 2. Устройство пароизоляции</h3>
+        <ol>
+            <li><strong>Раскатайте пароизоляционную плёнку</strong> по основанию с нахлёстом полотен 100-150 мм.</li>
+            <li><strong>Проклейте нахлёсты</strong> специальным скотчем или спаяйте горячим воздухом.</li>
+            <li><strong>Заведите пароизоляцию на парапеты</strong> на высоту, равную толщине утеплителя + 50 мм.</li>
+        </ol>
+
+        <div class="warning-box">
+            <h4>Не пропускайте пароизоляцию!</h4>
+            <p>Без пароизоляции водяной пар из помещения проникает в утеплитель и конденсируется на границе холодной зоны. Это приводит к увлажнению утеплителя, снижению его теплоизолирующих свойств и разрушению кровельного ковра. PIR-плиты устойчивы к влаге, но пароизоляция всё равно необходима — она защищает все слои кровельного пирога.</p>
+        </div>
+
+        <h3>Шаг 3. Укладка PIR-плит</h3>
+        <ol>
+            <li><strong>Начните от парапета</strong> или от центра кровли (в зависимости от схемы уклона).</li>
+            <li><strong>Укладывайте плиты вплотную</strong> друг к другу, без зазоров. Стыки должны быть плотными.</li>
+            <li><strong>При двухслойной укладке:</strong> второй слой укладывайте со смещением стыков не менее 200 мм относительно первого. Поперечные стыки тоже смещайте.</li>
+            <li><strong>Подрезку плит</strong> выполняйте строительным ножом или ножовкой с мелким зубом. Обрезки используйте для заполнения оставшихся участков.</li>
+            <li><strong>В местах примыканий</strong> к парапетам, трубам, воронкам — подгоняйте плиты максимально плотно, зазоры заполняйте монтажной пеной.</li>
+        </ol>
+
+        <h3>Шаг 4. Укладка клиновидных плит (уклонообразование)</h3>
+        <ol>
+            <li><strong>Определите направление стока</strong> воды и расположение водоприёмных воронок.</li>
+            <li><strong>Уложите клиновидные плиты</strong> от воронки к парапету, создавая уклон к воронке. Минимальный уклон — 1,5%.</li>
+            <li><strong>В ендовах</strong> (разжелобках) используйте контруклонные плиты для направления воды к воронке.</li>
+        </ol>
+
+        <h3>Шаг 5. Механическое крепление</h3>
+        <ol>
+            <li><strong>Закрепите PIR-плиты</strong> к основанию телескопическим крепежом (тарельчатый дюбель + шуруп). Минимум 2 крепежа на плиту.</li>
+            <li><strong>Длина крепежа</strong> = толщина утеплителя + 50 мм (заглубление в основание).</li>
+            <li><strong>Крепёж устанавливается</strong> через ПВХ-мембрану и утеплитель в основание. Таким образом мембрана и утеплитель фиксируются одним крепежом.</li>
+        </ol>
+
+        <h3>Шаг 6. Монтаж ПВХ-мембраны</h3>
+        <ol>
+            <li><strong>Раскатайте рулоны мембраны</strong> по кровле с нахлёстом 50-80 мм.</li>
+            <li><strong>Сварите нахлёсты</strong> горячим воздухом (автоматическим сварочным аппаратом или ручным феном). Ширина шва — не менее 30 мм.</li>
+            <li><strong>Обработайте примыкания</strong> к парапетам, трубам, воронкам. Используйте неармированную мембрану для сложных узлов.</li>
+            <li><strong>Закрепите мембрану</strong> по периметру и в местах примыканий краевой рейкой.</li>
+        </ol>
+
+        <h2>Особенности утепления по профлисту</h2>
+        <p>
+            Когда несущее основание — профилированный стальной лист (распространённый вариант для промышленных зданий), есть несколько отличий:
+        </p>
+        <ul>
+            <li><strong>Пароизоляция</strong> укладывается по гребням профлиста. Нижние волны не проклеиваются — там предусматривается вентиляция подкровельного пространства.</li>
+            <li><strong>Первый слой утеплителя</strong> укладывается поперёк волн профлиста для равномерного распределения нагрузки.</li>
+            <li><strong>Крепёж</strong> устанавливается в верхнюю полку профлиста. Длина самореза рассчитывается с учётом высоты волны.</li>
+            <li><strong>Минимальная толщина нижнего слоя</strong> — 50 мм (чтобы перекрыть высоту волны профлиста и обеспечить ровную поверхность для верхнего слоя).</li>
+        </ul>
+
+        <h2>Расчёт толщины утеплителя</h2>
+        <p>
+            Требуемая толщина PIR-плит зависит от климатической зоны. Ниже приведены рекомендуемые значения для плоской кровли с учётом требований СП 50.13330.2012:
+        </p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Регион</th>
+                        <th>Требуемое R, м²*К/Вт</th>
+                        <th>Толщина PIR, мм</th>
+                        <th>Рекомендуемая схема</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Юг (Краснодар, Ростов)</td>
+                        <td>3,5-4,0</td>
+                        <td>80</td>
+                        <td>Один слой 80 мм</td>
+                    </tr>
+                    <tr>
+                        <td>Средняя полоса (Москва, Казань)</td>
+                        <td>4,5-5,5</td>
+                        <td>100-120</td>
+                        <td>Два слоя: 80 + 40 мм</td>
+                    </tr>
+                    <tr>
+                        <td>Урал (Екатеринбург, Челябинск)</td>
+                        <td>5,0-5,5</td>
+                        <td>120</td>
+                        <td>Два слоя: 80 + 40 мм</td>
+                    </tr>
+                    <tr>
+                        <td>Сибирь (Новосибирск, Красноярск)</td>
+                        <td>5,5-6,5</td>
+                        <td>130-150</td>
+                        <td>Два слоя: 80 + 50 мм</td>
+                    </tr>
+                    <tr>
+                        <td>Север (Мурманск, Якутск)</td>
+                        <td>6,0-7,0</td>
+                        <td>150</td>
+                        <td>Два слоя: 100 + 50 мм</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Расчёт материалов для типового объекта</h2>
+        <p><strong>Исходные данные:</strong> плоская кровля 200 м², железобетонное основание, регион — Москва, двухслойная укладка 80 + 40 мм, ПВХ-мембрана.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Материал</th>
+                        <th>Количество</th>
+                        <th>Цена за ед.</th>
+                        <th>Итого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIR-плиты 80 мм (нижний слой)</td>
+                        <td>210 м² (с запасом 5%)</td>
+                        <td>850 ₽/м²</td>
+                        <td>178 500 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>PIR-плиты 40 мм (верхний слой)</td>
+                        <td>210 м²</td>
+                        <td>550 ₽/м²</td>
+                        <td>115 500 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Клиновидные PIR-плиты (разуклонка)</td>
+                        <td>210 м²</td>
+                        <td>450 ₽/м²</td>
+                        <td>94 500 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Пароизоляционная плёнка</td>
+                        <td>230 м²</td>
+                        <td>60 ₽/м²</td>
+                        <td>13 800 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>ПВХ-мембрана 1,2 мм</td>
+                        <td>240 м²</td>
+                        <td>550 ₽/м²</td>
+                        <td>132 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Телескопический крепёж</td>
+                        <td>1200 шт</td>
+                        <td>25 ₽/шт</td>
+                        <td>30 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Краевая рейка, воронки, комплектующие</td>
+                        <td>комплект</td>
+                        <td>—</td>
+                        <td>35 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ИТОГО материалы:</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>599 300 ₽</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Для сравнения:</strong> аналогичная кровля с утеплением минеральной ватой 200 мм обойдётся в 520 000-560 000 ₽ по материалам, но потребует более мощного крепежа, увеличит нагрузку на перекрытие на 40-60% и прослужит 25-30 лет вместо 50+.
+        </p>
+
+        <h2>Типичные ошибки при утеплении плоской кровли</h2>
+
+        <h3>1. Отсутствие уклона</h3>
+        <p>
+            <strong>Ошибка:</strong> укладка утеплителя и мембраны на абсолютно ровное основание.
+        </p>
+        <p>
+            <strong>Последствия:</strong> лужи на кровле, ускоренное старение гидроизоляции, протечки, промерзание стоячей воды зимой и разрыв мембраны.
+        </p>
+        <p>
+            <strong>Решение:</strong> всегда создавайте уклон не менее 1,5%. Используйте клиновидные PIR-плиты — это самый простой и надёжный способ.
+        </p>
+
+        <h3>2. Экономия на пароизоляции</h3>
+        <p>
+            <strong>Ошибка:</strong> пропуск пароизоляционного слоя «ради экономии» или «PIR же не впитывает воду».
+        </p>
+        <p>
+            <strong>Последствия:</strong> водяной пар конденсируется под гидроизоляцией, образуются пузыри на мембране, появляются протечки.
+        </p>
+        <p>
+            <strong>Решение:</strong> пароизоляция обязательна в любом варианте кровельного пирога с утеплением сверху. PIR не впитывает воду, но пар может конденсироваться на стыках и на нижней поверхности гидроизоляции.
+        </p>
+
+        <h3>3. Совпадение стыков при двухслойной укладке</h3>
+        <p>
+            <strong>Ошибка:</strong> верхний и нижний слои уложены так, что стыки совпадают.
+        </p>
+        <p>
+            <strong>Последствия:</strong> мостики холода по всей длине стыка, увеличение теплопотерь на 10-15%.
+        </p>
+        <p>
+            <strong>Решение:</strong> смещение стыков верхнего слоя относительно нижнего не менее 200 мм. Поперечные стыки тоже смещайте.
+        </p>
+
+        <h3>4. Хождение по незакреплённому утеплителю</h3>
+        <p>
+            <strong>Ошибка:</strong> рабочие ходят по уложенным, но ещё не закреплённым PIR-плитам.
+        </p>
+        <p>
+            <strong>Последствия:</strong> смещение плит, нарушение стыков, повреждение пароизоляции.
+        </p>
+        <p>
+            <strong>Решение:</strong> крепите плиты участками, закрепляя каждый участок перед переходом к следующему. Используйте фанерные «дорожки» для перемещения по незакреплённым участкам.
+        </p>
+
+        <h2>PIR vs минеральная вата для плоской кровли</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Параметр</th>
+                        <th>PIR-плиты</th>
+                        <th>Минеральная вата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Теплопроводность, Вт/(м*К)</td>
+                        <td><strong>0,022</strong></td>
+                        <td>0,038-0,045</td>
+                    </tr>
+                    <tr>
+                        <td>Толщина для R=5,0</td>
+                        <td><strong>110 мм</strong></td>
+                        <td>190-225 мм</td>
+                    </tr>
+                    <tr>
+                        <td>Водопоглощение</td>
+                        <td><strong>&lt; 1%</strong></td>
+                        <td>15-30%</td>
+                    </tr>
+                    <tr>
+                        <td>Вес 1 м² (при R=5,0)</td>
+                        <td><strong>3,5 кг</strong></td>
+                        <td>19-28 кг</td>
+                    </tr>
+                    <tr>
+                        <td>Срок службы</td>
+                        <td><strong>50+ лет</strong></td>
+                        <td>25-30 лет</td>
+                    </tr>
+                    <tr>
+                        <td>Прочность на сжатие</td>
+                        <td><strong>до 120 кПа</strong></td>
+                        <td>40-60 кПа</td>
+                    </tr>
+                    <tr>
+                        <td>Стабильность свойств</td>
+                        <td><strong>Не меняются</strong></td>
+                        <td>Теряет до 40% за 10 лет</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Часто задаваемые вопросы</h2>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли утеплить плоскую кровлю PIR-плитами без снятия старого покрытия?
+                </div>
+                <div class="faq-answer">
+                    Да, если старое покрытие прочно держится и не имеет вздутий. PIR-плиты укладываются поверх старого кровельного ковра, крепятся механически, сверху монтируется новая ПВХ-мембрана. Это экономит время и деньги на демонтаже, при этом старое покрытие работает как дополнительная пароизоляция.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Какой максимальный уклон можно создать клиновидными PIR-плитами?
+                </div>
+                <div class="faq-answer">
+                    Стандартные клиновидные плиты создают уклон от 1,5% до 4,2%. Для большего уклона используют комбинацию клиновидных и плоских плит разной толщины. Для кровель с уклоном более 10% рекомендуется другая конструкция — скатная кровля с PIR-плитами между стропилами.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Нужно ли проклеивать стыки PIR-плит на плоской кровле?
+                </div>
+                <div class="faq-answer">
+                    Для плоской кровли с ПВХ-мембраной проклейка стыков скотчем не обязательна — мембрана выполняет функцию сплошного гидробарьера. Однако для дополнительной ветрозащиты и предотвращения конвективных теплопотерь через стыки рекомендуется проклеивать хотя бы стыки верхнего слоя алюминиевым скотчем.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Выдержат ли PIR-плиты снеговую нагрузку?
+                </div>
+                <div class="faq-answer">
+                    Да. Прочность PIR-плит на сжатие — до 120 кПа (12 тонн на 1 м²). Максимальная снеговая нагрузка в России (VIII снеговой район — Норильск, Воркута) составляет 560 кг/м² = 5,6 кПа. Это в 21 раз меньше прочности PIR. Утеплитель выдержит любую снеговую нагрузку с огромным запасом.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли монтировать PIR-плиты на плоскую кровлю зимой?
+                </div>
+                <div class="faq-answer">
+                    Да, PIR-плиты не теряют свойств при низких температурах и могут монтироваться при температуре до -25°C. Однако сварка ПВХ-мембраны при температуре ниже -15°C затруднена и требует предварительного прогрева материала. Оптимальная температура для кровельных работ — от -10°C до +35°C.
+                </div>
+            </div>
+        </div>
+
+        <h2>Заключение</h2>
+        <p>
+            Утепление плоской кровли PIR-плитами — это профессиональное решение, которое обеспечивает максимальную энергоэффективность при минимальной толщине конструкции. PIR не впитывает воду, не теряет свойств со временем и служит столько же, сколько и сама кровля.
+        </p>
+        <p>
+            <strong>Ключевые принципы:</strong>
+        </p>
+        <ul>
+            <li>Используйте двухслойную укладку со смещением стыков для максимальной эффективности</li>
+            <li>Всегда создавайте уклон — минимум 1,5% к водоприёмным воронкам</li>
+            <li>Не экономьте на пароизоляции — она защищает весь кровельный пирог</li>
+            <li>Применяйте клиновидные PIR-плиты для уклонообразования — это экономит вес и время</li>
+            <li>Рассчитывайте толщину утеплителя по СП 50.13330 для вашего региона</li>
+        </ul>
+        <p>
+            <strong>Нужна помощь с расчётом утеплителя для вашей кровли?</strong> Позвоните нам по телефону +7 (963) 927-31-24 или оставьте заявку на сайте — подберём оптимальное решение и рассчитаем количество материалов!
+        </p>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </div>
+                    <p>Продажа PIR плит по всей России. Профессиональная консультация специалистов</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                        <li><a href="/reviews">Отзывы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Планета PIR. Все права защищены.</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">Данная статья защищена авторским правом. Копирование, распространение и использование материалов без письменного разрешения правообладателя запрещено.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Защита от копирования
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.metaKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); return false; }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        window.addEventListener('beforeprint', function(e) { e.preventDefault(); alert('Печать и сохранение страницы запрещены.'); return false; });
+
+        function createWatermarks() {
+            const watermarks = [
+                { top: '20%', left: '20%' }, { top: '20%', left: '70%' },
+                { top: '50%', left: '35%' }, { top: '80%', left: '20%' }, { top: '80%', left: '70%' }
+            ];
+            watermarks.forEach(pos => {
+                const mark = document.createElement('div');
+                mark.className = 'watermark';
+                mark.textContent = 'PIR-PLANET.RU';
+                mark.style.top = pos.top;
+                mark.style.left = pos.left;
+                document.body.appendChild(mark);
+            });
+        }
+
+        function protectImages() {
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('mousedown', function(e) { e.preventDefault(); return false; });
+                img.addEventListener('touchstart', function(e) { e.preventDefault(); return false; });
+            });
+        }
+
+        window.addEventListener('load', function() { createWatermarks(); protectImages(); });
+    </script>
+
+    <script src="/js/security.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/new-year.js"></script>
+
+    <!-- Прогресс бар чтения -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+</body>
+</html>
