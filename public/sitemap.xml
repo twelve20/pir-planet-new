@@ -20,7 +20,7 @@
     <!-- Блог -->
     <url>
         <loc>https://pir-planet.ru/blog</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -36,7 +36,7 @@
     <!-- Отзывы -->
     <url>
         <loc>https://pir-planet.ru/reviews</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -44,7 +44,7 @@
     <!-- Контакты -->
     <url>
         <loc>https://pir-planet.ru/contacts</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -52,7 +52,7 @@
     <!-- Промышленные решения -->
     <url>
         <loc>https://pir-planet.ru/industrial</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -69,49 +69,49 @@
 
     <url>
         <loc>https://pir-planet.ru/product/logicpir-banya-30</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/product/logicpir-banya-40</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/product/logicpir-banya-50</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/product/logicpir-prof-80</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/product/logicpir-prof-100</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/product/alu-tape</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/product/techno-glue</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -120,77 +120,77 @@
 
     <url>
         <loc>https://pir-planet.ru/blog/pir-explanation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2025-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/banya-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2025-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/floor-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2025-11-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/facade-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2025-11-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/roof-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2025-11-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/mansard-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2025-12-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/balcony-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-01-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/banya-winter-preparation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-01-26</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/wall-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-02-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/garage-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-02-24</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://pir-planet.ru/blog/frame-house-insulation</loc>
-        <lastmod>2026-03-04</lastmod>
+        <lastmod>2026-03-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
