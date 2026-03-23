@@ -5,33 +5,205 @@
     <!-- Главная страница -->
     <url>
         <loc>https://pir-planet.ru/</loc>
-        <lastmod>2024-11-22</lastmod>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <!-- Каталог -->
     <url>
-        <loc>https://pir-planet.ru/catalog.html</loc>
-        <lastmod>2024-11-22</lastmod>
+        <loc>https://pir-planet.ru/catalog</loc>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <!-- Галерея -->
     <url>
-        <loc>https://pir-planet.ru/gallery.html</loc>
-        <lastmod>2024-11-22</lastmod>
+        <loc>https://pir-planet.ru/gallery</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Блог -->
+    <url>
+        <loc>https://pir-planet.ru/blog</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Отзывы -->
+    <url>
+        <loc>https://pir-planet.ru/reviews</loc>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- Контакты -->
     <url>
-        <loc>https://pir-planet.ru/contacts.html</loc>
-        <lastmod>2024-11-22</lastmod>
+        <loc>https://pir-planet.ru/contacts</loc>
+        <lastmod>2026-03-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+
+    <!-- Промышленные -->
+    <url>
+        <loc>https://pir-planet.ru/industrial</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Корзина -->
+    <url>
+        <loc>https://pir-planet.ru/cart</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Оформление заказа -->
+    <url>
+        <loc>https://pir-planet.ru/checkout</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Политика конфиденциальности -->
+    <url>
+        <loc>https://pir-planet.ru/privacy</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Статьи блога -->
+    <url>
+        <loc>https://pir-planet.ru/blog/pir-explanation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/banya-insulation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/floor-insulation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/facade-insulation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/roof-insulation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/mansard-insulation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/balcony-insulation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/banya-winter-preparation</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Товары -->
+    <url>
+        <loc>https://pir-planet.ru/product/logicpir-banya-30</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://pir-planet.ru/images/products/logicpir-banya-30.webp</image:loc>
+            <image:title>LOGICPIR БАНЯ ФОЛЬГА Г1 30 мм</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/product/logicpir-banya-40</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://pir-planet.ru/images/products/logicpir-banya-40.webp</image:loc>
+            <image:title>LOGICPIR БАНЯ ФОЛЬГА Г1 40 мм</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/product/logicpir-banya-50</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://pir-planet.ru/images/products/logicpir-banya-50.webp</image:loc>
+            <image:title>LOGICPIR БАНЯ ФОЛЬГА Г1 50 мм</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/product/logicpir-prof-100</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://pir-planet.ru/images/products/logicpir-prof-100.webp</image:loc>
+            <image:title>LOGICPIR ПРОФ 100 мм</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/product/alu-tape</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://pir-planet.ru/images/products/alu-tape.webp</image:loc>
+            <image:title>Алюминиевая лента 50 мм х 50 м</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/product/techno-glue</loc>
+        <lastmod>2026-03-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://pir-planet.ru/images/products/techno-glue.webp</image:loc>
+            <image:title>Клей-пена монтажная Технониколь LOGICPIR</image:title>
+        </image:image>
     </url>
 
 </urlset>
