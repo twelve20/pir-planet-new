@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Утепление цоколя и подвала PIR-плитами: снаружи и изнутри. Пошаговые инструкции, защита от влаги, расчёт материалов и типичные ошибки.">
+    <meta name="keywords" content="утепление цоколя, утепление подвала, PIR плиты для цоколя, теплоизоляция подвала, утепление фундамента снаружи, PIR цоколь">
+    <meta name="yandex-verification" content="f7b9cf4cfb764650" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://pir-planet.ru/blog/basement-insulation">
+    <meta property="og:title" content="Утепление цоколя и подвала PIR-плитами: снаружи и изнутри — полное руководство">
+    <meta property="og:description" content="Как правильно утеплить цоколь и подвал PIR-плитами. Пошаговые инструкции снаружи и изнутри, защита от грунтовых вод, расчёт материалов.">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog-basement-hero.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pir-planet.ru/blog/basement-insulation">
+    <meta property="twitter:title" content="Утепление цоколя и подвала PIR-плитами: снаружи и изнутри — полное руководство">
+    <meta property="twitter:description" content="Как правильно утеплить цоколь и подвал PIR-плитами. Пошаговые инструкции снаружи и изнутри, защита от грунтовых вод, расчёт материалов.">
+    <meta property="twitter:image" content="https://pir-planet.ru/images/blog-basement-hero.webp">
+
+    <title>Утепление цоколя и подвала PIR-плитами | Планета PIR</title>
+    <link rel="canonical" href="https://pir-planet.ru/blog/basement-insulation">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/new-year.css">
+
+    <style>
+        /* --- ПЕРЕМЕННЫЕ (Стиль сайта) --- */
+        :root {
+            --bg-color: #f8fafc;
+            --bg-white: #ffffff;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --accent-color: #2563eb;
+            --accent-light: #3b82f6;
+            --code-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --quote-bg: #eff6ff;
+            --content-width: 780px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- ПРОГРЕСС БАР ЧТЕНИЯ --- */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bg-white);
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* --- ОБЩИЕ СТИЛИ --- */
+        body {
+            font-family: var(--font-main);
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumbs-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumbs span {
+            color: var(--text-secondary);
+            margin: 0 0.5rem;
+        }
+
+        /* --- HERO СЕКЦИЯ --- */
+        .article-hero {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3rem 0 2rem;
+        }
+
+        .article-hero-container {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--quote-bg);
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-meta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* --- КОНТЕНТ СТАТЬИ --- */
+        .article-content {
+            background: var(--bg-white);
+            max-width: var(--content-width);
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .article-content h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-color);
+        }
+
+        .article-content p {
+            margin: 1.2rem 0;
+            line-height: 1.8;
+        }
+
+        .article-content strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin: 0.8rem 0;
+            line-height: 1.7;
+        }
+
+        .article-content li strong {
+            color: var(--accent-color);
+        }
+
+        /* --- ТАБЛИЦЫ --- */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-white);
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        /* --- БЛОК С ПРЕДУПРЕЖДЕНИЕМ --- */
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: #92400e;
+            font-size: 1.1rem;
+        }
+
+        .warning-box p {
+            margin: 0.5rem 0;
+            color: #78350f;
+        }
+
+        /* --- БЛОК С СОВЕТОМ --- */
+        .tip-box {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .tip-box h4 {
+            margin: 0 0 0.8rem 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .tip-box p {
+            margin: 0.5rem 0;
+        }
+
+        /* --- FAQ --- */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8fafc;
+            padding: 1.2rem 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* --- ЗАЩИТА ОТ КОПИРОВАНИЯ --- */
+        .watermark {
+            position: fixed;
+            font-size: 80px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.02);
+            z-index: 1;
+            pointer-events: none;
+            transform: rotate(-45deg);
+            user-select: none;
+        }
+
+        .article-image, .article-featured-image {
+            position: relative;
+        }
+
+        .article-image::after, .article-featured-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .article-hero-container,
+            .breadcrumbs-container,
+            .article-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Утепление цоколя и подвала PIR-плитами: снаружи и изнутри — полное руководство",
+      "description": "Утепление цоколя и подвала PIR-плитами: снаружи и изнутри. Пошаговые инструкции, защита от влаги, расчёт материалов и типичные ошибки.",
+      "image": "https://pir-planet.ru/images/blog-basement-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Планета PIR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Планета PIR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://pir-planet.ru/images/favicon.svg"
+        }
+      },
+      "datePublished": "2026-03-30",
+      "dateModified": "2026-03-30"
+    }
+    </script>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(104857358, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce:"dataLayer"
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104857358" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Яндекс.Метрика -->
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://pir-planet.ru/"},
+        {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://pir-planet.ru/blog"},
+        {"@type": "ListItem", "position": 3, "name": "Утепление цоколя и подвала"}
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Прогресс бар чтения -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                    <span class="logo-text">Планета PIR</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="/gallery">Галерея</a></li>
+                    <li><a href="/blog" class="active">Блог</a></li>
+                    <li><a href="/reviews">Отзывы</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                    <li><a href="/industrial">Промышленные</a></li>
+                    <li><a href="/#order" class="btn-primary-small">Оставить заявку</a></li>
+                    <li>
+                        <a href="/cart" class="cart-link" id="cartLink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+                            </svg>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-container">
+            <a href="/">Главная</a>
+            <span>/</span>
+            <a href="/blog">Блог</a>
+            <span>/</span>
+            Утепление цоколя и подвала
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="article-hero">
+        <div class="article-hero-container">
+            <span class="article-category">Инструкции</span>
+            <h1 class="article-title">Утепление цоколя и подвала PIR-плитами: снаружи и изнутри — полное руководство</h1>
+            <div class="article-meta">
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>30 марта 2026</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>20 мин</span>
+                </div>
+                <div class="article-meta-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Планета PIR</span>
+                </div>
+            </div>
+            <img src="/images/blog-basement-hero.webp" alt="Утепление цоколя и подвала PIR-плитами" class="article-image">
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>
+            Цоколь и подвал — самые уязвимые части дома с точки зрения теплопотерь и влаги. Через неутеплённый цоколь в средней полосе России уходит до 20% тепла. Но главная проблема даже не в потерях тепла, а в конденсате: холодные стены подвала «притягивают» влагу из воздуха, провоцируют появление плесени, разрушают фундамент и делают хранение продуктов или эксплуатацию подвала невозможным.
+        </p>
+        <p>
+            PIR-плиты решают обе задачи одновременно — утепляют и создают надёжный паробарьер. При этом в отличие от минваты они не намокают и не теряют свойств даже при контакте с грунтом или периодическом увлажнении.
+        </p>
+
+        <div class="tip-box">
+            <h4>Почему PIR — лучший выбор для цоколя и подвала?</h4>
+            <p>PIR-плиты практически не поглощают влагу (водопоглощение менее 2%), не гниют, не разрушаются при контакте с грунтом и сохраняют теплоизолирующие свойства на протяжении всего срока службы здания. Для подземных и приземных конструкций, где влага — главный враг, это решающее преимущество перед минватой и обычным пенопластом.</p>
+        </div>
+
+        <h2>Снаружи или изнутри: что выбрать?</h2>
+        <p>
+            Первый вопрос при утеплении цоколя и подвала — с какой стороны работать. Оба варианта имеют право на жизнь, но наружное утепление предпочтительнее по нескольким причинам.
+        </p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Снаружи (рекомендуется)</th>
+                        <th>Изнутри (вынужденная мера)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Точка росы</td>
+                        <td>Выводится за пределы стены — конденсата нет</td>
+                        <td>Остаётся внутри стены — риск намокания</td>
+                    </tr>
+                    <tr>
+                        <td>Защита фундамента</td>
+                        <td>Полная — стена не промерзает</td>
+                        <td>Отсутствует — фундамент по-прежнему мёрзнет</td>
+                    </tr>
+                    <tr>
+                        <td>Потеря площади подвала</td>
+                        <td>Нет</td>
+                        <td>5–7 см с каждой стороны</td>
+                    </tr>
+                    <tr>
+                        <td>Сложность работ</td>
+                        <td>Требует земляных работ (отмостка, траншея)</td>
+                        <td>Проще — работы внутри</td>
+                    </tr>
+                    <tr>
+                        <td>Применимость</td>
+                        <td>Новое строительство, доступный цоколь</td>
+                        <td>Готовый дом, невозможность вскрыть снаружи</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Наружное утепление цоколя и подвала</h2>
+        <p>
+            Наружное утепление — это правильный подход, который защищает фундамент от промерзания, пучения грунта и влаги. Оптимально выполнять при строительстве или капитальном ремонте, когда есть возможность вскрыть грунт по периметру.
+        </p>
+
+        <h3>Что потребуется</h3>
+        <ul>
+            <li><strong>PIR-плиты 80–100 мм</strong> (для средней полосы), 60 мм (юг), 100–120 мм (Сибирь, Урал)</li>
+            <li>Клей-пена для PIR</li>
+            <li>Фольгированный скотч</li>
+            <li>Гидроизоляционная мастика или мембрана (на подземную часть)</li>
+            <li>Профильная мембрана (геомембрана) — для защиты утеплителя от давления грунта</li>
+            <li>Дюбели-грибки (для надземной части цоколя)</li>
+            <li>Штукатурная сетка и фасадная штукатурка (для отделки надземной части)</li>
+        </ul>
+
+        <h3>Пошаговая инструкция</h3>
+
+        <h3>Шаг 1. Земляные работы</h3>
+        <ol>
+            <li>Выкопайте траншею по периметру фундамента глубиной до подошвы или до глубины промерзания грунта в вашем регионе. Ширина траншеи — не менее 1 м для удобства работы.</li>
+            <li>Дайте стенам фундамента просохнуть 2–3 дня после вскрытия.</li>
+        </ol>
+
+        <h3>Шаг 2. Гидроизоляция фундамента</h3>
+        <ol>
+            <li>Очистите стены от грязи и осыпающегося раствора.</li>
+            <li>Нанесите гидроизоляционную мастику (битумную или полимерно-битумную) в 2 слоя. Подземную часть — обязательно, надземную — по желанию.</li>
+            <li>Дайте мастике высохнуть согласно инструкции производителя (обычно 24 ч).</li>
+        </ol>
+
+        <div class="warning-box">
+            <h4>Важно: совместимость мастики и PIR</h4>
+            <p>Не все битумные мастики совместимы с PIR-плитами — растворители в составе некоторых мастик могут повредить поверхность плиты. Используйте водно-дисперсионные или битумно-полимерные мастики без органических растворителей. Перед нанесением проверьте совместимость на небольшом фрагменте.</p>
+        </div>
+
+        <h3>Шаг 3. Монтаж PIR-плит</h3>
+        <ol>
+            <li><strong>Нанесите клей-пену</strong> по периметру плиты и крест-накрест в центре.</li>
+            <li><strong>Приклейте плиту</strong> к стене фундамента снизу вверх, начиная от подошвы. Прижмите и удерживайте 30–60 секунд.</li>
+            <li><strong>Соблюдайте перевязку швов</strong> — вертикальные стыки в соседних рядах не должны совпадать.</li>
+            <li><strong>Стыки запеньте</strong> монтажной пеной, проклейте фольгированным скотчем.</li>
+            <li><strong>Надземную часть цоколя</strong> дополнительно зафиксируйте тарельчатыми дюбелями — 5–6 штук на плиту.</li>
+            <li><strong>Продолжите утепление</strong> выше, перекрывая переход «цоколь — стена» на 15–20 см, чтобы исключить мостик холода.</li>
+        </ol>
+
+        <h3>Шаг 4. Защита подземной части</h3>
+        <ol>
+            <li>Уложите профильную (геодренажную) мембрану поверх PIR-плит подземной части — она защитит утеплитель от механических повреждений при обратной засыпке и обеспечит дренаж воды.</li>
+            <li>Выведите верхний край мембраны на 15–20 см выше уровня грунта и закрепите дюбелями.</li>
+        </ol>
+
+        <h3>Шаг 5. Отделка надземной части цоколя</h3>
+        <p>Надземную часть PIR-плит необходимо защитить от ультрафиолета и механических повреждений. Варианты отделки:</p>
+        <ul>
+            <li><strong>Штукатурка по сетке</strong> — нанесите стекловолоконную сетку на клей, затем два слоя штукатурки. Бюджетно и надёжно.</li>
+            <li><strong>Клинкерная плитка</strong> — эстетично, долговечно, монтируется на специальный клей по плитам со стеклохолстом.</li>
+            <li><strong>Облицовочный кирпич или камень</strong> — максимальная эстетика, требует отдельного фундамента для облицовки.</li>
+            <li><strong>Профлист или цокольный сайдинг</strong> — быстро и недорого, монтируется на обрешётку.</li>
+        </ul>
+
+        <h3>Шаг 6. Обратная засыпка и отмостка</h3>
+        <ol>
+            <li>Засыпьте траншею непучинистым грунтом (щебень, песок) слоями по 20 см, послойно трамбуя.</li>
+            <li>Устройте утеплённую отмостку шириной не менее 80 см: PIR-плиты 50 мм укладываются горизонтально по периметру, затем заливается бетон или укладывается тротуарная плитка.</li>
+        </ol>
+
+        <div class="tip-box">
+            <h4>Утеплённая отмостка — обязательный элемент</h4>
+            <p>Без утеплённой отмостки грунт под фундаментом всё равно будет промерзать с боков. Горизонтальный слой PIR под отмосткой блокирует боковое промерзание и защищает фундамент от пучения так же эффективно, как вертикальный слой на стене.</p>
+        </div>
+
+        <h2>Внутреннее утепление подвала</h2>
+        <p>
+            Внутреннее утепление применяют, когда наружные работы невозможны: дом уже стоит, земля не вскрыта, нет доступа к фундаменту снаружи. Это компромисс, но при правильном исполнении он даёт хороший результат.
+        </p>
+
+        <div class="warning-box">
+            <h4>Главный риск при внутреннем утеплении</h4>
+            <p>Точка росы смещается в слой стены или на границу стена–утеплитель. Без качественного паробарьера влага будет конденсироваться внутри конструкции, вызывая плесень и разрушение. PIR-плиты с фольгированным покрытием сами по себе являются паробарьером — это главное их преимущество при внутреннем утеплении.</p>
+        </div>
+
+        <h3>Подготовка подвала к внутреннему утеплению</h3>
+        <ol>
+            <li><strong>Устраните источники сырости.</strong> Внутреннее утепление бессмысленно при активных протечках. Обработайте стены гидрофобизирующей пропиткой или гидроизоляционной штукатуркой снаружи или изнутри.</li>
+            <li><strong>Обработайте стены антисептиком</strong> — особенно если есть следы плесени или высолов. Дайте полностью высохнуть (2–5 дней).</li>
+            <li><strong>Выровняйте стены</strong> — перепад не более 5–10 мм. Впадины заполните цементным раствором.</li>
+            <li><strong>Проверьте вентиляцию</strong> — подвал должен вентилироваться. Без воздухообмена даже PIR-плиты не спасут от накопления влаги.</li>
+        </ol>
+
+        <h3>Монтаж PIR-плит изнутри</h3>
+        <ol>
+            <li><strong>Нанесите клей-пену</strong> на плиту по периметру и 2 полосы посередине.</li>
+            <li><strong>Приклейте плиту</strong> к стене, начиная от угла. Прижмите и удерживайте 30–60 секунд. Используйте временные подпорки для горизонтальных поверхностей.</li>
+            <li><strong>Монтируйте плиты встык</strong>, без зазоров. Соблюдайте перевязку горизонтальных швов.</li>
+            <li><strong>Все стыки, углы и примыкания</strong> тщательно проклейте фольгированным скотчем — это создаёт сплошной паробарьер без разрывов.</li>
+            <li><strong>Зафиксируйте тарельчатыми дюбелями</strong> — 5–6 штук на плиту (через 24 ч после приклейки).</li>
+            <li><strong>Утеплите потолок подвала</strong> (перекрытие первого этажа) — это снижает теплопотери первого этажа и устраняет ощущение холодного пола.</li>
+        </ol>
+
+        <h3>Финишная отделка</h3>
+        <p>
+            Для подвала, используемого только как технический этаж, PIR-плиты можно оставить без отделки — фольгированная поверхность достаточно долговечна в защищённой среде. Если подвал жилой или используется как склад:
+        </p>
+        <ul>
+            <li><strong>Гипсокартон влагостойкий</strong> — монтируется на металлический каркас, закреплённый к плитам. Можно красить или класть плитку.</li>
+            <li><strong>Пластиковые панели ПВХ</strong> — не боятся влаги, легко моются, быстрый монтаж на обрешётку.</li>
+            <li><strong>Штукатурка по плитам со стеклохолстом</strong> — монолитная отделка, паропроницаемость минимальная.</li>
+        </ul>
+
+        <h2>Утепление пола подвала</h2>
+        <p>
+            Пол подвала утепляют при строительстве (PIR-плиты укладываются под стяжку) или в готовом подвале при необходимости поднять уровень пола и улучшить его теплоизоляцию.
+        </p>
+
+        <h3>Порядок работ по утеплению пола</h3>
+        <ol>
+            <li>Выровняйте основание — допустимый перепад 5 мм на 2 м.</li>
+            <li>Уложите гидроизоляционную плёнку (или обработайте основание мастикой).</li>
+            <li>Уложите PIR-плиты 50–80 мм в один или два слоя со смещением швов.</li>
+            <li>Проклейте все стыки фольгированным скотчем.</li>
+            <li>Уложите разделительный слой — полиэтиленовую плёнку 200 мкм.</li>
+            <li>Залейте армированную стяжку толщиной не менее 60–70 мм (нагрузка от людей, стеллажей, техники).</li>
+        </ol>
+
+        <div class="tip-box">
+            <h4>Совет по толщине стяжки над PIR</h4>
+            <p>Минимальная толщина стяжки поверх PIR-плит в подвале — 60 мм с армированием сеткой 100×100 мм, диаметр проволоки 3 мм. Более тонкая стяжка растрескается под точечными нагрузками. Если планируется тяжёлый стеллаж или оборудование — увеличьте до 80–100 мм.</p>
+        </div>
+
+        <h2>Расчёт материалов: цоколь + подвал типового дома</h2>
+
+        <p><strong>Исходные данные:</strong> дом 8×10 м, высота цоколя 60 см, подвал 2,2 м, наружное утепление цоколя + внутреннее утепление стен подвала.</p>
+
+        <h3>Площадь поверхностей</h3>
+        <ul>
+            <li>Цоколь снаружи (периметр 36 м × высота 0,6 м): 21,6 м²</li>
+            <li>Стены подвала изнутри (периметр 36 м × высота 2,2 м): 79,2 м²</li>
+            <li>Потолок подвала (перекрытие): 80 м²</li>
+            <li>Пол подвала: 80 м²</li>
+            <li><strong>Итого с запасом 10%:</strong> ~290 м²</li>
+        </ul>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Позиция</th>
+                        <th>Количество</th>
+                        <th>Цена за ед.</th>
+                        <th>Итого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PIR-плиты 100 мм (цоколь снаружи, 24 м²)</td>
+                        <td>36 плит</td>
+                        <td>1 050 ₽</td>
+                        <td>37 800 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>PIR-плиты 80 мм (стены подвала изнутри, 87 м²)</td>
+                        <td>128 плит</td>
+                        <td>850 ₽</td>
+                        <td>108 800 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>PIR-плиты 80 мм (потолок подвала, 88 м²)</td>
+                        <td>130 плит</td>
+                        <td>850 ₽</td>
+                        <td>110 500 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>PIR-плиты 50 мм (пол подвала, 88 м²)</td>
+                        <td>130 плит</td>
+                        <td>560 ₽</td>
+                        <td>72 800 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Клей-пена для PIR</td>
+                        <td>40 баллонов</td>
+                        <td>500 ₽</td>
+                        <td>20 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Фольгированный скотч</td>
+                        <td>20 рулонов</td>
+                        <td>350 ₽</td>
+                        <td>7 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Тарельчатые дюбели</td>
+                        <td>2 000 шт</td>
+                        <td>4 ₽</td>
+                        <td>8 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Гидроизоляционная мастика</td>
+                        <td>10 вёдер</td>
+                        <td>1 200 ₽</td>
+                        <td>12 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>Профильная мембрана (цоколь снаружи)</td>
+                        <td>30 м²</td>
+                        <td>150 ₽</td>
+                        <td>4 500 ₽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ИТОГО материалы:</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>381 400 ₽</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Для сравнения:</strong> аналогичное утепление минеральной ватой с пароизоляцией, каркасом и финишной отделкой обошлось бы в 500 000–600 000 ₽ с учётом того, что вата в подземной зоне неприменима и потребовала бы замены на пенопласт или ЭППС.
+        </p>
+
+        <h2>Отличие PIR от ЭППС (экструдированный пенополистирол) для цоколя</h2>
+        <p>
+            Для наружного утепления цоколя часто рассматривают ЭППС (Пеноплекс и аналоги). Рассмотрим ключевые отличия:
+        </p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Параметр</th>
+                        <th>PIR-плиты</th>
+                        <th>ЭППС (Пеноплекс)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Теплопроводность</td>
+                        <td>0,022–0,025 Вт/(м·К)</td>
+                        <td>0,030–0,034 Вт/(м·К)</td>
+                    </tr>
+                    <tr>
+                        <td>Необходимая толщина (аналогичный эффект)</td>
+                        <td>80 мм</td>
+                        <td>100–120 мм</td>
+                    </tr>
+                    <tr>
+                        <td>Горючесть</td>
+                        <td>Г1 (слабогорючий)</td>
+                        <td>Г3–Г4 (нормально/сильногорючий)</td>
+                    </tr>
+                    <tr>
+                        <td>Водопоглощение</td>
+                        <td>менее 2%</td>
+                        <td>0,4–0,5% (тоже низкое)</td>
+                    </tr>
+                    <tr>
+                        <td>Паробарьерные свойства</td>
+                        <td>Высокие (фольгированное покрытие)</td>
+                        <td>Средние</td>
+                    </tr>
+                    <tr>
+                        <td>Стоимость</td>
+                        <td>Выше</td>
+                        <td>Ниже</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            Для подземной части цоколя ЭППС является достойной альтернативой из-за сопоставимого водопоглощения. Для надземной части цоколя, особенно если подвал используется жилой или рабочей зоной, PIR предпочтительнее: меньшая толщина, более высокие паробарьерные свойства и лучший класс горючести.
+        </p>
+
+        <h2>Типичные ошибки при утеплении цоколя и подвала</h2>
+
+        <h3>1. Утепление изнутри при активных протечках</h3>
+        <p>
+            <strong>Ошибка:</strong> Скрыть мокрую стену за утеплителем, надеясь, что проблема исчезнет.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Влага продолжает поступать, скапливается за утеплителем, вызывает отслоение плит, разрушение стен и неприятный запах.
+        </p>
+        <p>
+            <strong>Решение:</strong> Сначала устраните причину протечек — гидроизоляция снаружи, дренаж, ремонт трещин. Только потом — утепление.
+        </p>
+
+        <h3>2. Отсутствие утеплённой отмостки</h3>
+        <p>
+            <strong>Ошибка:</strong> Утеплили вертикальную часть фундамента, но отмостку не утеплили.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Грунт под отмосткой продолжает промерзать, пучение давит на фундамент с боков, через несколько лет появляются трещины.
+        </p>
+        <p>
+            <strong>Решение:</strong> Утеплённая отмостка — обязательный элемент системы. PIR-плиты 50 мм горизонтально под бетоном или тротуарной плиткой.
+        </p>
+
+        <h3>3. Разрывы в паробарьере</h3>
+        <p>
+            <strong>Ошибка:</strong> Стыки между плитами не проклеены скотчем — остались щели 1–2 мм.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Через щели теплый влажный воздух попадает к холодной стене и конденсируется. Через год-два — плесень в стыках.
+        </p>
+        <p>
+            <strong>Решение:</strong> Все стыки запенить монтажной пеной, затем проклеить фольгированным скотчем. Особое внимание — углам и примыканиям к полу и потолку.
+        </p>
+
+        <h3>4. Пропуск потолка подвала при внутреннем утеплении</h3>
+        <p>
+            <strong>Ошибка:</strong> Утеплили только стены подвала, оставив потолок (перекрытие первого этажа) без изоляции.
+        </p>
+        <p>
+            <strong>Последствия:</strong> Первый этаж остаётся холодным, холодный воздух из подвала продолжает охлаждать пол жилых комнат.
+        </p>
+        <p>
+            <strong>Решение:</strong> Потолок подвала утепляется обязательно — PIR-плиты 60–80 мм на клей-пену + тарельчатые дюбели.
+        </p>
+
+        <h2>Часто задаваемые вопросы</h2>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Можно ли монтировать PIR-плиты прямо в грунт без профильной мембраны?
+                </div>
+                <div class="faq-answer">
+                    Технически PIR-плиты устойчивы к контакту с грунтом — они не гниют и не намокают. Однако при обратной засыпке острые камни и уплотнение грунта могут повредить поверхность плит. Профильная мембрана защищает утеплитель механически и одновременно обеспечивает дренаж воды вдоль фундамента. Рекомендуем использовать мембрану хотя бы в зоне от подошвы фундамента до уровня грунта.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Какая толщина PIR нужна для подвала в Московской области?
+                </div>
+                <div class="faq-answer">
+                    Для наружного утепления цоколя в Московской области: 80–100 мм. Для внутреннего утепления стен подвала: 60–80 мм (стены частично ниже уровня промерзания). Потолок подвала (перекрытие первого этажа): 60–80 мм. Пол подвала: 50 мм. Точный расчёт зависит от глубины промерзания грунта в вашей местности (для Подмосковья — 1,4–1,6 м) и требуемого сопротивления теплопередаче.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    PIR-плиты выдержат давление грунта при обратной засыпке?
+                </div>
+                <div class="faq-answer">
+                    PIR-плиты имеют прочность на сжатие 150–200 кПа при деформации 10%. Это достаточно для восприятия давления грунта при правильной засыпке (послойное уплотнение без крупных камней, с профильной мембраной). Не допускайте ударных нагрузок и уплотнения виброплитой вплотную к плитам — работайте на расстоянии не менее 30 см.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Нужна ли вентиляция в утеплённом подвале?
+                </div>
+                <div class="faq-answer">
+                    Да, обязательно. PIR-плиты создают паробарьер, но воздух в подвале всё равно насыщается влагой от дыхания материалов, грунта через пол и внесённых предметов. Минимум — приточное отверстие диаметром 100–125 мм у пола с одной стороны и вытяжное у потолка с противоположной. Для жилого подвала рекомендуется принудительная вентиляция с рекуперацией тепла.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Нужно ли утеплять подвал, если он нежилой и используется только для хранения?
+                </div>
+                <div class="faq-answer">
+                    Зависит от цели. Для хранения овощей и консервации — утеплять нежелательно, нужна стабильная низкая температура. Для хранения вещей, инструментов, вина — утепление цоколя снаружи и потолка подвала изнутри полезно: устраняет конденсат, поддерживает стабильную температуру 5–10°C зимой. Полное утепление всех поверхностей рекомендуется только если подвал планируется как жилая или рабочая зона.
+                </div>
+            </div>
+        </div>
+
+        <h2>Заключение</h2>
+        <p>
+            Утепление цоколя и подвала PIR-плитами — это комплексная задача, которая решает сразу несколько проблем: теплопотери через фундамент, конденсат и сырость в подвале, промерзание грунта и пучение, холодный пол на первом этаже.
+        </p>
+        <p>
+            <strong>Главные правила успешного утепления:</strong>
+        </p>
+        <ul>
+            <li>Предпочитайте наружное утепление — оно защищает и фундамент, и интерьер</li>
+            <li>Сначала гидроизоляция, потом утепление — в таком порядке и никак иначе</li>
+            <li>Тщательно проклеивайте все стыки — сплошной паробарьер без разрывов</li>
+            <li>Не забывайте об утеплённой отмостке — это часть системы, а не опция</li>
+            <li>Обеспечьте вентиляцию — даже самый лучший утеплитель не поможет без воздухообмена</li>
+            <li>Утепляйте все поверхности: стены, потолок и пол подвала</li>
+        </ul>
+        <p>
+            <strong>Нужна помощь с расчётом материалов или консультация по утеплению вашего цоколя и подвала?</strong> Позвоните нам по телефону +7 (963) 927-31-24 или оставьте заявку на сайте — подберём оптимальное решение для вашего проекта!
+        </p>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="/images/favicon.svg" alt="Планета PIR" class="logo-img">
+                        <span class="logo-text">Планета PIR</span>
+                    </div>
+                    <p>Продажа PIR плит по всей России. Профессиональная консультация специалистов</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/catalog">Каталог</a></li>
+                        <li><a href="/gallery">Галерея</a></li>
+                        <li><a href="/blog">Блог</a></li>
+                        <li><a href="/reviews">Отзывы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="tel:+79639273124">+7 (963) 927-31-24</a></li>
+                        <li><a href="mailto:olnast.ru@yandex.ru">olnast.ru@yandex.ru</a></li>
+                        <li>Работаем по всей России</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Планета PIR. Все права защищены.</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 1rem;">Данная статья защищена авторским правом. Копирование, распространение и использование материалов без письменного разрешения правообладателя запрещено.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Защита от копирования
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.metaKey && (e.key === 's' || e.key === 'p' || e.key === 'u' || e.key === 'c' || e.key === 'a')) { e.preventDefault(); return false; }
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); return false; }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+        window.addEventListener('beforeprint', function(e) { e.preventDefault(); alert('Печать и сохранение страницы запрещены.'); return false; });
+
+        function createWatermarks() {
+            const watermarks = [
+                { top: '20%', left: '20%' }, { top: '20%', left: '70%' },
+                { top: '50%', left: '35%' }, { top: '80%', left: '20%' }, { top: '80%', left: '70%' }
+            ];
+            watermarks.forEach(pos => {
+                const mark = document.createElement('div');
+                mark.className = 'watermark';
+                mark.textContent = 'PIR-PLANET.RU';
+                mark.style.top = pos.top;
+                mark.style.left = pos.left;
+                document.body.appendChild(mark);
+            });
+        }
+
+        function protectImages() {
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('mousedown', function(e) { e.preventDefault(); return false; });
+                img.addEventListener('touchstart', function(e) { e.preventDefault(); return false; });
+            });
+        }
+
+        window.addEventListener('load', function() { createWatermarks(); protectImages(); });
+    </script>
+
+    <script src="/js/security.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/new-year.js"></script>
+
+    <!-- Прогресс бар чтения -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+    </script>
+    <script src="//code.jivo.ru/widget/HnMRLqUo0O" async></script>
+</body>
+</html>
