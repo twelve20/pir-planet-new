@@ -304,6 +304,10 @@ app.get('/blog/flat-roof-insulation', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'blog-flat-roof-insulation.html'));
 });
 
+app.get('/blog/basement-insulation', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'blog-basement-insulation.html'));
+});
+
 // Обработка маршрутов для страниц товаров
 app.get('/product/logicpir-banya-30', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'product-logicpir-banya-30.html'));
