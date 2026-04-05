@@ -20,7 +20,7 @@
     <!-- Блог -->
     <url>
         <loc>https://pir-planet.ru/blog</loc>
-        <lastmod>2026-03-19</lastmod>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -36,7 +36,7 @@
     <!-- Отзывы -->
     <url>
         <loc>https://pir-planet.ru/reviews</loc>
-        <lastmod>2026-03-19</lastmod>
+        <lastmod>2026-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -198,6 +198,13 @@
     <url>
         <loc>https://pir-planet.ru/blog/flat-roof-insulation</loc>
         <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://pir-planet.ru/blog/basement-insulation</loc>
+        <lastmod>2026-03-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
